@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rut_atendido: 1
+  codigo_obra: 1
+  user: one
+  nombre_atendido: MyString
+  apellido_paterno: MyString
+  apellido_materno: MyString
+  aspcategory: one
+  solucion: MyString
+  estado: false
+  subcontrato: false
+  nombre_supervisor: MyString
+  descripcion: MyText
+
+two:
+  rut_atendido: 1
+  codigo_obra: 1
+  user: two
+  nombre_atendido: MyString
+  apellido_paterno: MyString
+  apellido_materno: MyString
+  aspcategory: two
+  solucion: MyString
+  estado: false
+  subcontrato: false
+  nombre_supervisor: MyString
+  descripcion: MyText

@@ -1,0 +1,132 @@
+<%= form_with(model: loga, local: true) do |form| %>
+  <% if loga.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(loga.errors.count, "error") %> prohibited this loga from being saved:</h2>
+
+      <ul>
+      <% loga.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :asocial_id %>
+    <%= form.number_field :asocial_id, id: :loga_asocial_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :epcformulary_id %>
+    <%= form.text_field :epcformulary_id, id: :loga_epcformulary_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_name %>
+    <%= form.text_field :user_name, id: :loga_user_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :codigo_obra %>
+    <%= form.number_field :codigo_obra, id: :loga_codigo_obra %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rut_atendido %>
+    <%= form.text_field :rut_atendido, id: :loga_rut_atendido %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nombre_atendido %>
+    <%= form.text_field :nombre_atendido, id: :loga_nombre_atendido %>
+  </div>
+
+  <div class="field">
+    <%= form.label :apellido_paterno_atendido %>
+    <%= form.text_field :apellido_paterno_atendido, id: :loga_apellido_paterno_atendido %>
+  </div>
+
+  <div class="field">
+    <%= form.label :apellido_materno_atendido %>
+    <%= form.text_field :apellido_materno_atendido, id: :loga_apellido_materno_atendido %>
+  </div>
+
+  <div class="field">
+    <%= form.label :aspcategory_name %>
+    <%= form.text_field :aspcategory_name, id: :loga_aspcategory_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :solucion %>
+    <%= form.text_field :solucion, id: :loga_solucion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :estado %>
+    <%= form.check_box :estado, id: :loga_estado %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subcontrato %>
+    <%= form.check_box :subcontrato, id: :loga_subcontrato %>
+  </div>
+
+  <div class="field">
+    <%= form.label :supervisor %>
+    <%= form.text_field :supervisor, id: :loga_supervisor %>
+  </div>
+
+  <div class="field">
+    <%= form.label :descripcion %>
+    <%= form.text_area :descripcion, id: :loga_descripcion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rut_pariente %>
+    <%= form.text_field :rut_pariente, id: :loga_rut_pariente %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nombre_pariente %>
+    <%= form.text_field :nombre_pariente, id: :loga_nombre_pariente %>
+  </div>
+
+  <div class="field">
+    <%= form.label :apellido_paterno_pariente %>
+    <%= form.text_field :apellido_paterno_pariente, id: :loga_apellido_paterno_pariente %>
+  </div>
+
+  <div class="field">
+    <%= form.label :apellido_materno_pariente %>
+    <%= form.text_field :apellido_materno_pariente, id: :loga_apellido_materno_pariente %>
+  </div>
+
+  <div class="field">
+    <%= form.label :parentezco %>
+    <%= form.text_field :parentezco, id: :loga_parentezco %>
+  </div>
+
+  <div class="field">
+    <%= form.label :empresa %>
+    <%= form.text_field :empresa, id: :loga_empresa %>
+  </div>
+
+  <div class="field">
+    <%= form.label :comentarios_caso %>
+    <%= form.text_field :comentarios_caso, id: :loga_comentarios_caso %>
+  </div>
+
+  <div class="field">
+    <%= form.label :caso_amerita_epc %>
+    <%= form.check_box :caso_amerita_epc, id: :loga_caso_amerita_epc %>
+  </div>
+
+  <div class="field">
+    <%= form.label :derivar_a %>
+    <%= form.text_field :derivar_a, id: :loga_derivar_a %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

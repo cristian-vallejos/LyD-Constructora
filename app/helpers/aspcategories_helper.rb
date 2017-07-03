@@ -1,0 +1,2 @@
+module AspcategoriesHelper
+end

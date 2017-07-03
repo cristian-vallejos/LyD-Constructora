@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Aspcategories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @aspcategories.each do |aspcategory| %>
+      <tr>
+        <td><%= aspcategory.nombre %></td>
+        <td><%= link_to 'Show', aspcategory %></td>
+        <td><%= link_to 'Edit', edit_aspcategory_path(aspcategory) %></td>
+        <td><%= link_to 'Destroy', aspcategory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Aspcategory', new_aspcategory_path %>

@@ -1,0 +1,70 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Rut atendido:</strong>
+  <%= @asformulary.rut_atendido %>
+</p>
+
+<p>
+  <strong>Codigo obra:</strong>
+  <%= @asformulary.codigo_obra %>
+</p>
+
+<p>
+  <strong>Telefono:</strong>
+  <%= @asformulary.telefono %>
+</p>
+
+<p>
+  <strong>Asistente Social:</strong>
+  <%= @asformulary.user.name %>
+</p>
+
+<p>
+  <strong>Nombre atendido:</strong>
+  <%= @asformulary.nombre_atendido %>
+</p>
+
+<p>
+  <strong>Apellido paterno:</strong>
+  <%= @asformulary.apellido_paterno %>
+</p>
+
+<p>
+  <strong>Apellido materno:</strong>
+  <%= @asformulary.apellido_materno %>
+</p>
+
+<p>
+  <strong>Aspcategory:</strong>
+  <%= @asformulary.aspcategory.nombre %>
+</p>
+
+<p>
+  <strong>Solucion:</strong>
+  <%= @asformulary.solucion %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @asformulary.estado %>
+</p>
+
+<p>
+  <strong>Subcontrato:</strong>
+  <%= @asformulary.subcontrato %>
+</p>
+
+<p>
+  <strong>Nombre supervisor:</strong>
+  <%= @asformulary.nombre_supervisor %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @asformulary.descripcion %>
+</p>
+
+<%= link_to "Agregar EPC", new_epcformulary_path(asformulary_id: @asformulary.id, codigo_obra: @asformulary.codigo_obra) %> |
+<%= link_to 'Edit', edit_asformulary_path(@asformulary) %> |
+<%= link_to 'Back', asformularies_path %>

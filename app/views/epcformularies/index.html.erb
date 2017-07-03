@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Formularios EPC</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Formulario AS</th>
+      <th>Rut atendido</th>
+      <th>Codigo</th>
+      <th>Nombre pariente</th>
+      <th>Apellido paterno pariente</th>
+      <th>Apellido materno pariente</th>
+      <th>Rut pariente</th>
+      <th>Parentesco</th>
+      <th>Empresa</th>
+      <th>Codigo obra</th>
+      <th>Comentarios caso</th>
+      <th>Caso amerita epc</th>
+      <th>Derivar a</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @epcformularies.each do |epcformulary| %>
+      <tr>
+        <td><%= link_to epcformulary.asformulary.id, controller: "asformularies", action: "show", id: epcformulary.asformulary.id %></td>
+        <td><%= epcformulary.rut_atendido %></td>
+        <td><%= epcformulary.codigo %></td>
+        <td><%= epcformulary.nombre_pariente %></td>
+        <td><%= epcformulary.apellido_paterno_pariente %></td>
+        <td><%= epcformulary.apellido_materno_pariente %></td>
+        <td><%= epcformulary.rut_pariente %></td>
+        <td><%= epcformulary.parentesco %></td>
+        <td><%= epcformulary.empresa %></td>
+        <td><%= epcformulary.codigo_obra %></td>
+        <td><%= epcformulary.comentarios_caso %></td>
+        <td><%= epcformulary.caso_amerita_epc %></td>
+        <td><%= epcformulary.derivar_a %></td>
+        <td><%= link_to 'Show', epcformulary %></td>
+        <td><%= link_to 'Edit', edit_epcformulary_path(epcformulary) %></td>
+        <td><%= link_to 'Destroy', epcformulary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nuevo Formulario', new_epcformulary_path %> | 
+<%= link_to 'ir a AS', asformularies_path %>

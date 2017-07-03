@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Formularios de Atención Social</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Rut atendido</th>
+      <th>Codigo obra</th>
+      <th>Telefono</th>
+      <th>Asistente Social</th>
+      <th>Nombre atendido</th>
+      <th>Apellido paterno</th>
+      <th>Apellido materno</th>
+      <th>Aspcategory</th>
+      <th>Solucion</th>
+      <th>Estado</th>
+      <th>Subcontrato</th>
+      <th>Supervisor</th>
+      <th>Descripcion</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @asformularies.each do |asformulary| %>
+      <tr>
+        <td><%= asformulary.rut_atendido %></td>
+        <td><%= asformulary.codigo_obra %></td>
+        <td><%= asformulary.telefono %></td>
+        <td><%= asformulary.user.name %></td>
+        <td><%= asformulary.nombre_atendido %></td>
+        <td><%= asformulary.apellido_paterno %></td>
+        <td><%= asformulary.apellido_materno %></td>
+        <td><%= asformulary.aspcategory.nombre %></td>
+        <td><%= asformulary.solucion %></td>
+        <td><%= asformulary.estado %></td>
+        <td><%= asformulary.subcontrato %></td>
+        <td><%= asformulary.nombre_supervisor %></td>
+        <td><%= asformulary.descripcion %></td>
+        <td><%= link_to 'Show', asformulary %></td>
+        <td><%= link_to 'Edit', edit_asformulary_path(asformulary) %></td>
+        <td><%= link_to 'Destroy', asformulary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nuevo Formulario', new_asformulary_path %> |
+<%= link_to 'ir a EPC', epcformularies_path %>

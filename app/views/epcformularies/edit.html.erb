@@ -1,0 +1,78 @@
+<h1>Editing Epcformulary</h1>
+
+<%= form_with(model: @epcformulary, local: true) do |form| %>
+  <% if @epcformulary.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@epcformulary.errors.count, "error") %> prohibited this epcformulary from being saved:</h2>
+
+      <ul>
+      <% @epcformulary.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ 
+
+  <div class="field">
+    <%= form.label :codigo %>
+    <%= form.text_field :codigo, id: :epcformulary_codigo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nombre_pariente %>
+    <%= form.text_field :nombre_pariente, id: :epcformulary_nombre_pariente %>
+  </div>
+
+  <div class="field">
+    <%= form.label :apellido_paterno_pariente %>
+    <%= form.text_field :apellido_paterno_pariente, id: :epcformulary_apellido_paterno_pariente %>
+  </div>
+
+  <div class="field">
+    <%= form.label :apellido_materno_pariente %>
+    <%= form.text_field :apellido_materno_pariente, id: :epcformulary_apellido_materno_pariente %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rut_pariente %>
+    <%= form.number_field :rut_pariente, id: :epcformulary_rut_pariente %>
+  </div>
+
+  <div class="field">
+    <%= form.label :parentesco %>
+    <%= form.text_field :parentesco, id: :epcformulary_parentesco %>
+  </div>
+
+  <div class="field">
+    <%= form.label :empresa %>
+    <%= form.text_field :empresa, id: :epcformulary_empresa %>
+  </div>
+
+ <%= form.hidden_field :codigo_obra, value: params[:codigo_obra] %>
+
+  <div class="field">
+    <%= form.label :comentarios_caso %>
+    <%= form.text_area :comentarios_caso, id: :epcformulary_comentarios_caso %>
+  </div>
+
+  <div class="field">
+    <%= form.label :caso_amerita_epc %>
+    <%= form.check_box :caso_amerita_epc, id: :epcformulary_caso_amerita_epc %>
+  </div>
+
+  <div class="field">
+    <%= form.label :derivar_a %>
+    <%= form.text_field :derivar_a, id: :epcformulary_derivar_a %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+
+
+<%= link_to 'Show', @epcformulary %> |
+<%= link_to 'Back', epcformularies_path %>

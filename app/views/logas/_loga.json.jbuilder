@@ -1,0 +1,2 @@
+json.extract! loga, :id, :asocial_id, :epcformulary_id, :user_name, :codigo_obra, :rut_atendido, :nombre_atendido, :apellido_paterno_atendido, :apellido_materno_atendido, :aspcategory_name, :solucion, :estado, :subcontrato, :supervisor, :descripcion, :rut_pariente, :nombre_pariente, :apellido_paterno_pariente, :apellido_materno_pariente, :parentezco, :empresa, :comentarios_caso, :caso_amerita_epc, :derivar_a, :created_at, :updated_at
+json.url loga_url(loga, format: :json)

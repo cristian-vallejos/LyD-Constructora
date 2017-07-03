@@ -1,0 +1,51 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  asocial_id: 1
+  epcformulary: one
+  user_name: MyString
+  codigo_obra: 1
+  rut_atendido: MyString
+  nombre_atendido: MyString
+  apellido_paterno_atendido: MyString
+  apellido_materno_atendido: MyString
+  aspcategory_name: MyString
+  solucion: MyString
+  estado: false
+  subcontrato: false
+  supervisor: MyString
+  descripcion: MyText
+  rut_pariente: MyString
+  nombre_pariente: MyString
+  apellido_paterno_pariente: MyString
+  apellido_materno_pariente: MyString
+  parentezco: MyString
+  empresa: MyString
+  comentarios_caso: MyString
+  caso_amerita_epc: false
+  derivar_a: MyString
+
+two:
+  asocial_id: 1
+  epcformulary: two
+  user_name: MyString
+  codigo_obra: 1
+  rut_atendido: MyString
+  nombre_atendido: MyString
+  apellido_paterno_atendido: MyString
+  apellido_materno_atendido: MyString
+  aspcategory_name: MyString
+  solucion: MyString
+  estado: false
+  subcontrato: false
+  supervisor: MyString
+  descripcion: MyText
+  rut_pariente: MyString
+  nombre_pariente: MyString
+  apellido_paterno_pariente: MyString
+  apellido_materno_pariente: MyString
+  parentezco: MyString
+  empresa: MyString
+  comentarios_caso: MyString
+  caso_amerita_epc: false
+  derivar_a: MyString

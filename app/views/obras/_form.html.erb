@@ -1,0 +1,27 @@
+<%= form_with(model: obra, local: true) do |form| %>
+  <% if obra.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(obra.errors.count, "error") %> prohibited this obra from being saved:</h2>
+
+      <ul>
+      <% obra.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nombre %>
+    <%= form.text_field :nombre, id: :obra_nombre %>
+  </div>
+
+  <div class="field">
+    <%= form.label :direccion %>
+    <%= form.text_field :direccion, id: :obra_direccion %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
