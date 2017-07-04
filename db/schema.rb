@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170703211946) do
+ActiveRecord::Schema.define(version: 20170704180304) do
 
   create_table "asformularies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "rut_atendido"
@@ -28,12 +28,23 @@ ActiveRecord::Schema.define(version: 20170703211946) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "telefono"
+    t.bigint "benefit_id"
     t.index ["aspcategory_id"], name: "index_asformularies_on_aspcategory_id"
+    t.index ["benefit_id"], name: "index_asformularies_on_benefit_id"
     t.index ["user_id"], name: "index_asformularies_on_user_id"
   end
 
   create_table "aspcategories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "nombre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "benefits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "nombre"
+    t.string "area"
+    t.integer "costotrabajador"
+    t.integer "costoempresa"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -89,6 +100,7 @@ ActiveRecord::Schema.define(version: 20170703211946) do
     t.integer "rut_atendido_epc"
     t.integer "codigo_epc"
     t.integer "telefono"
+    t.string "beneficio"
   end
 
   create_table "obras", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -105,6 +117,7 @@ ActiveRecord::Schema.define(version: 20170703211946) do
   end
 
   add_foreign_key "asformularies", "aspcategories"
+  add_foreign_key "asformularies", "benefits"
   add_foreign_key "asformularies", "users"
   add_foreign_key "epcformularies", "asformularies"
 end

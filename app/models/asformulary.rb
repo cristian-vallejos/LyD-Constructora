@@ -1,6 +1,7 @@
 class Asformulary < ApplicationRecord
   belongs_to :user
   belongs_to :aspcategory
+  belongs_to :benefit
   has_many :epcformularies, :dependent => :destroy 
 
    after_create :crear_log_A
@@ -17,6 +18,7 @@ class Asformulary < ApplicationRecord
       	apellido_materno_atendido: self.apellido_materno,
       	aspcategory_name: self.aspcategory.nombre,
       	solucion: self.solucion,
+        beneficio: self.benefit.nombre,
       	estado: self.estado,
       	subcontrato: self.subcontrato,
       	supervisor: self.nombre_supervisor,
@@ -39,6 +41,7 @@ class Asformulary < ApplicationRecord
       	apellido_materno_atendido: self.apellido_materno,
       	aspcategory_name: self.aspcategory.nombre,
       	solucion: self.solucion,
+        beneficio: self.benefit.nombre,
       	estado: self.estado,
       	subcontrato: self.subcontrato,
       	supervisor: self.nombre_supervisor,

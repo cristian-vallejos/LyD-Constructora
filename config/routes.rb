@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :benefits
   resources :obras
   resources :logas
   resources :epcformularies

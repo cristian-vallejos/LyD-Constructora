@@ -1,0 +1,37 @@
+<%= form_with(model: benefit, local: true) do |form| %>
+  <% if benefit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(benefit.errors.count, "error") %> prohibited this benefit from being saved:</h2>
+
+      <ul>
+      <% benefit.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nombre %>
+    <%= form.text_field :nombre, id: :benefit_nombre %>
+  </div>
+
+  <div class="field">
+    <%= form.label :area %>
+    <%= form.text_field :area, id: :benefit_area %>
+  </div>
+
+  <div class="field">
+    <%= form.label :costotrabajador %>
+    <%= form.number_field :costotrabajador, id: :benefit_costotrabajador %>
+  </div>
+
+  <div class="field">
+    <%= form.label :costoempresa %>
+    <%= form.number_field :costoempresa, id: :benefit_costoempresa %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

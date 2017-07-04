@@ -58,6 +58,13 @@
     <%= form.text_field :solucion, id: :asformulary_solucion %>
   </div>
 
+   <div class="field">
+    
+    <%= form.label :Beneficio_Asociado %><br>
+    <%= form.collection_select :benefit_id, Benefit.all, :id, :nombre, include_blank: true %>
+
+  </div>
+
   <div class="field">
     <%= form.label :estado %>
     <%= form.check_box :estado, id: :asformulary_estado %>
