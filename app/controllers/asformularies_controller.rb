@@ -5,6 +5,8 @@ class AsformulariesController < ApplicationController
   # GET /asformularies.json
   def index
     @asformularies = Asformulary.all
+    @asformulary = Asformulary.new(:rut_atendido => params[:rut_atendido])
+
   end
 
   # GET /asformularies/1

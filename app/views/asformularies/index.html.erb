@@ -50,5 +50,13 @@
 
 <br>
 
+
+  <p>
+    <%= form_for (@asformulary),url: new_asformulary_path, method: "get" do |f| %>
+  <%= f.number_field :rut_atendido %>
+  <%= f.submit "new" %>
+<% end %>
+  </p>
+
 <%= link_to 'Nuevo Formulario', new_asformulary_path %> |
 <%= link_to 'ir a EPC', epcformularies_path %>

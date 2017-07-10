@@ -11,25 +11,52 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :rut_atendido %>
-    <%= form.number_field :rut_atendido, id: :asformulary_rut_atendido %>
+ <ul class="list-group list-group-flush">
+  <li class="list-group-item">
+    
+      <div class="field">
+        <%= form.label :rut_atendido %>
+        <%= form.number_field :rut_atendido, id: :asformulary_rut_atendido %>
   </div>
+  </li>
 
-  <div class="field">
+
+   <li class="list-group-item">
+    
+      <div class="field">
     <%= form.label :codigo_obra %>
     <%= form.number_field :codigo_obra, id: :asformulary_codigo_obra %>
   </div>
+      
+  </li>
 
-  <div class="field">
+  <li class="list-group-item">
+    
+      <div class="field">
     <%= form.label :telefono %>
     <%= form.number_field :telefono, id: :asformulary_telefono %>
   </div>
-
-  <div class="field">
+      
+      
+  </li>
+  <li class="list-group-item">
+    
+      <div class="field">
     <%= form.label :Asistente_Social %>
     <%= form.collection_select :user_id, User.all, :id, :name, include_blank: true %>
   </div>
+      
+  </li>
+
+
+
+ </ul>
+
+
+
+
+
+  
 
   <div class="field">
     <%= form.label :nombre_atendido %>
