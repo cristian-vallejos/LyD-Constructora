@@ -4,7 +4,7 @@ class Asformulary < ApplicationRecord
   belongs_to :benefit
   has_many :epcformularies, :dependent => :destroy 
 
-   after_create :crear_log_A
+  after_create :crear_log_A
   after_update :crear_log_B
 
   def crear_log_A

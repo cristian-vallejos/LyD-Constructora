@@ -1,5 +1,49 @@
 <h1>Nuevo Formulario de Atención Social</h1>
 
-<%= render 'form', asformulary: @asformulary %>
+
+<div class="row">
+	
+	  <div class="col-md-4">
+	  	<%= render 'form', asformulary: @asformulary %>
+
+	  </div>
+	  <div class="col-md-8">
+		  	<div class="table-responsive">
+			  <table class="table">
+			    <thead>
+				    <tr>
+				      <th>A S</th>
+				      <th>EPC</th>
+				      <th>ASname</th>
+				      <th>Obra</th>
+				      <th>Rut atendido AS</th>
+				      <th>Nombre atendido</th>
+				      <th>Apellido paterno atendido</th>
+				      <th>Apellido materno atendido</th>
+				    </tr>
+				  </thead>
+
+				  <tbody>
+				  	<% logas = Loga.where(:rut_atendido => params[:rut_atendido]) %>
+				    <% logas.each do |loga| %>
+				      <tr>
+				        <td><%= loga.asocial_id %></td>
+				        <td><%= loga.epcformulary_id %></td>
+				        <td><%= loga.user_name %></td>
+				        <td><%= loga.codigo_obra %></td>
+				        <td><%= loga.rut_atendido %></td>
+				        <td><%= loga.nombre_atendido %></td>
+				        <td><%= loga.apellido_paterno_atendido %></td>
+				        <td><%= loga.apellido_materno_atendido %></td>
+				      </tr>
+				    <% end %>
+				  </tbody>
+			  </table>
+			</div>
+	  </div>
+
+
+
+</div>
 
 <%= link_to 'volver', asformularies_path %>
