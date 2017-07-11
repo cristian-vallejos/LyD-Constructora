@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<h2>LD Constructora - Sistema de Gestión</h2>
+
+
+<p>
+  	<%= form_for (@asformulary), url: new_asformulary_path, method: "get" do |f| %>
+  	<%= f.label :Nueva_ficha_atencion_social %>
+  	<%= f.number_field :rut_atendido %>
+  	<%= f.submit "new" %>
+	<% end %>
+</p>

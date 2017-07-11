@@ -1,0 +1,118 @@
+<%= form_with(model: @asformulary, local: true) do |form| %>
+  <% if @asformulary.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@asformulary.errors.count, "error") %> prohibited this asformulary from being saved:</h2>
+
+      <ul>
+      <% @asformulary.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ <ul class="list-group list-group-flush">
+  <li class="list-group-item">
+    
+      <div class="field">
+        <%= form.label :rut_atendido %>
+        <%= form.number_field :rut_atendido, id: :asformulary_rut_atendido, value: params[:rut_atendido] %>
+  </div>
+  </li>
+
+
+   <li class="list-group-item">
+    
+      <div class="field">
+    <%= form.label :codigo_obra %>
+    <%= form.number_field :codigo_obra, id: :asformulary_codigo_obra %>
+  </div>
+      
+  </li>
+
+  <li class="list-group-item">
+    
+      <div class="field">
+    <%= form.label :telefono %>
+    <%= form.number_field :telefono, id: :asformulary_telefono %>
+  </div>
+      
+      
+  </li>
+  <li class="list-group-item">
+    
+      <div class="field">
+    <%= form.label :Asistente_Social %>
+    <%= form.collection_select :user_id, User.all, :id, :name, value: params[:user_id] %>
+  </div>
+      
+  </li>
+
+
+
+ </ul>
+
+
+
+
+
+  
+
+  <div class="field">
+    <%= form.label :nombre_atendido %>
+    <%= form.text_field :nombre_atendido, id: :asformulary_nombre_atendido %>
+  </div>
+
+  <div class="field">
+    <%= form.label :apellido_paterno %>
+    <%= form.text_field :apellido_paterno, id: :asformulary_apellido_paterno %>
+  </div>
+
+  <div class="field">
+    <%= form.label :apellido_materno %>
+    <%= form.text_field :apellido_materno, id: :asformulary_apellido_materno %>
+  </div>
+
+  <div class="field">
+    
+    <%= form.label :Tipo_Consulta %><br>
+    <%= form.collection_select :aspcategory_id, Aspcategory.all, :id, :nombre, value: params[:aspcategory_id] %>
+
+  </div>
+
+  <div class="field">
+    <%= form.label :solucion %>
+    <%= form.text_field :solucion, id: :asformulary_solucion %>
+  </div>
+
+   <div class="field">
+    
+    <%= form.label :Beneficio_Asociado %><br>
+    <%= form.collection_select :benefit_id, Benefit.all, :id, :nombre, valur: params[:benefit_id] %>
+
+  </div>
+
+  <div class="field">
+    <%= form.label :estado %>
+    <%= form.check_box :estado, id: :asformulary_estado %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subcontrato %>
+    <%= form.check_box :subcontrato, id: :asformulary_subcontrato %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nombre_supervisor %>
+    <%= form.text_field :nombre_supervisor, id: :asformulary_nombre_supervisor %>
+  </div>
+
+  <div class="field">
+    <%= form.label :descripcion %>
+    <%= form.text_area :descripcion, id: :asformulary_descripcion %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

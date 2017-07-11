@@ -66,5 +66,8 @@
 </p>
 
 <%= link_to "Agregar EPC", new_epcformulary_path(asformulary_id: @asformulary.id, codigo_obra: @asformulary.codigo_obra) %> |
+
+
+<%= link_to 'Agregar Seguimiento', newseg_path(rut_atendido: @asformulary.rut_atendido, codigo_obra: @asformulary.codigo_obra, user_id: @asformulary.user_id, aspcategory_id: @asformulary.aspcategory_id, benefit_id: @asformulary.benefit_id) %> |
 <%= link_to 'Edit', edit_asformulary_path(@asformulary) %> |
 <%= link_to 'Back', asformularies_path %>

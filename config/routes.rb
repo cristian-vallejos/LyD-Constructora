@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  get '/ld/index', to: 'ld#index'
+  get 'asformularies/newseg', to: 'asformularies#newseg', as: 'newseg'
+
+
   resources :benefits
   resources :obras
   resources :logas

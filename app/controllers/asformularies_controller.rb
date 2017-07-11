@@ -20,6 +20,10 @@ class AsformulariesController < ApplicationController
     #@epcformulary = Epcformulary.new(asformulary_id: params[:asformulary_id])
   end
 
+  def newseg
+    @asformulary = Asformulary.new 
+  end
+
   # GET /asformularies/1/edit
   def edit
 
