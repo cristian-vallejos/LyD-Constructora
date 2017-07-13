@@ -34,6 +34,8 @@ class AsformulariesController < ApplicationController
   # POST /asformularies.json
   def create
     @asformulary = Asformulary.new(asformulary_params)
+    @asformulary.lyduser = current_lyduser
+
   
     respond_to do |format|
       if @asformulary.save
@@ -78,6 +80,6 @@ class AsformulariesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def asformulary_params
-      params.require(:asformulary).permit(:rut_atendido, :codigo_obra, :user_id, :nombre_atendido, :apellido_paterno, :apellido_materno, :aspcategory_id, :solucion, :estado, :subcontrato, :nombre_supervisor, :descripcion, :telefono, :benefit_id)
+      params.require(:asformulary).permit(:rut_atendido, :codigo_obra, :user_id, :nombre_atendido, :apellido_paterno, :apellido_materno, :aspcategory_id, :solucion, :estado, :subcontrato, :nombre_supervisor, :descripcion, :telefono, :benefit_id, :atencion_id, :numero_atencion, :lyduser_id)
     end
 end

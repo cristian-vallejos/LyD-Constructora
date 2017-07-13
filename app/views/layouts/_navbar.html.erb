@@ -18,9 +18,22 @@
     <a class='navbar-brand' href='http://localhost:3000/logas'>
       L<span class='light'>OG</span>
     </a>
+
+
     
     <ul class="nav navbar-nav pull-sm-right hidden-xs-down">
       
     </ul>
   </div>
+
+  
+      <li><%= link_to "Edit profile", edit_lyduser_registration_path %></li>
+      <li><%= link_to "Sign up", new_lyduser_registration_path %></li>
+      <li><%= link_to "Login", new_lyduser_session_path %></li>
+      <li role="separator" class="divider"></li>
+      <li><%= link_to "Logout", destroy_lyduser_session_path, method: :delete %></li>
+   
+
+
+
 </nav>

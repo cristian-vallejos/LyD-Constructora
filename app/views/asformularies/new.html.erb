@@ -1,25 +1,29 @@
-<h4>Nuevo Formulario de Atención Social</h4>
+
 
 
 <div class="row">
 	
 	  <div class="col-md-4">
+	  <h3>Nuevo Formulario de Atención Social</h3>
 	  	<%= render 'form', asformulary: @asformulary %>
 
 	  </div>
 	  <div class="col-md-8">
 		  	<div class="table-responsive">
+		  		  <h3>Historial de Atención Social</h3>
+
 			  <table class="table">
 			    <thead>
 				    <tr>
-				      <th>A S</th>
-				      <th>EPC</th>
-				      <th>ASname</th>
+				      
+				      <th>Asistente Social</th>
 				      <th>Obra</th>
 				      <th>Rut atendido AS</th>
 				      <th>Nombre atendido</th>
-				      <th>Apellido paterno atendido</th>
-				      <th>Apellido materno atendido</th>
+				      <th>Apellido Paterno</th>
+				      <th>Apellido Materno</th>
+				      <th>Descripción</th>
+				      <th>Solución</th>
 				    </tr>
 				  </thead>
 
@@ -27,14 +31,15 @@
 				  	<% logas = Loga.where(:rut_atendido => params[:asformulary][:rut_atendido]) %>
 				    <% logas.each do |loga| %>
 				      <tr>
-				        <td><%= loga.asocial_id %></td>
-				        <td><%= loga.epcformulary_id %></td>
+				        
 				        <td><%= loga.user_name %></td>
 				        <td><%= loga.codigo_obra %></td>
 				        <td><%= loga.rut_atendido %></td>
 				        <td><%= loga.nombre_atendido %></td>
 				        <td><%= loga.apellido_paterno_atendido %></td>
 				        <td><%= loga.apellido_materno_atendido %></td>
+				        <td><%= loga.descripcion %></td>
+				        <td><%= loga.solucion %></td>
 				      </tr>
 				    <% end %>
 				  </tbody>

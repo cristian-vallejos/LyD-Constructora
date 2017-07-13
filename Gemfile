@@ -25,6 +25,8 @@ gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
 
 gem 'jquery-rails'
 
+gem 'devise'
+
 
 
 # Use CoffeeScript for .coffee assets and views

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170704180304) do
+ActiveRecord::Schema.define(version: 20170713201933) do
 
   create_table "asformularies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "rut_atendido"
@@ -29,8 +29,12 @@ ActiveRecord::Schema.define(version: 20170704180304) do
     t.datetime "updated_at", null: false
     t.integer "telefono"
     t.bigint "benefit_id"
+    t.integer "atencion_id"
+    t.integer "numero_atencion"
+    t.bigint "lyduser_id"
     t.index ["aspcategory_id"], name: "index_asformularies_on_aspcategory_id"
     t.index ["benefit_id"], name: "index_asformularies_on_benefit_id"
+    t.index ["lyduser_id"], name: "index_asformularies_on_lyduser_id"
     t.index ["user_id"], name: "index_asformularies_on_user_id"
   end
 
@@ -68,6 +72,39 @@ ActiveRecord::Schema.define(version: 20170704180304) do
     t.index ["asformulary_id"], name: "index_epcformularies_on_asformulary_id"
   end
 
+  create_table "ldusers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_ldusers_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_ldusers_on_reset_password_token", unique: true
+  end
+
+  create_table "ldusers2", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_ldusers2_on_email", unique: true
+  end
+
   create_table "logas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "asocial_id"
     t.string "user_name"
@@ -103,6 +140,23 @@ ActiveRecord::Schema.define(version: 20170704180304) do
     t.string "beneficio"
   end
 
+  create_table "lydusers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_lydusers_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_lydusers_on_reset_password_token", unique: true
+  end
+
   create_table "obras", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "nombre"
     t.string "direccion"
@@ -118,6 +172,7 @@ ActiveRecord::Schema.define(version: 20170704180304) do
 
   add_foreign_key "asformularies", "aspcategories"
   add_foreign_key "asformularies", "benefits"
+  add_foreign_key "asformularies", "lydusers"
   add_foreign_key "asformularies", "users"
   add_foreign_key "epcformularies", "asformularies"
 end

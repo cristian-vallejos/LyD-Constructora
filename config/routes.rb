@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
+  devise_for :lydusers
   get '/ld/index', to: 'ld#index'
+  root to: 'ld#index'
   get 'asformularies/newseg', to: 'asformularies#newseg', as: 'newseg'
 
 

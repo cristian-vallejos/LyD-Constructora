@@ -1,16 +1,38 @@
 class Asformulary < ApplicationRecord
   belongs_to :user
+  belongs_to :lyduser
   belongs_to :aspcategory
   belongs_to :benefit
   has_many :epcformularies, :dependent => :destroy 
 
+  before_create :set_atencion_id
+
   after_create :crear_log_A
   after_update :crear_log_B
+
+
+
+  def set_atencion_id
+
+    @AS = Asformulary.last
+
+    if(@AS.atencion_id == nil)
+      self.atencion_id = 1
+      self.numero_atencion = 1
+    else
+    self.atencion_id = @AS.atencion_id + 1
+    self.numero_atencion = 1
+    end
+
+  end
+
+
 
   def crear_log_A
   	log = Loga.new(
   		asocial_id: self.id,  
-  		user_name: self.user.name,
+  		#user_name: self.user.name,
+      user_name: self.lyduser.email,
       	codigo_obra: self.codigo_obra,
       	rut_atendido: self.rut_atendido,
       	nombre_atendido: self.nombre_atendido,
