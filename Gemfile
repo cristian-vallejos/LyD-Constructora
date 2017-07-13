@@ -27,6 +27,8 @@ gem 'jquery-rails'
 
 gem 'devise'
 
+gem 'cancancan'
+
 
 
 # Use CoffeeScript for .coffee assets and views

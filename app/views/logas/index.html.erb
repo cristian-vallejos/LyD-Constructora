@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
+<% if current_lyduser.admin_role? || current_lyduser.boperativos_role? %>
 
 <h1>LOG Atencion Social</h1>
 
@@ -81,3 +82,4 @@
 <br>
 
 <%= link_to 'New Loga', new_loga_path %>
+<%end%>

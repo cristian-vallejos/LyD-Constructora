@@ -1,5 +1,10 @@
 class AsformulariesController < ApplicationController
   before_action :set_asformulary, only: [:show, :edit, :update, :destroy]
+  #before_action load_and_authorize_resource
+  authorize_resource :class => false
+
+
+
 
   # GET /asformularies
   # GET /asformularies.json
