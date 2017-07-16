@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre_solicitante: MyString
+  rut_solicitante: MyString
+  obra: 1
+  cargo: MyString
+  monto_solicitado: 1
+  monto_aprobado: 1
+  numero_cuotas: 1
+  monto_cuota: 1
+  renta_liquida: 1
+  antiguedad: 1
+  fecha_ultimo_contrato: 2017-07-16 16:57:32
+  fondo_finiquito: 1
+  continuidad_en_obra: 1
+  descuentos_en_curso: 1
+  descripcion_documentos_respaldo: MyText
+  motivo_solicitud: MyText
+  comentarios: MyText
+
+two:
+  nombre_solicitante: MyString
+  rut_solicitante: MyString
+  obra: 1
+  cargo: MyString
+  monto_solicitado: 1
+  monto_aprobado: 1
+  numero_cuotas: 1
+  monto_cuota: 1
+  renta_liquida: 1
+  antiguedad: 1
+  fecha_ultimo_contrato: 2017-07-16 16:57:32
+  fondo_finiquito: 1
+  continuidad_en_obra: 1
+  descuentos_en_curso: 1
+  descripcion_documentos_respaldo: MyText
+  motivo_solicitud: MyText
+  comentarios: MyText

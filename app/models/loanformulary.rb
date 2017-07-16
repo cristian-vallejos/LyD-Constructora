@@ -1,0 +1,2 @@
+class Loanformulary < ApplicationRecord
+end

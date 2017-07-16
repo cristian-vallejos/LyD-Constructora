@@ -1,0 +1,2 @@
+json.extract! loanformulary, :id, :nombre_solicitante, :rut_solicitante, :obra, :cargo, :monto_solicitado, :monto_aprobado, :numero_cuotas, :monto_cuota, :renta_liquida, :antiguedad, :fecha_ultimo_contrato, :fondo_finiquito, :continuidad_en_obra, :descuentos_en_curso, :descripcion_documentos_respaldo, :motivo_solicitud, :comentarios, :created_at, :updated_at
+json.url loanformulary_url(loanformulary, format: :json)

@@ -1,0 +1,104 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre solicitante:</strong>
+  <%= @loanformulary.nombre_solicitante %>
+</p>
+
+<p>
+  <strong>Rut solicitante:</strong>
+  <%= @loanformulary.rut_solicitante %>
+</p>
+
+<p>
+  <strong>Obra:</strong>
+  <%= @loanformulary.obra %>
+</p>
+
+<p>
+  <strong>Cargo:</strong>
+  <%= @loanformulary.cargo %>
+</p>
+
+<p>
+  <strong>Monto solicitado:</strong>
+  <%= @loanformulary.monto_solicitado %>
+</p>
+
+<p>
+  <strong>Monto aprobado:</strong>
+  <%= @loanformulary.monto_aprobado %>
+</p>
+
+<p>
+  <strong>Numero cuotas:</strong>
+  <%= @loanformulary.numero_cuotas %>
+</p>
+
+<p>
+  <strong>Monto cuota:</strong>
+  <%= @loanformulary.monto_cuota %>
+</p>
+
+<p>
+  <strong>Renta liquida:</strong>
+  <%= @loanformulary.renta_liquida %>
+</p>
+
+<p>
+  <strong>Antiguedad:</strong>
+  <%= @loanformulary.antiguedad %>
+</p>
+
+<p>
+  <strong>Fecha ultimo contrato:</strong>
+  <%= @loanformulary.fecha_ultimo_contrato %>
+</p>
+
+<p>
+  <strong>Fondo finiquito:</strong>
+  <%= @loanformulary.fondo_finiquito %>
+</p>
+
+<p>
+  <strong>Continuidad en obra:</strong>
+  <%= @loanformulary.continuidad_en_obra %>
+</p>
+
+<p>
+  <strong>Descuentos en curso:</strong>
+  <%= @loanformulary.descuentos_en_curso %>
+</p>
+
+<p>
+  <strong>Descripcion documentos respaldo:</strong>
+  <%= @loanformulary.descripcion_documentos_respaldo %>
+</p>
+
+<p>
+  <strong>Motivo solicitud:</strong>
+  <%= @loanformulary.motivo_solicitud %>
+</p>
+
+<p>
+  <strong>Comentarios:</strong>
+  <%= @loanformulary.comentarios %>
+</p>
+<p>
+  <strong>Estado:</strong>
+  <%= @loanformulary.cerado %>
+</p>
+<p>
+  <strong>Aceptado por AS:</strong>
+  <%= @loanformulary.aceptado_por_as %>
+</p>
+<p>
+  <strong>Aceptado por Administrativo de obra:</strong>
+  <%= @loanformulary.aceptado_por_administrativo_obra %>
+</p>
+
+<%= link_to "Aceptar", accept_loanformulary_path(@loanformulary) %> |
+<%= link_to "Rechazar", refuse_loanformulary_path(@loanformulary) %> |
+
+<%= link_to 'Edit', edit_loanformulary_path(@loanformulary) %> |
+<%= link_to 'Back', loanformularies_path %>

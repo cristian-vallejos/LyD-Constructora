@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170713210445) do
+ActiveRecord::Schema.define(version: 20170716213447) do
 
   create_table "asformularies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "rut_atendido"
@@ -105,6 +105,33 @@ ActiveRecord::Schema.define(version: 20170713210445) do
     t.index ["email"], name: "index_ldusers2_on_email", unique: true
   end
 
+  create_table "loanformularies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "nombre_solicitante"
+    t.string "rut_solicitante"
+    t.integer "obra"
+    t.string "cargo"
+    t.integer "monto_solicitado"
+    t.integer "monto_aprobado"
+    t.integer "numero_cuotas"
+    t.integer "monto_cuota"
+    t.integer "renta_liquida"
+    t.integer "antiguedad"
+    t.datetime "fecha_ultimo_contrato"
+    t.integer "fondo_finiquito"
+    t.integer "continuidad_en_obra"
+    t.integer "descuentos_en_curso"
+    t.text "descripcion_documentos_respaldo"
+    t.text "motivo_solicitud"
+    t.text "comentarios"
+    t.boolean "aceptado_por_as"
+    t.boolean "aceptado_por_administrativo_obra"
+    t.boolean "aceptado_por_subgerente_personas"
+    t.boolean "aceptado_por_jefe_remuneraciones"
+    t.boolean "cerado", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "logas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "asocial_id"
     t.string "user_name"
@@ -156,6 +183,10 @@ ActiveRecord::Schema.define(version: 20170713210445) do
     t.boolean "admin_role", default: false
     t.boolean "asocial_role", default: true
     t.boolean "boperativos_role", default: false
+    t.boolean "administrativo_obra_role", default: false
+    t.boolean "subgerente_personas_role", default: false
+    t.boolean "jefe_remuneraciones_role", default: false
+    t.integer "obra"
     t.index ["email"], name: "index_lydusers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_lydusers_on_reset_password_token", unique: true
   end

@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  resources :loanformularies do
+    member do
+      get :accept
+      get :refuse
+    end
+  end
+
+
   devise_for :lydusers
   get '/ld/index', to: 'ld#index'
   root to: 'ld#index'

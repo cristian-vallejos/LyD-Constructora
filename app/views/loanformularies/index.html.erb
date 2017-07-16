@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Loanformularies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre solicitante</th>
+      <th>Rut solicitante</th>
+      <th>Obra</th>
+      <th>Cargo</th>
+      <th>Monto solicitado</th>
+      <th>Monto aprobado</th>
+      <th>Numero cuotas</th>
+      <th>Monto cuota</th>
+      <th>Renta liquida</th>
+      <th>Antiguedad</th>
+      <th>Fecha ultimo contrato</th>
+      <th>Fondo finiquito</th>
+      <th>Continuidad en obra</th>
+      <th>Descuentos en curso</th>
+      <th>Descripcion documentos respaldo</th>
+      <th>Motivo solicitud</th>
+      <th>Comentarios</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @loanformularies.each do |loanformulary| %>
+      <tr>
+        <td><%= loanformulary.nombre_solicitante %></td>
+        <td><%= loanformulary.rut_solicitante %></td>
+        <td><%= loanformulary.obra %></td>
+        <td><%= loanformulary.cargo %></td>
+        <td><%= loanformulary.monto_solicitado %></td>
+        <td><%= loanformulary.monto_aprobado %></td>
+        <td><%= loanformulary.numero_cuotas %></td>
+        <td><%= loanformulary.monto_cuota %></td>
+        <td><%= loanformulary.renta_liquida %></td>
+        <td><%= loanformulary.antiguedad %></td>
+        <td><%= loanformulary.fecha_ultimo_contrato %></td>
+        <td><%= loanformulary.fondo_finiquito %></td>
+        <td><%= loanformulary.continuidad_en_obra %></td>
+        <td><%= loanformulary.descuentos_en_curso %></td>
+        <td><%= loanformulary.descripcion_documentos_respaldo %></td>
+        <td><%= loanformulary.motivo_solicitud %></td>
+        <td><%= loanformulary.comentarios %></td>
+        <td><%= link_to 'Show', loanformulary %></td>
+        <td><%= link_to 'Edit', edit_loanformulary_path(loanformulary) %></td>
+        <td><%= link_to 'Destroy', loanformulary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Loanformulary', new_loanformulary_path %>
