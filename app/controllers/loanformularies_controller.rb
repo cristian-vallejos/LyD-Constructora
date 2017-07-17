@@ -9,7 +9,9 @@ class LoanformulariesController < ApplicationController
 
   def accept
     request = Loanformulary.find(params[:id])
-    if current_lyduser.asocial_role?
+
+  if(request.cerado == false)
+    if current_lyduser.asocial_role? && request.aceptado_por_as == nil
       request.aceptado_por_as = true
     elsif current_lyduser.administrativo_obra_role?
       request.aceptado_por_administrativo_obra = true
@@ -18,6 +20,7 @@ class LoanformulariesController < ApplicationController
     elsif current_lyduser.jefe_remuneraciones_role?
       request.aceptado_por_jefe_remuneraciones = true
     end
+  end
     
     request.save
 
@@ -26,7 +29,9 @@ class LoanformulariesController < ApplicationController
 
   def refuse
     request = Loanformulary.find(params[:id])
-    if current_lyduser.asocial_role?
+
+  if(request.cerado == false)
+    if current_lyduser.asocial_role? && request.aceptado_por_as == nil
       request.aceptado_por_as = false
     elsif current_lyduser.administrativo_obra_role?
       request.aceptado_por_administrativo_obra = false
@@ -35,6 +40,7 @@ class LoanformulariesController < ApplicationController
     elsif current_lyduser.jefe_remuneraciones_role?
       request.aceptado_por_jefe_remuneraciones = false
     end
+  end
     
     request.save
 

@@ -40,9 +40,17 @@
         <td><%= asformulary.subcontrato %></td>
         <td><%= asformulary.nombre_supervisor %></td>
         <td><%= asformulary.descripcion %></td>
+        <%if can? :show, Asformulary %>
         <td><%= link_to 'Show', asformulary %></td>
+        <%end%>
+        <%if can? :edit, Asformulary %>
         <td><%= link_to 'Edit', edit_asformulary_path(asformulary) %></td>
-        <td><%= link_to 'Destroy', asformulary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%end%>
+        <%if can? :destroy, Asformulary %>
+        <td><%= link_to 'Destroy', asformulary, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%end%>
+
+        </td>
       </tr>
     <% end %>
   </tbody>

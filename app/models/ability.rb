@@ -7,11 +7,10 @@ class Ability
        lyduser ||= Lyduser.new # guest user (not logged in)
        if lyduser.admin_role?
          can :manage, :all
-       end
-       if lyduser.asocial_role?
+       elsif lyduser.asocial_role?
         can :manage, Asformulary
-       end
-       if lyduser.boperativos_role?
+        cannot :destroy, Asformulary
+       elsif lyduser.boperativos_role?
         can :manage, Loga
        end
 

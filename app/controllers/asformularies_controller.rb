@@ -1,7 +1,7 @@
 class AsformulariesController < ApplicationController
   before_action :set_asformulary, only: [:show, :edit, :update, :destroy]
-  #before_action load_and_authorize_resource
-  authorize_resource :class => false
+  load_and_authorize_resource
+  #authorize_resource :class => false
 
 
 
@@ -17,6 +17,8 @@ class AsformulariesController < ApplicationController
   # GET /asformularies/1
   # GET /asformularies/1.json
   def show
+  
+
   end
 
   # GET /asformularies/new
@@ -26,7 +28,35 @@ class AsformulariesController < ApplicationController
   end
 
   def newseg
-    @asformulary = Asformulary.new 
+    #@asformulary = Asformulary.new
+    #find-create-set-save 
+
+    theasformulary = Asformulary.find(params[:id])
+
+    if theasformulary.atencion_id == nil
+      theasformulary.atencion_id = theasformulary.id
+      theasformulary.save
+      @asformulary = Asformulary.new(
+      rut_atendido: theasformulary.rut_atendido,
+      user_id: theasformulary.user_id,
+      aspcategory_id: theasformulary.aspcategory_id,
+      benefit_id: theasformulary.benefit_id,
+      atencion_id: theasformulary.id,
+      numero_atencion: theasformulary.numero_atencion+1
+      )
+    elsif theasformulary.atencion_id != nil
+      @asformulary = Asformulary.new(
+      rut_atendido: theasformulary.rut_atendido,
+      user_id: theasformulary.user_id,
+      aspcategory_id: theasformulary.aspcategory_id,
+      benefit_id: theasformulary.benefit_id,
+      atencion_id: theasformulary.atencion_id,
+      numero_atencion: theasformulary.numero_atencion+1
+      )
+    end
+
+
+
   end
 
   # GET /asformularies/1/edit
@@ -44,7 +74,7 @@ class AsformulariesController < ApplicationController
   
     respond_to do |format|
       if @asformulary.save
-        format.html { redirect_to @asformulary, notice: 'Asformulary was successfully created.' }
+        format.html { redirect_to asformularies_path}#, notice: 'Asformulary was successfully created.' }
         format.json { render :show, status: :created, location: @asformulary }
       else
         format.html { render :new }

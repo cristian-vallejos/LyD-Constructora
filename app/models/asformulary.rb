@@ -5,7 +5,7 @@ class Asformulary < ApplicationRecord
   belongs_to :benefit
   has_many :epcformularies, :dependent => :destroy 
 
-  before_create :set_atencion_id
+  #before_create :set_atencion_id
 
   after_create :crear_log_A
   after_update :crear_log_B

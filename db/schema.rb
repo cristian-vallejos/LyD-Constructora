@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170716213447) do
+ActiveRecord::Schema.define(version: 20170717020402) do
 
   create_table "asformularies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "rut_atendido"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20170716213447) do
     t.integer "telefono"
     t.bigint "benefit_id"
     t.integer "atencion_id"
-    t.integer "numero_atencion"
+    t.integer "numero_atencion", default: 1
     t.bigint "lyduser_id"
     t.index ["aspcategory_id"], name: "index_asformularies_on_aspcategory_id"
     t.index ["benefit_id"], name: "index_asformularies_on_benefit_id"

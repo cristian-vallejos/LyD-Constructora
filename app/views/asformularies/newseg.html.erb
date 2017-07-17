@@ -11,12 +11,14 @@
     </div>
   <% end %>
 
+
+
  <ul class="list-group list-group-flush">
   <li class="list-group-item">
     
       <div class="field">
         <%= form.label :rut_atendido %>
-        <%= form.number_field :rut_atendido, id: :asformulary_rut_atendido, value: params[:rut_atendido] %>
+        <%= form.number_field :rut_atendido, id: :asformulary_rut_atendido %>
   </div>
   </li>
 
@@ -43,7 +45,7 @@
     
       <div class="field">
     <%= form.label :Asistente_Social %>
-    <%= form.collection_select :user_id, User.all, :id, :name, value: params[:user_id] %>
+    <%= form.collection_select :user_id, User.all, :id, :name %>
   </div>
       
   </li>
@@ -52,7 +54,7 @@
     
       <div class="field">
     <%= form.label :atencion_id %>
-    <%= form.number_field :atencion_id, id: :asformulary_atencion_id, value: params[:atencion_id] %>
+    <%= form.number_field :atencion_id, id: :asformulary_atencion_id %>
   </div>
       
       
@@ -62,7 +64,7 @@
     
       <div class="field">
     <%= form.label :numero_atencion %>
-    <%= form.number_field :numero_atencion, id: :asformulary_numero_atencion, value: params[:numero_atencion] %>
+    <%= form.number_field :numero_atencion, id: :asformulary_numero_atencion %>
   </div>
       
       
@@ -96,7 +98,7 @@
   <div class="field">
     
     <%= form.label :Tipo_Consulta %><br>
-    <%= form.collection_select :aspcategory_id, Aspcategory.all, :id, :nombre, value: params[:aspcategory_id] %>
+    <%= form.collection_select :aspcategory_id, Aspcategory.all, :id, :nombre %>
 
   </div>
 
@@ -108,7 +110,7 @@
    <div class="field">
     
     <%= form.label :Beneficio_Asociado %><br>
-    <%= form.collection_select :benefit_id, Benefit.all, :id, :nombre, valur: params[:benefit_id] %>
+    <%= form.collection_select :benefit_id, Benefit.all, :id, :nombre %>
 
   </div>
 
