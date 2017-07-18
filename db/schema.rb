@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170717020402) do
+ActiveRecord::Schema.define(version: 20170718001047) do
 
   create_table "asformularies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "rut_atendido"
@@ -130,6 +130,10 @@ ActiveRecord::Schema.define(version: 20170717020402) do
     t.boolean "cerado", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "fecha_aceptado_por_as"
+    t.date "fecha_aceptado_por_administrativo_obra"
+    t.date "fecha_aceptado_por_subgerente_personas"
+    t.date "fecha_aceptado_por_jefe_remuneraciones"
   end
 
   create_table "logas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -196,6 +200,7 @@ ActiveRecord::Schema.define(version: 20170717020402) do
     t.string "direccion"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "codigo"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

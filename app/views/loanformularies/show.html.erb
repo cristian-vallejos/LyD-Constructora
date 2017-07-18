@@ -1,6 +1,9 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  
 
-<p>
+<div class="col-md-4"> </div>
+  <div class="col-md-4">
+    <p>
   <strong>Nombre solicitante:</strong>
   <%= @loanformulary.nombre_solicitante %>
 </p>
@@ -80,22 +83,25 @@
   <%= @loanformulary.motivo_solicitud %>
 </p>
 
-<p>
-  <strong>Comentarios:</strong>
-  <%= @loanformulary.comentarios %>
-</p>
-<p>
-  <strong>Estado:</strong>
-  <%= @loanformulary.cerado %>
-</p>
-<p>
-  <strong>Aceptado por AS:</strong>
-  <%= @loanformulary.aceptado_por_as %>
-</p>
-<p>
-  <strong>Aceptado por Administrativo de obra:</strong>
-  <%= @loanformulary.aceptado_por_administrativo_obra %>
-</p>
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+  <div class="col-md-4"> </div>
+
+
+
+</div>
+
+
 
 <%= link_to "Aceptar", accept_loanformulary_path(@loanformulary) %> |
 <%= link_to "Rechazar", refuse_loanformulary_path(@loanformulary) %> |

@@ -13,12 +13,16 @@ class LoanformulariesController < ApplicationController
   if(request.cerado == false)
     if current_lyduser.asocial_role? && request.aceptado_por_as == nil
       request.aceptado_por_as = true
+      request.fecha_aceptado_por_as = Date.current
     elsif current_lyduser.administrativo_obra_role?
       request.aceptado_por_administrativo_obra = true
+      request.fecha_aceptado_por_administrativo_obra = Date.current
     elsif current_lyduser.subgerente_personas_role?
       request.aceptado_por_subgerente_personas = true
+      request.fecha_aceptado_por_subgerente_personas = Date.tomorrow
     elsif current_lyduser.jefe_remuneraciones_role?
       request.aceptado_por_jefe_remuneraciones = true
+      request.fecha_aceptado_por_jefe_remuneraciones = Date.current
     end
   end
     
@@ -27,18 +31,26 @@ class LoanformulariesController < ApplicationController
     redirect_to loanformularies_path(request)
   end
 
+   #fecha_aceptado_por_administrativo_obra
+    #fecha_aceptado_por_subgerente_personas
+    #fecha_aceptado_por_jefe_remuneraciones
+
   def refuse
     request = Loanformulary.find(params[:id])
 
   if(request.cerado == false)
     if current_lyduser.asocial_role? && request.aceptado_por_as == nil
       request.aceptado_por_as = false
+      request.fecha_aceptado_por_as = Date.current
     elsif current_lyduser.administrativo_obra_role?
       request.aceptado_por_administrativo_obra = false
+      request.fecha_aceptado_por_administrativo_obra = Date.current
     elsif current_lyduser.subgerente_personas_role?
       request.aceptado_por_subgerente_personas = false
+      request.fecha_aceptado_por_subgerente_personas = Date.tomorrow
     elsif current_lyduser.jefe_remuneraciones_role?
       request.aceptado_por_jefe_remuneraciones = false
+      request.fecha_aceptado_por_jefe_remuneraciones = Date.current
     end
   end
     
