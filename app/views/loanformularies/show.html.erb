@@ -43,6 +43,55 @@
   <%= @loanformulary.monto_cuota %>
 </p>
 
+<% if current_lyduser.admin_role? || current_lyduser.asocial_role?%>
+<p>
+<strong>Fecha Emitido por Atención Social:</strong>
+  <%= @loanformulary.fecha_aceptado_por_as %>
+</p>
+
+<p>
+<strong>Comentario Atención Social:</strong>
+  <%= @loanformulary.comentario_as %>
+</p>
+
+<p>
+<strong>Fecha revisión Administrativo Obra:</strong>
+  <%= @loanformulary.fecha_aceptado_por_administrativo_obra %>
+</p>
+
+<p>
+<strong>Comentario Administrativo Obra:</strong>
+  <%= @loanformulary.comentario_administrativo_obra%>
+</p>
+
+<p>
+<strong>Fecha revisión Subgerente de personas:</strong>
+  <%= @loanformulary.fecha_aceptado_por_subgerente_personas %>
+
+</p>
+
+<p>
+<strong>Comentario Subgerente personas:</strong>
+  <%= @loanformulary.comentario_subgerente_personas%>
+</p>
+
+<p>
+<strong>Fecha revisión Jefe de remuneraciones:</strong>
+  <%= @loanformulary.fecha_aceptado_por_jefe_remuneraciones %>
+
+</p>
+
+<p>
+<strong>Comentario Jefe remuneraciones:</strong>
+  <%= @loanformulary.comentario_jefe_remuneraciones%>
+</p>
+
+
+<% end %>
+
+
+
+
 <p>
   <strong>Renta liquida:</strong>
   <%= @loanformulary.renta_liquida %>
@@ -100,11 +149,26 @@
 
 
 </div>
+<% if current_lyduser.admin_role == false%>
+<p>
+<%= form_for (@loanformulary), url: accept_loanformulary_path, method: "get" do |f| %>
+<% if current_lyduser.asocial_role? %>
+<%= f.text_area :comentario_as %>
+<% elsif current_lyduser.administrativo_obra_role? %>
+<%= f.text_area :comentario_administrativo_obra%>
+<% elsif current_lyduser.subgerente_personas_role? %>
+<%= f.text_area :comentario_subgerente_personas%>
+<% elsif current_lyduser.jefe_remuneraciones_role? %>
+<%= f.text_area :comentario_jefe_remuneraciones%>
+<% end %>
+
+<%= f.submit 'Aceptar', name: "accept" %>
+<%= f.submit 'Rechazar', name: "refuse" %>
+<% end %>
+<% end %>
+  </p>
 
 
-
-<%= link_to "Aceptar", accept_loanformulary_path(@loanformulary) %> |
-<%= link_to "Rechazar", refuse_loanformulary_path(@loanformulary) %> |
 
 <%= link_to 'Edit', edit_loanformulary_path(@loanformulary) %> |
 <%= link_to 'Back', loanformularies_path %>

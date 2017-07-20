@@ -27,11 +27,11 @@
     <% if current_lyduser.asocial_role? %>
     <% pendientes = Loanformulary.where(:aceptado_por_as => nil) %>
     <% elsif current_lyduser.administrativo_obra_role? %>
-    <% pendientes = Loanformulary.where(:aceptado_por_administrativo_obra => nil)%>
+    <% pendientes = Loanformulary.where("aceptado_por_as = ? AND aceptado_por_administrativo_obra IS ?", true, nil)%>
     <% elsif current_lyduser.subgerente_personas_role? %>
-    <% pendientes = Loanformulary.where(:aceptado_por_subgerente_personas => nil)%>
+    <% pendientes = Loanformulary.where("aceptado_por_administrativo_obra = ? AND aceptado_por_subgerente_personas IS ?", true, nil)%>
     <% elsif current_lyduser.jefe_remuneraciones_role? %>
-    <% pendientes = Loanformulary.where(:aceptado_por_jefe_remuneraciones => nil)%>
+    <% pendientes = Loanformulary.where("aceptado_por_subgerente_personas = ? AND aceptado_por_jefe_remuneraciones IS ?", true, nil )%>
     <% end %>
     <% pendientes.each do |loanformulary| %>
       <tr>
@@ -138,7 +138,7 @@
 
 <% end %>
 
-<% if current_lyduser.admin_role?%>
+<% if current_lyduser.admin_role? || current_lyduser.asocial_role?%>
 
 <div class="panel panel-primary">
   <!-- Default panel contents -->

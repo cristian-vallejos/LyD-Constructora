@@ -9,22 +9,58 @@ class LoanformulariesController < ApplicationController
 
   def accept
     request = Loanformulary.find(params[:id])
+    text = params[:loanformulary][:comentario_as]
 
-  if(request.cerado == false)
-    if current_lyduser.asocial_role? && request.aceptado_por_as == nil
-      request.aceptado_por_as = true
-      request.fecha_aceptado_por_as = Date.current
-    elsif current_lyduser.administrativo_obra_role?
-      request.aceptado_por_administrativo_obra = true
-      request.fecha_aceptado_por_administrativo_obra = Date.current
-    elsif current_lyduser.subgerente_personas_role?
-      request.aceptado_por_subgerente_personas = true
-      request.fecha_aceptado_por_subgerente_personas = Date.tomorrow
-    elsif current_lyduser.jefe_remuneraciones_role?
-      request.aceptado_por_jefe_remuneraciones = true
-      request.fecha_aceptado_por_jefe_remuneraciones = Date.current
+    if(params[:accept])
+      if(request.cerado == false)
+        if current_lyduser.asocial_role? && request.aceptado_por_as == nil
+          request.aceptado_por_as = true
+          request.comentario_as = params[:loanformulary][:comentario_as]
+          request.fecha_aceptado_por_as = Date.current
+
+        elsif current_lyduser.administrativo_obra_role? && request.aceptado_por_administrativo_obra == nil
+          request.aceptado_por_administrativo_obra = true
+          request.comentario_administrativo_obra = params[:loanformulary][:comentario_administrativo_obra]
+          request.fecha_aceptado_por_administrativo_obra = Date.current
+
+        elsif current_lyduser.subgerente_personas_role? && request.aceptado_por_subgerente_personas == nil
+          request.aceptado_por_subgerente_personas = true
+          request.comentario_subgerente_personas = params[:loanformulary][:comentario_subgerente_personas]
+          request.fecha_aceptado_por_subgerente_personas = Date.tomorrow
+
+        elsif current_lyduser.jefe_remuneraciones_role? && request.aceptado_por_jefe_remuneraciones == nil
+          request.aceptado_por_jefe_remuneraciones = true 
+          request.comentario_jefe_remuneraciones = params[:loanformulary][:comentario_jefe_remuneraciones]
+          request.fecha_aceptado_por_jefe_remuneraciones = Date.current
+
+        end
+      end
+    elsif (params[:refuse])
+      if(request.cerado == false)
+        if current_lyduser.asocial_role? && request.aceptado_por_as == nil
+          request.aceptado_por_as = false
+          request.comentario_as = params[:loanformulary][:comentario_as]
+          request.fecha_aceptado_por_as = Date.current
+
+        elsif current_lyduser.administrativo_obra_role? && request.aceptado_por_administrativo_obra == nil
+          request.aceptado_por_administrativo_obra = false
+          request.comentario_administrativo_obra = params[:loanformulary][:comentario_administrativo_obra]
+          request.fecha_aceptado_por_administrativo_obra = Date.current
+
+        elsif current_lyduser.subgerente_personas_role? && request.aceptado_por_subgerente_personas == nil
+          request.aceptado_por_subgerente_personas = false
+          request.comentario_subgerente_personas = params[:loanformulary][:comentario_subgerente_personas]
+          request.fecha_aceptado_por_subgerente_personas = Date.tomorrow
+
+        elsif current_lyduser.jefe_remuneraciones_role? && request.aceptado_por_jefe_remuneraciones == nil
+          request.aceptado_por_jefe_remuneraciones = false
+          request.comentario_jefe_remuneraciones = params[:loanformulary][:comentario_jefe_remuneraciones]
+          request.fecha_aceptado_por_jefe_remuneraciones = Date.current
+        end
+      end
+
+        
     end
-  end
     
     request.save
 
