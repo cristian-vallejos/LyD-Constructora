@@ -7,6 +7,18 @@ class LoanformulariesController < ApplicationController
     @loanformularies = Loanformulary.all
   end
 
+  def filtrar
+
+        puts params[:lasopciones]
+
+        #@company = current_lyduser.companies.find(params[:company]) 
+        #@data = Hash.new 
+        #@data["btw_number"] = @company.btw_number 
+        #@data["iban_number"] = @company.iban_number 
+        #render json: @data and return false
+
+  end
+
   def accept
     request = Loanformulary.find(params[:id])
     text = params[:loanformulary][:comentario_as]

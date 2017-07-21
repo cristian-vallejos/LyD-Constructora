@@ -3,7 +3,23 @@
 <h1>Solicitud de Prestamos</h1>
 
 <% if current_lyduser.asocial_role? || current_lyduser.administrativo_obra_role? || current_lyduser.subgerente_personas_role? || current_lyduser.jefe_remuneraciones_role? %>
-<div class="panel panel-success">
+
+
+
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#pendientes" data-toggle="tab" aria-expanded="true">Pendientes</a></li>
+  <li class=""><a href="#aceptados" data-toggle="tab" aria-expanded="false">Aceptados</a></li>
+  <li class=""><a href="#rechazados" data-toggle="tab" aria-expanded="false">Rechazados</a></li>
+  <% if current_lyduser.admin_role? || current_lyduser.asocial_role?%>
+  <li class=""><a href="#seguimiento" data-toggle="tab" aria-expanded="false">Seguimiento</a></li>
+  <%end%>
+</ul>
+
+
+<div id="myTabContent" class="tab-content">
+  <div class="tab-pane fade active in" id="pendientes">
+
+    <div class="panel panel-success">
   <!-- Default panel contents -->
   <div class="panel-heading">Solicitudes de Préstamo</div>
   <div class="panel-body">
@@ -51,9 +67,19 @@
 </div>
 
 
-<div class="panel panel-danger">
+
+
+
+
+  </div>
+
+
+
+  <div class="tab-pane fade" id="aceptados">
+
+<div class="panel panel-info">
   <!-- Default panel contents -->
-  <div class="panel-heading">Historial de prestamos revisados</div>
+  <div class="panel-heading">Historial de prestamos aceptados</div>
   <div class="panel-body">
   </div>
 
@@ -75,16 +101,12 @@
   <tbody>
     <% if current_lyduser.asocial_role? %>
     <% revisadosT = Loanformulary.where(:aceptado_por_as => true) %>
-    <% revisadosF = Loanformulary.where(:aceptado_por_as => false) %>
     <% elsif current_lyduser.administrativo_obra_role? %>
     <% revisadosT = Loanformulary.where(:aceptado_por_administrativo_obra => true) %>
-    <% revisadosF = Loanformulary.where(:aceptado_por_administrativo_obra => false) %>
     <% elsif current_lyduser.subgerente_personas_role? %>
     <% revisadosT = Loanformulary.where(:aceptado_por_subgerente_personas => true) %>
-    <% revisadosF = Loanformulary.where(:aceptado_por_subgerente_personas => false) %>
     <% elsif current_lyduser.jefe_remuneraciones_role? %>
     <% revisadosT = Loanformulary.where(:aceptado_por_jefe_remuneraciones => true) %>
-    <% revisadosF = Loanformulary.where(:aceptado_por_jefe_remuneraciones => false) %>
     <% end %>
     <% revisadosT.each do |loanformulary| %>
       <tr>
@@ -110,6 +132,54 @@
         <td><%= link_to 'Destroy', loanformulary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+  </tbody>
+  </table>
+</div>
+
+
+
+
+
+
+
+
+  </div>
+
+
+  <div class="tab-pane fade" id="rechazados">
+
+<div class="panel panel-danger">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Historial de prestamos rechazados</div>
+  <div class="panel-body">
+  </div>
+
+  <!-- Table -->
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Nombre solicitante</th>
+      <th>Rut solicitante</th>
+      <th>Obra</th>
+      <th>Monto solicitado</th>
+      <th>Motivo solicitud</th>
+      <th>Comentarios</th>
+      <th>Fecha revisión</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% if current_lyduser.asocial_role? %>
+    <% revisadosF = Loanformulary.where(:aceptado_por_as => false) %>
+    <% elsif current_lyduser.administrativo_obra_role? %>
+    <% revisadosF = Loanformulary.where(:aceptado_por_administrativo_obra => false) %>
+    <% elsif current_lyduser.subgerente_personas_role? %>
+    <% revisadosF = Loanformulary.where(:aceptado_por_subgerente_personas => false) %>
+    <% elsif current_lyduser.jefe_remuneraciones_role? %>
+    <% revisadosF = Loanformulary.where(:aceptado_por_jefe_remuneraciones => false) %>
+    <% end %>
+    
     <% revisadosF.each do |loanformulary| %>
       <tr>
         <td><%= loanformulary.nombre_solicitante %></td>
@@ -136,9 +206,21 @@
   </table>
 </div>
 
-<% end %>
 
-<% if current_lyduser.admin_role? || current_lyduser.asocial_role?%>
+
+
+
+  </div>
+
+
+
+
+
+
+
+  <div class="tab-pane fade" id="seguimiento">
+
+  <% if current_lyduser.admin_role? || current_lyduser.asocial_role?%>
 
 <div class="panel panel-primary">
   <!-- Default panel contents -->
@@ -188,6 +270,30 @@
 
 
 <%end%>
+
+
+
+
+
+
+  </div>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<% end %>
+
+
 
 
 <br>

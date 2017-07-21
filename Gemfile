@@ -33,6 +33,9 @@ gem 'devise'
 
 gem 'cancancan'
 
+gem 'jquery-turbolinks'
+
+
 
 
 # Use CoffeeScript for .coffee assets and views
