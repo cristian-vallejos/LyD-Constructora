@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170718163934) do
+ActiveRecord::Schema.define(version: 20170724004840) do
+
+  create_table "areabenefits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "nombre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "asformularies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "rut_atendido"
@@ -44,6 +50,19 @@ ActiveRecord::Schema.define(version: 20170718163934) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "assignbenefits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "benefit_id"
+    t.string "rut_trabajador"
+    t.string "rut_beneficiario"
+    t.string "relacion"
+    t.date "fecha_nacimiento"
+    t.bigint "obra_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["benefit_id"], name: "index_assignbenefits_on_benefit_id"
+    t.index ["obra_id"], name: "index_assignbenefits_on_obra_id"
+  end
+
   create_table "benefits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "nombre"
     t.string "area"
@@ -51,6 +70,10 @@ ActiveRecord::Schema.define(version: 20170718163934) do
     t.integer "costoempresa"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "familia", default: false
+    t.boolean "asistencia", default: false
+    t.bigint "areabenefit_id"
+    t.index ["areabenefit_id"], name: "index_benefits_on_areabenefit_id"
   end
 
   create_table "epcformularies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -217,5 +240,8 @@ ActiveRecord::Schema.define(version: 20170718163934) do
   add_foreign_key "asformularies", "benefits"
   add_foreign_key "asformularies", "lydusers"
   add_foreign_key "asformularies", "users"
+  add_foreign_key "assignbenefits", "benefits"
+  add_foreign_key "assignbenefits", "obras"
+  add_foreign_key "benefits", "areabenefits"
   add_foreign_key "epcformularies", "asformularies"
 end

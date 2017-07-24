@@ -1,0 +1,22 @@
+<%= form_with(model: areabenefit, local: true) do |form| %>
+  <% if areabenefit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(areabenefit.errors.count, "error") %> prohibited this areabenefit from being saved:</h2>
+
+      <ul>
+      <% areabenefit.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nombre %>
+    <%= form.text_field :nombre, id: :areabenefit_nombre %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

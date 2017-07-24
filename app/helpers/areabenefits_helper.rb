@@ -1,0 +1,2 @@
+module AreabenefitsHelper
+end

@@ -1,0 +1,47 @@
+<%= form_with(model: assignbenefit, local: true) do |form| %>
+  <% if assignbenefit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(assignbenefit.errors.count, "error") %> prohibited this assignbenefit from being saved:</h2>
+
+      <ul>
+      <% assignbenefit.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :benefit_id %>
+    <%= form.text_field :benefit_id, id: :assignbenefit_benefit_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rut_trabajador %>
+    <%= form.text_field :rut_trabajador, id: :assignbenefit_rut_trabajador %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rut_beneficiario %>
+    <%= form.text_field :rut_beneficiario, id: :assignbenefit_rut_beneficiario %>
+  </div>
+
+  <div class="field">
+    <%= form.label :relacion %>
+    <%= form.text_field :relacion, id: :assignbenefit_relacion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fecha_nacimiento %>
+    <%= form.date_select :fecha_nacimiento, id: :assignbenefit_fecha_nacimiento %>
+  </div>
+
+  <div class="field">
+    <%= form.label :obra_id %>
+    <%= form.text_field :obra_id, id: :assignbenefit_obra_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

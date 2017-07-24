@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :assignbenefits
+  resources :areabenefits
   resources :loanformularies do
     member do
       get :accept
