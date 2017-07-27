@@ -1,0 +1,66 @@
+/* line 1, /home/rem/Escritorio/test1/app/assets/stylesheets/_navbar.scss */
+.navbar {
+  border-radius: 0;
+  margin-bottom: 20px;
+  background-color: #86C98A;
+}
+/* line 5, /home/rem/Escritorio/test1/app/assets/stylesheets/_navbar.scss */
+.navbar .navbar-brand {
+  font-weight: bolder;
+  color: #004304;
+}
+/* line 8, /home/rem/Escritorio/test1/app/assets/stylesheets/_navbar.scss */
+.navbar .navbar-brand .light {
+  font-weight: 300;
+  color: #116416;
+}
+/* line 13, /home/rem/Escritorio/test1/app/assets/stylesheets/_navbar.scss */
+.navbar .navbar-toggler {
+  outline: none;
+}
+/* line 16, /home/rem/Escritorio/test1/app/assets/stylesheets/_navbar.scss */
+.navbar .nav-link {
+  color: #154360 !important;
+}
+/* line 18, /home/rem/Escritorio/test1/app/assets/stylesheets/_navbar.scss */
+.navbar .nav-link.active {
+  color: #154360 !important;
+}
+/* line 23, /home/rem/Escritorio/test1/app/assets/stylesheets/_navbar.scss */
+.navbar .nav-item.author-nav img {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border: 1px solid #154360;
+}
+
+/* line 32, /home/rem/Escritorio/test1/app/assets/stylesheets/_navbar.scss */
+.collapse-bg {
+  padding: 0 !important;
+}
+/* line 34, /home/rem/Escritorio/test1/app/assets/stylesheets/_navbar.scss */
+.collapse-bg .card {
+  margin-bottom: 0;
+  border-radius: 0;
+  border: none;
+}
+
+/* line 42, /home/rem/Escritorio/test1/app/assets/stylesheets/_navbar.scss */
+.collapse-bg .card .list-group-item {
+  padding: 0;
+  border-radius: 0 !important;
+  border-color: black;
+}
+/* line 46, /home/rem/Escritorio/test1/app/assets/stylesheets/_navbar.scss */
+.collapse-bg .card .list-group-item a {
+  background-color: #1a1a1a;
+  color: #bdc3c7;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+}
+/* line 52, /home/rem/Escritorio/test1/app/assets/stylesheets/_navbar.scss */
+.collapse-bg .card .list-group-item a:active {
+  color: white;
+  border-bottom: none;
+}

@@ -4,78 +4,79 @@
 <div class="row">
 	
 	  <div class="col-md-4">
-	  <h3>Nuevo Formulario de Atención Social</h3>
+	  <h4>Nuevo Formulario de Atención Social</h4>
 	  	<%= render 'form', asformulary: @asformulary %>
 
 	  </div>
 	  <div class="col-md-8">
 
-	<ul class="nav nav-pills">
-	  <li class="active"><a href="#asociales" data-toggle="tab" aria-expanded="true">Historial AS</a></li>
-	  <li class=""><a href="#beneficios" data-toggle="tab" aria-expanded="false">Beneficios</a></li>
-	  <li class=""><a href="#prestamos" data-toggle="tab" aria-expanded="false">Préstamos</a></li>
-	  <li class=""><a href="#capacitaciones" data-toggle="tab" aria-expanded="false">Capacitaciones</a></li>
-	</ul>
+	<div class="tab">
+  	<button class="tablinks" onclick="openCity(event, 'Atencion Social')">Atencion Social</button>
+  	<button class="tablinks" onclick="openCity(event, 'Beneficios')">Beneficios</button>
+  	<button class="tablinks" onclick="openCity(event, 'Prestamo')">Prestamo</button>
+	</div>
+	<div id="Atencion Social" class="tabcontent">
+  <h3>Atencion Social</h3>
+        <div align="center">
+        <table >
+
+       
+
+		  	<% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
+		  	<% employee = Employee.where(:rut => params[:asformulary][:rut_atendido]) %>
+		  	<% employee.each do |emple| %>
+				<tr>
+					<td><%= emple.rut %></td>
+					<td><%= emple.nombre %></td>
+					<td><%= emple.cencos %></td>
+					<td><%= emple.estado %></td>
+				</tr>
+			<%end%>
+			<%end%>
 
 
-	<div id="myTabContent" class="tab-content">
-
-		<div class="tab-pane fade active in" id="asociales">
-
-		<div class="table-responsive">
-		  	<h3>Historial de Atención Social</h3>
 
 			  <table class="table">
 			    <thead>
 				    <tr>
 				      
-				      <th>Asistente Social</th>
-				      <th>Obra</th>
+				      
 				      <th>Rut atendido AS</th>
 				      <th>Nombre atendido</th>
-				      <th>Apellido Paterno</th>
-				      <th>Apellido Materno</th>
+				      
 				      <th>Descripción</th>
 				      <th>Solución</th>
 				    </tr>
 				  </thead>
 
 				  <tbody>
+				  	<% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
 				  	<% logas = Loga.where(:rut_atendido => params[:asformulary][:rut_atendido]) %>
 				    <% logas.each do |loga| %>
 				      <tr>
 				        
-				        <td><%= loga.user_name %></td>
-				        <td><%= loga.codigo_obra %></td>
+				        
 				        <td><%= loga.rut_atendido %></td>
 				        <td><%= loga.nombre_atendido %></td>
-				        <td><%= loga.apellido_paterno_atendido %></td>
-				        <td><%= loga.apellido_materno_atendido %></td>
+				        
 				        <td><%= loga.descripcion %></td>
 				        <td><%= loga.solucion %></td>
 				      </tr>
 				    <% end %>
+				    <% end %>
 				  </tbody>
-			  </table>
-			</div>
+        
+         
+        
+         
+        </table>
+        
+        </div>
 
-		</div>
-
-		<div class="tab-pane fade active in" id="beneficios">
-
-
-		</div>
-
-
-		<div class="tab-pane fade active in" id="prestamos">
+</div>
 
 
-		</div>
 
-		<div class="tab-pane fade active in" id="capacitaciones">
-
-
-		</div>
 
 
 
@@ -92,3 +93,18 @@
 </div>
 
 <%= link_to 'volver', asformularies_path %>
+<script>
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+</script>

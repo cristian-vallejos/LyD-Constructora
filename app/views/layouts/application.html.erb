@@ -2,27 +2,23 @@
 <html>
   <head>
     <title>LD</title>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    
     <%= csrf_meta_tags %>
 
-  
-    
-
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-
-  <%= render 'layouts/navbar' %>
-
-
-  <div class="container">
-  	<%= yield %>
-  </div>
-
-
-    
+  <%stylesheet_link_tag :stylesLD %>
+  <%stylesheet_link_tag :bootstrap %>
+    <%# render 'layouts/navbar' %>
+    <div class="header2"><a href="<%=root_path%>"><img src='<%= asset_url("ldgreen.png") %>' alt="Insertar logotipo aquí" name="Insert_logo" width="150" height="125" id="Insert_logo"/></a>
+    <li><%= link_to "Edit profile", edit_lyduser_registration_path %></li>
+      <li><%= link_to "Sign up", new_lyduser_registration_path %></li>
+      <li><%= link_to "Login", new_lyduser_session_path %></li>
+      <li><%= link_to "Logout", destroy_lyduser_session_path, method: :delete %></li> 
+    <!-- end .header --></div>
+<div class="container2">
+    <%= yield %>
   </body>
 </html>

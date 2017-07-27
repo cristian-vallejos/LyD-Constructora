@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rut: MyString
+  nombre: MyString
+  cencos: MyString
+  estado: MyString
+
+two:
+  rut: MyString
+  nombre: MyString
+  cencos: MyString
+  estado: MyString

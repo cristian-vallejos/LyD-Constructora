@@ -1,12 +1,60 @@
-<p id="notice"><%= notice %></p>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documento sin título</title>
 
-<h2>LD Constructora - Sistema de Gestión</h2>
 
 
-<p>
-  	<%= form_for (@asformulary), url: new_asformulary_path, method: "get" do |f| %>
-  	<%= f.label :Nueva_ficha_atencion_social %>
-  	<%= f.number_field :rut_atendido %>
-  	<%= f.submit "new" %>
-	<% end %>
-</p>
+
+</head>
+
+<body>
+
+
+    <div class="sidebar2">
+    <div align="left">
+    <label for="textfield">ASIGNAR BENEFICIOS</label>
+    <br>       
+  <button onclick="location.href='<%= asformularies_path %>'" type="button" class="button button1">ASISTENCIA SOCIAL</button>
+  <br>
+  <button onclick="location.href='beneficiosPanel.html'" type="button" class="button button1">BENEFICIOS</button>
+  <br> 
+  <button type="button" class="button button1">PRESTAMOS</button>
+  <br> 
+  <button type="button" class="button button1">CAPACITACIONES</button>
+  <br> 
+  <button type="button" class="button button1">REPORTES</button>
+  
+  
+
+ 
+  </div>
+    <!-- end .sidebar1 --></div>
+  <div class="content2">
+<div align="center">
+<button class="button button5">CRUD AREA BENEFICIOS</button>
+<button onclick="location.href='listarBeneficios.html'" class="button button5">CRUD BENEFICIOS</button>
+<br>
+<br>
+<button class="button button5">CRUD TRABAJADORES</button>
+<button class="button button5">CRUD PRESTAMOS</button>
+<br>
+<br>
+<button class="button button5">CRUD ASISTENCIA SOCIAL</button>
+<button class="button button5">CRUD FAMILIARES</button>
+<br>
+<br>
+
+
+</div>
+
+    <!-- end .content --></div>
+
+  <!-- end .container --></div>
+    <div class="footer">
+    <p>Pie de página</p>
+    <!-- end .footer --></div>
+</body>
+</html>

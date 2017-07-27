@@ -23,9 +23,9 @@ gem 'json'
 
 gem 'execjs'
 
-gem 'bootstrap-sass', '~> 3.3.6'
+#gem 'bootstrap-sass', '~> 3.3.6'
 
-gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
+#gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
 
 gem 'jquery-rails'
 

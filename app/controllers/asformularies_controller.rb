@@ -23,8 +23,14 @@ class AsformulariesController < ApplicationController
 
   # GET /asformularies/new
   def new
-    @asformulary = Asformulary.new
+
+      @asformulary = Asformulary.new
     #@epcformulary = Epcformulary.new(asformulary_id: params[:asformulary_id])
+  end
+
+  def checkrut
+    puts "HOLAAAAA MUNDOOOOOO"
+    redirect_to new_asformulary_path
   end
 
   def newseg
@@ -68,17 +74,23 @@ class AsformulariesController < ApplicationController
   # POST /asformularies
   # POST /asformularies.json
   def create
-    @asformulary = Asformulary.new(asformulary_params)
-    @asformulary.lyduser = current_lyduser
+    if (params[:check])
+   
 
-  
-    respond_to do |format|
-      if @asformulary.save
-        format.html { redirect_to asformularies_path}#, notice: 'Asformulary was successfully created.' }
-        format.json { render :show, status: :created, location: @asformulary }
-      else
-        format.html { render :new }
-        format.json { render json: @asformulary.errors, status: :unprocessable_entity }
+      redirect_to new_asformulary_path#(rut_atendido: params[:asformulary][:rut_atendido])
+    else
+      @asformulary = Asformulary.new(asformulary_params)
+      @asformulary.lyduser = current_lyduser
+
+    
+      respond_to do |format|
+        if @asformulary.save
+          format.html { redirect_to asformularies_path}#, notice: 'Asformulary was successfully created.' }
+          format.json { render :show, status: :created, location: @asformulary }
+        else
+          format.html { render :new }
+          format.json { render json: @asformulary.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

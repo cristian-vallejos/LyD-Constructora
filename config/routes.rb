@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :employees
   resources :assignbenefits
   resources :areabenefits
   resources :loanformularies do
@@ -24,6 +25,7 @@ Rails.application.routes.draw do
   resources :asformularies do
     member do
       get :newseg
+      get :checkrut
     end
   end
   resources :aspcategories

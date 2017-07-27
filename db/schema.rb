@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170724004840) do
+ActiveRecord::Schema.define(version: 20170727031208) do
 
   create_table "areabenefits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "nombre"
@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(version: 20170724004840) do
   end
 
   create_table "asformularies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "rut_atendido"
-    t.integer "codigo_obra"
+    t.string "rut_atendido"
+    t.string "codigo_obra"
     t.bigint "user_id"
     t.string "nombre_atendido"
     t.string "apellido_paterno"
@@ -74,6 +74,15 @@ ActiveRecord::Schema.define(version: 20170724004840) do
     t.boolean "asistencia", default: false
     t.bigint "areabenefit_id"
     t.index ["areabenefit_id"], name: "index_benefits_on_areabenefit_id"
+  end
+
+  create_table "employees", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "rut"
+    t.string "nombre"
+    t.string "cencos"
+    t.string "estado"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "epcformularies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -131,7 +140,7 @@ ActiveRecord::Schema.define(version: 20170724004840) do
   create_table "loanformularies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "nombre_solicitante"
     t.string "rut_solicitante"
-    t.integer "obra"
+    t.string "obra"
     t.string "cargo"
     t.integer "monto_solicitado"
     t.integer "monto_aprobado"
@@ -166,7 +175,7 @@ ActiveRecord::Schema.define(version: 20170724004840) do
   create_table "logas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "asocial_id"
     t.string "user_name"
-    t.integer "codigo_obra"
+    t.string "codigo_obra"
     t.string "rut_atendido"
     t.string "nombre_atendido"
     t.string "apellido_paterno_atendido"
@@ -217,7 +226,7 @@ ActiveRecord::Schema.define(version: 20170724004840) do
     t.boolean "administrativo_obra_role", default: false
     t.boolean "subgerente_personas_role", default: false
     t.boolean "jefe_remuneraciones_role", default: false
-    t.integer "obra"
+    t.string "obra"
     t.index ["email"], name: "index_lydusers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_lydusers_on_reset_password_token", unique: true
   end
