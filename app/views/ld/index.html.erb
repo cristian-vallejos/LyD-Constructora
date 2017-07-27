@@ -12,47 +12,62 @@
 
 <body>
 
+<link href='<%= asset_url("css/font-awesome.min.css") %>' rel="stylesheet" type="text/css">
+<link href='<%= asset_url("css/style-37.css") %>' rel="stylesheet" type="text/css">
+<link rel="shortcut icon" href="#">
 
-    <div class="sidebar2">
-    <div align="left">
-    <label for="textfield">ASIGNAR BENEFICIOS</label>
-    <br>       
-  <button onclick="location.href='<%= asformularies_path %>'" type="button" class="button button1">ASISTENCIA SOCIAL</button>
-  <br>
-  <button onclick="location.href='beneficiosPanel.html'" type="button" class="button button1">BENEFICIOS</button>
-  <br> 
-  <button type="button" class="button button1">PRESTAMOS</button>
-  <br> 
-  <button type="button" class="button button1">CAPACITACIONES</button>
-  <br> 
-  <button type="button" class="button button1">REPORTES</button>
-  
-  
 
- 
-  </div>
+
+<div class="container">
+  <div class="sidebar2">
+    <div align="center">
+      <div class="ui-37">
+        <div class="row">
+          <div class="col-md-4 col-sm-4 col-xs-6 col-mob"> <a href="<%= asformularies_path %>" class="bg-green-ld"> <img src='<%= asset_url("trans.png") %>' alt="" />
+            <label class="label-ld">Asistencia Social</label>
+            </a> </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 col-sm-4 col-xs-6 col-mob"> <a href="#" class="bg-green-ld"> <img src='<%= asset_url("trans.png") %>' alt="" />
+            <label class="label-ld">Beneficios</label>
+            </a> </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 col-sm-4 col-xs-6 col-mob"> <a href="#" class="bg-green-ld"> <img src='<%= asset_url("trans.png") %>' alt="" />
+            <label class="label-ld">Prestamos</label>
+            </a> </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 col-sm-4 col-xs-6 col-mob"> <a href="#" class="bg-green-ld"> <img src='<%= asset_url("trans.png") %>' alt="" />
+            <label class="label-ld">Capacitaciones</label>
+            </a> </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 col-sm-4 col-xs-6 col-mob"> <a href="#" class="bg-green-ld"> <img src='<%= asset_url("trans.png") %>' alt="" />
+            <label class="label-ld">Reportes</label>
+            </a> </div>
+        </div>
+      </div>
+    </div>
     <!-- end .sidebar1 --></div>
-  <div class="content2">
-<div align="center">
-<button class="button button5">CRUD AREA BENEFICIOS</button>
-<button onclick="location.href='listarBeneficios.html'" class="button button5">CRUD BENEFICIOS</button>
-<br>
-<br>
-<button class="button button5">CRUD TRABAJADORES</button>
-<button class="button button5">CRUD PRESTAMOS</button>
-<br>
-<br>
-<button class="button button5">CRUD ASISTENCIA SOCIAL</button>
-<button class="button button5">CRUD FAMILIARES</button>
-<br>
-<br>
+  <div class="content">
+    <div align="center">
 
-
-</div>
-
+      <div class="ui-37">
+        <div class="row">
+          <div class="col-md-4 col-sm-4 col-xs-6 col-mob"> 
+           <a href="crudsPanel.html" class="bg-black"> <img src='<%= asset_url("trans.png") %>' alt="" />
+            <label class="label-ld">Administración CRUDS</label>
+            </a> </div>
+        </div>
+      </div>
+    </div>
+    
     <!-- end .content --></div>
-
+  
   <!-- end .container --></div>
+
+
     <div class="footer">
     <p>Pie de página</p>
     <!-- end .footer --></div>

@@ -29,7 +29,6 @@ class AsformulariesController < ApplicationController
   end
 
   def checkrut
-    puts "HOLAAAAA MUNDOOOOOO"
     redirect_to new_asformulary_path
   end
 
@@ -81,6 +80,7 @@ class AsformulariesController < ApplicationController
     else
       @asformulary = Asformulary.new(asformulary_params)
       @asformulary.lyduser = current_lyduser
+      @asformulary.user_id = 1
 
     
       respond_to do |format|

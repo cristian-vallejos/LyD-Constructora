@@ -7,8 +7,30 @@ class Asformulary < ApplicationRecord
 
   #before_create :set_atencion_id
 
+  
+  validate :formato_rut
+
+
+
   after_create :crear_log_A
   after_update :crear_log_B
+
+
+
+
+  def formato_rut
+    if rut_atendido.present?
+      dv = [*0..9,'K'][rut_atendido[0...-2].to_s.reverse.chars.inject([0,0]){|(i,a),n|[i+1,a-n.to_i*(i%6+2)]}[1]%11]
+      if Integer(rut_atendido[-1]) != dv
+        errors.add(:rut_atendido, "Formato de rut mal ingresado")
+      end
+    end
+
+
+  end
+
+
+
 
 
 

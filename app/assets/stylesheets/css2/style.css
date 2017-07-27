@@ -1,0 +1,20 @@
+@charset "utf-8";
+@font-face {
+  font-family: 'Frutiger-Cn';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Frutiger-Cn'), url('Frutiger-Cn') format('truetype');
+}
+body {
+  font-family: 'Frutiger-Cn', serif;
+  font-size: 15px;
+}/* CSS Document */
+
+table {
+    width: 100%;
+}
+
+th {
+    height: 50px;
+}
+tr:nth-child(even) {background-color: #f2f2f2}
