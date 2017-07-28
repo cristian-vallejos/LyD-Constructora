@@ -1,5 +1,6 @@
 class LoanformulariesController < ApplicationController
   before_action :set_loanformulary, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /loanformularies
   # GET /loanformularies.json

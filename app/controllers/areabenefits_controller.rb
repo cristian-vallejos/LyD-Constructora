@@ -1,5 +1,6 @@
 class AreabenefitsController < ApplicationController
   before_action :set_areabenefit, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /areabenefits
   # GET /areabenefits.json

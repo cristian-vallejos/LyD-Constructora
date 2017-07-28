@@ -1,8 +1,10 @@
 <%= form_for (@asformulary), url: new_asformulary_path, method: "get" do |f| %>
+  <%= f.label "Verificar trabajador" %>
   <%= f.text_field :rut_atendido %>
   <%= f.submit "check", name: "check" %>
 <% end %>
-
+<br>
+<br>
 <%= form_with(model: asformulary, local: true) do |form| %>
   <% if asformulary.errors.any? %>
     <div id="error_explanation">

@@ -3,147 +3,136 @@
 <link href='<%= asset_url("css/style-55.css") %>' rel="stylesheet">
 <link href='<%= asset_url("css2/stylesLD.css") %>' rel="stylesheet" type="text/css">
 
-<% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
-		  	<% employee = Employee.where(:rut => params[:asformulary][:rut_atendido]) %>
-			  	<% employee.each do |emple| %>
-					<tr>
-						<td><%= emple.rut %></td>
-						<td><%= emple.nombre %></td>
-						<td><%= emple.cencos %></td>
-						<td><%= emple.estado %></td>
-					</tr>
-				<%end%>
-			<%end%>
 
 
 <div class="container">
 
-<div class="sidebar1">
-    <div align="left">
+      <div class="sidebar1">
+        <div align="left">
 
-    <h4>Nuevo Formulario de Atención Social</h4>
-      <%= render 'form', asformulary: @asformulary %>
+        <h4>Nuevo Formulario de Atención Social</h4>
+        <%= render 'form', asformulary: @asformulary %>
 
-    </div>
+      </div>
     
     <!-- end .sidebar1 --></div>
 
 
-<div class="contentForm">
-    <label for="textfield">Resumen Trabajador: Juan Perez, 15.234.434-k </label>    
+  <div class="contentForm">
+    <label for="textfield">Resumen Trabajador:
+
+      <% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
+        <% employee = Employee.where(:rut => params[:asformulary][:rut_atendido]) %>
+          <% employee.each do |emple| %>
+          <tr>
+            <td><%= emple.nombre %></td>,
+            <td><%= emple.rut %></td>. Obra:
+            <td><%= emple.cencos %></td>.  Estado:
+            <td><%= emple.estado %></td>
+          </tr>
+        <%end%>
+      <%end%>
+
+
+    </label>    
     <br>
    
     <div class="ui-55">
-      <div class="sidebar"> 
-        <!-- Nav tabs -->
-        <ul class="list-unstyled">
-          <li class="active"><a href="#one" role="tab" data-toggle="tab"><i class="fa fa-desktop"></i> Asistencia Social</a></li>
-          <li><a href="#two" role="tab" data-toggle="tab"><i class="fa fa-cogs"></i> Beneficios </a></li>
-          <li><a href="#three" role="tab" data-toggle="tab"><i class="fa fa-user"></i> Prestamos </a></li>
-          <li><a href="#four" role="tab" data-toggle="tab"><i class="fa fa-cloud"></i> Capacitaciones </a></li>
-          <li><a href="#five" role="tab" data-toggle="tab"><i class="fa fa-gift"></i> Remuneraciones </a></li>
-        </ul>
-      </div>
+        <div class="sidebar"> 
+          <!-- Nav tabs -->
+          <ul class="list-unstyled">
+            <li class="active"><a href="#one" role="tab" data-toggle="tab"><i class="fa fa-desktop"></i> Asistencia Social</a></li>
+            <li><a href="#two" role="tab" data-toggle="tab"><i class="fa fa-cogs"></i> Beneficios </a></li>
+            <li><a href="#three" role="tab" data-toggle="tab"><i class="fa fa-user"></i> Prestamos </a></li>
+            <li><a href="#four" role="tab" data-toggle="tab"><i class="fa fa-cloud"></i> Capacitaciones </a></li>
+            <li><a href="#five" role="tab" data-toggle="tab"><i class="fa fa-gift"></i> Remuneraciones </a></li>
+          </ul>
+        </div>
       <div class="mainbar"> 
         <!-- Tab panes -->
         <div class="tab-content">
-          <div role="tabpanel" class="tab-pane fade in active" id="one">
-            <table >
-              <tr>
-                <th width="(100/x)%">Fecha</th>
-                <th width="(100/x)%">Tipo Consulta</th>
-                <th width="(100/x)%">Comentario</th>
-                <th width="(100/x)%">Estado</th>
-                <th width="(100/x)%">Obra</th>
-                <th width="(100/x)%">Nº Atencion</th>
-                <th width="(100/x)%">Telefono</th>
-              </tr>
-              <tr>
-                <td>25/11/2014</td>
-                <td>Prestamo</td>
-                <td class="CellWithComment">Se le informa que no hay fondo para préstamo... <span class="CellComment">Se le informa que no hay fondo para préstamo, por 	lo que debe esperar hasta enero para realizar una nueva solicitud</span></td>
-                <td>N/A</td>
-                <td>212</td>
-                <td>N/A</td>
-                <td>02-25363956</td>
-              </tr>
-              <tr>
-                <td>16/10/2014</td>
-                <td>Dental</td>
-                <td>Carta derivación entregada...</td>
-                <td>N/A</td>
-                <td>212</td>
-                <td>N/A</td>
-                <td>02-25363956</td>
-              </tr>
-              <tr>
-                <td>27/05/2015</td>
-                <td>N/A</td>
-                <td>Consulta por forma de inscripción a Preuvirtual Caja Los Andes...</td>
-                <td>-N/A</td>
-                <td>212</td>
-                <td>N/A</td>
-                <td>02-25363956</td>
-              </tr>
-              <tr>
-                <td>24/07/2014</td>
-                <td>Salud</td>
-                <td>Revisar si está en CT / Inscribir en...</td>
-                <td>N/A</td>
-                <td>212</td>
-                <td>N/A</td>
-                <td>02-25363956
-                  </th>
-              </tr>
-            </table>
-          </div>
+            <div role="tabpanel" class="tab-pane fade in active" id="one">
+                  <table >
+                  <thead>
+                    <tr>
+                      <th width="(100/x)%">Fecha</th>
+                      <th width="(100/x)%">Tipo Consulta</th>
+                      <th width="(100/x)%">Comentario</th>
+                      <th width="(100/x)%">Estado</th>
+                      <th width="(100/x)%">Obra</th>
+                      <th width="(100/x)%">Nº Atencion</th>
+                      <th width="(100/x)%">Telefono</th>
+                    </tr>
+                  </thead>
+                    <tbody>
+                      <% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
+                      <% logas = Loga.where(:rut_atendido => params[:asformulary][:rut_atendido]) %>
+                      <% logas.each do |loga| %>
+                        <tr>
+                          
+                          
+                          <td><%= loga.created_at %></td>
+                          <td><%= loga.aspcategory_name %></td>
+                          
+                          <td><%= loga.descripcion %></td>
+                          <td><%= loga.estado %></td>
+                          <td><%= loga.codigo_obra %></td>
+                          <td><%= "N/A" %></td>
+                          <td><%= loga.telefono %></td>
+
+                        </tr>
+                      <% end %>
+                      <% end %>
+                    </tbody>
+                  </table>
+            </div>
           <div role="tabpanel" class="tab-pane fade" id="two">
-            <table >
-              <tr>
-                <th width="(100/x)%">Beneficio</th>
-                <th width="(100/x)%">Rut Trabajador</th>
-                <th width="(100/x)%">Rut Beneficiario</th>
-                <th width="(100/x)%">Relación</th>
-                <th width="(100/x)%">F.Nacimiento</th>
-                <th width="(100/x)%">Fecha</th>
-                <th width="(100/x)%">CentroCosto</th>
-              </tr>
-              <tr>
-                <td>Operativo Dental Urgencia</td>
-                <td>55.555.555-6</td>
-                <td>55.555.555-6</td>
-                <td>------</td>
-                <td>15-02-1993</td>
-                <td>07-07-2017</td>
-                <td>1111</td>
-              </tr>
-              <tr>
-                <td>Crédito Hipotecario</td>
-                <td>99.999.999-9</td>
-                <td>77.777.777-9</td>
-                <td>Esposa</td>
-                <td>12-03-1990</td>
-                <td>09-07-2011</td>
-                <td>2222
-                  </th>
-              </tr>
-            </table>
+                <table >
+                  <tr>
+                    <th width="(100/x)%">Beneficio</th>
+                    <th width="(100/x)%">Rut Trabajador</th>
+                    <th width="(100/x)%">Rut Beneficiario</th>
+                    <th width="(100/x)%">Relación</th>
+                    <th width="(100/x)%">F.Nacimiento</th>
+                    <th width="(100/x)%">Fecha</th>
+                    <th width="(100/x)%">CentroCosto</th>
+                  </tr>
+                  <tr>
+                    <td>Operativo Dental Urgencia</td>
+                    <td>55.555.555-6</td>
+                    <td>55.555.555-6</td>
+                    <td>------</td>
+                    <td>15-02-1993</td>
+                    <td>07-07-2017</td>
+                    <td>1111</td>
+                  </tr>
+                  <tr>
+                    <td>Crédito Hipotecario</td>
+                    <td>99.999.999-9</td>
+                    <td>77.777.777-9</td>
+                    <td>Esposa</td>
+                    <td>12-03-1990</td>
+                    <td>09-07-2011</td>
+                    <td>2222
+                      </th>
+                  </tr>
+                </table>
           </div>
-          <div role="tabpanel" class="tab-pane fade" id="three">
-            <h2>Nullam consectetur lacinia nulla</h2>
-            <p>Duis justo tellus, molestie vitae ex sit amet, condimentum ultricies lacus. Vestibulum justo leo, porttitor ut bibendum a, ultrices sed lectus. Curabitur eu nulla porttitor, molestie mi ut, ullamcorper quam. Vestibulum ultrices dui auctor, lobortis massa eu, gravida turpis. Nullam consectetur lacinia nulla vel auctor. Donec maximus in ipsum vitae laoreet. Vestibulum et varius tortor, quis tristique quam.</p>
-            <p>Vivamus dignissim imperdiet pulvinar. In pretium, tortor a maximus malesuada, eros eros tincidunt augue, vel mattis nulla orci id nisl. Donec purus purus, dignissim quis odio nec, tempus eleifend sem. Cras pellentesque felis tristique imperdiet scelerisque. Nullam nec magna non diam ultrices malesuada a ac urna. Fusce bibendum molestie maximus. Ut finibus tortor quis nisi elementum hendrerit. Morbi vel lacinia nunc.</p>
-          </div>
-          <div role="tabpanel" class="tab-pane fade" id="four">
-            <h2>Vivamus commodo felis at purus</h2>
-            <p>Quisque quis diam dictum, lacinia mauris a, congue magna. Donec lacinia ornare eleifend. Nam malesuada hendrerit pellentesque. Nam tortor urna, vehicula malesuada purus non, accumsan facilisis nisi. Vivamus commodo felis at purus feugiat, quis tristique dui elementum. Vestibulum ultrices dui auctor, lobortis massa eu, gravida turpis.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vehicula, sem a euismod ultrices, nulla ex varius elit, a ultrices ipsum sem vitae quam. In cursus molestie blandit. Maecenas eleifend enim nibh, et rutrum justo rhoncus sed. Pellentesque turpis erat, sagittis ac euismod posuere, semper quis tortor. Duis in scelerisque libero. Duis suscipit laoreet eros sollicitudin condimentum.</p>
-          </div>
-          <div role="tabpanel" class="tab-pane fade" id="five">
-            <h2>Morbi vel lacinia ultrices nunc</h2>
-            <p>Vivamus commodo felis at purus feugiat, quis tristique dui elementum.Donec purus purus, dignissim quis odio nec, tempus eleifend sem. Cras pellentesque felis tristique imperdiet scelerisque. Nullam nec magna non diam ultrices malesuada a ac urna. Fusce bibendum molestie maximus. Ut finibus tortor quis nisi elementum hendrerit. Morbi vel lacinia nunc.</p>
-            <p>Duis justo tellus, molestie vitae ex sit amet, condimentum ultricies lacus. Vestibulum justo leo, porttitor ut bibendum a, ultrices sed lectus. Curabitur eu nulla porttitor, molestie mi ut, ullamcorper quam. Vestibulum ultrices dui auctor, lobortis massa eu, gravida turpis. Nullam consectetur lacinia nulla vel auctor. Donec maximus in ipsum vitae laoreet. Vestibulum et varius tortor, quis tristique quam.</p>
-          </div>
+              <div role="tabpanel" class="tab-pane fade" id="three">
+                <h2>Nullam consectetur lacinia nulla</h2>
+                <p>Duis justo tellus, molestie vitae ex sit amet, condimentum ultricies lacus. Vestibulum justo leo, porttitor ut bibendum a, ultrices sed lectus. Curabitur eu nulla porttitor, molestie mi ut, ullamcorper quam. Vestibulum ultrices dui auctor, lobortis massa eu, gravida turpis. Nullam consectetur lacinia nulla vel auctor. Donec maximus in ipsum vitae laoreet. Vestibulum et varius tortor, quis tristique quam.</p>
+                <p>Vivamus dignissim imperdiet pulvinar. In pretium, tortor a maximus malesuada, eros eros tincidunt augue, vel mattis nulla orci id nisl. Donec purus purus, dignissim quis odio nec, tempus eleifend sem. Cras pellentesque felis tristique imperdiet scelerisque. Nullam nec magna non diam ultrices malesuada a ac urna. Fusce bibendum molestie maximus. Ut finibus tortor quis nisi elementum hendrerit. Morbi vel lacinia nunc.</p>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="four">
+                <h2>Vivamus commodo felis at purus</h2>
+                <p>Quisque quis diam dictum, lacinia mauris a, congue magna. Donec lacinia ornare eleifend. Nam malesuada hendrerit pellentesque. Nam tortor urna, vehicula malesuada purus non, accumsan facilisis nisi. Vivamus commodo felis at purus feugiat, quis tristique dui elementum. Vestibulum ultrices dui auctor, lobortis massa eu, gravida turpis.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vehicula, sem a euismod ultrices, nulla ex varius elit, a ultrices ipsum sem vitae quam. In cursus molestie blandit. Maecenas eleifend enim nibh, et rutrum justo rhoncus sed. Pellentesque turpis erat, sagittis ac euismod posuere, semper quis tortor. Duis in scelerisque libero. Duis suscipit laoreet eros sollicitudin condimentum.</p>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="five">
+                <h2>Morbi vel lacinia ultrices nunc</h2>
+                <p>Vivamus commodo felis at purus feugiat, quis tristique dui elementum.Donec purus purus, dignissim quis odio nec, tempus eleifend sem. Cras pellentesque felis tristique imperdiet scelerisque. Nullam nec magna non diam ultrices malesuada a ac urna. Fusce bibendum molestie maximus. Ut finibus tortor quis nisi elementum hendrerit. Morbi vel lacinia nunc.</p>
+                <p>Duis justo tellus, molestie vitae ex sit amet, condimentum ultricies lacus. Vestibulum justo leo, porttitor ut bibendum a, ultrices sed lectus. Curabitur eu nulla porttitor, molestie mi ut, ullamcorper quam. Vestibulum ultrices dui auctor, lobortis massa eu, gravida turpis. Nullam consectetur lacinia nulla vel auctor. Donec maximus in ipsum vitae laoreet. Vestibulum et varius tortor, quis tristique quam.</p>
+              </div>
         </div>
       </div>
     </div>

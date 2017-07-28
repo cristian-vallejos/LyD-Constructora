@@ -17,12 +17,13 @@
 
     <%# render 'layouts/navbar' %>
     <div class="header"><a href="<%=root_path%>"><img src='<%= asset_url("ldgreen.png") %>' alt="Insertar logotipo aquí" name="Insert_logo" width="150" height="125" id="Insert_logo"/></a>
-    <li><%= link_to "Edit profile", edit_lyduser_registration_path %></li>
-      <li><%= link_to "Sign up", new_lyduser_registration_path %></li>
-      <li><%= link_to "Login", new_lyduser_session_path %></li>
-      <li><%= link_to "Logout", destroy_lyduser_session_path, method: :delete %></li> 
+    
+    <h3><%= link_to "Edit profile", edit_lyduser_registration_path %> | <%= link_to "Sign up", new_lyduser_registration_path %> | <%= link_to "Login", new_lyduser_session_path %> | <%= link_to "Logout", destroy_lyduser_session_path, method: :delete %></h3>
+      
+  
     <!-- end .header --></div>
 <div class="container">
     <%= yield %>
+    </div>
   </body>
 </html>

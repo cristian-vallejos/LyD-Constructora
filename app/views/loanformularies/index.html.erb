@@ -1,297 +1,315 @@
+<link href='<%= asset_url("css/bootstrap.min.css") %>' rel="stylesheet" type="text/css">
+<link href='<%= asset_url("css/font-awesome.min.css") %>' rel="stylesheet">
+<link href='<%= asset_url("css/style-55.css") %>' rel="stylesheet">
+<link href='<%= asset_url("css2/stylesLD.css") %>' rel="stylesheet" type="text/css">
+
 <p id="notice"><%= notice %></p>
 
 <h1>Solicitud de Prestamos</h1>
 
-<% if current_lyduser.asocial_role? || current_lyduser.administrativo_obra_role? || current_lyduser.subgerente_personas_role? || current_lyduser.jefe_remuneraciones_role? %>
-
-
-
-<ul class="nav nav-tabs">
-  <li class="active"><a href="#pendientes" data-toggle="tab" aria-expanded="true">Pendientes</a></li>
-  <li class=""><a href="#aceptados" data-toggle="tab" aria-expanded="false">Aceptados</a></li>
-  <li class=""><a href="#rechazados" data-toggle="tab" aria-expanded="false">Rechazados</a></li>
-  <% if current_lyduser.admin_role? || current_lyduser.asocial_role?%>
-  <li class=""><a href="#seguimiento" data-toggle="tab" aria-expanded="false">Seguimiento</a></li>
-  <%end%>
-</ul>
-
-
-<div id="myTabContent" class="tab-content">
-  <div class="tab-pane fade active in" id="pendientes">
-
-    <div class="panel panel-success">
-  <!-- Default panel contents -->
-  <div class="panel-heading">Solicitudes de Préstamo</div>
-  <div class="panel-body">
-  </div>
-
-  <!-- Table -->
-  <table class="table">
-    <thead>
-    <tr>
-      <th>Nombre solicitante</th>
-      <th>Rut solicitante</th>
-      <th>Obra</th>
-      <th>Monto solicitado</th>
-      <th>Motivo solicitud</th>
-      <th>Comentarios</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% if current_lyduser.asocial_role? %>
-    <% pendientes = Loanformulary.where(:aceptado_por_as => nil) %>
-    <% elsif current_lyduser.administrativo_obra_role? %>
-    <% pendientes = Loanformulary.where("aceptado_por_as = ? AND aceptado_por_administrativo_obra IS ?", true, nil)%>
-    <% elsif current_lyduser.subgerente_personas_role? %>
-    <% pendientes = Loanformulary.where("aceptado_por_administrativo_obra = ? AND aceptado_por_subgerente_personas IS ?", true, nil)%>
-    <% elsif current_lyduser.jefe_remuneraciones_role? %>
-    <% pendientes = Loanformulary.where("aceptado_por_subgerente_personas = ? AND aceptado_por_jefe_remuneraciones IS ?", true, nil )%>
-    <% end %>
-    <% pendientes.each do |loanformulary| %>
-      <tr>
-        <td><%= loanformulary.nombre_solicitante %></td>
-        <td><%= loanformulary.rut_solicitante %></td>
-        <td><%= loanformulary.obra %></td>
-        <td><%= loanformulary.monto_solicitado %></td>
-        <td><%= loanformulary.motivo_solicitud %></td>
-        <td><%= loanformulary.comentarios %></td>
-        <td><%= link_to 'Show', loanformulary %></td>
-        <td><%= link_to 'Edit', edit_loanformulary_path(loanformulary) %></td>
-        <td><%= link_to 'Destroy', loanformulary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-  </table>
-</div>
 
 
 
 
 
+<div class="contentForm">
+  <div class="ui-55">
+    <div class="sidebar"> 
+      <ul class="list-unstyled">
 
-  </div>
+          <% if current_lyduser.asocial_role? || current_lyduser.administrativo_obra_role? || current_lyduser.subgerente_personas_role? || current_lyduser.jefe_remuneraciones_role? %>
 
-
-
-  <div class="tab-pane fade" id="aceptados">
-
-<div class="panel panel-info">
-  <!-- Default panel contents -->
-  <div class="panel-heading">Historial de prestamos aceptados</div>
-  <div class="panel-body">
-  </div>
-
-  <!-- Table -->
-  <table class="table">
-    <thead>
-    <tr>
-      <th>Nombre solicitante</th>
-      <th>Rut solicitante</th>
-      <th>Obra</th>
-      <th>Monto solicitado</th>
-      <th>Motivo solicitud</th>
-      <th>Comentarios</th>
-      <th>Fecha revisión</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% if current_lyduser.asocial_role? %>
-    <% revisadosT = Loanformulary.where(:aceptado_por_as => true) %>
-    <% elsif current_lyduser.administrativo_obra_role? %>
-    <% revisadosT = Loanformulary.where(:aceptado_por_administrativo_obra => true) %>
-    <% elsif current_lyduser.subgerente_personas_role? %>
-    <% revisadosT = Loanformulary.where(:aceptado_por_subgerente_personas => true) %>
-    <% elsif current_lyduser.jefe_remuneraciones_role? %>
-    <% revisadosT = Loanformulary.where(:aceptado_por_jefe_remuneraciones => true) %>
-    <% end %>
-    <% revisadosT.each do |loanformulary| %>
-      <tr>
-        <td><%= loanformulary.nombre_solicitante %></td>
-        <td><%= loanformulary.rut_solicitante %></td>
-        <td><%= loanformulary.obra %></td>
-        <td><%= loanformulary.monto_solicitado %></td>
-        <td><%= loanformulary.motivo_solicitud %></td>
-        <td><%= loanformulary.comentarios %></td>
-        <% if current_lyduser.asocial_role? %>
-        <td><%= loanformulary.fecha_aceptado_por_as %></td>
-        <% elsif current_lyduser.administrativo_obra_role? %>
-        <td><%= loanformulary.fecha_aceptado_por_administrativo_obra %></td>
-        <% elsif current_lyduser.subgerente_personas_role? %>
-        <td><%= loanformulary.fecha_aceptado_por_subgerente_personas %></td>
-        <% elsif current_lyduser.jefe_remuneraciones_role? %>
-        <td><%= loanformulary.fecha_aceptado_por_jefe_remuneraciones %></td>
-        <% end %>
-
-
-        <td><%= link_to 'Show', loanformulary %></td>
-        <td><%= link_to 'Edit', edit_loanformulary_path(loanformulary) %></td>
-        <td><%= link_to 'Destroy', loanformulary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-  </table>
-</div>
-
-
-
-
-
-
-
-
-  </div>
-
-
-  <div class="tab-pane fade" id="rechazados">
-
-<div class="panel panel-danger">
-  <!-- Default panel contents -->
-  <div class="panel-heading">Historial de prestamos rechazados</div>
-  <div class="panel-body">
-  </div>
-
-  <!-- Table -->
-  <table class="table">
-    <thead>
-    <tr>
-      <th>Nombre solicitante</th>
-      <th>Rut solicitante</th>
-      <th>Obra</th>
-      <th>Monto solicitado</th>
-      <th>Motivo solicitud</th>
-      <th>Comentarios</th>
-      <th>Fecha revisión</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% if current_lyduser.asocial_role? %>
-    <% revisadosF = Loanformulary.where(:aceptado_por_as => false) %>
-    <% elsif current_lyduser.administrativo_obra_role? %>
-    <% revisadosF = Loanformulary.where(:aceptado_por_administrativo_obra => false) %>
-    <% elsif current_lyduser.subgerente_personas_role? %>
-    <% revisadosF = Loanformulary.where(:aceptado_por_subgerente_personas => false) %>
-    <% elsif current_lyduser.jefe_remuneraciones_role? %>
-    <% revisadosF = Loanformulary.where(:aceptado_por_jefe_remuneraciones => false) %>
-    <% end %>
-    
-    <% revisadosF.each do |loanformulary| %>
-      <tr>
-        <td><%= loanformulary.nombre_solicitante %></td>
-        <td><%= loanformulary.rut_solicitante %></td>
-        <td><%= loanformulary.obra %></td>
-        <td><%= loanformulary.monto_solicitado %></td>
-        <td><%= loanformulary.motivo_solicitud %></td>
-        <td><%= loanformulary.comentarios %></td>
-        <% if current_lyduser.asocial_role? %>
-        <td><%= loanformulary.fecha_aceptado_por_as %></td>
-        <% elsif current_lyduser.administrativo_obra_role? %>
-        <td><%= loanformulary.fecha_aceptado_por_administrativo_obra %></td>
-        <% elsif current_lyduser.subgerente_personas_role? %>
-        <td><%= loanformulary.fecha_aceptado_por_subgerente_personas %></td>
-        <% elsif current_lyduser.jefe_remuneraciones_role? %>
-        <td><%= loanformulary.fecha_aceptado_por_jefe_remuneraciones %></td>
-        <% end %>
-        <td><%= link_to 'Show', loanformulary %></td>
-        <td><%= link_to 'Edit', edit_loanformulary_path(loanformulary) %></td>
-        <td><%= link_to 'Destroy', loanformulary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-  </table>
-</div>
-
-
-
-
-
-  </div>
-
-
-
-
-
-
-
-  <div class="tab-pane fade" id="seguimiento">
-
-  <% if current_lyduser.admin_role? || current_lyduser.asocial_role?%>
-
-<div class="panel panel-primary">
-  <!-- Default panel contents -->
-  <div class="panel-heading">Solicitudes de Préstamo</div>
-  <div class="panel-body">
-  </div>
-
-  <!-- Table -->
-  <table class="table">
-    <thead>
-    <tr>
-      <th>Nombre solicitante</th>
-      <th>Rut solicitante</th>
-      <th>Obra</th>
-      <th>Monto solicitado</th>
-      <th>Motivo solicitud</th>
-      <th>Fecha de revisión Asistente Social</th>
-      <th>Fecha de revisión Administrativo de obra</th>
-      <th>Fecha de revisión Subgerente de personas</th>
-      <th>Fecha de revisión Jefe de remuneraciones</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    
-    <% @loanformularies.each do |loanformulary| %>
-      <tr>
-        <td><%= loanformulary.nombre_solicitante %></td>
-        <td><%= loanformulary.rut_solicitante %></td>
-        <td><%= loanformulary.obra %></td>
-        <td><%= loanformulary.monto_solicitado %></td>
-        <td><%= loanformulary.motivo_solicitud %></td>
-        <td><%= loanformulary.fecha_aceptado_por_as %></td>
-        <td><%= loanformulary.fecha_aceptado_por_administrativo_obra %></td>
-        <td><%= loanformulary.fecha_aceptado_por_subgerente_personas %></td>
-        <td><%= loanformulary.fecha_aceptado_por_jefe_remuneraciones %></td>
-
-        <td><%= link_to 'Show', loanformulary %></td>
-        <td><%= link_to 'Edit', edit_loanformulary_path(loanformulary) %></td>
-        <td><%= link_to 'Destroy', loanformulary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-  </table>
-</div>
-
-
-<%end%>
-
-
-
-
-
-
-  </div>
+        <li class="active"><a href="#one" role="tab" data-toggle="tab"><i class="fa fa-desktop"></i> Pendientes </a></li>
+        <li><a href="#two" role="tab" data-toggle="tab"><i class="fa fa-cogs"></i> Aceptados </a></li>
+        <li><a href="#three" role="tab" data-toggle="tab"><i class="fa fa-user"></i> Rechazados </a></li>
+        <%end%>
+        <% if current_lyduser.admin_role? || current_lyduser.asocial_role?%>
+        <li><a href="#four" role="tab" data-toggle="tab"><i class="fa fa-cloud"></i> Seguimiento </a></li>
+        <%end%>
+      </ul>
+    </div>
 
   
-</div>
+
+
+
+    <div class="mainbar">
+
+      <div class="tab-content">
+
+         <% if current_lyduser.asocial_role? || current_lyduser.administrativo_obra_role? || current_lyduser.subgerente_personas_role? || current_lyduser.jefe_remuneraciones_role? %>
+
+        <div role="tabpanel" class="tab-pane fade in active" id="one">
+
+          <div class="panel panel-success">
+              <!-- Default panel contents -->
+              <div class="panel-heading">Solicitudes de Préstamo</div>
+              <div class="panel-body">
+              </div>
+
+              <!-- Table -->
+              <table class="table">
+                <thead>
+                <tr>
+                  <th>Nombre solicitante</th>
+                  <th>Rut solicitante</th>
+                  <th>Obra</th>
+                  <th>Monto solicitado</th>
+                  <th>Motivo solicitud</th>
+                  <th>Comentarios</th>
+                  <th colspan="3"></th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% if current_lyduser.asocial_role? %>
+                <% pendientes = Loanformulary.where(:aceptado_por_as => nil) %>
+                <% elsif current_lyduser.administrativo_obra_role? %>
+                <% pendientes = Loanformulary.where("aceptado_por_as = ? AND aceptado_por_administrativo_obra IS ? AND obra = ?", true, nil, current_lyduser.obra)%>
+                <% elsif current_lyduser.subgerente_personas_role? %>
+                <% pendientes = Loanformulary.where("aceptado_por_administrativo_obra = ? AND aceptado_por_subgerente_personas IS ?", true, nil)%>
+                <% elsif current_lyduser.jefe_remuneraciones_role? %>
+                <% pendientes = Loanformulary.where("aceptado_por_subgerente_personas = ? AND aceptado_por_jefe_remuneraciones IS ?", true, nil )%>
+                <% end %>
+                <% pendientes.each do |loanformulary| %>
+                  <tr>
+                    <td><%= loanformulary.nombre_solicitante %></td>
+                    <td><%= loanformulary.rut_solicitante %></td>
+                    <td><%= loanformulary.obra %></td>
+                    <td><%= loanformulary.monto_solicitado %></td>
+                    <td><%= loanformulary.motivo_solicitud %></td>
+                    <td><%= loanformulary.comentarios %></td>
+                    <td><%= link_to 'Show', loanformulary %></td>
+                    <td><%= link_to 'Edit', edit_loanformulary_path(loanformulary) %></td>
+                    <td><%= link_to 'Destroy', loanformulary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+              </table>
+          </div>
+
+
+
+        <!-- end one --></div>
+        <div role="tabpanel" class="tab-pane fade" id="two">
+
+            <div class="panel panel-info">
+              <!-- Default panel contents -->
+              <div class="panel-heading">Historial de prestamos aceptados</div>
+              <div class="panel-body">
+              </div>
+
+              <!-- Table -->
+              <table class="table">
+                <thead>
+                <tr>
+                  <th>Nombre solicitante</th>
+                  <th>Rut solicitante</th>
+                  <th>Obra</th>
+                  <th>Monto solicitado</th>
+                  <th>Motivo solicitud</th>
+                  <th>Comentarios</th>
+                  <th>Fecha revisión</th>
+                  <th colspan="3"></th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% if current_lyduser.asocial_role? %>
+                <% revisadosT = Loanformulary.where(:aceptado_por_as => true) %>
+                <% elsif current_lyduser.administrativo_obra_role? %>
+                <% revisadosT = Loanformulary.where(:aceptado_por_administrativo_obra => true) %>
+                <% elsif current_lyduser.subgerente_personas_role? %>
+                <% revisadosT = Loanformulary.where(:aceptado_por_subgerente_personas => true) %>
+                <% elsif current_lyduser.jefe_remuneraciones_role? %>
+                <% revisadosT = Loanformulary.where(:aceptado_por_jefe_remuneraciones => true) %>
+                <% end %>
+                <% revisadosT.each do |loanformulary| %>
+                  <tr>
+                    <td><%= loanformulary.nombre_solicitante %></td>
+                    <td><%= loanformulary.rut_solicitante %></td>
+                    <td><%= loanformulary.obra %></td>
+                    <td><%= loanformulary.monto_solicitado %></td>
+                    <td><%= loanformulary.motivo_solicitud %></td>
+                    <td><%= loanformulary.comentarios %></td>
+                    <% if current_lyduser.asocial_role? %>
+                    <td><%= loanformulary.fecha_aceptado_por_as %></td>
+                    <% elsif current_lyduser.administrativo_obra_role? %>
+                    <td><%= loanformulary.fecha_aceptado_por_administrativo_obra %></td>
+                    <% elsif current_lyduser.subgerente_personas_role? %>
+                    <td><%= loanformulary.fecha_aceptado_por_subgerente_personas %></td>
+                    <% elsif current_lyduser.jefe_remuneraciones_role? %>
+                    <td><%= loanformulary.fecha_aceptado_por_jefe_remuneraciones %></td>
+                    <% end %>
+
+
+                    <td><%= link_to 'Show', loanformulary %></td>
+                    <td><%= link_to 'Edit', edit_loanformulary_path(loanformulary) %></td>
+                    <td><%= link_to 'Destroy', loanformulary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+              </table>
+            </div>
+
+
+
+        <!-- end two --></div>
+
+        <div role="tabpanel" class="tab-pane fade" id="three">
+
+          <div class="panel panel-danger">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Historial de prestamos rechazados</div>
+            <div class="panel-body">
+            </div>
+
+            <!-- Table -->
+            <table class="table">
+              <thead>
+              <tr>
+                <th>Nombre solicitante</th>
+                <th>Rut solicitante</th>
+                <th>Obra</th>
+                <th>Monto solicitado</th>
+                <th>Motivo solicitud</th>
+                <th>Comentarios</th>
+                <th>Fecha revisión</th>
+                <th colspan="3"></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% if current_lyduser.asocial_role? %>
+              <% revisadosF = Loanformulary.where(:aceptado_por_as => false) %>
+              <% elsif current_lyduser.administrativo_obra_role? %>
+              <% revisadosF = Loanformulary.where(:aceptado_por_administrativo_obra => false) %>
+              <% elsif current_lyduser.subgerente_personas_role? %>
+              <% revisadosF = Loanformulary.where(:aceptado_por_subgerente_personas => false) %>
+              <% elsif current_lyduser.jefe_remuneraciones_role? %>
+              <% revisadosF = Loanformulary.where(:aceptado_por_jefe_remuneraciones => false) %>
+              <% end %>
+              
+              <% revisadosF.each do |loanformulary| %>
+                <tr>
+                  <td><%= loanformulary.nombre_solicitante %></td>
+                  <td><%= loanformulary.rut_solicitante %></td>
+                  <td><%= loanformulary.obra %></td>
+                  <td><%= loanformulary.monto_solicitado %></td>
+                  <td><%= loanformulary.motivo_solicitud %></td>
+                  <td><%= loanformulary.comentarios %></td>
+                  <% if current_lyduser.asocial_role? %>
+                  <td><%= loanformulary.fecha_aceptado_por_as %></td>
+                  <% elsif current_lyduser.administrativo_obra_role? %>
+                  <td><%= loanformulary.fecha_aceptado_por_administrativo_obra %></td>
+                  <% elsif current_lyduser.subgerente_personas_role? %>
+                  <td><%= loanformulary.fecha_aceptado_por_subgerente_personas %></td>
+                  <% elsif current_lyduser.jefe_remuneraciones_role? %>
+                  <td><%= loanformulary.fecha_aceptado_por_jefe_remuneraciones %></td>
+                  <% end %>
+                  <td><%= link_to 'Show', loanformulary %></td>
+                  <td><%= link_to 'Edit', edit_loanformulary_path(loanformulary) %></td>
+                  <td><%= link_to 'Destroy', loanformulary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                </tr>
+              <% end %>
+            </tbody>
+            </table>
+          </div>
+
+        <% end %>
+        <!-- end three --></div>
+
+       
+
+        <div role="tabpanel" class="tab-pane fade" id="four">
+
+           <% if current_lyduser.admin_role? || current_lyduser.asocial_role?%>
+
+            <div class="panel panel-primary">
+              <!-- Default panel contents -->
+              <div class="panel-heading">Solicitudes de Préstamo</div>
+              <div class="panel-body">
+              </div>
+
+              <!-- Table -->
+              <table class="table">
+                <thead>
+                <tr>
+                  <th>Nombre solicitante</th>
+                  <th>Rut solicitante</th>
+                  <th>Obra</th>
+                  <th>Monto solicitado</th>
+                  <th>Motivo solicitud</th>
+                  <th>Fecha de revisión Asistente Social</th>
+                  <th>Fecha de revisión Administrativo de obra</th>
+                  <th>Fecha de revisión Subgerente de personas</th>
+                  <th>Fecha de revisión Jefe de remuneraciones</th>
+                  <th colspan="3"></th>
+                </tr>
+              </thead>
+
+              <tbody>
+                
+                <% @loanformularies.each do |loanformulary| %>
+                  <tr>
+                    <td><%= loanformulary.nombre_solicitante %></td>
+                    <td><%= loanformulary.rut_solicitante %></td>
+                    <td><%= loanformulary.obra %></td>
+                    <td><%= loanformulary.monto_solicitado %></td>
+                    <td><%= loanformulary.motivo_solicitud %></td>
+                    <td><%= loanformulary.fecha_aceptado_por_as %></td>
+                    <td><%= loanformulary.fecha_aceptado_por_administrativo_obra %></td>
+                    <td><%= loanformulary.fecha_aceptado_por_subgerente_personas %></td>
+                    <td><%= loanformulary.fecha_aceptado_por_jefe_remuneraciones %></td>
+
+                    <td><%= link_to 'Show', loanformulary %></td>
+                    <td><%= link_to 'Edit', edit_loanformulary_path(loanformulary) %></td>
+                    <td><%= link_to 'Destroy', loanformulary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+              </table>
+            </div>
+
+
+            <%end%>
+
+        <!-- end four --></div>
+
+
+
+
+
+      </div>
 
 
 
 
 
 
+    </div>
 
 
 
 
 
-<% end %>
+  </div>
+
+
+
+
+
+  <script src='<%= asset_url("jquery.js") %>'></script> 
+    <!-- Bootstrap JS --> 
+    <script src='<%= asset_url("bootstrap.min.js") %>'></script> 
+    <!-- Placeholder JS --> 
+    <script src='<%= asset_url("placeholder.js") %>'></script> 
+    <!-- Respond JS for IE8 --> 
+    <script src='<%= asset_url("respond.min.js") %>'></script> 
+    <!-- HTML5 Support for IE --> 
+    <script src='<%= asset_url("html5shiv.js") %>'></script> 
+
+ <!-- end .content --></div>
 
 
 

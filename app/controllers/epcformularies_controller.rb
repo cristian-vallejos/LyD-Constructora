@@ -1,5 +1,6 @@
 class EpcformulariesController < ApplicationController
   before_action :set_epcformulary, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /epcformularies
   # GET /epcformularies.json

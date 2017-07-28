@@ -1,5 +1,6 @@
 class AssignbenefitsController < ApplicationController
   before_action :set_assignbenefit, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /assignbenefits
   # GET /assignbenefits.json
