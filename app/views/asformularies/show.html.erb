@@ -1,73 +1,82 @@
-<p id="notice"><%= notice %></p>
+<link href='<%= asset_url("css/bootstrap.min.css") %>' rel="stylesheet" type="text/css">
+<link href='<%= asset_url("css/font-awesome.min.css") %>' rel="stylesheet">
+<link href='<%= asset_url("css/style-273.css") %>' rel="stylesheet">
+<link href='<%= asset_url("css2/stylesLD.css") %>' rel="stylesheet" type="text/css">
 
-<p>
+
+<div class="container">
+  <div class="content"> 
+    <div class="ui-273">
+      <div align="center" style="box-shadow:0px 0px 15px rgba(0,0,0,0.1);">
+
+
+
+
+
   <strong>Rut atendido:</strong>
-  <%= @asformulary.rut_atendido %>
-</p>
+  <br><i><%= @asformulary.rut_atendido %> </i><br>
 
-<p>
+
   <strong>Codigo obra:</strong>
-  <%= @asformulary.codigo_obra %>
-</p>
+  <br><i><%= @asformulary.codigo_obra %> </i><br>
 
-<p>
+
   <strong>Telefono:</strong>
-  <%= @asformulary.telefono %>
-</p>
+  <br><i><%= @asformulary.telefono %> </i><br>
 
-<p>
+
   <strong>Asistente Social:</strong>
-  <%= @asformulary.user.name %>
-</p>
+  <br><i><%= @asformulary.lyduser.email %> </i><br>
 
-<p>
+
   <strong>Nombre atendido:</strong>
-  <%= @asformulary.nombre_atendido %>
-</p>
+  <br><i><%= @asformulary.nombre_atendido %> </i><br>
 
-<p>
+
   <strong>Apellido paterno:</strong>
-  <%= @asformulary.apellido_paterno %>
-</p>
+  <br><i><%= @asformulary.apellido_paterno %> </i><br>
 
-<p>
+
   <strong>Apellido materno:</strong>
-  <%= @asformulary.apellido_materno %>
-</p>
+  <br><i><%= @asformulary.apellido_materno %> </i><br>
 
-<p>
+
   <strong>Aspcategory:</strong>
-  <%= @asformulary.aspcategory.nombre %>
-</p>
+ <br><i> <%= @asformulary.aspcategory.nombre %> </i><br>
 
-<p>
+
   <strong>Solucion:</strong>
-  <%= @asformulary.solucion %>
-</p>
+  <br><i><%= @asformulary.solucion %> </i><br>
 
-<p>
-  <strong>Estado:</strong>
-  <%= @asformulary.estado %>
-</p>
+  <strong>Beneficio Asociado:</strong>
+  <br><i><%= @asformulary.benefit.nombre %> </i><br>
 
-<p>
+
+  <strong>¿Caso Cerrado?:</strong>
+  <br><i><%= @asformulary.estado %> </i><br>
+
+
   <strong>Subcontrato:</strong>
-  <%= @asformulary.subcontrato %>
-</p>
+  <br><i><%= @asformulary.subcontrato %> </i><br>
 
-<p>
+
   <strong>Nombre supervisor:</strong>
-  <%= @asformulary.nombre_supervisor %>
-</p>
+  <br><i><%= @asformulary.nombre_supervisor %> </i><br>
 
-<p>
   <strong>Descripcion:</strong>
-  <%= @asformulary.descripcion %>
-</p>
+  <br><i><%= @asformulary.descripcion %> </i><br>
+
 
 
 
 
 <%= link_to 'Agregar Seguimiento', newseg_asformulary_path(@asformulary) %> |
-<%= link_to 'Edit', edit_asformulary_path(@asformulary) %> |
-<%= link_to 'Back', asformularies_path %>
+<%= link_to 'Editar', edit_asformulary_path(@asformulary) %> |
+<%= link_to 'Volver', asformularies_path %>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>

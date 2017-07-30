@@ -6,6 +6,38 @@ class EmployeesController < ApplicationController
   # GET /employees.json
   def index
     @employees = Employee.all
+
+    if(params[:name] == "actualizar")
+
+      my_hash = JSON.load(File.read(Rails.root + "app/data/REMPLES.txt"))
+
+
+      my_hash.each do |row|
+
+
+        akey = row['Rut']
+
+        if(akey[0] == " " && akey[1] == " ")
+        chars = akey.chars
+        chars.delete_at(0)
+        chars.delete_at(0)
+          if(akey[2] == " ")
+            chars.delete_at(0)
+          end
+        akey = chars.join
+        end
+
+
+        emple = Employee.new
+        emple.nombre = row['Nombre']
+        emple.rut = akey
+        emple.cencos = row['Cencos']
+        emple.estado = row['Estado']
+        emple.save
+      end
+
+
+    end
   end
 
   # GET /employees/1

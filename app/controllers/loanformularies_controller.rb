@@ -6,6 +6,8 @@ class LoanformulariesController < ApplicationController
   # GET /loanformularies.json
   def index
     @loanformularies = Loanformulary.all
+    @loanformulary = Loanformulary.new(:rut_solicitante => params[:rut_solicitante])
+
   end
 
   def filtrar

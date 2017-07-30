@@ -10,6 +10,87 @@
 
 <button onclick="location.href='<%= new_loanformulary_path %>'" type="button" class="button button1">Nuevo Formulario de Préstamo</button>
 
+
+<%= form_for (@loanformulary), url: loanformularies_path, method: "get" do |f| %>
+  <%= f.label "Buscar Solicitud" %>
+  <%= f.text_field :rut_solicitante %>
+  <%= f.submit "Buscar", name: "search" %>
+<% end %>
+<%= form_for (@loanformulary), url: loanformularies_path, method: "get" do |f| %>
+  <%= f.submit "Limpiar busqueda", name: "limpiar" %>
+<% end %>
+        
+
+<% if params[:loanformulary] && params[:loanformulary][:rut_solicitante] %>
+<% loan = Loanformulary.where(:rut_solicitante => params[:loanformulary][:rut_solicitante]).order('created_at DESC') %>
+
+<table >
+              <col width="9%">
+              <col width="9%">
+              <col width="9%">
+              <col width="9%">
+              <col width="9%">
+              <col width="9%">
+              <col width="9%">
+              <col width="9%">
+              <col width="9%">
+              <col width="6%">
+              <col width="6%">
+              <col width="6%">
+                
+            <tr>
+            <th>Nombre Solicitante</th>
+            <th>Rut Solicitante</th>
+            <th>Obra</th>
+            <th>Monto Solicitado</th>
+            <th>Motivo Solicitud</th>
+            <th>Estado</th>
+            <% if current_lyduser.admin_role? %>
+            <th>Fecha Revisión AS</th>
+            <th>Fecha Revisión AO</th>
+            <th>Fecha Revisión SP</th>
+            <th>Fecha Revisión JR</th>
+            <% end %>
+            <th></th>
+            <th></th>
+            <th></th>
+            </tr>
+              
+
+              <tbody>
+                
+                <% loan.each do |loanformulary| %>
+                  <tr>
+                    <td><%= loanformulary.nombre_solicitante %></td>
+                    <td><%= loanformulary.rut_solicitante %></td>
+                    <td><%= loanformulary.obra %></td>
+                    <td><%= loanformulary.monto_solicitado %></td>
+                    <td><%= loanformulary.motivo_solicitud %></td>
+                    <td><%= loanformulary.estado %></td>
+                    <% if current_lyduser.admin_role? %>
+                    <td><%= loanformulary.fecha_aceptado_por_as %></td>
+                    <td><%= loanformulary.fecha_aceptado_por_administrativo_obra %></td>
+                    <td><%= loanformulary.fecha_aceptado_por_subgerente_personas %></td>
+                    <td><%= loanformulary.fecha_aceptado_por_jefe_remuneraciones %></td>
+
+                    <% end %>
+
+                    <td><%= link_to 'Show', loanformulary %></td>
+                    <td><%= link_to 'Edit', edit_loanformulary_path(loanformulary) %></td>
+                    <td><%= link_to 'Destroy', loanformulary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+              </table>
+
+
+
+
+
+<%end%>
+
+
+
 <% end %>
 
 <%# link_to 'Nuevo formulario', new_loanformulary_path %>
@@ -220,7 +301,10 @@
 
       <div role="tabpanel" class="tab-pane fade" id="four">
         <h2>Historial de Seguimiento</h2>
-         <% if current_lyduser.admin_role? || current_lyduser.asocial_role?%>
+         <% if current_lyduser.admin_role? || current_lyduser.asocial_role? %>
+
+
+         
 
 
               <!-- Table -->
@@ -283,7 +367,7 @@
               </tbody>
               </table>
             
-
+              
             <%end%>
         </div>
         <div role="tabpanel" class="tab-pane fade" id="five"> </div>

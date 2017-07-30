@@ -6,6 +6,66 @@ class ObrasController < ApplicationController
   # GET /obras.json
   def index
     @obras = Obra.all
+
+    if(params[:name] == "actualizar")
+
+      #puts "hello index actualizar"
+
+      @client = TinyTds::Client.new username: 'proyecta', password: 'proyecta..',
+          host: '192.168.1.228', port: 1433, login_timeout: 20
+      puts 'Connecting to SQL Server'
+
+      if @client.active? == true then puts 'Done' end
+
+      def execute(sql)
+          result = @client.execute(sql)
+          result.each
+          if result.affected_rows > 0 then puts "#{result.affected_rows} row(s) affected" end
+      end
+
+
+      execute("USE LyDCopia;")
+      results = @client.execute("SELECT * FROM RCENTROS;")
+      #en principio es esto, pero hay que cambiar a la tabla original
+
+      results.each do |row|
+
+        akey = row["Codigo"]
+        if(akey[0] == " " && akey[1] == " ")
+          chars = akey.chars
+          chars.delete_at(0)
+          chars.delete_at(0)
+          if(akey[2] == " ")
+            chars.delete_at(0)
+          end
+        akey = chars.join
+        end
+        #puts akey
+      getobra = Obra.where(:nombre => akey)  
+
+      if getobra == nil  
+        obran = Obra.new
+        #obran.codigo = row['codigo']
+        obran.nombre = akey
+        obran.save
+      end
+
+   end
+
+
+
+
+puts "All done."
+
+@client.close
+
+
+
+      redirect_to obras_path
+
+    end
+
+
   end
 
   # GET /obras/1

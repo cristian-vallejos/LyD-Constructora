@@ -1,5 +1,5 @@
 class Asformulary < ApplicationRecord
-  belongs_to :user
+  #belongs_to :user
   belongs_to :lyduser
   belongs_to :aspcategory
   belongs_to :benefit

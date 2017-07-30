@@ -2,9 +2,12 @@
 
 <h1>Employees</h1>
 
+<%= link_to('Actualizar Trabajadores', {:action=>'index', :name => "actualizar"}, data: {:confirm=>'¿Está seguro? Esta operación podria tomar algunos minutos.'}) %>
+
 <table>
   <thead>
     <tr>
+      <th>id</th>
       <th>Rut</th>
       <th>Nombre</th>
       <th>Cencos</th>
@@ -14,20 +17,21 @@
   </thead>
 
   <tbody>
-    <% @employees.each do |employee| %>
+    <%# @employees.each do |employee| %>
       <tr>
-        <td><%= employee.rut %></td>
-        <td><%= employee.nombre %></td>
-        <td><%= employee.cencos %></td>
-        <td><%= employee.estado %></td>
-        <td><%= link_to 'Show', employee %></td>
-        <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
-        <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%# employee.id %></td>
+        <td><%# employee.rut %></td>
+        <td><%# employee.nombre %></td>
+        <td><%# employee.cencos %></td>
+        <td><%# employee.estado %></td>
+        <td><%# link_to 'Show', employee %></td>
+        <td><%# link_to 'Edit', edit_employee_path(employee) %></td>
+        <td><%# link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <% end %>
+    <%# end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Employee', new_employee_path %>
+<%# link_to 'New Employee', new_employee_path %>

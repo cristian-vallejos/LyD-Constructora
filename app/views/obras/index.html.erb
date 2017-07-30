@@ -2,6 +2,12 @@
 
 <h1>Obras</h1>
 
+
+<%# link_to "Actualizar obras", :controller => :obras, :method => :index, :data => {:confirm => 'Are you sure?'}, :name => "actualizar"  %>
+
+<%= link_to('Actualizar Obras', {:action=>'index', :name => "actualizar"}, data: {:confirm=>'¿Está seguro? Esta operación podria tomar algunos minutos.'}) %>
+
+
 <table>
   <thead>
     <tr>
@@ -12,7 +18,7 @@
   </thead>
 
   <tbody>
-    <% @obras.each do |obra| %>
+    <% @obras.order('created_at DESC').each do |obra| %>
       <tr>
         <td><%= obra.nombre %></td>
         <td><%= obra.direccion %></td>

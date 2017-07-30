@@ -35,7 +35,7 @@ class AsformulariesController < ApplicationController
   def newseg
     #@asformulary = Asformulary.new
     #find-create-set-save 
-
+    @newsegAS = Asformulary.find(params[:id])
     theasformulary = Asformulary.find(params[:id])
 
     if theasformulary.atencion_id == nil

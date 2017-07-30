@@ -11,13 +11,25 @@
     </div>
   <% end %>
 
+<link href='<%= asset_url("css/bootstrap.min.css") %>' rel="stylesheet" type="text/css">
+<link href='<%= asset_url("css/font-awesome.min.css") %>' rel="stylesheet">
+<link href='<%= asset_url("css/style-273.css") %>' rel="stylesheet">
+<link href='<%= asset_url("css2/stylesLD.css") %>' rel="stylesheet" type="text/css">
+
+
+<div class="container">
+  <div class="content"> 
+    <div class="ui-273">
+      <div align="center" style="box-shadow:0px 0px 15px rgba(0,0,0,0.1);">
+
 
 
  
     
       <div class="field">
         <%= form.label :rut_atendido %>
-        <%= form.text_field :rut_atendido, id: :asformulary_rut_atendido %>
+        <%= form.text_field :rut_atendido, id: :asformulary_rut_atendido, hidden: true %>
+        <%= @newsegAS.rut_atendido %>
   </div>
  
 
@@ -26,70 +38,51 @@
     
       <div class="field">
     <%= form.label :codigo_obra %>
-    <%= form.number_field :codigo_obra, id: :asformulary_codigo_obra %>
+    <%= form.number_field :codigo_obra, id: :asformulary_codigo_obra, hidden: true %>
+    <%= @newsegAS.codigo_obra %>
   </div>
       
-  
 
-  
-    
-      <div class="field">
-    <%= form.label :telefono %>
-    <%= form.number_field :telefono, id: :asformulary_telefono %>
-  </div>
-      
-      
-
- 
- 
-      <div class="field">
-    <%= form.label :numero_atencion %>
-    <%= form.number_field :numero_atencion, id: :asformulary_numero_atencion %>
-  </div>
-      
-  
-
-
-
-
-  
 
   <div class="field">
     <%= form.label :nombre_atendido %>
-    <%= form.text_field :nombre_atendido, id: :asformulary_nombre_atendido %>
+    <%= form.text_field :nombre_atendido, id: :asformulary_nombre_atendido, hidden: true %>
+    <%= @newsegAS.nombre_atendido %>
   </div>
 
   <div class="field">
     <%= form.label :apellido_paterno %>
-    <%= form.text_field :apellido_paterno, id: :asformulary_apellido_paterno %>
+    <%= form.text_field :apellido_paterno, id: :asformulary_apellido_paterno, hidden: true %>
+    <%= @newsegAS.apellido_paterno %>
   </div>
 
   <div class="field">
     <%= form.label :apellido_materno %>
-    <%= form.text_field :apellido_materno, id: :asformulary_apellido_materno %>
+    <%= form.text_field :apellido_materno, id: :asformulary_apellido_materno, hidden: true %>
+    <%= @newsegAS.apellido_materno %>
   </div>
 
   <div class="field">
     
     <%= form.label :Tipo_Consulta %><br>
-    <%= form.collection_select :aspcategory_id, Aspcategory.all, :id, :nombre %>
+    <%= form.text_field :aspcategory_id, id: :asformulary_aspcategory_id, hidden: true %>
+    <%= @newsegAS.aspcategory.nombre %>
 
   </div>
 
-  <div class="field">
-    <%= form.label :solucion %>
-    <%= form.text_field :solucion, id: :asformulary_solucion %>
-  </div>
 
    <div class="field">
     
     <%= form.label :Beneficio_Asociado %><br>
-    <%= form.collection_select :benefit_id, Benefit.all, :id, :nombre %>
+    <%= form.text_field :benefit_id, id: :asformulary_benefit_id, hidden: true %>
+    <%= @newsegAS.benefit.nombre %>
+
+
 
   </div>
 
   <div class="field">
-    <%= form.label :estado %>
+    <%= form.label :estado, '¿Caso Cerrado?' %>
     <%= form.check_box :estado, id: :asformulary_estado %>
   </div>
 
@@ -100,15 +93,41 @@
 
   <div class="field">
     <%= form.label :nombre_supervisor %>
-    <%= form.text_field :nombre_supervisor, id: :asformulary_nombre_supervisor %>
+    <%= form.text_field :nombre_supervisor, id: :asformulary_nombre_supervisor, hidden: true %>
+    <%= @newsegAS.nombre_supervisor %>
+
   </div>
 
+   <div class="field">
+    <%= form.label :telefono %><br>
+    <%= form.number_field :telefono, id: :asformulary_telefono %>
+  </div>
+      
+ 
+      <div class="field">
+    <%= form.label :numero_atencion %><br>
+    <%= form.number_field :numero_atencion, id: :asformulary_numero_atencion %>
+  </div>
+
+
   <div class="field">
-    <%= form.label :descripcion %>
+    <%= form.label :solucion %><br>
+    <%= form.text_field :solucion, id: :asformulary_solucion, hidden: false %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :descripcion %><br>
     <%= form.text_area :descripcion, id: :asformulary_descripcion %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Ingresar Nueva Atención" %>
   </div>
 <% end %>
+
+
+      </div>
+    </div>
+  </div>
+</div>
