@@ -25,7 +25,7 @@ class LoanformulariesController < ApplicationController
     text = params[:loanformulary][:comentario_as]
 
     if(params[:accept])
-      if(request.cerado == false)
+      if(request.cerrado == false)
         if current_lyduser.asocial_role? && request.aceptado_por_as == nil
           request.aceptado_por_as = true
           request.comentario_as = params[:loanformulary][:comentario_as]
@@ -39,7 +39,7 @@ class LoanformulariesController < ApplicationController
         elsif current_lyduser.subgerente_personas_role? && request.aceptado_por_subgerente_personas == nil
           request.aceptado_por_subgerente_personas = true
           request.comentario_subgerente_personas = params[:loanformulary][:comentario_subgerente_personas]
-          request.fecha_aceptado_por_subgerente_personas = Date.tomorrow
+          request.fecha_aceptado_por_subgerente_personas = Date.current
 
         elsif current_lyduser.jefe_remuneraciones_role? && request.aceptado_por_jefe_remuneraciones == nil
           request.aceptado_por_jefe_remuneraciones = true 
@@ -49,7 +49,7 @@ class LoanformulariesController < ApplicationController
         end
       end
     elsif (params[:refuse])
-      if(request.cerado == false)
+      if(request.cerrado == false)
         if current_lyduser.asocial_role? && request.aceptado_por_as == nil
           request.aceptado_por_as = false
           request.comentario_as = params[:loanformulary][:comentario_as]
@@ -63,7 +63,7 @@ class LoanformulariesController < ApplicationController
         elsif current_lyduser.subgerente_personas_role? && request.aceptado_por_subgerente_personas == nil
           request.aceptado_por_subgerente_personas = false
           request.comentario_subgerente_personas = params[:loanformulary][:comentario_subgerente_personas]
-          request.fecha_aceptado_por_subgerente_personas = Date.tomorrow
+          request.fecha_aceptado_por_subgerente_personas = Date.current
 
         elsif current_lyduser.jefe_remuneraciones_role? && request.aceptado_por_jefe_remuneraciones == nil
           request.aceptado_por_jefe_remuneraciones = false
@@ -73,6 +73,17 @@ class LoanformulariesController < ApplicationController
       end
 
         
+    end
+
+
+    if request.aceptado_por_as == false || request.aceptado_por_administrativo_obra == false || request.aceptado_por_subgerente_personas == false || request.aceptado_por_jefe_remuneraciones == false
+      request.cerrado = true
+      request.estado = "rechazado"
+    elsif request.aceptado_por_as == true && request.aceptado_por_administrativo_obra == true && request.aceptado_por_subgerente_personas == true && request.aceptado_por_jefe_remuneraciones == true
+      request.cerrado = true
+      request.estado = "aceptado"
+    else
+      request.estado = "en proceso"
     end
     
     request.save
@@ -85,27 +96,53 @@ class LoanformulariesController < ApplicationController
     #fecha_aceptado_por_jefe_remuneraciones
 
   def refuse
-    request = Loanformulary.find(params[:id])
+  #request = Loanformulary.find(params[:id])
 
-  if(request.cerado == false)
-    if current_lyduser.asocial_role? && request.aceptado_por_as == nil
-      request.aceptado_por_as = false
-      request.fecha_aceptado_por_as = Date.current
-    elsif current_lyduser.administrativo_obra_role?
-      request.aceptado_por_administrativo_obra = false
-      request.fecha_aceptado_por_administrativo_obra = Date.current
-    elsif current_lyduser.subgerente_personas_role?
-      request.aceptado_por_subgerente_personas = false
-      request.fecha_aceptado_por_subgerente_personas = Date.tomorrow
-    elsif current_lyduser.jefe_remuneraciones_role?
-      request.aceptado_por_jefe_remuneraciones = false
-      request.fecha_aceptado_por_jefe_remuneraciones = Date.current
-    end
-  end
+  #if(request.cerrado == false)
+   # if current_lyduser.asocial_role? && request.aceptado_por_as == nil
+    #  request.aceptado_por_as = false
+     # request.fecha_aceptado_por_as = Date.current
+    #elsif current_lyduser.administrativo_obra_role?
+     # request.aceptado_por_administrativo_obra = false
+      #request.fecha_aceptado_por_administrativo_obra = Date.current
+    #elsif current_lyduser.subgerente_personas_role?
+     # request.aceptado_por_subgerente_personas = false
+      #request.fecha_aceptado_por_subgerente_personas = Date.tomorrow
+    #elsif current_lyduser.jefe_remuneraciones_role?
+     # request.aceptado_por_jefe_remuneraciones = false
+      #request.fecha_aceptado_por_jefe_remuneraciones = Date.current
+    #end
+  #end
     
-    request.save
+    #request.save
 
-    redirect_to loanformularies_path(request)
+    #redirect_to loanformularies_path(request)
+
+    @client = TinyTds::Client.new username: 'proyecta', password: 'proyecta..',
+    host: '192.168.1.228', port: 1433
+    puts 'Connecting to SQL Server'
+
+    if @client.active? == true then puts 'Done' end
+
+    def execute(sql)
+        result = @client.execute(sql)
+        result.each
+        if result.affected_rows > 0 then puts "#{result.affected_rows} row(s) affected" end
+    end
+
+
+    execute("USE LyDCopia;")
+    results = @client.execute("SELECT * FROM RCENTROS;")
+
+    results.each do |row|
+      puts row
+    end
+
+
+    puts "All done."
+
+    @client.close
+
      
   end
 
@@ -127,6 +164,7 @@ class LoanformulariesController < ApplicationController
   # POST /loanformularies.json
   def create
     @loanformulary = Loanformulary.new(loanformulary_params)
+    @loanformulary.lyduser = current_lyduser
 
     respond_to do |format|
       if @loanformulary.save

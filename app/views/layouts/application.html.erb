@@ -18,7 +18,27 @@
     <%# render 'layouts/navbar' %>
     <div class="header"><a href="<%=root_path%>"><img src='<%= asset_url("ldgreen.png") %>' alt="Insertar logotipo aquí" name="Insert_logo" width="150" height="125" id="Insert_logo"/></a>
     
-    <h3><%= link_to "Edit profile", edit_lyduser_registration_path %> | <%= link_to "Sign up", new_lyduser_registration_path %> | <%= link_to "Login", new_lyduser_session_path %> | <%= link_to "Logout", destroy_lyduser_session_path, method: :delete %></h3>
+    <h3>
+    <div align="left">
+    <% if lyduser_signed_in? %>
+    <%=current_lyduser.email %>  
+    <% end %>
+
+    </div>
+
+    <div align="right">
+    <% if lyduser_signed_in? %>
+    <%= link_to "Editar Perfil", edit_lyduser_registration_path %> |
+    <% if !lyduser_signed_in? %>
+    <%= link_to "Registrarse", new_lyduser_registration_path %> |
+    <% end %> 
+    <% if !lyduser_signed_in? %>
+    <%= link_to "Ingresar", new_lyduser_session_path %> |
+    <% end %>  
+    <%= link_to "Salir", destroy_lyduser_session_path, method: :delete %>
+    <% end %>
+    </div>
+    </h3>
       
   
     <!-- end .header --></div>

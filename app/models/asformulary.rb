@@ -8,7 +8,7 @@ class Asformulary < ApplicationRecord
   #before_create :set_atencion_id
 
   
-  validate :formato_rut
+  validate :input_atributos
 
 
 
@@ -18,12 +18,51 @@ class Asformulary < ApplicationRecord
 
 
 
-  def formato_rut
+  def input_atributos
     if rut_atendido.present?
       dv = [*0..9,'K'][rut_atendido[0...-2].to_s.reverse.chars.inject([0,0]){|(i,a),n|[i+1,a-n.to_i*(i%6+2)]}[1]%11]
-      if Integer(rut_atendido[-1]) != dv
-        errors.add(:rut_atendido, "Formato de rut mal ingresado")
-      end
+      #if Integer(rut_atendido[-1]) != dv
+       # errors.add(:rut_atendido, "Formato de rut mal ingresado")
+      #end
+        if rut_atendido[0...-2].size != rut_atendido[0...-2].count("0-9")
+          #puts "el rut se debe ingresar sin puntos y con guión"
+          errors.add(:rut_atendido, "el RUT se debe ingresar sin puntos y con guión")
+
+
+        else
+          puts "verificado antes del guion"
+
+            if rut_atendido.count("k,K") > 1
+            
+            errors.add(:rut_atendido, "Formato de rut mal ingresado. Verificar1.")
+            
+            else
+
+              if dv == 'K'
+                if rut_atendido[-1] != 'K' && rut_atendido[-1] != 'k'
+                  errors.add(:rut_atendido, "Formato de rut mal ingresado. Verificar2.")
+                end
+              else
+                if rut_atendido[-1] != 'K' && rut_atendido[-1] != 'k'
+                  if Integer(rut_atendido[-1]) != dv
+                    errors.add(:rut_atendido, "Formato de rut mal ingresado. Verificar3.")
+                  end
+                else
+                  errors.add(:rut_atendido, "Formato de rut mal ingresado. Verificar4.")
+                end
+              end
+
+
+
+            end
+
+
+
+          end
+    end
+
+    if codigo_obra.present? == false
+      errors.add(" ", "Ingrese una obra")
     end
 
 

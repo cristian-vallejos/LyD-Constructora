@@ -21,6 +21,8 @@ gem 'therubyracer', platforms: :ruby
 
 gem 'json'
 
+gem 'tiny_tds'
+
 gem 'execjs'
 
 #gem 'bootstrap-sass', '~> 3.3.6'

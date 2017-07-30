@@ -1,69 +1,73 @@
 <link href='<%= asset_url("css/bootstrap.min.css") %>' rel="stylesheet" type="text/css">
 <link href='<%= asset_url("css/font-awesome.min.css") %>' rel="stylesheet">
-<link href='<%= asset_url("css/style-55.css") %>' rel="stylesheet">
+<link href='<%= asset_url("css/style-34.css") %>' rel="stylesheet">
 <link href='<%= asset_url("css2/stylesLD.css") %>' rel="stylesheet" type="text/css">
 
 <p id="notice"><%= notice %></p>
 
-<h1>Solicitud de Prestamos</h1>
+
+<% if current_lyduser.asocial_role? %>
+
+<button onclick="location.href='<%= new_loanformulary_path %>'" type="button" class="button button1">Nuevo Formulario de Préstamo</button>
+
+<% end %>
+
+<%# link_to 'Nuevo formulario', new_loanformulary_path %>
 
 
-
-
-
-
-<div class="contentForm">
-  <div class="ui-55">
-    <div class="sidebar"> 
-      <ul class="list-unstyled">
+<div class="container">
+<div class="content">
+<div style="box-shadow:0px 0px 15px rgba(0,0,0,0.1);">
+  <h3>Solicitudas de Préstamos</h3>
+  <br>
+   <div class="ui-34">
+    <ul class="navi"> 
+      
 
           <% if current_lyduser.asocial_role? || current_lyduser.administrativo_obra_role? || current_lyduser.subgerente_personas_role? || current_lyduser.jefe_remuneraciones_role? %>
 
-        <li class="active"><a href="#one" role="tab" data-toggle="tab"><i class="fa fa-desktop"></i> Pendientes </a></li>
-        <li><a href="#two" role="tab" data-toggle="tab"><i class="fa fa-cogs"></i> Aceptados </a></li>
-        <li><a href="#three" role="tab" data-toggle="tab"><i class="fa fa-user"></i> Rechazados </a></li>
+        <li class="active"><a href="#one" data-toggle="tab"><i class="fa fa-desktop"></i> Pendientes </a></li>
+        <li><a href="#two" data-toggle="tab"><i class="fa fa-cogs"></i> Aceptados </a></li>
+        <li><a href="#three" data-toggle="tab"><i class="fa fa-user"></i> Rechazados </a></li>
         <%end%>
         <% if current_lyduser.admin_role? || current_lyduser.asocial_role?%>
-        <li><a href="#four" role="tab" data-toggle="tab"><i class="fa fa-cloud"></i> Seguimiento </a></li>
+        <li><a href="#four" data-toggle="tab"><i class="fa fa-cloud"></i> Seguimiento </a></li>
         <%end%>
+        <li></li>
       </ul>
-    </div>
+    <div class="clearfix"></div>
+    
+    <!-- Tab panes -->
+    <div class="tab-content">
 
-  
+        <% if current_lyduser.asocial_role? || current_lyduser.administrativo_obra_role? || current_lyduser.subgerente_personas_role? || current_lyduser.jefe_remuneraciones_role? %>
 
-
-
-    <div class="mainbar">
-
-      <div class="tab-content">
-
-         <% if current_lyduser.asocial_role? || current_lyduser.administrativo_obra_role? || current_lyduser.subgerente_personas_role? || current_lyduser.jefe_remuneraciones_role? %>
-
-        <div role="tabpanel" class="tab-pane fade in active" id="one">
-
-          <div class="panel panel-success">
-              <!-- Default panel contents -->
-              <div class="panel-heading">Solicitudes de Préstamo</div>
-              <div class="panel-body">
-              </div>
-
-              <!-- Table -->
-              <table class="table">
-                <thead>
-                <tr>
-                  <th>Nombre solicitante</th>
-                  <th>Rut solicitante</th>
-                  <th>Obra</th>
-                  <th>Monto solicitado</th>
-                  <th>Motivo solicitud</th>
-                  <th>Comentarios</th>
-                  <th colspan="3"></th>
-                </tr>
-              </thead>
-
-              <tbody>
+      <div role="tabpanel" class="tab-pane fade in active" id="one">
+        <h2>Solicitudas de Préstamos</h2>
+        <table >
+          <col width="12%">
+          <col width="12%">
+          <col width="12%">
+          <col width="12%">
+          <col width="12%">
+          <col width="12%">
+          <col width="5%">
+          <col width="5%">
+          <col width="5%">
+          <tr>
+            <th>Nombre Solicitante</th>
+            <th>Rut Solicitante</th>
+            <th>Obra</th>
+            <th>Monto Solicitado</th>
+            <th>Motivo Solicitud</th>
+            <th>Comentarios</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+          <tbody>
                 <% if current_lyduser.asocial_role? %>
-                <% pendientes = Loanformulary.where(:aceptado_por_as => nil) %>
+                <% pendientes = Loanformulary.where("aceptado_por_as IS ? AND lyduser_id = ?", nil, current_lyduser.id) %>
                 <% elsif current_lyduser.administrativo_obra_role? %>
                 <% pendientes = Loanformulary.where("aceptado_por_as = ? AND aceptado_por_administrativo_obra IS ? AND obra = ?", true, nil, current_lyduser.obra)%>
                 <% elsif current_lyduser.subgerente_personas_role? %>
@@ -85,38 +89,36 @@
                   </tr>
                 <% end %>
               </tbody>
-              </table>
-          </div>
-
-
-
-        <!-- end one --></div>
-        <div role="tabpanel" class="tab-pane fade" id="two">
-
-            <div class="panel panel-info">
-              <!-- Default panel contents -->
-              <div class="panel-heading">Historial de prestamos aceptados</div>
-              <div class="panel-body">
-              </div>
-
-              <!-- Table -->
-              <table class="table">
-                <thead>
-                <tr>
-                  <th>Nombre solicitante</th>
-                  <th>Rut solicitante</th>
-                  <th>Obra</th>
-                  <th>Monto solicitado</th>
-                  <th>Motivo solicitud</th>
-                  <th>Comentarios</th>
-                  <th>Fecha revisión</th>
-                  <th colspan="3"></th>
-                </tr>
-              </thead>
-
-              <tbody>
+        </table>
+      </div>
+      <div role="tabpanel" class="tab-pane fade" id="two">
+        <h2>Historial de Préstamos Aceptados</h2>
+        <table >
+          <col width="12%">
+          <col width="12%">
+          <col width="12%">
+          <col width="12%">
+          <col width="12%">
+          <col width="12%">
+          <col width="12%">
+          <col width="5%">
+          <col width="5%">
+          <col width="5%">
+          <tr>
+            <th>Nombre Solicitante</th>
+            <th>Rut Solicitante</th>
+            <th>Obra</th>
+            <th>Monto Solicitado</th>
+            <th>Motivo Solicitud</th>
+            <th>Comentarios</th>
+            <th>Fechas</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+          <tbody>
                 <% if current_lyduser.asocial_role? %>
-                <% revisadosT = Loanformulary.where(:aceptado_por_as => true) %>
+                <% revisadosT = Loanformulary.where("aceptado_por_as = ? AND lyduser_id = ?", true, current_lyduser.id) %>
                 <% elsif current_lyduser.administrativo_obra_role? %>
                 <% revisadosT = Loanformulary.where(:aceptado_por_administrativo_obra => true) %>
                 <% elsif current_lyduser.subgerente_personas_role? %>
@@ -149,39 +151,36 @@
                   </tr>
                 <% end %>
               </tbody>
-              </table>
-            </div>
-
-
-
-        <!-- end two --></div>
-
-        <div role="tabpanel" class="tab-pane fade" id="three">
-
-          <div class="panel panel-danger">
-            <!-- Default panel contents -->
-            <div class="panel-heading">Historial de prestamos rechazados</div>
-            <div class="panel-body">
-            </div>
-
-            <!-- Table -->
-            <table class="table">
-              <thead>
-              <tr>
-                <th>Nombre solicitante</th>
-                <th>Rut solicitante</th>
-                <th>Obra</th>
-                <th>Monto solicitado</th>
-                <th>Motivo solicitud</th>
-                <th>Comentarios</th>
-                <th>Fecha revisión</th>
-                <th colspan="3"></th>
-              </tr>
-            </thead>
-
-            <tbody>
+        </table>
+      </div>
+      <div role="tabpanel" class="tab-pane fade" id="three">
+        <h2>Historial de Préstamos Rechazados</h2>
+        <table >
+          <col width="12%">
+          <col width="12%">
+          <col width="12%">
+          <col width="12%">
+          <col width="12%">
+          <col width="12%">
+          <col width="12%">
+          <col width="5%">
+          <col width="5%">
+          <col width="5%">
+          <tr>
+            <th>Nombre Solicitante</th>
+            <th>Rut Solicitante</th>
+            <th>Obra</th>
+            <th>Monto Solicitado</th>
+            <th>Motivo Solicitud</th>
+            <th>Comentarios</th>
+            <th>Fechas</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+          <tbody>
               <% if current_lyduser.asocial_role? %>
-              <% revisadosF = Loanformulary.where(:aceptado_por_as => false) %>
+              <% revisadosF = Loanformulary.where("aceptado_por_as = ? AND lyduser_id = ?", false, current_lyduser.id) %>
               <% elsif current_lyduser.administrativo_obra_role? %>
               <% revisadosF = Loanformulary.where(:aceptado_por_administrativo_obra => false) %>
               <% elsif current_lyduser.subgerente_personas_role? %>
@@ -213,40 +212,50 @@
                 </tr>
               <% end %>
             </tbody>
-            </table>
-          </div>
+        </table>
+      </div>
 
-        <% end %>
-        <!-- end three --></div>
+<% end %>
 
-       
 
-        <div role="tabpanel" class="tab-pane fade" id="four">
+      <div role="tabpanel" class="tab-pane fade" id="four">
+        <h2>Historial de Seguimiento</h2>
+         <% if current_lyduser.admin_role? || current_lyduser.asocial_role?%>
 
-           <% if current_lyduser.admin_role? || current_lyduser.asocial_role?%>
-
-            <div class="panel panel-primary">
-              <!-- Default panel contents -->
-              <div class="panel-heading">Solicitudes de Préstamo</div>
-              <div class="panel-body">
-              </div>
 
               <!-- Table -->
-              <table class="table">
-                <thead>
-                <tr>
-                  <th>Nombre solicitante</th>
-                  <th>Rut solicitante</th>
-                  <th>Obra</th>
-                  <th>Monto solicitado</th>
-                  <th>Motivo solicitud</th>
-                  <th>Fecha de revisión Asistente Social</th>
-                  <th>Fecha de revisión Administrativo de obra</th>
-                  <th>Fecha de revisión Subgerente de personas</th>
-                  <th>Fecha de revisión Jefe de remuneraciones</th>
-                  <th colspan="3"></th>
-                </tr>
-              </thead>
+              <table >
+              <col width="9%">
+              <col width="9%">
+              <col width="9%">
+              <col width="9%">
+              <col width="9%">
+              <col width="9%">
+              <col width="9%">
+              <col width="9%">
+              <col width="9%">
+              <col width="6%">
+              <col width="6%">
+              <col width="6%">
+                
+            <tr>
+            <th>Nombre Solicitante</th>
+            <th>Rut Solicitante</th>
+            <th>Obra</th>
+            <th>Monto Solicitado</th>
+            <th>Motivo Solicitud</th>
+            <th>Estado</th>
+            <% if current_lyduser.admin_role? %>
+            <th>Fecha Revisión AS</th>
+            <th>Fecha Revisión AO</th>
+            <th>Fecha Revisión SP</th>
+            <th>Fecha Revisión JR</th>
+            <% end %>
+            <th></th>
+            <th></th>
+            <th></th>
+            </tr>
+              
 
               <tbody>
                 
@@ -257,10 +266,14 @@
                     <td><%= loanformulary.obra %></td>
                     <td><%= loanformulary.monto_solicitado %></td>
                     <td><%= loanformulary.motivo_solicitud %></td>
+                    <td><%= loanformulary.estado %></td>
+                    <% if current_lyduser.admin_role? %>
                     <td><%= loanformulary.fecha_aceptado_por_as %></td>
                     <td><%= loanformulary.fecha_aceptado_por_administrativo_obra %></td>
                     <td><%= loanformulary.fecha_aceptado_por_subgerente_personas %></td>
                     <td><%= loanformulary.fecha_aceptado_por_jefe_remuneraciones %></td>
+
+                    <% end %>
 
                     <td><%= link_to 'Show', loanformulary %></td>
                     <td><%= link_to 'Edit', edit_loanformulary_path(loanformulary) %></td>
@@ -269,32 +282,13 @@
                 <% end %>
               </tbody>
               </table>
-            </div>
-
+            
 
             <%end%>
-
-        <!-- end four --></div>
-
-
-
-
-
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="five"> </div>
       </div>
-
-
-
-
-
-
     </div>
-
-
-
-
-
-  </div>
-
 
 
 
@@ -309,11 +303,14 @@
     <!-- HTML5 Support for IE --> 
     <script src='<%= asset_url("html5shiv.js") %>'></script> 
 
+
+</div>
  <!-- end .content --></div>
+</div>
 
 
 
 
 <br>
 
-<%= link_to 'New Loanformulary', new_loanformulary_path %>
+

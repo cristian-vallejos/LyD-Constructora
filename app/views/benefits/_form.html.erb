@@ -1,3 +1,10 @@
+<link href='<%= asset_url("css/bootstrap.min.css") %>' rel="stylesheet" type="text/css">
+<link href='<%= asset_url("css/font-awesome.min.css") %>' rel="stylesheet">
+<link href='<%= asset_url("css/style-273.css") %>' rel="stylesheet">
+<link rel="shortcut icon" href="#">
+<link href='<%= asset_url("css2/stylesLD.css") %>' rel="stylesheet" type="text/css">
+
+
 <%= form_with(model: benefit, local: true) do |form| %>
   <% if benefit.errors.any? %>
     <div id="error_explanation">
@@ -11,27 +18,74 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :nombre %>
-    <%= form.text_field :nombre, id: :benefit_nombre %>
-  </div>
+  <div class="container">
 
-  <div class="field">
-    <%= form.label :area %>
-    <%= form.text_field :area, id: :benefit_area %>
-  </div>
+    <div class="content"> 
 
-  <div class="field">
-    <%= form.label :costotrabajador %>
-    <%= form.number_field :costotrabajador, id: :benefit_costotrabajador %>
-  </div>
+      <div class="ui-273">
 
-  <div class="field">
-    <%= form.label :costoempresa %>
-    <%= form.number_field :costoempresa, id: :benefit_costoempresa %>
-  </div>
+        <div align="center" style="box-shadow:0px 0px 15px rgba(0,0,0,0.1);">
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+
+            <div class="field">
+              <%= form.label :nombre, "Nombre Beneficio" %>
+              <br>
+              <%= form.text_field :nombre, id: :benefit_nombre %>
+              <br>
+            </div>
+
+            <div class="field">
+            <%= form.label :areabenefit_id, "Area Beneficio" %>
+            <br>
+            <%= form.collection_select :areabenefit_id, Areabenefit.all, :id, :nombre, include_blank: true %>
+            <br>
+            </div>
+
+
+            <div class="field">
+              <%= form.label :costotrabajador %>
+              <br>
+              <%= form.number_field :costotrabajador, id: :benefit_costotrabajador %>
+              <br>
+            </div>
+
+            <div class="field">
+              <%= form.label :costoempresa %>
+              <br>
+              <%= form.number_field :costoempresa, id: :benefit_costoempresa %>
+              <br>
+            </div>
+
+            <div class="field">
+              <%= form.label :familia %>
+              <br>
+              <%= form.check_box :familia, id: :benefit_familia %>
+              <br>
+            </div>
+
+            <div class="field">
+              <%= form.label :asistencia %>
+              <br>
+              <%= form.check_box :asistencia, id: :benefit_asistencia %>
+              <br>
+            </div>
+
+            <div class="actions">
+              <%= form.submit "Guardar" %>
+            </div>
+
+
+        </div>
+
+      </div>
+
+
+    </div><!-- end .content -->
+
+
+  </div><!-- end .container -->
+
+       
+
+
 <% end %>

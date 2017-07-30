@@ -1,33 +1,53 @@
 <p id="notice"><%= notice %></p>
+<link href='<%= asset_url("css/bootstrap.min.css") %>' rel="stylesheet" type="text/css">
+<link href='<%= asset_url("css2/stylesLD.css") %>' rel="stylesheet" type="text/css">
 
-<h1>Benefits</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Area</th>
-      <th>Costotrabajador</th>
-      <th>Costoempresa</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @benefits.each do |benefit| %>
-      <tr>
-        <td><%= benefit.nombre %></td>
-        <td><%= benefit.area %></td>
-        <td><%= benefit.costotrabajador %></td>
-        <td><%= benefit.costoempresa %></td>
-        <td><%= link_to 'Show', benefit %></td>
-        <td><%= link_to 'Edit', edit_benefit_path(benefit) %></td>
-        <td><%= link_to 'Destroy', benefit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="container">
 
-<br>
+  <div class="content">
+    
+    <div style="box-shadow:0px 0px 15px rgba(0,0,0,0.1);">
 
-<%= link_to 'New Benefit', new_benefit_path %>
+    <h3>Lista Beneficios</h3>
+
+    <div align="center">
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Area Beneneficio</th>
+            <th>Costo empresa</th>
+            <th>Costo trabajador</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @benefits.each do |benefit| %>
+            <tr>
+              <td><%= benefit.nombre %></td>
+              <td><%= benefit.area %></td>
+              <td><%= benefit.costoempresa %></td>
+              <td><%= benefit.costotrabajador %></td>
+              <td><%= link_to 'Mostrar', benefit %></td>
+              <td><%= link_to 'Actualizar', edit_benefit_path(benefit) %></td>
+              <td><%= link_to 'Eliminar', benefit, method: :delete, data: { confirm: 'Está seguro?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <br>
+
+      <%# link_to 'New Benefit', new_benefit_path %>
+      <button onclick="location.href='<%= new_benefit_path %>'" type="button" class="button button1">Crear Nuevo Beneficio</button>
+    </div>
+
+
+    </div>
+  </div>
+</div>
+
+

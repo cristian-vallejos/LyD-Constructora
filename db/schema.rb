@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170727031208) do
+ActiveRecord::Schema.define(version: 20170730053617) do
 
   create_table "areabenefits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "nombre"
@@ -159,7 +159,7 @@ ActiveRecord::Schema.define(version: 20170727031208) do
     t.boolean "aceptado_por_administrativo_obra"
     t.boolean "aceptado_por_subgerente_personas"
     t.boolean "aceptado_por_jefe_remuneraciones"
-    t.boolean "cerado", default: false
+    t.boolean "cerrado", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "fecha_aceptado_por_as"
@@ -170,6 +170,9 @@ ActiveRecord::Schema.define(version: 20170727031208) do
     t.text "comentario_administrativo_obra"
     t.text "comentario_subgerente_personas"
     t.text "comentario_jefe_remuneraciones"
+    t.bigint "lyduser_id"
+    t.string "estado"
+    t.index ["lyduser_id"], name: "index_loanformularies_on_lyduser_id"
   end
 
   create_table "logas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -253,4 +256,5 @@ ActiveRecord::Schema.define(version: 20170727031208) do
   add_foreign_key "assignbenefits", "obras"
   add_foreign_key "benefits", "areabenefits"
   add_foreign_key "epcformularies", "asformularies"
+  add_foreign_key "loanformularies", "lydusers"
 end

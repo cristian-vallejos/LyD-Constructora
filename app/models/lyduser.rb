@@ -5,6 +5,8 @@ class Lyduser < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
 	has_many :asformularies
+	has_many :loanformularies
+
 
 
 end

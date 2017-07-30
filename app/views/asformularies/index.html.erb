@@ -2,6 +2,8 @@
 
 <h1>Formularios de Atención Social</h1>
 
+<button onclick="location.href='<%= new_asformulary_path %>'" type="button" class="button button1">Nueva Atención</button>
+
 <table>
   <thead>
     <tr>
@@ -59,12 +61,5 @@
 <br>
 
 
-  <p>
-    <%= form_for (@asformulary), url: new_asformulary_path, method: "get" do |f| %>
-  <%= f.number_field :rut_atendido %>
-  <%= f.submit "new" %>
-<% end %>
-  </p>
 
-<%= link_to 'Nuevo Formulario', new_asformulary_path %> |
-<%= link_to 'ir a EPC', epcformularies_path %>
+<%# link_to 'Nuevo Formulario', new_asformulary_path %>

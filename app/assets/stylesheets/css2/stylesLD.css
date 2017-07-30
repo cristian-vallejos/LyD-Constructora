@@ -12,7 +12,7 @@ body {
 	
 }
 
-.{
+*{
 	font-family: "Calibry (Body)";
 }
 /* ~~ Selectores de elemento/etiqueta ~~ */
@@ -107,8 +107,9 @@ a:hover, a:active, a:focus { /* este grupo de selectores proporcionará a un usu
   left:0;
   right:0;
   margin: auto;
-  width:50%;
+  width:25%;
   height: 30%;
+  box-shadow:0px 0px 15px rgba(0,0,0,0.1);
 }
 
 .sidebar1 {
@@ -279,7 +280,10 @@ color: #000000;
 
 
 .ui-37-ld{
-	margin:0px 15px;	
+	margin:0px 300px;
+	width: 300px;
+	box-shadow:0px 0px 15px rgba(0,0,0,0.1);
+
 }
 
 @media(max-width: 500px){
@@ -362,7 +366,7 @@ color: #000000;
 	background:#fff;
 	box-shadow:0px 0px 15px rgba(0,0,0,0.1);
 	position:absolute;
-	top: 300px;
+	top: 200px;
 	border-right:1px solid #e8e8e8;
 	
 }
@@ -394,4 +398,12 @@ color: #000000;
 	color: #ffffff;
 	background: #28A064;
 	border: 1px solid #28A064;
+}
+
+.row{
+    margin-left: 5%;
+}
+
+.ui-34{
+	max-width: 100%;
 }

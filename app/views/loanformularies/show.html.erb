@@ -1,174 +1,175 @@
-<div class="row">
-  
-
-<div class="col-md-4"> </div>
-  <div class="col-md-4">
-    <p>
-  <strong>Nombre solicitante:</strong>
-  <%= @loanformulary.nombre_solicitante %>
-</p>
-
-<p>
-  <strong>Rut solicitante:</strong>
-  <%= @loanformulary.rut_solicitante %>
-</p>
-
-<p>
-  <strong>Obra:</strong>
-  <%= @loanformulary.obra %>
-</p>
-
-<p>
-  <strong>Cargo:</strong>
-  <%= @loanformulary.cargo %>
-</p>
-
-<p>
-  <strong>Monto solicitado:</strong>
-  <%= @loanformulary.monto_solicitado %>
-</p>
-
-<p>
-  <strong>Monto aprobado:</strong>
-  <%= @loanformulary.monto_aprobado %>
-</p>
-
-<p>
-  <strong>Numero cuotas:</strong>
-  <%= @loanformulary.numero_cuotas %>
-</p>
-
-<p>
-  <strong>Monto cuota:</strong>
-  <%= @loanformulary.monto_cuota %>
-</p>
-
-<% if current_lyduser.admin_role? || current_lyduser.asocial_role?%>
-<p>
-<strong>Fecha Emitido por Atención Social:</strong>
-  <%= @loanformulary.fecha_aceptado_por_as %>
-</p>
-
-<p>
-<strong>Comentario Atención Social:</strong>
-  <%= @loanformulary.comentario_as %>
-</p>
-
-<p>
-<strong>Fecha revisión Administrativo Obra:</strong>
-  <%= @loanformulary.fecha_aceptado_por_administrativo_obra %>
-</p>
-
-<p>
-<strong>Comentario Administrativo Obra:</strong>
-  <%= @loanformulary.comentario_administrativo_obra%>
-</p>
-
-<p>
-<strong>Fecha revisión Subgerente de personas:</strong>
-  <%= @loanformulary.fecha_aceptado_por_subgerente_personas %>
-
-</p>
-
-<p>
-<strong>Comentario Subgerente personas:</strong>
-  <%= @loanformulary.comentario_subgerente_personas%>
-</p>
-
-<p>
-<strong>Fecha revisión Jefe de remuneraciones:</strong>
-  <%= @loanformulary.fecha_aceptado_por_jefe_remuneraciones %>
-
-</p>
-
-<p>
-<strong>Comentario Jefe remuneraciones:</strong>
-  <%= @loanformulary.comentario_jefe_remuneraciones%>
-</p>
+<link href='<%= asset_url("css/bootstrap.min.css") %>' rel="stylesheet" type="text/css">
+<link href='<%= asset_url("css/font-awesome.min.css") %>' rel="stylesheet">
+<link href='<%= asset_url("css/style-273.css") %>' rel="stylesheet">
+<link href='<%= asset_url("css2/stylesLD.css") %>' rel="stylesheet" type="text/css">
 
 
-<% end %>
-
-
-
-
-<p>
-  <strong>Renta liquida:</strong>
-  <%= @loanformulary.renta_liquida %>
-</p>
-
-<p>
-  <strong>Antiguedad:</strong>
-  <%= @loanformulary.antiguedad %>
-</p>
-
-<p>
-  <strong>Fecha ultimo contrato:</strong>
-  <%= @loanformulary.fecha_ultimo_contrato %>
-</p>
-
-<p>
-  <strong>Fondo finiquito:</strong>
-  <%= @loanformulary.fondo_finiquito %>
-</p>
-
-<p>
-  <strong>Continuidad en obra:</strong>
-  <%= @loanformulary.continuidad_en_obra %>
-</p>
-
-<p>
-  <strong>Descuentos en curso:</strong>
-  <%= @loanformulary.descuentos_en_curso %>
-</p>
-
-<p>
-  <strong>Descripcion documentos respaldo:</strong>
-  <%= @loanformulary.descripcion_documentos_respaldo %>
-</p>
-
-<p>
-  <strong>Motivo solicitud:</strong>
-  <%= @loanformulary.motivo_solicitud %>
-</p>
+<div class="container">
+  <div class="content"> 
+    <div class="ui-273">
+      <div align="center" style="box-shadow:0px 0px 15px rgba(0,0,0,0.1);">
 
 
 
 
 
+          <strong>Nombre solicitante:</strong><br>
+          <i><%= @loanformulary.nombre_solicitante %> </i><br>
+        
+
+     
+          <strong>Rut solicitante:</strong><br>
+          <i><%= @loanformulary.rut_solicitante %></i><br>
+       
+
+          <strong>Obra:</strong><br>
+         <i> <%= @loanformulary.obra %></i><br>
+       
+
+       
+          <strong>Cargo:</strong><br>
+          <i><%= @loanformulary.cargo %></i><br>
+        
+
+        
+          <strong>Monto solicitado:</strong><br>
+          <i><%= @loanformulary.monto_solicitado %></i><br>
+        
+
+        
+          <strong>Monto aprobado:</strong><br>
+          <i><%= @loanformulary.monto_aprobado %></i><br>
+        
+
+        
+          <strong>Numero cuotas:</strong><br>
+          <i><%= @loanformulary.numero_cuotas %></i><br>
+        
+
+        
+          <strong>Monto cuota:</strong><br>
+          <i><%= @loanformulary.monto_cuota %></i><br>
+        
+
+        <% if current_lyduser.admin_role? || current_lyduser.asocial_role?%>
+        
+        <strong>Fecha Emitido por Atención Social:</strong><br>
+          <i><%= @loanformulary.fecha_aceptado_por_as %> </i><br>
+
+        
+        <strong>Comentario Atención Social:</strong><br>
+          <i><%= @loanformulary.comentario_as %></i><br>
+        
+
+        
+        <strong>Fecha revisión Administrativo Obra:</strong><br>
+          <i><%= @loanformulary.fecha_aceptado_por_administrativo_obra %></i><br>
+        
+
+        
+        <strong>Comentario Administrativo Obra:</strong><br>
+          <i><%= @loanformulary.comentario_administrativo_obra%></i><br>
+        
+
+        
+        <strong>Fecha revisión Subgerente de personas:</strong><br>
+          <i><%= @loanformulary.fecha_aceptado_por_subgerente_personas %></i><br>
+
+
+        
+        <strong>Comentario Subgerente personas:</strong><br>
+          <i><%= @loanformulary.comentario_subgerente_personas%></i><br>
+        
+
+        
+        <strong>Fecha revisión Jefe de remuneraciones:</strong><br>
+         <i> <%= @loanformulary.fecha_aceptado_por_jefe_remuneraciones %></i><br>
+
+        
+
+        
+        <strong>Comentario Jefe remuneraciones:</strong><br>
+         <i> <%= @loanformulary.comentario_jefe_remuneraciones%></i><br>
+        
+
+
+        <% end %>
 
 
 
 
+        
+          <strong>Renta liquida:</strong><br>
+         <i> <%= @loanformulary.renta_liquida %></i><br>
+       
+
+       
+          <strong>Antiguedad:</strong><br>
+         <i> <%= @loanformulary.antiguedad %></i><br>
+        
+
+       
+          <strong>Fecha ultimo contrato:</strong><br>
+         <i> <%= @loanformulary.fecha_ultimo_contrato %></i><br>
+        
+
+        
+          <strong>Fondo finiquito:</strong><br>
+          <i><%= @loanformulary.fondo_finiquito %></i><br>
+        
+
+          <strong>Continuidad en obra:</strong><br>
+         <i> <%= @loanformulary.continuidad_en_obra %></i><br>
+        
+
+        
+          <strong>Descuentos en curso:</strong><br>
+         <i> <%= @loanformulary.descuentos_en_curso %></i><br>
+        
+
+        
+          <strong>Descripcion documentos respaldo:</strong><br>
+         <i> <%= @loanformulary.descripcion_documentos_respaldo %></i><br>
+        
+
+        
+          <strong>Motivo solicitud:</strong><br>
+          <i><%= @loanformulary.motivo_solicitud %></i><br>
+        
+
+
+        <% if current_lyduser.admin_role == false%>
+        <p>
+        <%= form_for (@loanformulary), url: accept_loanformulary_path, method: "get" do |f| %>
+        <% if current_lyduser.asocial_role? %>
+        <%= f.text_area :comentario_as %><br>
+        <% elsif current_lyduser.administrativo_obra_role? %>
+        <%= f.text_area :comentario_administrativo_obra%><br>
+        <% elsif current_lyduser.subgerente_personas_role? %>
+        <%= f.text_area :comentario_subgerente_personas%><br>
+        <% elsif current_lyduser.jefe_remuneraciones_role? %>
+        <%= f.text_area :comentario_jefe_remuneraciones%><br>
+        <% end %>
+
+        <%= f.submit 'Aceptar', name: "accept" %>
+        <%= f.submit 'Rechazar', name: "refuse" %>
+        <% end %>
+        <% end %>
+          </p>
+
+        <%# link_to 'REFUSE', refuse_loanformulary_path %>
+
+        <%= link_to 'Edit', edit_loanformulary_path(@loanformulary) %> |
+        <%= link_to 'Back', loanformularies_path %>
 
 
 
+
+      </div>
+    </div>
   </div>
-  <div class="col-md-4"> </div>
-
-
-
 </div>
-<% if current_lyduser.admin_role == false%>
-<p>
-<%= form_for (@loanformulary), url: accept_loanformulary_path, method: "get" do |f| %>
-<% if current_lyduser.asocial_role? %>
-<%= f.text_area :comentario_as %>
-<% elsif current_lyduser.administrativo_obra_role? %>
-<%= f.text_area :comentario_administrativo_obra%>
-<% elsif current_lyduser.subgerente_personas_role? %>
-<%= f.text_area :comentario_subgerente_personas%>
-<% elsif current_lyduser.jefe_remuneraciones_role? %>
-<%= f.text_area :comentario_jefe_remuneraciones%>
-<% end %>
-
-<%= f.submit 'Aceptar', name: "accept" %>
-<%= f.submit 'Rechazar', name: "refuse" %>
-<% end %>
-<% end %>
-  </p>
 
 
 
-<%= link_to 'Edit', edit_loanformulary_path(@loanformulary) %> |
-<%= link_to 'Back', loanformularies_path %>
+    

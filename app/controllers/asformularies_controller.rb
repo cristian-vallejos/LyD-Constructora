@@ -43,8 +43,13 @@ class AsformulariesController < ApplicationController
       theasformulary.save
       @asformulary = Asformulary.new(
       rut_atendido: theasformulary.rut_atendido,
+      codigo_obra: theasformulary.codigo_obra,
       user_id: theasformulary.user_id,
+      nombre_atendido: theasformulary.nombre_atendido,
       aspcategory_id: theasformulary.aspcategory_id,
+      solucion: theasformulary.solucion,
+      estado: theasformulary.estado,
+      subcontrato: theasformulary.subcontrato,
       benefit_id: theasformulary.benefit_id,
       atencion_id: theasformulary.id,
       numero_atencion: theasformulary.numero_atencion+1
@@ -52,9 +57,13 @@ class AsformulariesController < ApplicationController
     elsif theasformulary.atencion_id != nil
       @asformulary = Asformulary.new(
       rut_atendido: theasformulary.rut_atendido,
+      codigo_obra: theasformulary.codigo_obra,
       user_id: theasformulary.user_id,
+      nombre_atendido: theasformulary.nombre_atendido,
       aspcategory_id: theasformulary.aspcategory_id,
-      benefit_id: theasformulary.benefit_id,
+      solucion: theasformulary.solucion,
+      estado: theasformulary.estado,
+      subcontrato: theasformulary.subcontrato,
       atencion_id: theasformulary.atencion_id,
       numero_atencion: theasformulary.numero_atencion+1
       )

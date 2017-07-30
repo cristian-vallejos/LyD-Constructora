@@ -13,26 +13,25 @@
 
 
 
- <ul class="list-group list-group-flush">
-  <li class="list-group-item">
+ 
     
       <div class="field">
         <%= form.label :rut_atendido %>
-        <%= form.number_field :rut_atendido, id: :asformulary_rut_atendido %>
+        <%= form.text_field :rut_atendido, id: :asformulary_rut_atendido %>
   </div>
-  </li>
+ 
 
 
-   <li class="list-group-item">
+
     
       <div class="field">
     <%= form.label :codigo_obra %>
     <%= form.number_field :codigo_obra, id: :asformulary_codigo_obra %>
   </div>
       
-  </li>
+  
 
-  <li class="list-group-item">
+  
     
       <div class="field">
     <%= form.label :telefono %>
@@ -40,40 +39,15 @@
   </div>
       
       
-  </li>
-  <li class="list-group-item">
-    
-      <div class="field">
-    <%= form.label :Asistente_Social %>
-    <%= form.collection_select :user_id, User.all, :id, :name %>
-  </div>
-      
-  </li>
 
-   <li class="list-group-item">
-    
-      <div class="field">
-    <%= form.label :atencion_id %>
-    <%= form.number_field :atencion_id, id: :asformulary_atencion_id %>
-  </div>
-      
-      
-  </li>
-
-  <li class="list-group-item">
-    
+ 
+ 
       <div class="field">
     <%= form.label :numero_atencion %>
     <%= form.number_field :numero_atencion, id: :asformulary_numero_atencion %>
   </div>
       
-      
-  </li>
-
-
-
- </ul>
-
+  
 
 
 
