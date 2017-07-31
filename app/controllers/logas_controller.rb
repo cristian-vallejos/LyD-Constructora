@@ -7,6 +7,34 @@ class LogasController < ApplicationController
   # GET /logas.json
   def index
     @logas = Loga.all
+
+
+    if(params[:name] == "actualizar")
+
+      my_hash = JSON.load(File.read(Rails.root + "app/data/legacylogas3.txt"))
+
+
+      my_hash.each do |row|
+
+        log = Loga.new
+        log.codigo_obra = row['idobra']
+        log.rut_atendido = row['rut']
+        log.nombre_atendido = row['nombre']
+        log.apellido_paterno_atendido = row['apellidop']
+        log.apellido_materno_atendido = row['apellidom']
+        log.aspcategory_name = row['tipoconsulta']
+        log.solucion = row['solucion'] 
+        log.descripcion = row['descripcion']
+        log.telefono = row['telefono']
+        log.save
+      end
+
+
+    end
+
+
+
+
   end
 
   # GET /logas/1
