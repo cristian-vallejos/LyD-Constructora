@@ -17,7 +17,18 @@ class AsformulariesController < ApplicationController
   # GET /asformularies/1
   # GET /asformularies/1.json
   def show
-  
+
+  if(params[:cerrar])
+
+      theasformulary = Asformulary.find(params[:id])
+    if theasformulary.estado != true
+      theasformulary.estado = true
+      theasformulary.save
+    end
+
+      redirect_to asformulary_path
+
+    end  
 
   end
 
@@ -65,6 +76,7 @@ class AsformulariesController < ApplicationController
       estado: theasformulary.estado,
       subcontrato: theasformulary.subcontrato,
       atencion_id: theasformulary.atencion_id,
+      benefit_id: theasformulary.benefit_id,
       numero_atencion: theasformulary.numero_atencion+1
       )
     end
@@ -72,6 +84,7 @@ class AsformulariesController < ApplicationController
 
 
   end
+
 
   # GET /asformularies/1/edit
   def edit

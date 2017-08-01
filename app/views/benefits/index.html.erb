@@ -28,7 +28,7 @@
           <% @benefits.each do |benefit| %>
             <tr>
               <td><%= benefit.nombre %></td>
-              <td><%= benefit.area %></td>
+              <td><%= benefit.areabenefit.nombre %></td>
               <td><%= benefit.costoempresa %></td>
               <td><%= benefit.costotrabajador %></td>
               <td><%= link_to 'Mostrar', benefit %></td>

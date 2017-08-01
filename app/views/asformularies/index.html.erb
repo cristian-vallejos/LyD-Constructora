@@ -1,4 +1,6 @@
 <p id="notice"><%= notice %></p>
+<link href='<%= asset_url("css/bootstrap.min.css") %>' rel="stylesheet" type="text/css">
+<link href='<%= asset_url("css/style-273.css") %>' rel="stylesheet">
 
 <h1>Formularios de Atención Social</h1>
 
@@ -6,14 +8,61 @@
 <br>
 <br>
 <br>
-<%= form_for (@asformulary), url: asformularies_path, method: "get" do |f| %>
-  <%= f.label "Buscar Atención" %>
-  <%= f.text_field :rut_atendido %>
-  <%= f.submit "Buscar", name: "search" %>
-<% end %>
+
+<div class="ui-302">
+
+<div class="status-two">
+          <div class="row">
+            <div class="col-md-3">
+              <!-- Item Starts -->
+              <div class="item">
+                <!-- Heading -->
+                <h4>Cantidad de Casos</h4>
+                <!-- Big Number -->
+                <h5 class="green"><%=Asformulary.where("lyduser_id = ?", current_lyduser.id).count %></h5>
+                <!-- Sub-Title -->
+                <span>Total &nbsp;<i class="fa fa-angle-double-up red"></i>&nbsp; <b class="green"><%=Asformulary.count %></b></span>
+              </div>
+              <!-- Item Ends -->
+            </div>
+            <div class="col-md-3">
+              <!-- Item Starts -->
+              <div class="item">
+                <!-- Heading -->
+                <h4>Casos Abiertos</h4>
+                <!-- Big Number -->
+                <h5 class="red"><%=Asformulary.where("lyduser_id = ? AND estado = ?", current_lyduser.id, false).count %></h5>
+                <!-- Sub-Title -->
+                <span>Casos Cerrados &nbsp;<i class="fa fa-angle-double-up green"></i>&nbsp; <b class="green"><%=Asformulary.where("lyduser_id = ? AND estado = ?", current_lyduser.id, true).count %></b></span>
+              </div>
+              <!-- Item Ends -->
+            </div>
+
+            <div class="col-md-2">
+              <%= form_for (@asformulary), url: asformularies_path, method: "get" do |f| %>
+              <div class="item">
+              <h4>Buscar Atención</h4>
+                <%# f.label "Buscar Atención" %>
+                <%= f.text_field :rut_atendido %>
+                <%= f.submit "Buscar", name: "search" %>
+              </div>
+              <% end %>
+
+            </div>
+          </div>
+        </div>
+</div>
+
+
+<div class ="row">
+<div class="col-md-1">
 <%= form_for (@asformulary), url: asformularies_path, method: "get" do |f| %>
   <%= f.submit "Limpiar busqueda", name: "limpiar" %>
 <% end %>
+
+</div>
+</div>
+
 
 
 
@@ -31,10 +80,8 @@
       <th>Codigo obra</th>
       <th>Telefono</th>
       <th>Asistente Social</th>
-      <th>Nombre atendido</th>
-      <th>Apellido paterno</th>
-      <th>Apellido materno</th>
-      <th>Aspcategory</th>
+      <th>Nombre trabajador</th>
+      <th>Categoria</th>
       <th>Solucion</th>
       <th>Beneficio Asociado</th>
       <th>Estado</th>
@@ -53,8 +100,6 @@
         <td><%= asformulary.telefono %></td>
         <td><%= asformulary.lyduser.email %></td>
         <td><%= asformulary.nombre_atendido %></td>
-        <td><%= asformulary.apellido_paterno %></td>
-        <td><%= asformulary.apellido_materno %></td>
         <td><%= asformulary.aspcategory.nombre %></td>
         <td><%= asformulary.solucion %></td>
        <td><%= asformulary.benefit.nombre %></td>
@@ -63,7 +108,7 @@
         <td><%= asformulary.nombre_supervisor %></td>
         <td><%= asformulary.descripcion %></td>
         <%if can? :show, Asformulary %>
-        <td><%= link_to 'Show', asformulary %></td>
+        <td><%= link_to 'Mostrar', asformulary %></td>
         <%end%>
         <%if can? :edit, Asformulary %>
         <td><%= link_to 'Edit', edit_asformulary_path(asformulary) %></td>

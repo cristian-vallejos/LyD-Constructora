@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rut_solicitante: MyString
+  nombre_solicitante: MyString
+  obra: MyString
+  cargo: MyString
+  monto_solicitado: MyString
+  numero_cuotas: MyString
+  monto_pagado: MyString
+  por_pagar: MyString
+  motivo_solicitud: MyText
+  comentarios: MyText
+  estado: MyString
+
+two:
+  rut_solicitante: MyString
+  nombre_solicitante: MyString
+  obra: MyString
+  cargo: MyString
+  monto_solicitado: MyString
+  numero_cuotas: MyString
+  monto_pagado: MyString
+  por_pagar: MyString
+  motivo_solicitud: MyText
+  comentarios: MyText
+  estado: MyString

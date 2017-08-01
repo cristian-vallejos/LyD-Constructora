@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :logloans
   resources :employees
   resources :assignbenefits
   resources :areabenefits
@@ -14,6 +15,8 @@ Rails.application.routes.draw do
 
   devise_for :lydusers
   get '/ld/index', to: 'ld#index'
+  get 'ld/crudpannel', to: 'ld#crudpannel'
+  get 'ld/beneficiospannel', to: 'ld#beneficiospannel'
   root to: 'ld#index'
   #get 'asformularies/newseg', to: 'asformularies#newseg', as: 'newseg'
 

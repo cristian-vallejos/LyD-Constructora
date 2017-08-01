@@ -8,7 +8,9 @@
 
 <% if current_lyduser.asocial_role? %>
 
-<button onclick="location.href='<%= new_loanformulary_path %>'" type="button" class="button button1">Nuevo Formulario de Préstamo</button>
+
+<%# button_to "Nuevo préstamo", new_loanformulary_path,method: "get", form: {target: '_blank'}, class: "button button1" %>
+
 
 
 <%= form_for (@loanformulary), url: loanformularies_path, method: "get" do |f| %>
@@ -74,10 +76,15 @@
                     <td><%= loanformulary.fecha_aceptado_por_jefe_remuneraciones %></td>
 
                     <% end %>
-
+                    <%if can? :show, Loanformulary %>
                     <td><%= link_to 'Show', loanformulary %></td>
+                    <%end%>
+                    <%if can? :edit, Loanformulary %>
                     <td><%= link_to 'Edit', edit_loanformulary_path(loanformulary) %></td>
+                    <%end%>
+                    <%if can? :destroy, Loanformulary %>
                     <td><%= link_to 'Destroy', loanformulary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    <%end%>
                   </tr>
                 <% end %>
               </tbody>
@@ -164,9 +171,15 @@
                     <td><%= loanformulary.monto_solicitado %></td>
                     <td><%= loanformulary.motivo_solicitud %></td>
                     <td><%= loanformulary.comentarios %></td>
+                    <%if can? :show, Loanformulary %>
                     <td><%= link_to 'Show', loanformulary %></td>
+                    <%end%>
+                    <%if can? :edit, Loanformulary %>
                     <td><%= link_to 'Edit', edit_loanformulary_path(loanformulary) %></td>
+                    <%end%>
+                    <%if can? :destroy, Loanformulary %>
                     <td><%= link_to 'Destroy', loanformulary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    <%end%>
                   </tr>
                 <% end %>
               </tbody>
@@ -226,9 +239,15 @@
                     <% end %>
 
 
+                    <%if can? :show, Loanformulary %>
                     <td><%= link_to 'Show', loanformulary %></td>
+                    <%end%>
+                    <%if can? :edit, Loanformulary %>
                     <td><%= link_to 'Edit', edit_loanformulary_path(loanformulary) %></td>
+                    <%end%>
+                    <%if can? :destroy, Loanformulary %>
                     <td><%= link_to 'Destroy', loanformulary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    <%end%>
                   </tr>
                 <% end %>
               </tbody>
@@ -287,9 +306,15 @@
                   <% elsif current_lyduser.jefe_remuneraciones_role? %>
                   <td><%= loanformulary.fecha_aceptado_por_jefe_remuneraciones %></td>
                   <% end %>
-                  <td><%= link_to 'Show', loanformulary %></td>
-                  <td><%= link_to 'Edit', edit_loanformulary_path(loanformulary) %></td>
-                  <td><%= link_to 'Destroy', loanformulary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  <%if can? :show, Loanformulary %>
+                    <td><%= link_to 'Show', loanformulary %></td>
+                    <%end%>
+                    <%if can? :edit, Loanformulary %>
+                    <td><%= link_to 'Edit', edit_loanformulary_path(loanformulary) %></td>
+                    <%end%>
+                    <%if can? :destroy, Loanformulary %>
+                    <td><%= link_to 'Destroy', loanformulary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    <%end%>
                 </tr>
               <% end %>
             </tbody>
@@ -359,9 +384,15 @@
 
                     <% end %>
 
+                    <%if can? :show, Loanformulary %>
                     <td><%= link_to 'Show', loanformulary %></td>
+                    <%end%>
+                    <%if can? :edit, Loanformulary %>
                     <td><%= link_to 'Edit', edit_loanformulary_path(loanformulary) %></td>
+                    <%end%>
+                    <%if can? :destroy, Loanformulary %>
                     <td><%= link_to 'Destroy', loanformulary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    <%end%>
                   </tr>
                 <% end %>
               </tbody>

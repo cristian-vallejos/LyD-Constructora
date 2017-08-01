@@ -46,6 +46,7 @@ a:hover, a:active, a:focus { /* este grupo de selectores proporcionará a un usu
 	width: 100%;
 	background-color: #FFF;
 	margin: 0 auto; /* el valor automático de los lados, unido a la anchura, centra el diseño */
+	
 }
 
 /* ~~ no se asigna una anchura al encabezado. Se extenderá por toda la anchura del diseño. Contiene un marcador de posición de imagen que debe sustituirse por su propio logotipo vinculado ~~ */

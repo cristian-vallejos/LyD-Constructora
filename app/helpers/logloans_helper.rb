@@ -1,0 +1,2 @@
+module LogloansHelper
+end

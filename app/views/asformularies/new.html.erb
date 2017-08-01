@@ -12,6 +12,7 @@
 
         <h4>Nuevo Formulario de Atención Social</h4>
         <%= render 'form', asformulary: @asformulary %>
+        <%= button_to "Nuevo préstamo", new_loanformulary_path,method: "get", form: {target: '_blank'}, class: "button button1" %>
 
       </div>
     

@@ -23,10 +23,41 @@
   <div align="left">
  
   <div class="field">
-    <%= form.label :rut_atendido, 'Rut Trabajador' %>
-    <br>
-    <%= form.text_field :rut_atendido, id: :asformulary_rut_atendido %>
-    <br>
+<% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
+
+  <% @employee = Employee.where(:rut => params[:asformulary][:rut_atendido]) %>
+  <% if @employee.empty? == false %>
+                        <%# employee.each do |emple| %>
+                        <tr>
+                          <td><%# @employee[0].rut %></td>
+                          <td><%# emple.rut %></td>
+                          <td><%# emple.cencos %></td>
+                          <td><%# emple.estado %></td>
+
+                        </tr>
+                        <%end%>
+
+  <%end%>
+ <% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
+    
+    <%= form.label :rut_atendido, 'Rut Trabajador' %> <br>
+
+    <% if @employee.empty?%>
+    <%= form.text_field :rut_atendido, id: :asformulary_rut_atendido %> <br>
+    <% else %>
+    <%= form.text_field :rut_atendido, id: :asformulary_rut_atendido, value: @employee[0].rut, hidden: true %> 
+    <%= @employee[0].rut %><br>
+    <% end %>
+
+ <% else %>
+
+    <%= form.label :rut_atendido, 'Rut Trabajador' %> <br>
+    <%= form.text_field :rut_atendido, id: :asformulary_rut_atendido %><br>
+
+
+    
+<%end%>
+
   </div>
  
 
@@ -47,25 +78,32 @@
   </div>
     
   <div class="field">
-    <%= form.label :nombre_atendido, 'Nombre Trabajador' %>
-    <br>
-    <%= form.text_field :nombre_atendido, id: :asformulary_nombre_atendido %>
-    <br>
+
+
+<% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
+    
+<%= form.label :nombre_atendido, 'Nombre Trabajador' %><br>
+
+    <% if @employee.empty?%>
+    <%= form.text_field :nombre_atendido, id: :asformulary_nombre_atendido %><br>
+    <% else %>
+    <%= form.text_field :nombre_atendido, id: :asformulary_nombre_atendido, value: @employee[0].nombre, hidden: true %>
+    <%= @employee[0].nombre %><br>
+
+    <% end %>
+
+ <% else %>
+
+    <%= form.label :nombre_atendido, 'Nombre trabajador' %>
+    <%= form.text_field :nombre_atendido, id: :asformulary_rut_atendido %>
+
+
+    
+<%end%>
+
   </div>
 
-  <div class="field">
-    <%= form.label :apellido_paterno %>
-    <br>
-    <%= form.text_field :apellido_paterno, id: :asformulary_apellido_paterno %>
-    <br>
-  </div>
-
-  <div class="field">
-    <%= form.label :apellido_materno %>
-    <br>
-    <%= form.text_field :apellido_materno, id: :asformulary_apellido_materno %>
-    <br>
-  </div>
+  
 
   <div class="field">
     

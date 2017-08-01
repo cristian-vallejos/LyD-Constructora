@@ -116,7 +116,7 @@ class Asformulary < ApplicationRecord
     if(self.estado == true)
       log = Loga.new(
         asocial_id: self.id,  
-  		user_name: self.user.name,
+  		user_name: self.lyduser.email,
       	codigo_obra: self.codigo_obra,
       	rut_atendido: self.rut_atendido,
       	nombre_atendido: self.nombre_atendido,

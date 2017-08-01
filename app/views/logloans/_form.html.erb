@@ -1,0 +1,72 @@
+<%= form_with(model: logloan, local: true) do |form| %>
+  <% if logloan.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(logloan.errors.count, "error") %> prohibited this logloan from being saved:</h2>
+
+      <ul>
+      <% logloan.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :rut_solicitante %>
+    <%= form.text_field :rut_solicitante, id: :logloan_rut_solicitante %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nombre_solicitante %>
+    <%= form.text_field :nombre_solicitante, id: :logloan_nombre_solicitante %>
+  </div>
+
+  <div class="field">
+    <%= form.label :obra %>
+    <%= form.text_field :obra, id: :logloan_obra %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cargo %>
+    <%= form.text_field :cargo, id: :logloan_cargo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :monto_solicitado %>
+    <%= form.text_field :monto_solicitado, id: :logloan_monto_solicitado %>
+  </div>
+
+  <div class="field">
+    <%= form.label :numero_cuotas %>
+    <%= form.text_field :numero_cuotas, id: :logloan_numero_cuotas %>
+  </div>
+
+  <div class="field">
+    <%= form.label :monto_pagado %>
+    <%= form.text_field :monto_pagado, id: :logloan_monto_pagado %>
+  </div>
+
+  <div class="field">
+    <%= form.label :por_pagar %>
+    <%= form.text_field :por_pagar, id: :logloan_por_pagar %>
+  </div>
+
+  <div class="field">
+    <%= form.label :motivo_solicitud %>
+    <%= form.text_area :motivo_solicitud, id: :logloan_motivo_solicitud %>
+  </div>
+
+  <div class="field">
+    <%= form.label :comentarios %>
+    <%= form.text_area :comentarios, id: :logloan_comentarios %>
+  </div>
+
+  <div class="field">
+    <%= form.label :estado %>
+    <%= form.text_field :estado, id: :logloan_estado %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -10,19 +10,24 @@ class Ability
        elsif lyduser.asocial_role?
         can :manage, Asformulary
         cannot :destroy, Asformulary
+        cannot :update, Asformulary 
         can :manage, Loanformulary
         cannot :destroy, Loanformulary
+        cannot :update, Loanformulary
        elsif lyduser.boperativos_role?
         can :manage, Loga
        elsif lyduser.administrativo_obra_role?
         can :manage, Loanformulary
         cannot :destroy, Loanformulary
+        cannot :update, Loanformulary
        elsif lyduser.subgerente_personas_role?
         can :manage, Loanformulary
         cannot :destroy, Loanformulary
+        cannot :update, Loanformulary
        elsif lyduser.jefe_remuneraciones_role?
         can :manage, Loanformulary
         cannot :destroy, Loanformulary
+        cannot :update, Loanformulary
        end
 
     #

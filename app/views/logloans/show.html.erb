@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Rut solicitante:</strong>
+  <%= @logloan.rut_solicitante %>
+</p>
+
+<p>
+  <strong>Nombre solicitante:</strong>
+  <%= @logloan.nombre_solicitante %>
+</p>
+
+<p>
+  <strong>Obra:</strong>
+  <%= @logloan.obra %>
+</p>
+
+<p>
+  <strong>Cargo:</strong>
+  <%= @logloan.cargo %>
+</p>
+
+<p>
+  <strong>Monto solicitado:</strong>
+  <%= @logloan.monto_solicitado %>
+</p>
+
+<p>
+  <strong>Numero cuotas:</strong>
+  <%= @logloan.numero_cuotas %>
+</p>
+
+<p>
+  <strong>Monto pagado:</strong>
+  <%= @logloan.monto_pagado %>
+</p>
+
+<p>
+  <strong>Por pagar:</strong>
+  <%= @logloan.por_pagar %>
+</p>
+
+<p>
+  <strong>Motivo solicitud:</strong>
+  <%= @logloan.motivo_solicitud %>
+</p>
+
+<p>
+  <strong>Comentarios:</strong>
+  <%= @logloan.comentarios %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @logloan.estado %>
+</p>
+
+<%= link_to 'Edit', edit_logloan_path(@logloan) %> |
+<%= link_to 'Back', logloans_path %>

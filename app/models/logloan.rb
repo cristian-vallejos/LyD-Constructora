@@ -1,0 +1,2 @@
+class Logloan < ApplicationRecord
+end
