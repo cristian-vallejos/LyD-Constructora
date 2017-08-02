@@ -84,8 +84,8 @@
       <th>Categoria</th>
       <th>Solucion</th>
       <th>Beneficio Asociado</th>
-      <th>Estado</th>
-      <th>Subcontrato</th>
+      <th>¿Caso Cerrado?</th>
+      <th>¿Subcontrato?</th>
       <th>Supervisor</th>
       <th>Descripcion</th>
       <th colspan="3"></th>
@@ -103,8 +103,16 @@
         <td><%= asformulary.aspcategory.nombre %></td>
         <td><%= asformulary.solucion %></td>
        <td><%= asformulary.benefit.nombre %></td>
-        <td><%= asformulary.estado %></td>
-        <td><%= asformulary.subcontrato %></td>
+        <% if asformulary.estado == true %>
+        <td><%="SI"%></td>
+        <% else %>
+        <td><%= "NO"%></td>
+        <%end%>
+        <% if asformulary.subcontrato == true %>
+        <td><%="SI"%></td>
+        <% else %>
+        <td><%= "NO"%></td>
+        <%end%>
         <td><%= asformulary.nombre_supervisor %></td>
         <td><%= asformulary.descripcion %></td>
         <%if can? :show, Asformulary %>

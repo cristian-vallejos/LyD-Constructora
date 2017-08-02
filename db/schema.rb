@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170801135120) do
+ActiveRecord::Schema.define(version: 20170802200741) do
 
   create_table "areabenefits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "nombre"
@@ -155,7 +155,7 @@ ActiveRecord::Schema.define(version: 20170801135120) do
     t.text "descripcion_documentos_respaldo"
     t.text "motivo_solicitud"
     t.text "comentarios"
-    t.boolean "aceptado_por_as"
+    t.boolean "aceptado_por_as", default: true
     t.boolean "aceptado_por_administrativo_obra"
     t.boolean "aceptado_por_subgerente_personas"
     t.boolean "aceptado_por_jefe_remuneraciones"
@@ -171,7 +171,7 @@ ActiveRecord::Schema.define(version: 20170801135120) do
     t.text "comentario_subgerente_personas"
     t.text "comentario_jefe_remuneraciones"
     t.bigint "lyduser_id"
-    t.string "estado"
+    t.string "estado", default: "en proceso"
     t.index ["lyduser_id"], name: "index_loanformularies_on_lyduser_id"
   end
 
@@ -247,6 +247,7 @@ ActiveRecord::Schema.define(version: 20170801135120) do
     t.boolean "subgerente_personas_role", default: false
     t.boolean "jefe_remuneraciones_role", default: false
     t.string "obra"
+    t.string "nombre_usuario"
     t.index ["email"], name: "index_lydusers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_lydusers_on_reset_password_token", unique: true
   end

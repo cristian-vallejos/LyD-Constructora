@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get '/ld/index', to: 'ld#index'
   get 'ld/crudpannel', to: 'ld#crudpannel'
   get 'ld/beneficiospannel', to: 'ld#beneficiospannel'
+  get 'ld/reportspannel', to: 'ld#reportspannel'
   root to: 'ld#index'
   #get 'asformularies/newseg', to: 'asformularies#newseg', as: 'newseg'
 

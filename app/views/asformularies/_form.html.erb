@@ -19,8 +19,7 @@
   <% end %>
 
   
-<div class="sidebar1">
-  <div align="left">
+
  
   <div class="field">
 <% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
@@ -156,9 +155,8 @@
   </div>
 
   <div class="actions">
-    <%= form.submit "Ingresar nueva atención"%>
+    <%= form.submit "Ingresar nueva atención", :class => 'btn btn-green btn-lg btn-block'%>
   </div>
-</div>
-    <!-- end .sidebar1 --></div>
+
 
 <% end %>

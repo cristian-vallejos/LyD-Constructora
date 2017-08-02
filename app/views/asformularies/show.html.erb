@@ -53,11 +53,26 @@
 
 
   <strong>¿Caso Cerrado?:</strong>
-  <br><i><%= @asformulary.estado %> </i><br>
+  
+
+        <% if @asformulary.estado == true %>
+        <br><i><%="SI"%></i><br>
+        <% else %>
+        <br><i><%= "NO"%></i><br>
+        <%end%>
 
 
-  <strong>Subcontrato:</strong>
-  <br><i><%= @asformulary.subcontrato %> </i><br>
+<strong>¿Subcontrato?:</strong>
+
+        <% if @asformulary.subcontrato == true %>
+        <br><i><%="SI"%></i><br>
+        <% else %>
+       <br><i><%= "NO"%></i><br>
+        <%end%>
+
+
+  
+  
 
 
   <strong>Nombre supervisor:</strong>

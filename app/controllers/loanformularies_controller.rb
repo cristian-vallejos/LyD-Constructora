@@ -78,7 +78,7 @@ class LoanformulariesController < ApplicationController
     end
 
 
-    if request.aceptado_por_as == false || request.aceptado_por_administrativo_obra == false || request.aceptado_por_subgerente_personas == false || request.aceptado_por_jefe_remuneraciones == false
+    if request.aceptado_por_administrativo_obra == false || request.aceptado_por_subgerente_personas == false || request.aceptado_por_jefe_remuneraciones == false
       request.cerrado = true
       request.estado = "rechazado"
     elsif request.aceptado_por_as == true && request.aceptado_por_administrativo_obra == true && request.aceptado_por_subgerente_personas == true && request.aceptado_por_jefe_remuneraciones == true

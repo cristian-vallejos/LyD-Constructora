@@ -19,10 +19,10 @@
     <%# render 'layouts/navbar' %>
     <div class="header"><a href="<%=root_path%>"><img src='<%= asset_url("ldgreen.png") %>' alt="Insertar logotipo aquí" name="Insert_logo" width="150" height="125" id="Insert_logo"/></a>
     
-    <h3>
+    <h3 style="color:white;">
     <div align="left">
     <% if lyduser_signed_in? %>
-    <%="Hola " + current_lyduser.email %>  
+    <%="Hola " + current_lyduser.nombre_usuario %>  
     <% end %>
 
     </div>

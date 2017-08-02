@@ -46,7 +46,6 @@ a:hover, a:active, a:focus { /* este grupo de selectores proporcionará a un usu
 	width: 100%;
 	background-color: #FFF;
 	margin: 0 auto; /* el valor automático de los lados, unido a la anchura, centra el diseño */
-	
 }
 
 /* ~~ no se asigna una anchura al encabezado. Se extenderá por toda la anchura del diseño. Contiene un marcador de posición de imagen que debe sustituirse por su propio logotipo vinculado ~~ */
@@ -272,16 +271,13 @@ div.tab button.active {
 color: #000000;
 }
 
-.row-ld{
-	
-}
 
 
 
 
 
 .ui-37-ld{
-	margin:0px 300px;
+	margin:0px 0px;
 	width: 300px;
 	box-shadow:0px 0px 15px rgba(0,0,0,0.1);
 
@@ -401,10 +397,25 @@ color: #000000;
 	border: 1px solid #28A064;
 }
 
+.btn.btn-green:hover,
+.btn.btn-green:focus,
+.btn.btn-green.active,
+.btn.btn-green:active {
+	background: #c0c0c0;
+	color: #ffffff;
+}
+
 .row{
-    margin-left: 5%;
+    margin-left: 0%;
 }
 
 .ui-34{
 	max-width: 100%;
 }
+
+.ui-273 {
+	max-width: 300px;
+	background:#fff;
+	margin: 60px auto;
+}
+

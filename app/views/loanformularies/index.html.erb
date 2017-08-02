@@ -112,9 +112,10 @@
     <ul class="navi"> 
       
 
-          <% if current_lyduser.asocial_role? || current_lyduser.administrativo_obra_role? || current_lyduser.subgerente_personas_role? || current_lyduser.jefe_remuneraciones_role? %>
-
+        <% if current_lyduser.asocial_role? || current_lyduser.administrativo_obra_role? || current_lyduser.subgerente_personas_role? || current_lyduser.jefe_remuneraciones_role? %>
+        <%  if !current_lyduser.asocial_role? %>
         <li class="active"><a href="#one" data-toggle="tab"><i class="fa fa-desktop"></i> Pendientes </a></li>
+        <%  end %>
         <li><a href="#two" data-toggle="tab"><i class="fa fa-cogs"></i> Aceptados </a></li>
         <li><a href="#three" data-toggle="tab"><i class="fa fa-user"></i> Rechazados </a></li>
         <%end%>
@@ -128,8 +129,9 @@
     <!-- Tab panes -->
     <div class="tab-content">
 
-        <% if current_lyduser.asocial_role? || current_lyduser.administrativo_obra_role? || current_lyduser.subgerente_personas_role? || current_lyduser.jefe_remuneraciones_role? %>
+      <% if current_lyduser.asocial_role? || current_lyduser.administrativo_obra_role? || current_lyduser.subgerente_personas_role? || current_lyduser.jefe_remuneraciones_role? %>
 
+      <%  if !current_lyduser.asocial_role? %>
       <div role="tabpanel" class="tab-pane fade in active" id="one">
         <h2>Solicitudas de Préstamos</h2>
         <table >
@@ -185,6 +187,7 @@
               </tbody>
         </table>
       </div>
+      <%  end %>
       <div role="tabpanel" class="tab-pane fade" id="two">
         <h2>Historial de Préstamos Aceptados</h2>
         <table >

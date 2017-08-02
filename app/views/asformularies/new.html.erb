@@ -12,7 +12,19 @@
 
         <h4>Nuevo Formulario de Atención Social</h4>
         <%= render 'form', asformulary: @asformulary %>
-        <%= button_to "Nuevo préstamo", new_loanformulary_path,method: "get", form: {target: '_blank'}, class: "button button1" %>
+        <%# button_to "Nuevo préstamo", new_loanformulary_path,method: "get", form: {target: '_blank'}, class: "button button1" %>
+        
+          <%# link_to(image_tag(asset_url("trans.png"), class: 'bg-green-ld'), new_loanformulary_path,  :method => :get) %>
+
+          <div class="ui-37-ld">
+            <div class="row">
+              <div class="col-md-4 col-sm-4 col-xs-6 col-mob"> <a href="<%= new_loanformulary_path %>" target="_blank" class="bg-green-ld"> <img src='<%= asset_url("trans.png") %>' alt="" />
+            <label class="label-ld">Asignar Préstamos</label>
+            </a> </div>
+          </div>
+        </div>
+
+          
 
       </div>
     
@@ -24,7 +36,7 @@
     <br>
    
     <div class="ui-55">
-        <div class="sidebar"> 
+        <div class="sidebar" style="position: fixed;"> 
           <!-- Nav tabs -->
           <ul class="list-unstyled">
             <li class="active"><a href="#one" role="tab" data-toggle="tab"><i class="fa fa-desktop"></i> Asistencia Social</a></li>
