@@ -117,51 +117,50 @@
                   </table>
             </div>
           <div role="tabpanel" class="tab-pane fade" id="two">
-                <table >
-                  <tr>
-                    <th width="(100/x)%">Beneficio</th>
-                    <th width="(100/x)%">Rut Trabajador</th>
-                    <th width="(100/x)%">Rut Beneficiario</th>
-                    <th width="(100/x)%">Relación</th>
-                    <th width="(100/x)%">F.Nacimiento</th>
-                    <th width="(100/x)%">Fecha</th>
-                    <th width="(100/x)%">CentroCosto</th>
-                  </tr>
-                  <tr>
-                    <td>Operativo Dental Urgencia</td>
-                    <td>55.555.555-6</td>
-                    <td>55.555.555-6</td>
-                    <td>------</td>
-                    <td>15-02-1993</td>
-                    <td>07-07-2017</td>
-                    <td>1111</td>
-                  </tr>
-                  <tr>
-                    <td>Crédito Hipotecario</td>
-                    <td>99.999.999-9</td>
-                    <td>77.777.777-9</td>
-                    <td>Esposa</td>
-                    <td>12-03-1990</td>
-                    <td>09-07-2011</td>
-                    <td>2222
-                      </th>
-                  </tr>
-                </table>
+                
           </div>
               <div role="tabpanel" class="tab-pane fade" id="three">
-                <h2>Nullam consectetur lacinia nulla</h2>
-                <p>Duis justo tellus, molestie vitae ex sit amet, condimentum ultricies lacus. Vestibulum justo leo, porttitor ut bibendum a, ultrices sed lectus. Curabitur eu nulla porttitor, molestie mi ut, ullamcorper quam. Vestibulum ultrices dui auctor, lobortis massa eu, gravida turpis. Nullam consectetur lacinia nulla vel auctor. Donec maximus in ipsum vitae laoreet. Vestibulum et varius tortor, quis tristique quam.</p>
-                <p>Vivamus dignissim imperdiet pulvinar. In pretium, tortor a maximus malesuada, eros eros tincidunt augue, vel mattis nulla orci id nisl. Donec purus purus, dignissim quis odio nec, tempus eleifend sem. Cras pellentesque felis tristique imperdiet scelerisque. Nullam nec magna non diam ultrices malesuada a ac urna. Fusce bibendum molestie maximus. Ut finibus tortor quis nisi elementum hendrerit. Morbi vel lacinia nunc.</p>
+               
+                  <table >
+                  <thead>
+                    <tr>
+                      
+                      <th width="(100/x)%">Empresa</th>
+                      <th width="(100/x)%">Monto Solicitado</th>
+                      <th width="(100/x)%">Por pagar</th>
+                      <th width="(100/x)%">Motivo</th>
+                      <th width="(100/x)%">Estado</th>
+
+                    </tr>
+                  </thead>
+                    <tbody>
+                      <% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
+                      <% logloan = Logloan.where(:rut_solicitante => params[:asformulary][:rut_atendido]).order('created_at DESC') %>
+                      <% logloan.each do |logl| %>
+                        <tr>
+                          
+                          
+                          
+                          <td><%= logl.empresa %></td>
+                          <td><%= logl.monto_solicitado %></td>
+                          <td><%= logl.por_pagar %></td>
+                          <td><%= logl.motivo_solicitud %></td>
+                          <td><%= logl.estado %></td>
+                          
+
+                        </tr>
+                      <% end %>
+                      <% end %>
+                    </tbody>
+                  </table>
+
+
               </div>
               <div role="tabpanel" class="tab-pane fade" id="four">
-                <h2>Vivamus commodo felis at purus</h2>
-                <p>Quisque quis diam dictum, lacinia mauris a, congue magna. Donec lacinia ornare eleifend. Nam malesuada hendrerit pellentesque. Nam tortor urna, vehicula malesuada purus non, accumsan facilisis nisi. Vivamus commodo felis at purus feugiat, quis tristique dui elementum. Vestibulum ultrices dui auctor, lobortis massa eu, gravida turpis.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vehicula, sem a euismod ultrices, nulla ex varius elit, a ultrices ipsum sem vitae quam. In cursus molestie blandit. Maecenas eleifend enim nibh, et rutrum justo rhoncus sed. Pellentesque turpis erat, sagittis ac euismod posuere, semper quis tortor. Duis in scelerisque libero. Duis suscipit laoreet eros sollicitudin condimentum.</p>
+                
               </div>
               <div role="tabpanel" class="tab-pane fade" id="five">
-                <h2>Morbi vel lacinia ultrices nunc</h2>
-                <p>Vivamus commodo felis at purus feugiat, quis tristique dui elementum.Donec purus purus, dignissim quis odio nec, tempus eleifend sem. Cras pellentesque felis tristique imperdiet scelerisque. Nullam nec magna non diam ultrices malesuada a ac urna. Fusce bibendum molestie maximus. Ut finibus tortor quis nisi elementum hendrerit. Morbi vel lacinia nunc.</p>
-                <p>Duis justo tellus, molestie vitae ex sit amet, condimentum ultricies lacus. Vestibulum justo leo, porttitor ut bibendum a, ultrices sed lectus. Curabitur eu nulla porttitor, molestie mi ut, ullamcorper quam. Vestibulum ultrices dui auctor, lobortis massa eu, gravida turpis. Nullam consectetur lacinia nulla vel auctor. Donec maximus in ipsum vitae laoreet. Vestibulum et varius tortor, quis tristique quam.</p>
+                
               </div>
         </div>
       </div>

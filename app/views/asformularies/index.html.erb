@@ -17,7 +17,7 @@
               <!-- Item Starts -->
               <div class="item">
                 <!-- Heading -->
-                <h4>Cantidad de Casos</h4>
+                <h4>Mis Casos</h4>
                 <!-- Big Number -->
                 <h5 class="green"><%=Asformulary.where("lyduser_id = ?", current_lyduser.id).count %></h5>
                 <!-- Sub-Title -->
@@ -29,7 +29,7 @@
               <!-- Item Starts -->
               <div class="item">
                 <!-- Heading -->
-                <h4>Casos Abiertos</h4>
+                <h4>Mis Casos Abiertos</h4>
                 <!-- Big Number -->
                 <h5 class="red"><%=Asformulary.where("lyduser_id = ? AND estado = ?", current_lyduser.id, false).count %></h5>
                 <!-- Sub-Title -->
@@ -41,9 +41,9 @@
             <div class="col-md-2">
               <%= form_for (@asformulary), url: asformularies_path, method: "get" do |f| %>
               <div class="item">
-              <h4>Buscar Atención</h4>
+              <h4>Buscar Atención por nombre</h4>
                 <%# f.label "Buscar Atención" %>
-                <%= f.text_field :rut_atendido %>
+                <%= f.text_field :nombre_atendido %>
                 <%= f.submit "Buscar", name: "search" %>
               </div>
               <% end %>
@@ -68,8 +68,11 @@
 
 <br>
 
-<% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
-<% as = Asformulary.where(:rut_atendido => params[:asformulary][:rut_atendido]).order('created_at DESC') %>
+
+<% if params[:asformulary] && params[:asformulary][:nombre_atendido] %>
+<% likename = "%" +  params[:asformulary][:nombre_atendido] + "%" %>
+<%# as = Asformulary.where(:rut_atendido => params[:asformulary][:rut_atendido]).order('created_at DESC') %>
+<% as = Asformulary.where("nombre_atendido like ?", likename).order('created_at DESC') %>
 
 
 

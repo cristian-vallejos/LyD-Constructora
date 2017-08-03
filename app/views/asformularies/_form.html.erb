@@ -1,5 +1,5 @@
 <%= form_for (@asformulary), url: new_asformulary_path, method: "get" do |f| %>
-  <%= f.label "Verificar trabajador" %>
+  <%= f.label "Verificar trabajador  - Ingrese RUT" %>
   <%= f.text_field :rut_atendido %>
   <%= f.submit "check", name: "check" %>
 <% end %>

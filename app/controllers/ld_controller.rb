@@ -12,4 +12,15 @@ class LdController < ApplicationController
 
 	def beneficiospannel
 	end
+
+	def reportspannel
+
+		@obra = Obra.new
+		@asformulary = Asformulary.new
+
+		#puts params[:obra][:id]
+	end
+
+
+
 end

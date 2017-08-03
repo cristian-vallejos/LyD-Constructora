@@ -13,7 +13,37 @@
 
 			<h3>Reportes por Obra</h3>
 			<div class="ui-34"> 
-				<h4>Aqui van los collection select de obras</h4>
+					<%= form_for (@obra), url: ld_reportspannel_path, method: "get" do |f| %>
+						<h6>Seleccione una obra</h6>
+						<br>
+		                <%= f.collection_select :id, Obra.all.order('nombre ASC'), :id, :nombre, include_blank: true %>
+		                <br>
+		                <h6>Desde: </h6>
+  						<%= date_select('event1', 'date') %>
+  						<br>
+  						<h6>Hasta: </h6>
+  						<%= date_select('event2', 'date') %>
+  						<br>
+
+		                <%# f.label "Buscar Atención" %>
+		                <%# f.text_field :rut_atendido %>
+		                <%= f.submit "Buscar" %>
+		              
+	              <% end %>
+	              <%= form_for (@obra), url: ld_reportspannel_path, method: "get" do |f| %>
+	              <%= f.submit "Limpiar busqueda" %>
+	              <%end%>
+
+
+	              <% if params[:obra] && params[:event1] && params[:event2] %>
+			      <%# as = Asformulary.where(:rut_atendido => params[:asformulary][:rut_atendido]).order('created_at DESC') %>
+			      <% ob = Obra.find(params[:obra][:id]).codigo %> 
+			      <br>
+			      <% fecha1 = "%" + params[:event1]["date(1i)"] + "-"+ "0" + params[:event1]["date(2i)"]+ "-" + "0"+ params[:event1]["date(3i)"] + "%" %> 
+			      <br>
+			      <% fecha2 = "%" + params[:event2]["date(1i)"] + "-"+ "0" + params[:event2]["date(2i)"]+ "-" + "0"+ params[:event2]["date(3i)"] + "%" %> 
+
+			      <%end%>
 				<br>
   				<br>
 
@@ -27,11 +57,82 @@
 			    <div class="tab-content">
 			    	<div role="tabpanel" class="tab-pane fade in active" id="one">
 	        			<h2>Atenciones Sociales por Periodo</h2>
-	        			<h5>Aqui van las tablas filtradas</h5>
+	        			<% if params[:obra] && params[:event1] && params[:event2] %>
+	        			<% ob = Obra.find(params[:obra][:id]).codigo %>
+	        			<% muestra = Loga.where("codigo_obra = ?",ob).count %>
+	        			<% muestrap = Loanformulary.where("obra = ?", ob).count %>
+
+	        			<%if muestra == 0 %>
+	        			<% muestra = 1 %>
+	        			<%end %>
+	        			<%if muestrap == 0 %>
+	        			<% muestrap = 1 %>
+	        			<%end %>
+
+	        				<table>
+							  <thead>
+							    <tr>
+							      <th>Área de atención</th>
+					              <th>Trabajadores Atendidos</th>
+					              <th>% Muestra</th>
+					              <th>Total Obra</th>
+							      <th colspan="3"></th>
+							    </tr>
+							  </thead>
+							  <tr>
+					            <td>Salud</td>
+					            <td><%= salud = Loga.where("created_at like ? or created_at like ?", fecha1, fecha2).where("codigo_obra = ?",ob).where("aspcategory_name = ?", "Salud").count %></td>
+					            <td><%= (salud*100)/muestra%>%</td>
+					            <td>n</td>
+					          </tr>
+					          <tr>
+					            <td>Educación</td>
+					            <td><%= educacion = Loga.where("created_at like ? or created_at like ?", fecha1, fecha2).where("codigo_obra = ?",ob).where("aspcategory_name = ?", "Educacion").count %></td>
+					            <td><%= (educacion*100)/muestra%>%</td>
+					            <td>n</td>
+					          </tr>
+					          <tr>
+					            <td>Familiar</td>
+					            <td><%= familiar = Loga.where("created_at like ? or created_at like ?", fecha1, fecha2).where("codigo_obra = ?",ob).where("aspcategory_name = ?", "Familiar").count %></td>
+					            <td><%= (familiar*100)/muestra%>%</td>
+					            <td>n</td>
+					          </tr>
+					          <tr>
+					            <td>Préstamo</td>
+					            <td><%= prestamo = Loanformulary.where("fecha_aceptado_por_jefe_remuneraciones like ? or fecha_aceptado_por_jefe_remuneraciones like ?", fecha1, fecha2).where("obra = ?", ob).count %></td>
+					            <td><%= (prestamo*100)/muestrap%>%</td>
+					            <td>n</td>
+					          </tr>
+					          <tr>
+					            <td>Legal</td>
+					            <td><%=legal = Loga.where("created_at like ? or created_at like ?", fecha1, fecha2).where("codigo_obra = ?",ob).where("aspcategory_name = ?", "Legal").count %></td>
+					            <td><%= (legal*100)/muestra%>%</td>
+					            <td>n</td>
+					          </tr>
+					          <tr>
+					            <td>Vivienda</td>
+					            <td><%=vivienda = Loga.where("created_at like ? or created_at like ?", fecha1, fecha2).where("codigo_obra = ?",ob).where("aspcategory_name = ?", "Vivienda").count %></td>
+					            <td><%= (vivienda*100)/muestra%>%</td>
+					            <td>n</td>
+					          </tr>
+					          <tr>
+					            <td>Total</td>
+					            <td><%= salud + educacion + familiar + prestamo + legal + vivienda%></td>
+					            <td></td>
+					            <td>n</td>
+					          </tr>
+
+
+							</table>
+
+
+
+
+	        			<%end%>
         			</div>
         			<div role="tabpanel" class="tab-pane fade" id="two">
         				<h2>Beneficios por Periodo</h2>
-        				<h5>Aqui van las tablas filtradas</h5>
+        				
         			</div>
         				<div role="tabpanel" class="tab-pane fade" id="three"> </div>
 				    	<div role="tabpanel" class="tab-pane fade" id="four"> </div>
@@ -46,7 +147,19 @@
 		<div style="box-shadow:0px 0px 15px rgba(0,0,0,0.1);">
 			<h3>Reportes por Trabajador</h3>
 			<div class="ui-34">
-				<h4>Aqui va el cuadro de buscar trabajador</h4>
+				<%= form_for (@asformulary), url: ld_reportspannel_path, method: "get" do |f| %>
+              
+	              	<h4>Buscar RUT Trabajador</h4>
+	                <%# f.label "Buscar Atención" %>
+	                <%= f.text_field :rut_atendido %>
+	                <%= f.submit "Buscar", name: "search" %>
+              	<% end %>
+
+              		<%= form_for (@asformulary), url: ld_reportspannel_path, method: "get" do |f| %>
+					  <%= f.submit "Limpiar busqueda" %>
+					<% end %>
+
+
 				<br>
     			<br> 
 
@@ -60,7 +173,56 @@
      			 <div class="tab-content">
      			 	<div role="tabpanel" class="tab-pane fade in active" id="one1">
      			 		<h2>Atenciones Sociales del Trabajador</h2>
-     			 		<h5>Aqui va la tabla where el rut es el que se ingresó</h5>
+     			 		<% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
+						<% as = Asformulary.where(:rut_atendido => params[:asformulary][:rut_atendido]).order('created_at DESC') %>
+						<table>
+						  <thead>
+						    <tr>
+						      
+						      
+						      
+						      <th>Fecha</th>
+						      <th>Nombre trabajador</th>
+						      <th>Categoria</th>
+						      <th>Solucion</th>
+						      
+						      
+						      <th>¿Subcontrato?</th>
+						      <th>Supervisor</th>
+						      <th>Descripcion</th>
+						      <th>Telefono</th>
+						      <th colspan="3"></th>
+						    </tr>
+						  </thead>
+
+						  <tbody>
+						    <% as.each do |asformulary| %>
+						      <tr>
+						        
+						        
+						        
+						        <td><%= asformulary.created_at %></td>
+						        <td><%= asformulary.nombre_atendido %></td>
+						        <td><%= asformulary.aspcategory.nombre %></td>
+						        <td><%= asformulary.solucion %></td>
+						       
+						        <% if asformulary.subcontrato == true %>
+						        <td><%="SI"%></td>
+						        <% else %>
+						        <td><%= "NO"%></td>
+						        <%end%>
+						        <td><%= asformulary.nombre_supervisor %></td>
+						        <td><%= asformulary.descripcion %></td>
+						        <td><%= asformulary.telefono %></td>
+
+						        </td>
+						      </tr>
+						    <% end %>
+						  </tbody>
+						</table>
+
+						<% end %>
+
 
      			 	</div>
      			 	<div role="tabpanel" class="tab-pane fade" id="two1">
