@@ -72,7 +72,7 @@
 <% if params[:asformulary] && params[:asformulary][:nombre_atendido] %>
 <% likename = "%" +  params[:asformulary][:nombre_atendido] + "%" %>
 <%# as = Asformulary.where(:rut_atendido => params[:asformulary][:rut_atendido]).order('created_at DESC') %>
-<% as = Asformulary.where("nombre_atendido like ?", likename).order('created_at DESC') %>
+<% as = Loga.where("nombre_atendido like ?", likename).order('created_at DESC') %>
 
 
 
@@ -86,10 +86,10 @@
       <th>Nombre trabajador</th>
       <th>Categoria</th>
       <th>Solucion</th>
-      <th>Beneficio Asociado</th>
+     
       <th>¿Caso Cerrado?</th>
       <th>¿Subcontrato?</th>
-      <th>Supervisor</th>
+
       <th>Descripcion</th>
       <th colspan="3"></th>
     </tr>
@@ -101,11 +101,10 @@
         <td><%= asformulary.rut_atendido %></td>
         <td><%= asformulary.codigo_obra %></td>
         <td><%= asformulary.telefono %></td>
-        <td><%= asformulary.lyduser.email %></td>
+        <td><%= asformulary.user_name %></td>
         <td><%= asformulary.nombre_atendido %></td>
-        <td><%= asformulary.aspcategory.nombre %></td>
+        <td><%= asformulary.aspcategory_name %></td>
         <td><%= asformulary.solucion %></td>
-       <td><%= asformulary.benefit.nombre %></td>
         <% if asformulary.estado == true %>
         <td><%="SI"%></td>
         <% else %>
@@ -116,7 +115,7 @@
         <% else %>
         <td><%= "NO"%></td>
         <%end%>
-        <td><%= asformulary.nombre_supervisor %></td>
+        
         <td><%= asformulary.descripcion %></td>
         <%if can? :show, Asformulary %>
         <td><%= link_to 'Mostrar', asformulary %></td>

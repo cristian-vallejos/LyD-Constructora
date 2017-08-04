@@ -14,6 +14,7 @@ class Ability
         can :manage, Loanformulary
         cannot :destroy, Loanformulary
         cannot :update, Loanformulary
+        can :read, Loga
        elsif lyduser.boperativos_role?
         can :manage, Loga
        elsif lyduser.administrativo_obra_role?
