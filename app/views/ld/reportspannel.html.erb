@@ -40,10 +40,10 @@
 			      <% ob = Obra.find(params[:obra][:id]).codigo %> 
 			      <br>
 			      <% if params[:event1]["date(2i)"] != "10" && params[:event1]["date(2i)"] != "11" && params[:event1]["date(2i)"] != "12" %>
-			      <%= fecha1 = params[:event1]["date(1i)"] + "-" + "0" + params[:event1]["date(2i)"] + "-" + "01"%>
+			      <% fecha1 = params[:event1]["date(1i)"] + "-" + "0" + params[:event1]["date(2i)"] + "-" + "01"%>
 			      <% else %>
 
-			      <%= fecha1 = params[:event1]["date(1i)"]+ "-" + params[:event1]["date(2i)"]+ "-" + "01" %> 
+			      <% fecha1 = params[:event1]["date(1i)"]+ "-" + params[:event1]["date(2i)"]+ "-" + "01" %> 
 
 			      <% end %> 
 			      <br>
@@ -51,20 +51,14 @@
 			      <% if params[:event2]["date(2i)"] != "10" && params[:event2]["date(2i)"] != "11" && params[:event2]["date(2i)"] != "12" %>
 
 			      
-			      <%= fecha2 =params[:event2]["date(1i)"]+ "-" + "0" + params[:event2]["date(2i)"]+ "-" + "01"%> 
+			      <% fecha2 =params[:event2]["date(1i)"]+ "-" + "0" + params[:event2]["date(2i)"]+ "-" + "01"%> 
 			      <% else %>
 			     
-			      <%= fecha2 =params[:event2]["date(1i)"]+ "-" + params[:event2]["date(2i)"]+ "-" + "01" %> 
+			      <% fecha2 =params[:event2]["date(1i)"]+ "-" + params[:event2]["date(2i)"]+ "-" + "01" %> 
 			      <% end %>
 			      <br>
 
-			      <% if fecha1 == fecha2 %>
-			      		hola
-			      <br>
-			      <% else %>
-			      		chao
-
-			      <% end %>
+			     
 
 			      <%end%>
 				<br>
