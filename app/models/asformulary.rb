@@ -30,7 +30,7 @@ class Asformulary < ApplicationRecord
 
 
         else
-          puts "verificado antes del guion"
+         #verificado antes del guion
 
             if rut_atendido.count("k,K") > 1
             
