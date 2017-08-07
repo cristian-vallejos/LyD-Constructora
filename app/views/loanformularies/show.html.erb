@@ -138,7 +138,7 @@
         
 
 
-        <% if current_lyduser.admin_role == false%>
+        <% if current_lyduser.admin_role == false && current_lyduser.asocial_role == false%>
         <p>
         <%= form_for (@loanformulary), url: accept_loanformulary_path, method: "get" do |f| %>
         <% if current_lyduser.asocial_role? %>

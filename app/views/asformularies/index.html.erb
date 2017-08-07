@@ -72,7 +72,7 @@
 <% if params[:asformulary] && params[:asformulary][:nombre_atendido] %>
 <% likename = "%" +  params[:asformulary][:nombre_atendido] + "%" %>
 <%# as = Asformulary.where(:rut_atendido => params[:asformulary][:rut_atendido]).order('created_at DESC') %>
-<% as = Loga.where("nombre_atendido like ?", likename).order('created_at DESC') %>
+<% as = Loga.where("nombre_atendido like ? or apellido_paterno_atendido like ? or apellido_materno_atendido like ?", likename, likename, likename).order('created_at DESC') %>
 
 
 

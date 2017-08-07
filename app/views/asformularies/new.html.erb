@@ -60,6 +60,7 @@
                           <td><%= emple.rut %></td>
                           <td><%= emple.cencos %></td>
                           <td><%= emple.estado %></td>
+                          <br>
 
                         </tr>
                         <%end%>
@@ -96,7 +97,8 @@
                   </thead>
                     <tbody>
                       <% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
-                      <% logas = Loga.where(:rut_atendido => params[:asformulary][:rut_atendido]).order('created_at DESC') %>
+                      <% logas = Loga.where(:rut_atendido => params[:asformulary][:rut_atendido]).order('created_at DESC').take(20) %>
+                      
                       <% logas.each do |loga| %>
                         <tr>
                           
@@ -111,6 +113,7 @@
                           <td><%= loga.telefono %></td>
 
                         </tr>
+                     
                       <% end %>
                       <% end %>
                     </tbody>
@@ -135,7 +138,7 @@
                   </thead>
                     <tbody>
                       <% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
-                      <% logloan = Logloan.where(:rut_solicitante => params[:asformulary][:rut_atendido]).order('created_at DESC') %>
+                      <% logloan = Logloan.where(:rut_solicitante => params[:asformulary][:rut_atendido]).order('created_at DESC').take(20) %>
                       <% logloan.each do |logl| %>
                         <tr>
                           

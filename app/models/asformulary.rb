@@ -65,6 +65,14 @@ class Asformulary < ApplicationRecord
       errors.add(" ", "Ingrese una obra")
     end
 
+    if solucion.present? == false
+      errors.add(" ", "Complete el campo solucion")
+    end
+
+    if descripcion.present? == false
+      errors.add(" ", "Complete el campo descripcion")
+    end
+
 
   end
 

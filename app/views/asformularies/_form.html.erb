@@ -24,7 +24,7 @@
   <div class="field">
 <% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
 
-  <% @employee = Employee.where(:rut => params[:asformulary][:rut_atendido]) %>
+  <% @employee = Employee.where(:rut => params[:asformulary][:rut_atendido]).order('created_at DESC') %>
   <% if @employee.empty? == false %>
                         <%# employee.each do |emple| %>
                         <tr>
@@ -60,11 +60,25 @@
   </div>
  
 
+
   <div class="field">
-    <%= form.label :codigo_obra %>
-    <br>
-    <%= form.text_field :codigo_obra, id: :asformulary_codigo_obra %>
-    <br>
+
+
+<% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
+
+    <%= form.label :codigo_obra, 'Codigo Obra' %><br>
+    <% if @employee.empty?%>
+    <%= form.text_field :codigo_obra, id: :asformulary_codigo_obra %><br>
+    <% else %>
+    <%= form.text_field :codigo_obra, id: :asformulary_codigo_obra, value: @employee[0].cencos, hidden: true %> 
+    <%= @employee[0].cencos %><br>
+    <% end %>
+    
+<% else %>
+    <%= form.label :codigo_obra, 'Codigo Obra' %><br>
+    <%= form.text_field :codigo_obra, id: :asformulary_codigo_obra %><br>
+<%end%>
+
   </div>
       
 

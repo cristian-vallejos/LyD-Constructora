@@ -10,23 +10,60 @@ def input_atributos
 
 	if rut_solicitante.present? == false
 
-		errors.add(" ", "Falta RUT")
+		errors.add(" ", "Complete el campo RUT")
 
 
 	end
 
 	if obra.present? == false
 
-		errors.add(" ", "Ingrese una obra")
+		errors.add(" ", "Complete el campo obra")
 
 
 	end
 
-	#if monto_cuota > monto_solicitado
+	if monto_solicitado.present? == false
 
-	#	errors.add(" ", "El monto de la cuota no puede ser mayor que el monto solicitado")
+		errors.add(" ", "Complete el campo monto solicitado")
 
-	#end
+	end
+
+	if monto_aprobado.present? == false
+
+		errors.add(" ", "Complete el campo monto aprobado")
+
+
+	end
+
+	if numero_cuotas.present? == false
+
+		errors.add(" ", "Complete el campo numero cuotas")
+
+
+	end
+
+	if motivo_solicitud.present? == false
+
+		errors.add(" ", "Complete el campo motivo solicitud")
+
+
+	end
+
+	if comentarios.present? == false
+
+		errors.add(" ", "Complete el campo comentarios")
+
+
+	end
+
+
+	if monto_solicitado.present? && monto_cuota.present?
+		if monto_cuota > monto_solicitado
+
+			errors.add(" ", "El monto de la cuota no puede ser mayor que el monto solicitado")
+
+		end
+	end
 
 end
 

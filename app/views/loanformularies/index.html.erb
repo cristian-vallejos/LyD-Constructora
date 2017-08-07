@@ -112,16 +112,21 @@
     <ul class="navi"> 
       
 
-        <% if current_lyduser.asocial_role? || current_lyduser.administrativo_obra_role? || current_lyduser.subgerente_personas_role? || current_lyduser.jefe_remuneraciones_role? %>
-        <%  if !current_lyduser.asocial_role? %>
-        <li class="active"><a href="#one" data-toggle="tab"><i class="fa fa-desktop"></i> Pendientes </a></li>
-        <%  end %>
-        <li><a href="#two" data-toggle="tab"><i class="fa fa-cogs"></i> Aceptados </a></li>
-        <li><a href="#three" data-toggle="tab"><i class="fa fa-user"></i> Rechazados </a></li>
-        <%end%>
-        <% if current_lyduser.admin_role? || current_lyduser.asocial_role?%>
-        <li><a href="#four" data-toggle="tab"><i class="fa fa-cloud"></i> Seguimiento </a></li>
-        <%end%>
+        <% if current_lyduser.asocial_role? %>
+      <li><a href="#two" data-toggle="tab"><i class="fa fa-cogs"></i> Generados </a></li>
+      <li><a href="#four" data-toggle="tab"><i class="fa fa-cloud"></i> Seguimiento </a></li>
+    <% end %>
+
+    
+    <% if current_lyduser.administrativo_obra_role? || current_lyduser.subgerente_personas_role? || current_lyduser.jefe_remuneraciones_role? %>
+      <li class="active"><a href="#one" data-toggle="tab"><i class="fa fa-desktop"></i> Pendientes </a></li>
+      <li><a href="#two" data-toggle="tab"><i class="fa fa-cogs"></i> Aceptados </a></li>
+      <li><a href="#three" data-toggle="tab"><i class="fa fa-user"></i> Rechazados </a></li>
+    <% end %>
+
+    <% if current_lyduser.admin_role? %>
+      <li><a href="#four" data-toggle="tab"><i class="fa fa-cloud"></i> Seguimiento </a></li>
+    <% end %> 
         <li></li>
       </ul>
     <div class="clearfix"></div>
