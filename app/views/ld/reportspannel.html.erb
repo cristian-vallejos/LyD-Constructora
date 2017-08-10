@@ -1,4 +1,4 @@
-
+<% if current_lyduser.admin_role? || current_lyduser.subgerente_personas_role? %>
 
 <body>
 <link href='<%= asset_url("css/bootstrap.min.css") %>' rel="stylesheet" type="text/css">
@@ -19,10 +19,10 @@
 		                <%= f.collection_select :id, Obra.all.order('nombre ASC'), :id, :nombre, include_blank: true %>
 		                <br>
 		                <h6>Desde: </h6>
-  						<%= date_select('event1', 'date') %>
+  						<%= date_select('event1', 'date', { :discard_day => true}) %>
   						<br>
   						<h6>Hasta: </h6>
-  						<%= date_select('event2', 'date') %>
+  						<%= date_select('event2', 'date', { :discard_day => true}) %>
   						<br>
 
 		                <%# f.label "Buscar Atención" %>
@@ -51,10 +51,10 @@
 			      <% if params[:event2]["date(2i)"] != "10" && params[:event2]["date(2i)"] != "11" && params[:event2]["date(2i)"] != "12" %>
 
 			      
-			      <% fecha2 =params[:event2]["date(1i)"]+ "-" + "0" + params[:event2]["date(2i)"]+ "-" + "01"%> 
+			      <% fecha2 =params[:event2]["date(1i)"]+ "-" + "0" + params[:event2]["date(2i)"]+ "-" + "31"%> 
 			      <% else %>
 			     
-			      <% fecha2 =params[:event2]["date(1i)"]+ "-" + params[:event2]["date(2i)"]+ "-" + "01" %> 
+			      <% fecha2 =params[:event2]["date(1i)"]+ "-" + params[:event2]["date(2i)"]+ "-" + "31" %> 
 			      <% end %>
 			      <br>
 
@@ -74,7 +74,9 @@
 			    <div class="tab-content">
 			    	<div role="tabpanel" class="tab-pane fade in active" id="one">
 	        			<h2>Atenciones Sociales por Periodo</h2>
+
 	        			<% if params[:obra] && params[:event1] && params[:event2] %>
+	        			<h3>Periodo <%= fecha1 + " a " + fecha2 %> </h3>
 	        			<% ob = Obra.find(params[:obra][:id]).codigo %>
 	        			<% muestra = Loga.where("codigo_obra = ?",ob).count %>
 	        			<% muestrap = Logloan.where("obra = ?", ob).count %>
@@ -270,3 +272,5 @@
 
 
 </body>
+
+<% end %>

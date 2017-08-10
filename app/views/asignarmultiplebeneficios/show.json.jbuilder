@@ -1,0 +1,1 @@
+json.partial! "asignarmultiplebeneficios/asignarmultiplebeneficio", asignarmultiplebeneficio: @asignarmultiplebeneficio

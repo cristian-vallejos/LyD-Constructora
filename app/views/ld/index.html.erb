@@ -43,11 +43,13 @@
             <label class="label-ld">Capacitaciones</label>
             </a> </div>
         </div>
+      <%if current_lyduser.admin_role? || current_lyduser.subgerente_personas_role? %>
         <div class="row">
           <div class="col-md-4 col-sm-4 col-xs-6 col-mob">  <a href="<%= ld_reportspannel_path %>" class="bg-green-ld"> <img src='<%= asset_url("trans.png") %>' alt="" />
             <label class="label-ld">Reportes</label>
             </a> </div>
         </div>
+      <% end %>
       </div>
 
       <%if current_lyduser.admin_role? %>

@@ -34,5 +34,5 @@ en:
 
 en:
   date:
-    order: ["day", "year",  "month"]
+    order: ["day", "month",  "year"]
     month_names: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]

@@ -57,10 +57,18 @@ def input_atributos
 	end
 
 
-	if monto_solicitado.present? && monto_cuota.present?
-		if monto_cuota > monto_solicitado
+	if monto_solicitado.present? && monto_aprobado.present?
+		if monto_aprobado > monto_solicitado
 
-			errors.add(" ", "El monto de la cuota no puede ser mayor que el monto solicitado")
+			errors.add(" ", "El monto aprobado no puede ser mayor que el monto solicitado")
+
+		end
+	end
+
+	if monto_cuota.present? && monto_aprobado.present? && numero_cuotas.present?
+		if monto_cuota*numero_cuotas > monto_aprobado
+
+			errors.add(" ", "La suma de las cuotas no puede ser mayor que el monto aprobado")
 
 		end
 	end

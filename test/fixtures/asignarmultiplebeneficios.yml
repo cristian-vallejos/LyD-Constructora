@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  employee: one
+  obra: one
+  areabenefit: one
+  benefit: one
+
+two:
+  employee: two
+  obra: two
+  areabenefit: two
+  benefit: two

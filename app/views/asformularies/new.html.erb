@@ -16,13 +16,7 @@
         
           <%# link_to(image_tag(asset_url("trans.png"), class: 'bg-green-ld'), new_loanformulary_path,  :method => :get) %>
 
-          <div class="ui-37-ld">
-            <div class="row">
-              <div class="col-md-4 col-sm-4 col-xs-6 col-mob"> <a href="<%= new_loanformulary_path %>" target="_blank" class="bg-green-ld"> <img src='<%= asset_url("trans.png") %>' alt="" />
-            <label class="label-ld">Asignar Préstamos</label>
-            </a> </div>
-          </div>
-        </div>
+          
 
           
 
@@ -52,18 +46,18 @@
                     <label for="textfield">Resumen Trabajador:
                     <br>
                     <% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
-                      <% employee = Employee.where(:rut => params[:asformulary][:rut_atendido]) %>
+                      <% employee = Employee.where(:rut => params[:asformulary][:rut_atendido]).order('created_at DESC') %>
                       <% if employee.empty? == false %>
-                        <% employee.each do |emple| %>
+                        <% #employee.each do |emple| %>
                         <tr>
-                          <td><%= emple.nombre %></td>
-                          <td><%= emple.rut %></td>
-                          <td><%= emple.cencos %></td>
-                          <td><%= emple.estado %></td>
+                          <td><%= employee[0].nombre %></td>
+                          <td><%= employee[0].rut %></td>
+                          <td><%= employee[0].cencos %></td>
+                          <td><%= employee[0].estado %></td>
                           <br>
 
                         </tr>
-                        <%end%>
+                        <%#end%>
                       <% else %>
                         <h4>No se ha encontrado un trabajador asociado a ese RUT</h4>
                       <%end%>
@@ -88,11 +82,12 @@
                     <tr>
                       <th width="(100/x)%">Fecha</th>
                       <th width="(100/x)%">Tipo Consulta</th>
-                      <th width="(100/x)%">Comentario</th>
+                      
                       <th width="(100/x)%">¿Caso Cerrado?</th>
                       <th width="(100/x)%">Obra</th>
                       <th width="(100/x)%">Nº Atencion</th>
                       <th width="(100/x)%">Telefono</th>
+                      <th width="(100/x)%">Comentario</th>
                     </tr>
                   </thead>
                     <tbody>
@@ -103,14 +98,15 @@
                         <tr>
                           
                           
-                          <td><%= loga.created_at %></td>
+                          <td><%= loga.created_at.strftime("%d %b %y") %></td>
                           <td><%= loga.aspcategory_name %></td>
                           
-                          <td><%= loga.descripcion %></td>
+                          
                           <td><%= loga.estado %></td>
                           <td><%= loga.codigo_obra %></td>
                           <td><%= "N/A" %></td>
                           <td><%= loga.telefono %></td>
+                          <td><%= loga.descripcion %></td>
 
                         </tr>
                      

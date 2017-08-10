@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170802200741) do
+ActiveRecord::Schema.define(version: 20170810210627) do
 
   create_table "areabenefits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "nombre"
@@ -42,6 +42,19 @@ ActiveRecord::Schema.define(version: 20170802200741) do
     t.index ["benefit_id"], name: "index_asformularies_on_benefit_id"
     t.index ["lyduser_id"], name: "index_asformularies_on_lyduser_id"
     t.index ["user_id"], name: "index_asformularies_on_user_id"
+  end
+
+  create_table "asignarmultiplebeneficios", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "employee_id"
+    t.bigint "obra_id"
+    t.bigint "areabenefit_id"
+    t.bigint "benefit_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["areabenefit_id"], name: "index_asignarmultiplebeneficios_on_areabenefit_id"
+    t.index ["benefit_id"], name: "index_asignarmultiplebeneficios_on_benefit_id"
+    t.index ["employee_id"], name: "index_asignarmultiplebeneficios_on_employee_id"
+    t.index ["obra_id"], name: "index_asignarmultiplebeneficios_on_obra_id"
   end
 
   create_table "aspcategories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -270,6 +283,10 @@ ActiveRecord::Schema.define(version: 20170802200741) do
   add_foreign_key "asformularies", "benefits"
   add_foreign_key "asformularies", "lydusers"
   add_foreign_key "asformularies", "users"
+  add_foreign_key "asignarmultiplebeneficios", "areabenefits"
+  add_foreign_key "asignarmultiplebeneficios", "benefits"
+  add_foreign_key "asignarmultiplebeneficios", "employees"
+  add_foreign_key "asignarmultiplebeneficios", "obras"
   add_foreign_key "assignbenefits", "benefits"
   add_foreign_key "assignbenefits", "obras"
   add_foreign_key "benefits", "areabenefits"

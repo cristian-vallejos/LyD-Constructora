@@ -18,7 +18,7 @@
   <tbody>
     <% @assignbenefits.each do |assignbenefit| %>
       <tr>
-        <td><%= assignbenefit.benefit %></td>
+        <td><%= assignbenefit.benefit.nombre %></td>
         <td><%= assignbenefit.rut_trabajador %></td>
         <td><%= assignbenefit.rut_beneficiario %></td>
         <td><%= assignbenefit.relacion %></td>

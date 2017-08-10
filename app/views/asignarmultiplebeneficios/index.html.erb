@@ -1,0 +1,74 @@
+<p id="notice"><%= notice %></p>
+
+<%=form_for @asignarmultiplebeneficio, url: {controller: "asignarmultiplebeneficios", action: "create"} do |f| %>
+
+
+
+  <div class="field">
+    <%= f.label :obra_id %>
+    <%= f.collection_select(:obra_id, Obra.all, :codigo, :nombre, {:prompt => "Escoger centro de costo"},{:class => "ccosto_selection"}) %>
+  </div>
+
+
+<div class="field">
+<table id="tblTrabajadores">
+  <thead>
+    <tr>
+      <th>Trabajador</th>
+      <th>Centrocosto</th>
+      <th>Areabenefit</th>
+      <th>Benefit</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @trabajadores.each do |trabajador| %>
+
+      <% if trabajador.estado == "A" %>
+      <tr>
+        <div style="display: none;">
+        <%= centrocosto = trabajador.cencos %>
+        </div>
+        <td><%= check_box_tag "trabajador_id#{trabajador.id}", trabajador.id %></td>
+        <td><%= trabajador.nombre %></td>
+        <td><%= trabajador.rut %></td>
+        <td><%= centrocosto %></td>
+        <td><%= trabajador.estado %></td>
+
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+  <div class="field">
+    <%= f.label :areabenefit_id %>
+    <%= f.collection_select(:areabenefit_id, Areabenefit.all, :id, :nombre, {:prompt => "Please select a company"},{:class => "company_selection"}) %>
+  </div>
+
+    <div class="field">
+    <%= f.label :benefit_id %>
+    <%= f.collection_select(:benefit_id, Benefit.all, :id, :nombre, {:prompt => "Select a Contact"}, {:class => "contact_selection"}) %>
+  </div>
+
+
+<br>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+<%= link_to 'New Asignarmultiplebeneficio', new_asignarmultiplebeneficio_path %>

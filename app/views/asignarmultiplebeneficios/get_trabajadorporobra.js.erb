@@ -1,0 +1,36 @@
+//var tableSize= $('#tblTrabajadores tbody tr').length;
+//alert(tableSize);
+
+//$('#tblTrabajadores tbody').remove();
+
+$('#tblTrabajadores tr').not(':first').remove();
+
+var html = '';
+<% @trabajadores.each do |trabajador| %>
+
+<% if trabajador.estado == "A" %>
+<% centrocosto = trabajador.cencos %>
+<% Rails.logger.warn " lala #{trabajador.rut}" %>
+	var id = '<%= trabajador.id %>';
+	var nombre = '<%= trabajador.nombre %>';
+	var rut = '<%= trabajador.rut %>';
+	var estado  ='<%= trabajador.estado %>';
+	
+	var centro  ='<%= centrocosto %>';
+	html += '<tr>';
+	html += '<td><input type="checkbox" name="trabajador_id+'+id+'+" id="trabajador_id+'+id+'+" value="+'+id+'+" /></td>';
+	html += '<td>'+nombre+'</td>';
+	html += '<td>'+rut+'</td>';
+	html += '<td>'+centro+'</td>';
+	html += '<td>'+estado+'</td>';
+	html += '</tr>';
+
+
+	
+
+   <% end %>
+
+<% end %>
+
+$('#tblTrabajadores tr').first().after(html);
+

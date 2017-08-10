@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
 
+  resources :asignarmultiplebeneficios do
+    collection do
+      get 'get_contacts', to: "asignarmultiplebeneficios#get_contacts"
+    end
+
+    collection do
+      get 'get_trabajadorporobra', to: "asignarmultiplebeneficios#get_trabajadorporobra"
+    end
+  end
+  
   resources :logloans
   resources :employees
   resources :assignbenefits

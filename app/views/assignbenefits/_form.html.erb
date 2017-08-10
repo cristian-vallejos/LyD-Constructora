@@ -1,3 +1,12 @@
+<%= form_for (@assignbenefit), url: new_assignbenefit_path, method: "get" do |f| %>
+  <%= f.label "Verificar trabajador  - Ingrese RUT" %>
+  <%= f.text_field :rut_trabajador , placeholder: "13832057-K"%>
+  <%= f.submit "check", name: "check" %>
+<% end %>
+<br>
+<br>
+
+
 <%= form_with(model: assignbenefit, local: true) do |form| %>
   <% if assignbenefit.errors.any? %>
     <div id="error_explanation">
@@ -11,35 +20,81 @@
     </div>
   <% end %>
 
+
+  <% if params[:assignbenefit] && params[:assignbenefit][:rut_trabajador] %>
+
+  <% @employee = Employee.where(:rut => params[:assignbenefit][:rut_trabajador]).order('created_at DESC') %>
+  <% @obra = Obra.where("codigo = ?",@employee[0].cencos) %>
+
+  <%end%>
+
   <div class="field">
-    <%= form.label :benefit_id %>
-    <%= form.text_field :benefit_id, id: :assignbenefit_benefit_id %>
+    <%= form.label :benefit_id, 'Seleccione un Beneficio' %> <br>
+    <%= form.collection_select :benefit_id, Benefit.all, :id, :nombre, include_blank: true %>
   </div>
 
   <div class="field">
-    <%= form.label :rut_trabajador %>
-    <%= form.text_field :rut_trabajador, id: :assignbenefit_rut_trabajador %>
+    <% if params[:assignbenefit] && params[:assignbenefit][:rut_trabajador] %>
+    
+    <%= form.label :rut_trabajador, 'Rut Trabajador' %> <br>
+
+    <% if @employee.empty?%>
+    <%= form.text_field :rut_trabajador, id: :assignbenefit_rut_trabajador, placeholder: "13832057-K" %> <br>
+    <% else %>
+    <%= form.text_field :rut_trabajador, id: :assignbenefit_rut_trabajador, value: @employee[0].rut, hidden: true %> 
+    <%= @employee[0].rut %><br>
+    <% end %>
+
+   <% else %>
+
+      <%= form.label :rut_trabajador, 'Rut Trabajador' %> <br>
+      <%= form.text_field :rut_trabajador, id: :assignbenefit_rut_trabajador, placeholder: "13832057-K" %><br>
+
+
+      
+  <%end%>
+
   </div>
 
   <div class="field">
-    <%= form.label :rut_beneficiario %>
-    <%= form.text_field :rut_beneficiario, id: :assignbenefit_rut_beneficiario %>
+    <%= form.label :rut_beneficiario %><br>
+    <%= form.text_field :rut_beneficiario, id: :assignbenefit_rut_beneficiario %><br>
   </div>
 
   <div class="field">
-    <%= form.label :relacion %>
-    <%= form.text_field :relacion, id: :assignbenefit_relacion %>
+    <%= form.label :relacion, 'Parentezco' %><br>
+    <%= form.text_field :relacion, id: :assignbenefit_relacion %><br>
   </div>
 
   <div class="field">
-    <%= form.label :fecha_nacimiento %>
-    <%= form.date_select :fecha_nacimiento, id: :assignbenefit_fecha_nacimiento %>
+    <%= form.label :fecha_nacimiento %><br>
+    <%= form.date_select :fecha_nacimiento, id: :assignbenefit_fecha_nacimiento %><br>
   </div>
 
-  <div class="field">
-    <%= form.label :obra_id %>
-    <%= form.text_field :obra_id, id: :assignbenefit_obra_id %>
-  </div>
+
+
+
+ <div class="field">
+  <% if params[:assignbenefit] && params[:assignbenefit][:rut_trabajador] %>
+
+    <%= form.label :obra_id, 'Codigo Obra' %><br>
+    <% if @employee.empty?%>
+    <%= form.text_field :obra_id, id: :assignbenefit_obra_id %><br>
+    <% else %>
+    <%= form.text_field :obra_id, id: :assignbenefit_obra_id, value: @obra[0].id, hidden: true %> 
+    <%= @obra[0].codigo %><br>
+    <% end %>
+    
+<% else %>
+    <%= form.label :obra_id, 'Codigo Obra' %><br>
+    <%= form.text_field :obra_id, id: :assignbenefit_obra_id %><br>
+
+<%end%>
+</div>
+
+
+
+
 
   <div class="actions">
     <%= form.submit %>

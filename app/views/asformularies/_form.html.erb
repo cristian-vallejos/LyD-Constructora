@@ -1,6 +1,6 @@
 <%= form_for (@asformulary), url: new_asformulary_path, method: "get" do |f| %>
   <%= f.label "Verificar trabajador  - Ingrese RUT" %>
-  <%= f.text_field :rut_atendido %>
+  <%= f.text_field :rut_atendido , placeholder: "13832057-K"%>
   <%= f.submit "check", name: "check" %>
 <% end %>
 <br>
@@ -8,7 +8,7 @@
 <%= form_with(model: asformulary, local: true) do |form| %>
   <% if asformulary.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(asformulary.errors.count, "error") %> prohibited this asformulary from being saved:</h2>
+      <h2><%= pluralize(asformulary.errors.count, "errores") %> No permiten guardar este formulario:</h2>
 
       <ul>
       <% asformulary.errors.full_messages.each do |message| %>
@@ -42,7 +42,7 @@
     <%= form.label :rut_atendido, 'Rut Trabajador' %> <br>
 
     <% if @employee.empty?%>
-    <%= form.text_field :rut_atendido, id: :asformulary_rut_atendido %> <br>
+    <%= form.text_field :rut_atendido, id: :asformulary_rut_atendido, placeholder: "13832057-K" %> <br>
     <% else %>
     <%= form.text_field :rut_atendido, id: :asformulary_rut_atendido, value: @employee[0].rut, hidden: true %> 
     <%= @employee[0].rut %><br>
@@ -51,7 +51,7 @@
  <% else %>
 
     <%= form.label :rut_atendido, 'Rut Trabajador' %> <br>
-    <%= form.text_field :rut_atendido, id: :asformulary_rut_atendido %><br>
+    <%= form.text_field :rut_atendido, id: :asformulary_rut_atendido, placeholder: "13832057-K" %><br>
 
 
     
@@ -95,10 +95,10 @@
 
 <% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
     
-<%= form.label :nombre_atendido, 'Nombre Trabajador' %><br>
+<%= form.label :nombre_atendido, 'Nombre Completo Trabajador' %><br>
 
     <% if @employee.empty?%>
-    <%= form.text_field :nombre_atendido, id: :asformulary_nombre_atendido %><br>
+    <%= form.text_field :nombre_atendido, id: :asformulary_nombre_atendido, placeholder: "Esteban Bayor" %><br>
     <% else %>
     <%= form.text_field :nombre_atendido, id: :asformulary_nombre_atendido, value: @employee[0].nombre, hidden: true %>
     <%= @employee[0].nombre %><br>
@@ -108,7 +108,7 @@
  <% else %>
 
     <%= form.label :nombre_atendido, 'Nombre trabajador' %>
-    <%= form.text_field :nombre_atendido, id: :asformulary_rut_atendido %>
+    <%= form.text_field :nombre_atendido, id: :asformulary_rut_atendido, placeholder: "Esteban Bayor" %>
 
 
     
@@ -134,7 +134,7 @@
   </div>
 
   <div class="field">
-    <%= form.label :subcontrato %>
+    <%= form.label :subcontrato, 'subcontrato?' %>
     <%= form.check_box :subcontrato, id: :asformulary_subcontrato %>
   </div>
 
@@ -146,18 +146,13 @@
   </div>
 
   <div class="field">
-    <%= form.label :descripcion %>
+    <%= form.label :descripcion, 'Descripción' %>
     <br>
-    <%= form.text_area :descripcion, id: :asformulary_descripcion %>
+    <%= form.text_area :descripcion, id: :asformulary_descripcion, placeholder: "Descripción..." %>
     <br>
   </div>
 
-  <div class="field">
-    <%= form.label :solucion %>
-    <br>
-    <%= form.text_field :solucion, id: :asformulary_solucion %>
-    <br>
-  </div>
+  
 
    <div class="field">
     
@@ -168,9 +163,36 @@
 
   </div>
 
-  <div class="actions">
-    <%= form.submit "Ingresar nueva atención", :class => 'btn btn-green btn-lg btn-block'%>
+  <div class="field">
+    <%= form.label :solucion, 'Solución' %>
+    <br>
+    <%= form.text_field :solucion, id: :asformulary_solucion, placeholder: "Solución..." %>
+    <br>
   </div>
 
 
+
+
+
+<div class="ui-37-ld">
+            <div align="left">
+              <div class="col-md-4 col-sm-4 col-xs-6 col-mob"> <a href="<%= new_loanformulary_path %>" target="_blank" class="bg-green-ld"> <img src='<%= asset_url("trans.png") %>' alt="" />
+            <label class="label-ld">Asignar Préstamos</label>
+            </a> </div>
+          </div>
+        </div>
+
+
+
+
+  <div class="actions">
+    <%= form.submit "Guardar atención", :class => 'btn btn-green btn-lg btn-block'%>
+  </div>
+
+
+
+
+
 <% end %>
+
+

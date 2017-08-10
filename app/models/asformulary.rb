@@ -61,6 +61,10 @@ class Asformulary < ApplicationRecord
           end
     end
 
+    if aspcategory.present? == false
+      errors.add(" ", "Complete el campo tipo consulta")
+    end
+
     if codigo_obra.present? == false
       errors.add(" ", "Ingrese una obra")
     end
