@@ -1,0 +1,19 @@
+<h1>Hola MUndo</h1>
+
+
+<%=form_for Benefit.new, url: {controller: "pages", action: "indexBenefitPerName"} do %>
+
+
+
+    <div class="field">
+
+    <%= collection_select(:benefit, :benefit_id, Benefit.all, :id, :nombre, {:prompt => "Select a Contact"}, {:class => "contact_selection"}) %>
+  </div>
+
+
+<br>
+
+  <div class="actions">
+    <%= submit_tag 'Create' %>
+  </div>
+<% end %>

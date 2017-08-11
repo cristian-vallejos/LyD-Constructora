@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+<head>
+<body>
+	<table border="1">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Area</th>
+      <th>Nombre Trabajador</th>
+      <th>Beneficiario</th>
+      <th>Fecha</th>
+      <th>Obra</th>
+      <th>¿Asistio?</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @assignbenefit.each do |assignbenefit| %>
+      <tr>
+        <div style="display: none;">
+        <%= benefit = Benefit.find(assignbenefit.benefit_id) %>
+        <%= areabenefit = Areabenefit.find(benefit.areabenefit_id) %>
+        </div>
+        <td><%= benefit.nombre %></td>
+        <td><%= areabenefit.nombre %></td>
+        
+        
+        <div style="display: none;">
+        <%= trabajador = Employee.find_by rut: assignbenefit.rut_trabajador %>
+        </div>
+
+        <td><%= trabajador.nombre %></td>
+
+
+
+        <td><%= "Familiar" %></td>
+        <td><%= assignbenefit.created_at %></td>
+        <td><%= assignbenefit.obra_id %></td>
+        <td></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div id="footer"> 
+  <img src='<%= asset_url("footer.png")%>'>
+</img>
+</div>
+</body>
+</html>
