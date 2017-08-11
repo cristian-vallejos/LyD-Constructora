@@ -42,7 +42,7 @@
     <%= form.label :rut_atendido, 'Rut Trabajador' %> <br>
 
     <% if @employee.empty?%>
-    <%= form.text_field :rut_atendido, id: :asformulary_rut_atendido, placeholder: "13832057-K" %> <br>
+    <%= form.text_field :rut_atendido, id: :asformulary_rut_atendido, placeholder: "13832057-K", :class => 'textForm' %> <br>
     <% else %>
     <%= form.text_field :rut_atendido, id: :asformulary_rut_atendido, value: @employee[0].rut, hidden: true %> 
     <%= @employee[0].rut %><br>
@@ -51,7 +51,7 @@
  <% else %>
 
     <%= form.label :rut_atendido, 'Rut Trabajador' %> <br>
-    <%= form.text_field :rut_atendido, id: :asformulary_rut_atendido, placeholder: "13832057-K" %><br>
+    <%= form.text_field :rut_atendido, id: :asformulary_rut_atendido, placeholder: "13832057-K", :class => 'textForm' %><br>
 
 
     
@@ -68,7 +68,7 @@
 
     <%= form.label :codigo_obra, 'Codigo Obra' %><br>
     <% if @employee.empty?%>
-    <%= form.text_field :codigo_obra, id: :asformulary_codigo_obra %><br>
+    <%= form.text_field :codigo_obra, id: :asformulary_codigo_obra, :class => 'textForm' %><br>
     <% else %>
     <%= form.text_field :codigo_obra, id: :asformulary_codigo_obra, value: @employee[0].cencos, hidden: true %> 
     <%= @employee[0].cencos %><br>
@@ -76,7 +76,7 @@
     
 <% else %>
     <%= form.label :codigo_obra, 'Codigo Obra' %><br>
-    <%= form.text_field :codigo_obra, id: :asformulary_codigo_obra %><br>
+    <%= form.text_field :codigo_obra, id: :asformulary_codigo_obra, :class => 'textForm' %><br>
 <%end%>
 
   </div>
@@ -86,7 +86,7 @@
   <div class="field">
     <%= form.label :telefono %>
     <br>
-    <%= form.number_field :telefono, id: :asformulary_telefono %>
+    <%= form.number_field :telefono, id: :asformulary_telefono, :class => 'textForm' %>
     <br>
   </div>
     
@@ -98,7 +98,7 @@
 <%= form.label :nombre_atendido, 'Nombre Completo Trabajador' %><br>
 
     <% if @employee.empty?%>
-    <%= form.text_field :nombre_atendido, id: :asformulary_nombre_atendido, placeholder: "Esteban Bayor" %><br>
+    <%= form.text_field :nombre_atendido, id: :asformulary_nombre_atendido, placeholder: "Luis Miguel Quevedo Olivares", :class => 'textForm' %><br>
     <% else %>
     <%= form.text_field :nombre_atendido, id: :asformulary_nombre_atendido, value: @employee[0].nombre, hidden: true %>
     <%= @employee[0].nombre %><br>
@@ -108,7 +108,7 @@
  <% else %>
 
     <%= form.label :nombre_atendido, 'Nombre trabajador' %>
-    <%= form.text_field :nombre_atendido, id: :asformulary_rut_atendido, placeholder: "Esteban Bayor" %>
+    <%= form.text_field :nombre_atendido, id: :asformulary_rut_atendido, placeholder: "Luis Miguel Quevedo Olivares", :class => 'textForm' %>
 
 
     
@@ -141,14 +141,14 @@
   <div class="field">
     <%= form.label :nombre_supervisor %>
     <br>
-    <%= form.text_field :nombre_supervisor, id: :asformulary_nombre_supervisor %>
+    <%= form.text_field :nombre_supervisor, id: :asformulary_nombre_supervisor, :class => 'textForm' %>
     <br>
   </div>
 
   <div class="field">
     <%= form.label :descripcion, 'Descripción' %>
     <br>
-    <%= form.text_area :descripcion, id: :asformulary_descripcion, placeholder: "Descripción..." %>
+    <%= form.text_area :descripcion, id: :asformulary_descripcion, placeholder: "Descripción...", :class => 'textForm' %>
     <br>
   </div>
 
@@ -166,7 +166,7 @@
   <div class="field">
     <%= form.label :solucion, 'Solución' %>
     <br>
-    <%= form.text_field :solucion, id: :asformulary_solucion, placeholder: "Solución..." %>
+    <%= form.text_field :solucion, id: :asformulary_solucion, placeholder: "Solución...", :class => 'textForm' %>
     <br>
   </div>
 

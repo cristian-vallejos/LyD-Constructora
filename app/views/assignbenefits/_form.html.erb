@@ -39,7 +39,7 @@
     <%= form.label :rut_trabajador, 'Rut Trabajador' %> <br>
 
     <% if @employee.empty?%>
-    <%= form.text_field :rut_trabajador, id: :assignbenefit_rut_trabajador, placeholder: "13832057-K" %> <br>
+    <%= form.text_field :rut_trabajador, id: :assignbenefit_rut_trabajador, placeholder: "13832057-K", :class => 'textForm' %> <br>
     <% else %>
     <%= form.text_field :rut_trabajador, id: :assignbenefit_rut_trabajador, value: @employee[0].rut, hidden: true %> 
     <%= @employee[0].rut %><br>
@@ -48,7 +48,7 @@
    <% else %>
 
       <%= form.label :rut_trabajador, 'Rut Trabajador' %> <br>
-      <%= form.text_field :rut_trabajador, id: :assignbenefit_rut_trabajador, placeholder: "13832057-K" %><br>
+      <%= form.text_field :rut_trabajador, id: :assignbenefit_rut_trabajador, placeholder: "13832057-K", :class => 'textForm' %><br>
 
 
       
@@ -58,12 +58,12 @@
 
   <div class="field">
     <%= form.label :rut_beneficiario %><br>
-    <%= form.text_field :rut_beneficiario, id: :assignbenefit_rut_beneficiario %><br>
+    <%= form.text_field :rut_beneficiario, id: :assignbenefit_rut_beneficiario, :class => 'textForm' %><br>
   </div>
 
   <div class="field">
     <%= form.label :relacion, 'Parentezco' %><br>
-    <%= form.text_field :relacion, id: :assignbenefit_relacion %><br>
+    <%= form.text_field :relacion, id: :assignbenefit_relacion, :class => 'textForm' %><br>
   </div>
 
   <div class="field">
@@ -79,7 +79,7 @@
 
     <%= form.label :obra_id, 'Codigo Obra' %><br>
     <% if @employee.empty?%>
-    <%= form.text_field :obra_id, id: :assignbenefit_obra_id %><br>
+    <%= form.text_field :obra_id, id: :assignbenefit_obra_id, :class => 'textForm' %><br>
     <% else %>
     <%= form.text_field :obra_id, id: :assignbenefit_obra_id, value: @obra[0].id, hidden: true %> 
     <%= @obra[0].codigo %><br>
@@ -87,7 +87,7 @@
     
 <% else %>
     <%= form.label :obra_id, 'Codigo Obra' %><br>
-    <%= form.text_field :obra_id, id: :assignbenefit_obra_id %><br>
+    <%= form.text_field :obra_id, id: :assignbenefit_obra_id, :class => 'textForm' %><br>
 
 <%end%>
 </div>
@@ -97,6 +97,6 @@
 
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Asignar", :class => 'btn btn-green btn-lg btn-block' %>
   </div>
 <% end %>

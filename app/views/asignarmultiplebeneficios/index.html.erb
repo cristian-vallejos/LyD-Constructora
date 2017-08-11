@@ -1,64 +1,121 @@
+<link href='<%= asset_url("css/bootstrap.min.css") %>' rel="stylesheet" type="text/css">
+<link href='<%= asset_url("css/font-awesome.min.css") %>' rel="stylesheet">
+<link href='<%= asset_url("css/style-273.css") %>' rel="stylesheet">
+<link href='<%= asset_url("css2/stylesLD.css") %>' rel="stylesheet" type="text/css">
+
 <p id="notice"><%= notice %></p>
 
 <%=form_for @asignarmultiplebeneficio, url: {controller: "asignarmultiplebeneficios", action: "create"} do |f| %>
 
+<div class="container">
+  <div class="content"> 
+    
+    <!-- UI - X Starts -->
+    <div class="ui-273">
+
+      <div class="field">
+      <%= f.label :obra_id %>
+      <%= f.collection_select(:obra_id, Obra.all.order('nombre ASC'), :codigo, :nombre, {:prompt => "Escoger centro de costo"},{:class => "ccosto_selection"}) %>
+      </div>
+
+      <div class="table-responsive"> 
+          <!-- Table -->
+          <table class="table table-bordered">
+          <table id="tblTrabajadores">
+            
+              <tr>
+                <th><%= check_box_tag "check_all", class: 'check_all'  %></th>
+                <th>Trabajador</th>
+                <th>Centrocosto</th>
+                <th>Areabenefit</th>
+                <th>Benefit</th>
+                <th colspan="3"></th>
+              </tr>
+            
+            
+            <% @trabajadores.each do |trabajador| %>
+
+              <% if trabajador.estado == "A" %>
+              <tr>
+                <div style="display: none;">
+                <%= centrocosto = trabajador.cencos %>
+                </div>
+                <td><%= check_box_tag "trabajador_id#{trabajador.id}", trabajador.id,  class: 'ui-check' %></td>
+                <td><%= trabajador.nombre %></td>
+                <td><%= trabajador.rut %></td>
+                <td><%= centrocosto %></td>
+                <td><%= trabajador.estado %></td>
+
+              </tr>
+              <% end %>
+            <% end %>
+          
+          </table>
+          </table>
+      </div>
+
+      <div class="field">
+        <%= f.label :areabenefit_id %>
+        <%= f.collection_select(:areabenefit_id, Areabenefit.all, :id, :nombre, {:prompt => "Please select a company"},{:class => "company_selection"}) %>
+      </div>
+
+      <div class="field">
+        <%= f.label :benefit_id %>
+        <%= f.collection_select(:benefit_id, Benefit.all, :id, :nombre, {:prompt => "Select a Contact"}, {:class => "contact_selection"}) %>
+      </div>
 
 
-  <div class="field">
-    <%= f.label :obra_id %>
-    <%= f.collection_select(:obra_id, Obra.all, :codigo, :nombre, {:prompt => "Escoger centro de costo"},{:class => "ccosto_selection"}) %>
+    <br>
+
+      
+      <div class="actions">
+        <%= f.submit "Ingresar", :class => 'btn btn-green btn-lg btn-block' %>
+      </div>
+
+
+    </div>
+
+
+<!-- Javascript files --> 
+    <!-- jQuery --> 
+    <script src='<%= asset_url("jquery.js") %>'></script> 
+    <!-- Bootstrap JS --> 
+    <script src='<%= asset_url("bootstrap.min.js") %>'></script> 
+    <!-- Placeholder JS --> 
+    <script src='<%= asset_url("placeholder.js") %>'></script> 
+    <!-- Respond JS for IE8 --> 
+    <script src='<%= asset_url("respond.min.js") %>'></script> 
+    <!-- HTML5 Support for IE --> 
+    <script src='<%= asset_url("html5shiv.js") %>'></script> 
+
+
+    <script>
+      $(document).ready(function(){
+   $('#check_all').click(function() {
+   if (this.checked) {
+       $(':checkbox').each(function() {
+           this.checked = true;                        
+       });
+   } else {
+      $(':checkbox').each(function() {
+           this.checked = false;                        
+       });
+   } 
+});
+
+});
+    </script> 
+
+
+
   </div>
-
-
-<div class="field">
-<table id="tblTrabajadores">
-  <thead>
-    <tr>
-      <th>Trabajador</th>
-      <th>Centrocosto</th>
-      <th>Areabenefit</th>
-      <th>Benefit</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @trabajadores.each do |trabajador| %>
-
-      <% if trabajador.estado == "A" %>
-      <tr>
-        <div style="display: none;">
-        <%= centrocosto = trabajador.cencos %>
-        </div>
-        <td><%= check_box_tag "trabajador_id#{trabajador.id}", trabajador.id %></td>
-        <td><%= trabajador.nombre %></td>
-        <td><%= trabajador.rut %></td>
-        <td><%= centrocosto %></td>
-        <td><%= trabajador.estado %></td>
-
-      </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
 </div>
 
-  <div class="field">
-    <%= f.label :areabenefit_id %>
-    <%= f.collection_select(:areabenefit_id, Areabenefit.all, :id, :nombre, {:prompt => "Please select a company"},{:class => "company_selection"}) %>
-  </div>
-
-    <div class="field">
-    <%= f.label :benefit_id %>
-    <%= f.collection_select(:benefit_id, Benefit.all, :id, :nombre, {:prompt => "Select a Contact"}, {:class => "contact_selection"}) %>
-  </div>
+  
 
 
-<br>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  
 <% end %>
 
 

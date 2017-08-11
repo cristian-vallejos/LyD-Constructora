@@ -76,6 +76,8 @@ class AsignarmultiplebeneficiosController < ApplicationController
       end
     end
 
+    redirect_to asignarmultiplebeneficios_path
+
   end
 
 
