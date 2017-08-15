@@ -1,0 +1,62 @@
+<table> 
+
+              <thead>
+                <tr>
+                  <th>Rut atendido</th>
+                  <th>Codigo obra</th>
+                  <th>Telefono</th>
+                  <th>Asistente Social</th>
+                  <th>Nombre trabajador</th>
+                  <th>Apellido</th>
+                  <th>Categoria</th>
+                  <th>Solucion</th>
+                  <th>Subcontrato?</th>
+                 
+                  <th>¿Caso Cerrado?</th>
+          
+
+                  <th>Descripcion</th>
+                  <th colspan="3"></th>
+                </tr>
+              </thead>
+              <tbody>
+              <%if @results %>
+                <% @results.each do |x|%>
+                  <tr>
+                    <td><%= x.rut_atendido %></td>
+                    <td><%= x.codigo_obra %></td>
+                    <td><%= x.telefono %></td>
+                    <td><%# x.lyduser.email %></td>
+                    <td><%= x.nombre_atendido %></td>
+                    <td><%= x.apellido_paterno %></td>
+                    <td><%= x.aspcategory.nombre %></td>
+                    <td><%= x.solucion %></td>
+                    <% if x.estado == true %>
+                    <td><%="SI"%></td>
+                    <% else %>
+                    <td><%= "NO"%></td>
+                    <%end%>
+                    <% if x.subcontrato == true %>
+                    <td><%="SI"%></td>
+                    <% else %>
+                    <td><%= "NO"%></td>
+                    <%end%>
+                    
+                    <td><%= x.descripcion %></td>
+                    <%if can? :show, Asformulary %>
+                    <td><%= link_to 'Mostrar', x %></td>
+                    <%end%>
+                    <%if can? :edit, Asformulary %>
+                    <td><%# link_to 'Edit', edit_asformulary_path(asformulary) %></td>
+                    <%end%>
+                    <%if can? :destroy, Asformulary %>
+                    <td><%# link_to 'Destroy', asformulary, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <%end%>
+
+                    </td>
+                  </tr>
+                <% end %>
+              <%end %>
+              </tbody>
+
+              </table>

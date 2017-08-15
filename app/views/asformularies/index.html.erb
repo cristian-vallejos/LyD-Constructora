@@ -39,14 +39,32 @@
             </div>
 
             <div class="col-md-2">
-              <%= form_for (@asformulary), url: asformularies_path, method: "get" do |f| %>
+              <%= form_tag asformularies_path, :method => 'get', :id => "as_search" do %>
               <div class="item">
               <h4>Buscar Atención por nombre</h4>
                 <%# f.label "Buscar Atención" %>
-                <%= f.text_field :nombre_atendido %>
-                <%= f.submit "Buscar", name: "search" %>
+                <%= text_field_tag :search, params[:search] %>
+                <%= submit_tag "Buscar", :name => nil %>
               </div>
+
+              
+
+
+
+<script>
+$(document).on("keyup", "#as_search", function(){
+       $.get($("#as_search").attr("action"), $("#as_search").serialize(), null, "script");
+       return false;
+   });
+
+
+</script>
+
+
+
               <% end %>
+
+
 
             </div>
           </div>
@@ -56,9 +74,9 @@
 
 <div class ="row">
 <div class="col-md-1">
-<%= form_for (@asformulary), url: asformularies_path, method: "get" do |f| %>
-  <%= f.submit "Limpiar busqueda", name: "limpiar" %>
-<% end %>
+<%# form_for (@asformulary), url: asformularies_path, method: "get" do |f| %>
+  <%# f.submit "Limpiar busqueda", name: "limpiar" %>
+<%# end %>
 
 </div>
 </div>
@@ -68,72 +86,9 @@
 
 <br>
 
-
-<% if params[:asformulary] && params[:asformulary][:nombre_atendido] %>
-<% likename = "%" +  params[:asformulary][:nombre_atendido] + "%" %>
-<%# as = Asformulary.where(:rut_atendido => params[:asformulary][:rut_atendido]).order('created_at DESC') %>
-<% as = Loga.where("nombre_atendido like ? or apellido_paterno_atendido like ? or apellido_materno_atendido like ?", likename, likename, likename).order('created_at DESC') %>
-
-
-
-<table>
-  <thead>
-    <tr>
-      <th>Rut atendido</th>
-      <th>Codigo obra</th>
-      <th>Telefono</th>
-      <th>Asistente Social</th>
-      <th>Nombre trabajador</th>
-      <th>Categoria</th>
-      <th>Solucion</th>
-     
-      <th>¿Caso Cerrado?</th>
-      <th>¿Subcontrato?</th>
-
-      <th>Descripcion</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% as.each do |asformulary| %>
-      <tr>
-        <td><%= asformulary.rut_atendido %></td>
-        <td><%= asformulary.codigo_obra %></td>
-        <td><%= asformulary.telefono %></td>
-        <td><%= asformulary.user_name %></td>
-        <td><%= asformulary.nombre_atendido %></td>
-        <td><%= asformulary.aspcategory_name %></td>
-        <td><%= asformulary.solucion %></td>
-        <% if asformulary.estado == true %>
-        <td><%="SI"%></td>
-        <% else %>
-        <td><%= "NO"%></td>
-        <%end%>
-        <% if asformulary.subcontrato == true %>
-        <td><%="SI"%></td>
-        <% else %>
-        <td><%= "NO"%></td>
-        <%end%>
-        
-        <td><%= asformulary.descripcion %></td>
-        <%if can? :show, Asformulary %>
-        <td><%= link_to 'Mostrar', asformulary %></td>
-        <%end%>
-        <%if can? :edit, Asformulary %>
-        <td><%= link_to 'Edit', edit_asformulary_path(asformulary) %></td>
-        <%end%>
-        <%if can? :destroy, Asformulary %>
-        <td><%= link_to 'Destroy', asformulary, method: :delete, data: { confirm: 'Are you sure?' } %>
-        <%end%>
-
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<% end %>
+              <div id="asresults">
+                <%= render 'search', locals: { post: @results } %>
+              </div>
 
 <br>
 

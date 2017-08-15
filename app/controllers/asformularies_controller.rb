@@ -9,8 +9,21 @@ class AsformulariesController < ApplicationController
   # GET /asformularies
   # GET /asformularies.json
   def index
-    @asformularies = Asformulary.all
-    @asformulary = Asformulary.new(:rut_atendido => params[:rut_atendido])
+    #@asformularies = Asformulary.all
+    #@asformulary = Asformulary.new(:rut_atendido => params[:rut_atendido])
+    @results = Asformulary.search(params[:search]).order('created_at DESC')
+    puts "-----"
+    puts @results[0].rut_atendido
+    puts @results.count
+    puts "-----"
+
+
+  end
+
+  def search
+    #if(params[:asformulary] && params[:asformulary][:nombre_atendido])
+      
+    #end
 
   end
 
@@ -107,6 +120,9 @@ class AsformulariesController < ApplicationController
     
       respond_to do |format|
         if @asformulary.save
+
+          #LoanmailMailer.correo('rodespmac@gmail.com').deliver
+
           format.html { redirect_to asformularies_path}#, notice: 'Asformulary was successfully created.' }
           format.json { render :show, status: :created, location: @asformulary }
         else

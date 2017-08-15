@@ -41,6 +41,9 @@ Rails.application.routes.draw do
       get :newseg
       get :checkrut
     end
+    collection do
+      get 'search', to: "asformularies#search"
+    end
   end
   resources :aspcategories
   resources :users

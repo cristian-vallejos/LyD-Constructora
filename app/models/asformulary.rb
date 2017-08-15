@@ -15,6 +15,14 @@ class Asformulary < ApplicationRecord
   after_create :crear_log_A
   after_update :crear_log_B
 
+  def self.search(search)
+    if search
+      where('nombre_atendido LIKE ? or apellido_paterno LIKE ? or apellido_materno LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%")
+    else
+      self.where(nil)
+    end
+  end
+
 
 
 
