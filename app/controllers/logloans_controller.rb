@@ -52,9 +52,13 @@ class LogloansController < ApplicationController
   # POST /logloans.json
   def create
     @logloan = Logloan.new(logloan_params)
+    
 
     respond_to do |format|
       if @logloan.save
+
+
+
         format.html { redirect_to @logloan, notice: 'Logloan was successfully created.' }
         format.json { render :show, status: :created, location: @logloan }
       else

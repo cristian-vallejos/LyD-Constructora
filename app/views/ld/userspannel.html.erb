@@ -1,0 +1,151 @@
+<link href='<%= asset_url("css/bootstrap.min.css") %>' rel="stylesheet" type="text/css">
+<link href='<%= asset_url("css/style-273.css") %>' rel="stylesheet">
+
+<h1>Gestion de usuarios</h1>
+<br>
+<br>
+
+<div class="row">
+ <div class="col-md-4">
+	
+<h5>Registrar Nuevo usuario</h5>
+
+<%= form_for(:ld, url: ld_userspannel_path, method: "get") do |f| %>
+  
+
+  <div class="field">
+    <%= f.label :nombre_usuario %><br />
+    <%= f.text_field :nombre_usuario %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div class="field">
+  <%= f.label :obra, 'Obra' %><br>
+  <%= f.collection_select :id, Obra.all.order('nombre ASC'), :id, :nombre, include_blank: true %>
+  </div>
+
+  <h6>- - Rol - -</h6>
+  <div class="field">
+    <%= f.label :asocial_role, 'Asistente Social' %>
+    <%= f.check_box :asocial_role, id: :asocial_role %>
+  </div>
+
+  <div class="field">
+    <%= f.label :boperativos_role, 'Encargado de operativos' %>
+    <%= f.check_box :boperativos_role, id: :boperativos_role %>
+  </div>
+
+  <div class="field">
+    <%= f.label :administrativo_obra_role, 'Administrador de Obra' %>
+    <%= f.check_box :administrativo_obra_role, id: :administrativo_obra_role %>
+  </div>
+
+  <div class="field">
+    <%= f.label :subgerente_personas_role, 'Subgerente de Personas' %>
+    <%= f.check_box :subgerente_personas_role, id: :subgerente_personas_role %>
+  </div>
+  <div class="field">
+    <%= f.label :jefe_remuneraciones_role, 'Jefe de Remuneraciones' %>
+    <%= f.check_box :jefe_remuneraciones_role, id: :jefe_remuneraciones_role %>
+  </div>
+
+
+
+  <div class="field">
+    <%= f.label :password, 'Contraseña' %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation, 'Confirmar Contraseña' %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+ <i>*Todos los campos son obligatorios</i><br>
+ <i>*Las contraseñas deben tener mínimo 6 caracteres</i> <br>
+ <i>*Las contraseñas deben coincidir</i> 
+
+  <div class="actions">
+    <%= f.submit "Registrar", name: "registrar" %>
+  </div>
+
+
+
+<% end %>
+
+
+	</div>
+
+	<div class="col-md-3">
+	<h5>Cambiar Contraseña</h5>
+	<%= form_for(:ld, url: ld_userspannel_path, method: "get") do |f| %>
+
+		<div class="field">
+		  <%= f.label :lyduser, 'Seleccione un usuario' %> <br>
+		  <%= f.collection_select :id, Lyduser.all.order('nombre_usuario ASC'), :id, :nombre_usuario, include_blank: true %>
+	  </div>
+	  <div class="field">
+	    <%= f.label :password, 'Nueva Contraseña' %>
+	    <% if @minimum_password_length %>
+	    <em>(<%= @minimum_password_length %> characters minimum)</em>
+	    <% end %><br />
+	    <%= f.password_field :password, autocomplete: "off" %>
+  	  </div>
+
+	  <div class="field">
+	    <%= f.label :password_confirmation, 'Confirmar Contraseña' %><br />
+	    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+	  </div>
+
+	   <i>*Las contraseñas deben coincidir</i><br>
+	   <i>*Las contraseñas deben tener mínimo 6 caracteres</i> 
+ 
+	  <div class="actions">
+    	<%= f.submit "Cambiar Contraseña", name: "cambiarPass" %>
+  	  </div>
+
+
+	 <%end %>
+
+
+
+	</div>
+
+	<div class="col-md-3">
+	<h5>Asignar Obra</h5>
+	<%= form_for(:ld, url: ld_userspannel_path, method: "get") do |f| %>
+
+		<div class="field">
+		  <%= f.label :lyduser, 'Seleccione un usuario' %> <br>
+		  <%= f.collection_select :u_id, Lyduser.all.order('nombre_usuario ASC'), :id, :nombre_usuario, include_blank: true %>
+	    </div>
+
+	    <div class="field">
+		  <%= f.label :obra, 'Obra' %><br>
+		  <%= f.collection_select :o_id, Obra.all.order('nombre ASC'), :id, :nombre, include_blank: true %>
+		</div>
+
+	  
+	  
+
+
+	   
+	  <div class="actions">
+    	<%= f.submit "Asignar Obra", name: "cambiarObra" %>
+  	  </div>
+
+
+	 <%end %>
+
+
+
+	</div>
+
+</div>

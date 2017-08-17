@@ -3,7 +3,7 @@ class LoanmailMailer < ApplicationMailer
 
 	def correo(destino)
 
-		mail to: destino, subject: "Correo de prueba"
+		mail to: destino, subject: "Nueva Solicitud de Préstamo"
 
 	end
 

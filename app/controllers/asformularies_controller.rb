@@ -13,8 +13,11 @@ class AsformulariesController < ApplicationController
     #@asformulary = Asformulary.new(:rut_atendido => params[:rut_atendido])
     @results = Asformulary.search(params[:search]).order('created_at DESC')
     puts "-----"
-    puts @results[0].rut_atendido
-    puts @results.count
+    #puts @results[0].rut_atendido
+    #puts @results.count
+    puts params[:search]
+    #puts params[:asformulary][:rut_atendido]  
+
     puts "-----"
 
 
@@ -50,6 +53,23 @@ class AsformulariesController < ApplicationController
 
       @asformulary = Asformulary.new
     #@epcformulary = Epcformulary.new(asformulary_id: params[:asformulary_id])
+    puts "*******************"
+    if params[:asformulary] && params[:asformulary][:rut_atendido]
+      @employee = Employee.where(:rut => params[:asformulary][:rut_atendido]).order('created_at DESC')
+      
+    end
+    if params[:asformulary]
+      puts "weon hy obras"
+      @rut = params[:asformulary][:rut_atendido]
+      @nombre = params[:asformulary][:nombre_atendido]
+      @obra = params[:asformulary][:codigo_obra]
+      puts @obra
+      puts @nombre
+      puts @rut
+    end
+    
+    puts "*******************"
+
   end
 
   def checkrut
@@ -121,7 +141,6 @@ class AsformulariesController < ApplicationController
       respond_to do |format|
         if @asformulary.save
 
-          #LoanmailMailer.correo('rodespmac@gmail.com').deliver
 
           format.html { redirect_to asformularies_path}#, notice: 'Asformulary was successfully created.' }
           format.json { render :show, status: :created, location: @asformulary }

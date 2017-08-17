@@ -3,9 +3,10 @@
   <%= f.text_field :rut_atendido , placeholder: "13832057-K"%>
   <%= f.submit "check", name: "check" %>
 <% end %>
+
 <br>
 <br>
-<%= form_with(model: asformulary, local: true) do |form| %>
+<%= form_with(model: asformulary, remote: true, id: "form_params" ) do |form| %>
   <% if asformulary.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(asformulary.errors.count, "errores") %> No permiten guardar este formulario:</h2>
@@ -14,7 +15,7 @@
       <% asformulary.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
-      </ul>
+    </ul>
     </div>
   <% end %>
 
@@ -22,21 +23,7 @@
 
  
   <div class="field">
-<% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
 
-  <% @employee = Employee.where(:rut => params[:asformulary][:rut_atendido]).order('created_at DESC') %>
-  <% if @employee.empty? == false %>
-                        <%# employee.each do |emple| %>
-                        <tr>
-                          <td><%# @employee[0].rut %></td>
-                          <td><%# emple.rut %></td>
-                          <td><%# emple.cencos %></td>
-                          <td><%# emple.estado %></td>
-
-                        </tr>
-                        <%end%>
-
-  <%end%>
  <% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
     
     <%= form.label :rut_atendido, 'Rut Trabajador' %> <br>
@@ -174,13 +161,11 @@
 
 
 
-<div class="ui-37-ld">
-            <div align="left">
-              <div class="col-md-4 col-sm-4 col-xs-6 col-mob"> <a href="<%= new_loanformulary_path %>" target="_blank" class="bg-green-ld"> <img src='<%= asset_url("trans.png") %>' alt="" />
-            <label class="label-ld">Asignar Préstamos</label>
-            </a> </div>
-          </div>
-        </div>
+
+<div id="loanbutton">
+<%= render 'loanbutton' %>
+
+</div>
 
 
 
@@ -190,6 +175,14 @@
   </div>
 
 
+<script>
+$(document).on("keyup", "#form_params", function(){
+       $.get($("#form_params").attr("new_asformulary_path"), $("#form_params").serialize(), null, "script");
+       return false;
+   });
+
+
+</script>
 
 
 

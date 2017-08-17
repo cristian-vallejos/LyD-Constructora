@@ -8,6 +8,7 @@ class LoanformulariesController < ApplicationController
     @loanformularies = Loanformulary.all
     @loanformulary = Loanformulary.new(:rut_solicitante => params[:rut_solicitante])
 
+
   end
 
   def filtrar
@@ -170,6 +171,19 @@ class LoanformulariesController < ApplicationController
 
     respond_to do |format|
       if @loanformulary.save
+
+          @ao = Lyduser.where("obra = ?", params[:loanformulary][:obra])
+          
+          @ao.each do |lyd|
+            puts params[:loanformulary][:obra]
+            puts lyd.email
+          end
+
+          puts @ao[0].email
+
+          LoanmailMailer.correo(@ao[0].email).deliver
+
+
         format.html { redirect_to @loanformulary, notice: 'Loanformulary was successfully created.' }
         format.json { render :show, status: :created, location: @loanformulary }
       else

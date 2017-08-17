@@ -56,7 +56,7 @@ class AsignarmultiplebeneficiosController < ApplicationController
 
 
  def create
-      @obraid = Obra.where(codigo: params[:obra_id])
+      @obraid = Obra.where(codigo: params[:asignarmultiplebeneficio][:obra_id])
       params.each do |key,value| 
       Rails.logger.warn "Param #{key}: #{value}"
 

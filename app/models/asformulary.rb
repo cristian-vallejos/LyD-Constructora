@@ -19,7 +19,7 @@ class Asformulary < ApplicationRecord
     if search
       where('nombre_atendido LIKE ? or apellido_paterno LIKE ? or apellido_materno LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%")
     else
-      self.where(nil)
+      where('nombre_atendido LIKE ?', nil)
     end
   end
 

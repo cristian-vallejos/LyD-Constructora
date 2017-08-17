@@ -17,24 +17,39 @@
     <div class="sidebar1">
       <div align="left">
 
-        <div class="field">
-          <%= form.label :nombre_solicitante %>
-          <br>
-          <%= form.text_field :nombre_solicitante, id: :loanformulary_nombre_solicitante %>
-          <br>
-        </div>
+      
 
-        <div class="field">
-          <%= form.label :rut_solicitante %>
-          <br>
-          <%= form.text_field :rut_solicitante, id: :loanformulary_rut_solicitante %>
-          <br>
-        </div>
+        <% if !params[:nombre_solicitante]%>
+        <%= form.label :nombre_solicitante, 'Nombre Completo Trabajador' %> <br>
+        <%= form.text_field :nombre_solicitante, id: :loanformulary_nombre_solicitante, placeholder: "Luis Miguel Quevedo Olivares", :class => 'textForm' %> <br>
+        <% else %>
+        <%= form.label :nombre_solicitante, 'Nombre Completo Trabajador' %> <br>
+        <%= form.text_field :nombre_solicitante, id: :loanformulary_nombre_solicitante, value: params[:nombre_solicitante], hidden: true %> 
+        <%= params[:nombre_solicitante] %><br>
+        <% end %>
 
-        <div class="field">
-          <%= form.label :obra %><br>
-          <%= form.number_field :obra, id: :loanformulary_obra %><br>
-        </div>
+       
+    
+
+        <% if !params[:rut_solicitante]%>
+        <%= form.label :rut_solicitante, 'Rut Trabajador' %> <br>
+        <%= form.text_field :rut_solicitante, id: :loanformulary_rut_solicitante, placeholder: "13832057-K", :class => 'textForm' %> <br>
+        <% else %>
+        <%= form.label :rut_solicitante, 'Rut Trabajador' %> <br>
+        <%= form.text_field :rut_solicitante, id: :loanformulary_rut_solicitante, value: params[:rut_solicitante], hidden: true %> 
+        <%= params[:rut_solicitante] %><br>
+        <% end %>
+
+        <% if !params[:obra]%>
+        <%= form.label :obra, 'Codigo Obra' %> <br>
+        <%= form.text_field :obra, id: :loanformulary_obra, :class => 'textForm' %> <br>
+        <% else %>
+        <%= form.label :obra, 'Codigo Obra' %> <br>
+        <%= form.text_field :obra, id: :loanformulary_obra, value: params[:obra], hidden: true %> 
+        <%= params[:obra] %><br>
+        <% end %>
+
+
 
         <div class="field">
           <%= form.label :cargo %><br>
