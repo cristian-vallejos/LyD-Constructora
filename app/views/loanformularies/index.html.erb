@@ -12,15 +12,29 @@
 <%# button_to "Nuevo préstamo", new_loanformulary_path,method: "get", form: {target: '_blank'}, class: "button button1" %>
 
 
+<div class="row">
 
+<div class="item">
 <%= form_for (@loanformulary), url: loanformularies_path, method: "get" do |f| %>
   <%= f.label "Buscar Solicitud" %>
   <%= f.text_field :rut_solicitante %>
-  <%= f.submit "Buscar", name: "search" %>
+  <%= f.submit "Buscar", name: "search", :class => 'btn btn-green' %>
 <% end %>
+
+</div>
+
+</div>
+
+<div class="row">
+<div class="item">
 <%= form_for (@loanformulary), url: loanformularies_path, method: "get" do |f| %>
-  <%= f.submit "Limpiar busqueda", name: "limpiar" %>
+  <%= f.submit "Limpiar busqueda", name: "limpiar", :class => 'btn btn-green' %>
 <% end %>
+
+</div>
+</div>
+
+
         
 
 <% if params[:loanformulary] && params[:loanformulary][:rut_solicitante] %>

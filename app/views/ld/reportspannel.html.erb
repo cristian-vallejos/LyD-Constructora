@@ -76,7 +76,7 @@
 	        			<h2>Atenciones Sociales por Periodo</h2>
 
 	        			<% if params[:obra] && params[:event1] && params[:event2] %>
-	        			<h3>Periodo <%= fecha1 + " a " + fecha2 %> </h3>
+	        			<h3><%= Obra.find(params[:obra][:id]).nombre %> - Periodo <%= fecha1 + " a " + fecha2  %> </h3>
 	        			<% ob = Obra.find(params[:obra][:id]).codigo %>
 	        			<% muestra = Loga.where("codigo_obra = ?",ob).count %>
 	        			<% muestrap = Logloan.where("obra = ?", ob).count %>
@@ -191,7 +191,7 @@
 
      			 <div class="tab-content">
      			 	<div role="tabpanel" class="tab-pane fade in active" id="one1">
-     			 		<h2>Atenciones Sociales del Trabajador</h2>
+     			 		<h2>Atenciones Sociales del Trabajador <%= params[:asformulary][:rut_atendido] %></h2>
      			 		<% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
 						<% as = Loga.where(:rut_atendido => params[:asformulary][:rut_atendido]).order('created_at DESC') %>
 						<table>

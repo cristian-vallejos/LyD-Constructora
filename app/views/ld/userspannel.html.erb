@@ -1,3 +1,5 @@
+<% if current_lyduser.admin_role? %>
+
 <link href='<%= asset_url("css/bootstrap.min.css") %>' rel="stylesheet" type="text/css">
 <link href='<%= asset_url("css/style-273.css") %>' rel="stylesheet">
 
@@ -149,3 +151,5 @@
 	</div>
 
 </div>
+
+<% end %>

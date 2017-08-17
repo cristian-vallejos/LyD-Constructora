@@ -9,6 +9,9 @@ class Ability
          can :manage, :all
        elsif lyduser.asocial_role?
         can :manage, Asformulary
+        can :manage, Assignbenefit
+        cannot :destroy, Assignbenefit
+        cannot :update, Assignbenefit
         cannot :destroy, Asformulary
         cannot :update, Asformulary 
         can :manage, Loanformulary

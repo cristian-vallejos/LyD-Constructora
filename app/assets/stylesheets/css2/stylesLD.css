@@ -409,6 +409,12 @@ color: #000000;
     margin-left: 0%;
 }
 
+.row-1{
+	margin-left: -5%
+}
+.row-2{
+}
+
 .ui-34{
 	max-width: 100%;
 }

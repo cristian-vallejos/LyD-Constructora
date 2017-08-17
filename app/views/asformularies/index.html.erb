@@ -1,10 +1,20 @@
 <p id="notice"><%= notice %></p>
 <link href='<%= asset_url("css/bootstrap.min.css") %>' rel="stylesheet" type="text/css">
 <link href='<%= asset_url("css/style-273.css") %>' rel="stylesheet">
+<link href='<%= asset_url("css/font-awesome.min.css") %>' rel="stylesheet">
+<link href='<%= asset_url("css/style-55.css") %>' rel="stylesheet">
+<link href='<%= asset_url("css/style-37.css") %>' rel="stylesheet" type="text/css">
+<link href='<%= asset_url("css2/stylesLD.css") %>' rel="stylesheet" type="text/css">
 
 <h1>Formularios de Atención Social</h1>
 
-<button onclick="location.href='<%= new_asformulary_path %>'" type="button" class="button button1">Nueva Atención</button>
+<div class="ui-37-ld">
+        <div class="row">
+          <div class="col-md-4 col-sm-4 col-xs-6 col-mob">  <a href="<%= new_asformulary_path %>" class="bg-green-ld"> <img src='<%= asset_url("trans.png") %>' alt="" />
+            <label class="label-ld">Nueva Atención</label>
+            </a> </div>
+        </div>
+</div>
 <br>
 <br>
 <br>
@@ -38,13 +48,13 @@
               <!-- Item Ends -->
             </div>
 
-            <div class="col-md-2">
+            <div class="col-md-3">
               <%= form_tag asformularies_path, :method => 'get', :id => "as_search" do %>
               <div class="item">
               <h4>Buscar Atención por nombre</h4>
                 <%# f.label "Buscar Atención" %>
-                <%= text_field_tag :search, params[:search] %>
-                <%= submit_tag "Buscar", :name => nil %>
+                <%= text_field_tag :search, params[:search], :class => 'textForm' %>
+                <%= submit_tag "Buscar", :name => nil, :class => 'btn btn-green' %>
               </div>
 
               
