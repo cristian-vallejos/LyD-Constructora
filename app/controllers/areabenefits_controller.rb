@@ -29,7 +29,7 @@ class AreabenefitsController < ApplicationController
 
     respond_to do |format|
       if @areabenefit.save
-        format.html { redirect_to @areabenefit, notice: 'Areabenefit was successfully created.' }
+        format.html { redirect_to areabenefits_path, notice: 'Areabenefit was successfully created.' }
         format.json { render :show, status: :created, location: @areabenefit }
       else
         format.html { render :new }

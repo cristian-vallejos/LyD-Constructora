@@ -1,0 +1,2 @@
+class Familiartrabajador < ApplicationRecord
+end

@@ -1,27 +1,41 @@
 <p id="notice"><%= notice %></p>
+<link href='<%= asset_url("css/bootstrap.min.css") %>' rel="stylesheet" type="text/css">
+<link href='<%= asset_url("css2/stylesLD.css") %>' rel="stylesheet" type="text/css">
 
-<h1>Aspcategories</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="container">
 
-  <tbody>
-    <% @aspcategories.each do |aspcategory| %>
-      <tr>
-        <td><%= aspcategory.nombre %></td>
-        <td><%= link_to 'Show', aspcategory %></td>
-        <td><%= link_to 'Edit', edit_aspcategory_path(aspcategory) %></td>
-        <td><%= link_to 'Destroy', aspcategory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <div class="content">
+    
+    <div style="box-shadow:0px 0px 15px rgba(0,0,0,0.1);">
 
-<br>
+    <h1>Áreas Atención Social</h1>
 
-<%= link_to 'New Aspcategory', new_aspcategory_path %>
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @aspcategories.each do |aspcategory| %>
+            <tr>
+              <td><%= aspcategory.nombre %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <br>
+
+      <%# link_to 'New Aspcategory', new_aspcategory_path %>
+      <button onclick="location.href='<%= new_aspcategory_path %>'" type="button" class="btn btn-green btn-lg btn-block">Crear Nueva Área</button>
+
+
+
+    </div>
+  </div>
+</div>
+
+

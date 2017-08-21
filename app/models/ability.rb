@@ -8,16 +8,9 @@ class Ability
        if lyduser.admin_role?
          can :manage, :all
        elsif lyduser.asocial_role?
-        can :manage, Asformulary
-        can :manage, Assignbenefit
-        cannot :destroy, Assignbenefit
-        cannot :update, Assignbenefit
-        cannot :destroy, Asformulary
-        cannot :update, Asformulary 
-        can :manage, Loanformulary
-        cannot :destroy, Loanformulary
-        cannot :update, Loanformulary
-        can :read, Loga
+        can :manage, :all
+        cannot :destroy, :all
+        cannot :update, :all
        elsif lyduser.boperativos_role?
         can :manage, Loga
        elsif lyduser.administrativo_obra_role?

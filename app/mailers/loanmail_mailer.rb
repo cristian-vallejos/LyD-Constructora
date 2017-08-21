@@ -1,5 +1,5 @@
 class LoanmailMailer < ApplicationMailer
-	default from: 'r.neutral09@gmail.com'
+	default from: 'noreply.personas@gmail.com'
 
 	def correo(destino)
 

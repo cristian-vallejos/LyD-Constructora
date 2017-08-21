@@ -16,6 +16,13 @@ class AssignbenefitsController < ApplicationController
   # GET /assignbenefits/new
   def new
     @assignbenefit = Assignbenefit.new
+    if params[:rut_trabajador]
+      @beneficiarios = Familiartrabajador.where(rut_trabajador: params[:rut_trabajador])
+  
+      @beneficiarios.each do |x|
+        puts x.nombre
+      end
+    end
   end
 
   # GET /assignbenefits/1/edit

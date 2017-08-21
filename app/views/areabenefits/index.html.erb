@@ -14,7 +14,6 @@
   <thead>
     <tr>
       <th>Nombre</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
@@ -22,9 +21,6 @@
     <% @areabenefits.each do |areabenefit| %>
       <tr>
         <td><%= areabenefit.nombre %></td>
-        <td><%= link_to 'Show', areabenefit %></td>
-        <td><%= link_to 'Edit', edit_areabenefit_path(areabenefit) %></td>
-        <td><%= link_to 'Destroy', areabenefit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

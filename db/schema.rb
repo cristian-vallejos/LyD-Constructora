@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170810210627) do
+ActiveRecord::Schema.define(version: 20170821202956) do
 
   create_table "areabenefits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "nombre"
@@ -115,6 +115,16 @@ ActiveRecord::Schema.define(version: 20170810210627) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["asformulary_id"], name: "index_epcformularies_on_asformulary_id"
+  end
+
+  create_table "familiartrabajadors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "rut"
+    t.string "nombre"
+    t.string "relacion"
+    t.date "fechanacimiento"
+    t.string "rut_trabajador"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "ldusers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

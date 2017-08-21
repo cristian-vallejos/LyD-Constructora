@@ -174,14 +174,12 @@ class LoanformulariesController < ApplicationController
 
           @ao = Lyduser.where("obra = ?", params[:loanformulary][:obra])
           
-          @ao.each do |lyd|
-            puts params[:loanformulary][:obra]
-            puts lyd.email
+
+          if !@ao[0].nil?
+            LoanmailMailer.correo(@ao[0].email).deliver
+          else
+            LoanmailMailer.correo("rodespmac@gmail.com").deliver
           end
-
-          puts @ao[0].email
-
-          LoanmailMailer.correo(@ao[0].email).deliver
 
 
         format.html { redirect_to @loanformulary, notice: 'Loanformulary was successfully created.' }

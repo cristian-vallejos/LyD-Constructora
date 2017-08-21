@@ -3,7 +3,7 @@
 <link href='<%= asset_url("css/style-55.css") %>' rel="stylesheet">
 <link href='<%= asset_url("css2/stylesLD.css") %>' rel="stylesheet" type="text/css">
 
-
+<h4><%= link_to '<< volver', asformularies_path %></h4>
 
 <div class="container">
 
@@ -116,6 +116,47 @@
                   </table>
             </div>
           <div role="tabpanel" class="tab-pane fade" id="two">
+
+          <table >
+
+           <tr>
+            <th width="(100/x)%">Beneficio</th>
+            <th width="(100/x)%">Rut Trabajador</th>
+            <th width="(100/x)%">Rut Beneficiario</th>
+            <th width="(100/x)%">Relación</th>
+            <th width="(100/x)%">F.Nacimiento</th>
+            <th width="(100/x)%">Fecha</th>
+            <th width="(100/x)%">CentroCosto</th>
+           </tr>
+           <tbody>
+             
+               <% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
+               <% assign = Assignbenefit.where(:rut_trabajador => params[:asformulary][:rut_atendido]).order('created_at DESC').take(20) %>
+
+               <% assign.each do |loga| %>
+                        <tr>
+                          
+                          <td><%= loga.benefit.nombre %></td>
+                          <td><%= loga.rut_trabajador %></td>
+                          <td><%= loga.rut_beneficiario %></td>
+                          <td><%= loga.relacion %></td>
+                          <td><%= loga.fecha_nacimiento.strftime("%d %b %y") %></td>
+
+                          <td><%= loga.created_at.strftime("%d %b %y") %></td>
+                          
+                          <td><%= loga.obra_id %></td>
+                          
+
+                        </tr>
+                     
+                      <% end %>
+
+
+
+               <% end %>
+
+           </tbody>
+        </table>
                 
           </div>
               <div role="tabpanel" class="tab-pane fade" id="three">
@@ -183,9 +224,4 @@
 	
 
 
-
-
-
-
-<%= link_to 'volver', asformularies_path %>
 

@@ -4,6 +4,7 @@
   <%= f.submit "check", name: "check", :class => 'btn btn-green' %>
 <% end %>
 
+
 <br>
 <br>
 <%= form_with(model: asformulary, local: true, id: "form_params" ) do |form| %>
@@ -28,7 +29,7 @@
     
     <%= form.label :rut_atendido, 'Rut Trabajador' %> <br>
 
-    <% if @employee.empty?%>
+    <% if @employee.nil? %>
     <%= form.text_field :rut_atendido, id: :asformulary_rut_atendido, placeholder: "13832057-K", :class => 'textForm' %> <br>
     <% else %>
     <%= form.text_field :rut_atendido, id: :asformulary_rut_atendido, value: @employee[0].rut, hidden: true %> 
@@ -54,8 +55,9 @@
 <% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
 
     <%= form.label :codigo_obra, 'Codigo Obra' %><br>
-    <% if @employee.empty?%>
-    <%= form.text_field :codigo_obra, id: :asformulary_codigo_obra, :class => 'textForm' %><br>
+    <% if @employee.nil?%>
+    <%# form.text_field :codigo_obra, id: :asformulary_codigo_obra, :class => 'textForm' %>
+    <%= form.collection_select :codigo_obra, Obra.all.order('id ASC'), :id, :nombre_codigo, {include_blank: true}, {style: "width:220px"} %><br>
     <% else %>
     <%= form.text_field :codigo_obra, id: :asformulary_codigo_obra, value: @employee[0].cencos, hidden: true %> 
     <%= @employee[0].cencos %><br>
@@ -63,7 +65,7 @@
     
 <% else %>
     <%= form.label :codigo_obra, 'Codigo Obra' %><br>
-    <%= form.text_field :codigo_obra, id: :asformulary_codigo_obra, :class => 'textForm' %><br>
+    <%= form.collection_select :codigo_obra, Obra.all.order('id ASC'), :id, :nombre_codigo, {include_blank: true}, {style: "width:220px"} %><br>
 <%end%>
 
   </div>
@@ -84,7 +86,7 @@
     
 <%= form.label :nombre_atendido, 'Nombre Completo Trabajador' %><br>
 
-    <% if @employee.empty?%>
+    <% if @employee.nil?%>
     <%= form.text_field :nombre_atendido, id: :asformulary_nombre_atendido, placeholder: "Luis Miguel Quevedo Olivares", :class => 'textForm' %><br>
     <% else %>
     <%= form.text_field :nombre_atendido, id: :asformulary_nombre_atendido, value: @employee[0].nombre, hidden: true %>
@@ -109,7 +111,7 @@
     
     <%= form.label :Tipo_Consulta %>
     <br>
-    <%= form.collection_select :aspcategory_id, Aspcategory.all, :id, :nombre, include_blank: true %>
+    <%= form.collection_select :aspcategory_id, Aspcategory.all, :id, :nombre, {include_blank: true}, {style: "width:220px"} %>
     <br>
 
   </div>
@@ -145,7 +147,7 @@
     
     <%= form.label :Beneficio_Asociado %>
     <br>
-    <%= form.collection_select :benefit_id, Benefit.all, :id, :nombre, include_blank: true %>
+    <%= form.collection_select :benefit_id, Benefit.all, :id, :nombre, {include_blank: true}, {style: "width:220px"} %>
     <br>
 
   </div>
@@ -157,27 +159,18 @@
     <br>
   </div>
 
-<div class="ui-37-ld">
-    <div class="row">
 
-      <div class="col-md-4 col-sm-4 col-xs-6 col-mob"> <a href="<%= new_assignbenefit_path() %>" target="_blank" class="bg-green-ld"> <img src='<%= asset_url("trans.png") %>' alt="" />
-              <label class="label-ld">Asignar Beneficio</label>
-              </a> </div>
-    </div>
+ <i>*Complete toda la información antes de ir a "Asignar Préstamos" o "Asignar Beneficio"</i>
+
+
+<div id="benefitbutton">
+<%= render 'benefitbutton' %>
 </div>
-
-
 
 
 <div id="loanbutton">
 <%= render 'loanbutton' %>
-
-
 </div>
-
-
-
-
 
 
   <div class="actions">
@@ -193,7 +186,6 @@ $(document).on("keyup", "#form_params", function(){
 
 
 </script>
-
 
 
 <% end %>

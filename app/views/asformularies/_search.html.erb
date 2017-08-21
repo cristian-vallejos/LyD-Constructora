@@ -46,9 +46,9 @@
                     <%if can? :show, Asformulary %>
                     <td><%= link_to 'Mostrar', x %></td>
                     <%end%>
-                    <%if can? :edit, Asformulary %>
-                    <td><%# link_to 'Edit', edit_asformulary_path(asformulary) %></td>
-                    <%end%>
+      
+                    <td><%= link_to 'Agregar Familia', new_familiartrabajador_path(:rut_trabajador => x.rut_atendido ) %></td>
+                  
                     <%if can? :destroy, Asformulary %>
                     <td><%# link_to 'Destroy', asformulary, method: :delete, data: { confirm: 'Are you sure?' } %>
                     <%end%>

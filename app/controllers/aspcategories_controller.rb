@@ -29,7 +29,7 @@ class AspcategoriesController < ApplicationController
 
     respond_to do |format|
       if @aspcategory.save
-        format.html { redirect_to @aspcategory, notice: 'Aspcategory was successfully created.' }
+        format.html { redirect_to aspcategories_path, notice: 'Aspcategory was successfully created.' }
         format.json { render :show, status: :created, location: @aspcategory }
       else
         format.html { render :new }

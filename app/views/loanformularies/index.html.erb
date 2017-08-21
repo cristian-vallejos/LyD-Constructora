@@ -17,7 +17,7 @@
 <div class="item">
 <%= form_for (@loanformulary), url: loanformularies_path, method: "get" do |f| %>
   <%= f.label "Buscar Solicitud" %>
-  <%= f.text_field :rut_solicitante %>
+  <%= f.text_field :rut_solicitante, placeholder: "13832057-K" %>
   <%= f.submit "Buscar", name: "search", :class => 'btn btn-green' %>
 <% end %>
 

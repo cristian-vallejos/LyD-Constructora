@@ -56,10 +56,10 @@ class AsformulariesController < ApplicationController
     puts "*******************"
     if params[:asformulary] && params[:asformulary][:rut_atendido]
       @employee = Employee.where(:rut => params[:asformulary][:rut_atendido]).order('created_at DESC')
+      @logloan = Logloan.where(:rut_solicitante => params[:asformulary][:rut_atendido]).order('created_at DESC')
       
     end
     if params[:asformulary]
-      puts "weon hy obras"
       @rut = params[:asformulary][:rut_atendido]
       @nombre = params[:asformulary][:nombre_atendido]
       @obra = params[:asformulary][:codigo_obra]

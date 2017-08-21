@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+<link href='<%= asset_url("css/bootstrap.min.css") %>' rel="stylesheet" type="text/css">
+<link href='<%= asset_url("css/style-273.css") %>' rel="stylesheet">
+<link href='<%= asset_url("css/font-awesome.min.css") %>' rel="stylesheet">
+<link href='<%= asset_url("css/style-55.css") %>' rel="stylesheet">
+<link href='<%= asset_url("css/style-37.css") %>' rel="stylesheet" type="text/css">
+<link href='<%= asset_url("css2/stylesLD.css") %>' rel="stylesheet" type="text/css">
+
+<h1>Asignación de Familiares</h1>
+
+<%= form_tag familiartrabajadors_path, :method => 'get', :id => "em_search" do %>
+              <div class="item">
+              <h4>Buscar Trabajador por nombre</h4>
+                <%# f.label "Buscar Atención" %>
+                <%= text_field_tag :search, params[:search], :class => 'textForm' %>
+                <%= submit_tag "Buscar", :name => nil, :class => 'btn btn-green' %><br>
+                <i>*El formato de busqueda es APELLIDO PATERNO  APELLIDO MATERNO, PRIMER NOMBRE SEGUNDO NOMBRE</i><br>
+                <i>*los apellidos están separados por dos espacios</i>
+              </div>
+
+<script>
+$(document).on("keyup", "#em_search", function(){
+       $.get($("#em_search").attr("action"), $("#em_search").serialize(), null, "script");
+       return false;
+   });
+
+
+</script>
+
+<% end %>
+
+<br>
+
+              <div id="emresults">
+                <%= render 'search', locals: { post: @results } %>
+              </div>
+
+<br>
+
+
+
+<br>
+
+<%= link_to 'New Familiartrabajador', new_familiartrabajador_path %>

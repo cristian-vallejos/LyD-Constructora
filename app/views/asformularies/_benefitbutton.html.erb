@@ -1,0 +1,25 @@
+
+<% if !@rut.nil? && @rut != "" && !@nombre.nil? && @nombre != "" && !@obra.nil? && @obra != "" %>
+<div class="ui-37-ld">
+ <div class= "row">
+    
+        <div class="col-md-4 col-sm-4 col-xs-6 col-mob"> <a href="<%= new_assignbenefit_path(:rut_trabajador => params[:asformulary][:rut_atendido],:obra_id => params[:asformulary][:codigo_obra]) %>" target="_blank" class="bg-green-ld"> <img src='<%= asset_url("trans.png") %>' alt="" />
+        <label class="label-ld">Asignar Beneficio</label>
+        </a> </div>
+    
+
+ </div>
+</div>
+
+<% else %>
+<div class="ui-37-ld">
+    <div class="row">
+
+      <div class="col-md-4 col-sm-4 col-xs-6 col-mob"> <a href="<%= new_assignbenefit_path() %>" target="_blank" class="bg-green-ld"> <img src='<%= asset_url("trans.png") %>' alt="" />
+              <label class="label-ld">Asignar Beneficio</label>
+              </a> </div>
+    </div>
+</div>
+
+
+<% end %>

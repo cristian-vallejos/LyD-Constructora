@@ -1,0 +1,64 @@
+<h1>Nuevo Familiar</h1>
+
+
+<div class="container">
+
+<div class="sidebar1">
+    <div align="left">
+    <%= render 'form', familiartrabajador: @familiartrabajador %>
+
+	</div>
+</div>
+
+<div class="contentForm">
+			<div align="center">
+  			<table >
+
+           <tr>
+            <h2>Familiares guardados</h2>
+            <th width="(100/x)%">Rut</th>
+            <th width="(100/x)%">Nombre</th>
+
+            <th width="(100/x)%">Relación</th>
+            <th width="(100/x)%">F.Nacimiento</th>
+            
+            
+           </tr>
+           <tbody>
+             
+               <% if params[:rut_trabajador]%>
+               <% familia = Familiartrabajador.where(:rut_trabajador => params[:rut_trabajador]).order('created_at DESC') %>
+
+               <% familia.each do |loga| %>
+                        <tr>
+                          
+                          <td><%= loga.rut %></td>
+                          <td><%= loga.nombre %></td>
+                          <td><%= loga.relacion %></td>
+                          <td><%= loga.fechanacimiento.strftime("%d %b %y") %></td>
+                          <td><%= link_to 'Destroy', loga, method: :delete, data: { confirm: 'Está seguro?' } %></td>
+
+                          
+
+                        </tr>
+                     
+                      <% end %>
+
+
+
+               <% end %>
+
+           </tbody>
+        </table>
+
+
+			</div>
+	   </div>
+
+
+
+</div>
+
+
+
+<%= link_to 'Back', familiartrabajadors_path %>

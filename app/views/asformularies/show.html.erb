@@ -86,10 +86,15 @@
 
 
 <%= link_to 'Agregar Seguimiento', newseg_asformulary_path(@asformulary) %> |
-<%= link_to 'Editar', edit_asformulary_path(@asformulary) %> |
 <%= link_to 'Volver', asformularies_path %>
 
-<%= button_to "Cerrar Caso", asformulary_path, name: "cerrar", method: "get", class: "button button1" %>
+<br>
+<br>
+<i>IMPORTANTE: Asegurece de buscar la atención más resiente de un caso antes de agregar un seguimiento.</i>
+<br>
+<br>
+
+<%= button_to "Cerrar Caso", asformulary_path, name: "cerrar", method: "get", class: 'btn btn-green btn-lg btn-block' %>
 <%# link_to "Cerrar Caso", asformulary_path, name: "cerrar", class: "button button1" %>
 
 
