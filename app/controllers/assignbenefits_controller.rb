@@ -36,7 +36,7 @@ class AssignbenefitsController < ApplicationController
 
     respond_to do |format|
       if @assignbenefit.save
-        format.html { redirect_to @assignbenefit, notice: 'Assignbenefit was successfully created.' }
+        format.html { redirect_to assignbenefits_path, notice: 'Assignbenefit was successfully created.' }
         format.json { render :show, status: :created, location: @assignbenefit }
       else
         format.html { render :new }
@@ -50,7 +50,7 @@ class AssignbenefitsController < ApplicationController
   def update
     respond_to do |format|
       if @assignbenefit.update(assignbenefit_params)
-        format.html { redirect_to @assignbenefit, notice: 'Assignbenefit was successfully updated.' }
+        format.html { redirect_to assignbenefits_path, notice: 'Assignbenefit was successfully updated.' }
         format.json { render :show, status: :ok, location: @assignbenefit }
       else
         format.html { render :edit }

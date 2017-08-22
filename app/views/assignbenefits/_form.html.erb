@@ -4,7 +4,7 @@
 <%= form_with(model: assignbenefit, local: true) do |form| %>
   <% if assignbenefit.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(assignbenefit.errors.count, "error") %> prohibited this assignbenefit from being saved:</h2>
+      <h2><%= pluralize(assignbenefit.errors.count, "error") %> error prohibe guardar este formulario. Regrese atrás y complete la información necesaria.</h2>
 
       <ul>
       <% assignbenefit.errors.full_messages.each do |message| %>
@@ -15,7 +15,10 @@
   <% end %>
 
 
-  
+  <br>
+    <b>Si el beneficio es para un familiar, cree un familiar en el siguiente <%= link_to 'enlace', familiartrabajadors_path, target: :_blank %>, y recargue esta página.</b>
+  <br>
+  <br>
 
   <div class="field">
     <%= form.label :benefit_id, 'Seleccione un Beneficio' %> <br>
@@ -24,10 +27,7 @@
 
   <div class="field">
 
-  <br>
-    <b>Si el beneficio es para un familiar, cree un familiar en el siguiente <%= link_to 'enlace', familiartrabajadors_path, target: :_blank %>, y recargue esta página.</b>
-  <br>
-  <br>
+  
 
     <% if params[:rut_trabajador] %>
     
@@ -50,18 +50,19 @@
   <% if params[:rut_trabajador] %>
     <%= form.label :rut_beneficiario %><br>
     <%# form.text_field :rut_beneficiario, id: :assignbenefit_rut_beneficiario, :class => 'textForm' %><br>
-    <%= form.collection_select :rut_beneficiario, @beneficiarios.all, :id, :nombre, include_blank: true %>
+    <%= form.collection_select :rut_beneficiario, @beneficiarios.all+[Familiartrabajador.new(rut: params[:rut_trabajador], nombre: "El propio trabajador")], :rut, :nombre, include_blank: true %>
 <% end %>
   </div>
 
+
   <div class="field">
-    <%= form.label :relacion, 'Parentezco' %><br>
-    <%= form.text_field :relacion, id: :assignbenefit_relacion, :class => 'textForm' %><br>
+    <%# form.label :relacion, 'Parentezco' %>
+    <%# form.text_field :relacion, id: :assignbenefit_relacion, :class => 'textForm' %>
   </div>
 
   <div class="field">
-    <%= form.label :fecha_nacimiento %><br>
-    <%= form.date_select :fecha_nacimiento, id: :assignbenefit_fecha_nacimiento %><br>
+    <%# form.label :fecha_nacimiento %>
+    <%# form.date_select :fecha_nacimiento, id: :assignbenefit_fecha_nacimiento %>
   </div>
 
 

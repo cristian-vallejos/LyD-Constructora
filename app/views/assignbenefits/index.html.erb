@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Assignbenefits</h1>
+<h1>Historial de beneficios asignados</h1>
 
 <table>
   <thead>
@@ -23,7 +23,7 @@
         <td><%= assignbenefit.rut_beneficiario %></td>
         <td><%= assignbenefit.relacion %></td>
         <td><%= assignbenefit.fecha_nacimiento %></td>
-        <td><%= assignbenefit.obra %></td>
+        <td><%= assignbenefit.obra.nombre %></td>
         <td><%= link_to 'Show', assignbenefit %></td>
         <td><%= link_to 'Edit', edit_assignbenefit_path(assignbenefit) %></td>
         <td><%= link_to 'Destroy', assignbenefit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
