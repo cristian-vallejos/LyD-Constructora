@@ -43,7 +43,8 @@ gem 'pdfkit'
 
 gem 'wicked_pdf'
 
-gem 'wkhtmltopdf-binary'
+#gem 'wkhtmltopdf-binary'
+gem 'wkhtmltopdf-binary-edge', '~> 0.12.3.0'
 
 
 
