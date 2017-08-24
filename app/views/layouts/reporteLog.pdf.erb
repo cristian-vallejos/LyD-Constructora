@@ -32,18 +32,21 @@
         <td><%= benefit.nombre %></td>
         <td><%= areabenefit.nombre %></td>
         
-        
         <div style="display: none;">
-        <%= trabajador = Employee.find_by rut: assignbenefit.rut_trabajador %>
+        <%= trabajador = Employee.where(rut: assignbenefit.rut_trabajador).order('created_at DESC').take(1) %>
         </div>
 
-        <td><%= trabajador.nombre %></td>
+        <% trabajador.each do |trab| %>
+        <td><%= trab.nombre %></td>
+        <% end %>
+
+
+        <td><%= assignbenefit.rut_beneficiario %></td>
 
 
 
-        <td><%= "Familiar" %></td>
         <td><%= assignbenefit.created_at %></td>
-        <td><%= assignbenefit.obra_id %></td>
+        <td><%= Obra.find(assignbenefit.obra_id).nombre %></td>
         <td></td>
       </tr>
     <% end %>

@@ -1,9 +1,7 @@
 
 <body>
-	
-<h1>Hola MUndo</h1>
 
-<h2> Log Intermedio </h2>
+<h2> Listado de asistentes </h2>
 
 <%=form_for Benefit.new, url: {controller: "pages", action: "indexBenefitPerName"} do %>
 
@@ -12,11 +10,11 @@
  	</div>
 
  	<div class="actions">
- 	<%= submit_tag 'Create' %>
+ 	<%= submit_tag 'Listar' %>
  	</div>
 <% end %>
 
-<h2> Log Final de Asistencia </h2>
+<h2> Registrar Asistencia </h2>
 
 <%=form_for Benefit.new, url: {controller: "pages", action: "logBeneficiosCheckAsistencia"} do %>
 
@@ -25,7 +23,7 @@
    	</div>
 
   	<div class="actions">
-     	<%= submit_tag 'Create' %>
+     	<%= submit_tag 'Registrar' %>
     </div>
     
 <% end %>

@@ -175,7 +175,9 @@
                   </thead>
                     <tbody>
                       <% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
-                      <% logloan = Logloan.where(:rut_solicitante => params[:asformulary][:rut_atendido]).order('created_at DESC').take(20) %>
+                      <% logloan = Logloan.where(:rut_solicitante => params[:asformulary][:rut_atendido]).order('created_at DESC').take(10) %>
+                      <% loan = Loanformulary.where(:rut_solicitante => params[:asformulary][:rut_atendido]).order('created_at DESC').take(20) %>
+
                       <% logloan.each do |logl| %>
                         <tr>
                           
@@ -190,6 +192,23 @@
 
                         </tr>
                       <% end %>
+
+                      <% loan.each do |logl| %>
+                      <tr>
+                          
+                          
+                          
+                          <td></td>
+                          <td><%= logl.monto_solicitado %></td>
+                          <td></td>
+                          <td><%= logl.motivo_solicitud %></td>
+                          <td><%= logl.estado %></td>
+                          
+
+                        </tr>
+                      <% end %>
+
+
                       <% end %>
                     </tbody>
                   </table>
