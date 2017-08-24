@@ -21,6 +21,7 @@ class AssignbenefitsController < ApplicationController
   
       @beneficiarios.each do |x|
         puts x.nombre
+        puts x.fechanacimiento
       end
     end
   end
@@ -32,7 +33,19 @@ class AssignbenefitsController < ApplicationController
   # POST /assignbenefits
   # POST /assignbenefits.json
   def create
+
     @assignbenefit = Assignbenefit.new(assignbenefit_params)
+    @family = Familiartrabajador.where(rut: params[:assignbenefit][:rut_beneficiario])
+
+    if params[:assignbenefit][:rut_trabajador] != params[:assignbenefit][:rut_beneficiario] && !@family.empty?
+      @assignbenefit.fecha_nacimiento = @family[0].fechanacimiento
+      @assignbenefit.relacion = @family[0].relacion
+    else
+      @assignbenefit.fecha_nacimiento = "2017-07-07"
+
+    end
+
+
 
     respond_to do |format|
       if @assignbenefit.save

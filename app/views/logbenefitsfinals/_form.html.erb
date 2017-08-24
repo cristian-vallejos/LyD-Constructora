@@ -1,0 +1,72 @@
+<%= form_with(model: logbenefitsfinal, local: true) do |form| %>
+  <% if logbenefitsfinal.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(logbenefitsfinal.errors.count, "error") %> prohibited this logbenefitsfinal from being saved:</h2>
+
+      <ul>
+      <% logbenefitsfinal.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :areabeneficio %>
+    <%= form.text_field :areabeneficio, id: :logbenefitsfinal_areabeneficio %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nombrebeneficio %>
+    <%= form.text_field :nombrebeneficio, id: :logbenefitsfinal_nombrebeneficio %>
+  </div>
+
+  <div class="field">
+    <%= form.label :costoempresa %>
+    <%= form.text_field :costoempresa, id: :logbenefitsfinal_costoempresa %>
+  </div>
+
+  <div class="field">
+    <%= form.label :costotrabajador %>
+    <%= form.text_field :costotrabajador, id: :logbenefitsfinal_costotrabajador %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ruttrabajador %>
+    <%= form.text_field :ruttrabajador, id: :logbenefitsfinal_ruttrabajador %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nombretrabajador %>
+    <%= form.text_field :nombretrabajador, id: :logbenefitsfinal_nombretrabajador %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rutbeneficiario %>
+    <%= form.text_field :rutbeneficiario, id: :logbenefitsfinal_rutbeneficiario %>
+  </div>
+
+  <div class="field">
+    <%= form.label :relacion %>
+    <%= form.text_field :relacion, id: :logbenefitsfinal_relacion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nombreobra %>
+    <%= form.text_field :nombreobra, id: :logbenefitsfinal_nombreobra %>
+  </div>
+
+  <div class="field">
+    <%= form.label :asistebeneficio %>
+    <%= form.number_field :asistebeneficio, id: :logbenefitsfinal_asistebeneficio %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Idasignacionbeneficio %>
+    <%= form.number_field :Idasignacionbeneficio, id: :logbenefitsfinal_Idasignacionbeneficio %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

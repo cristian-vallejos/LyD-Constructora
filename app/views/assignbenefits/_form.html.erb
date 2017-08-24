@@ -46,12 +46,13 @@
 
   </div>
 
+ <% if params[:rut_trabajador] %>
   <div class="field">
-  <% if params[:rut_trabajador] %>
+
     <%= form.label :rut_beneficiario %><br>
     <%# form.text_field :rut_beneficiario, id: :assignbenefit_rut_beneficiario, :class => 'textForm' %><br>
     <%= form.collection_select :rut_beneficiario, @beneficiarios.all+[Familiartrabajador.new(rut: params[:rut_trabajador], nombre: "El propio trabajador")], :rut, :nombre, include_blank: true %>
-<% end %>
+
   </div>
 
 
@@ -64,6 +65,28 @@
     <%# form.label :fecha_nacimiento %>
     <%# form.date_select :fecha_nacimiento, id: :assignbenefit_fecha_nacimiento %>
   </div>
+
+<% elsif params[:rut_trabajador] && @beneficiarios.nil? %>
+
+<div class="field">
+
+    <%= form.label :rut_beneficiario %><br>
+    <%= form.text_field :rut_beneficiario, id: :assignbenefit_rut_beneficiario, :class => 'textForm' %><br>
+</div>
+
+<div class="field">
+    <%= form.label :relacion, 'Parentezco' %>
+    <%= form.text_field :relacion, id: :assignbenefit_relacion, :class => 'textForm' %>
+</div>
+
+<div class="field">
+    <%= form.label :fecha_nacimiento %>
+    <%= form.date_select :fecha_nacimiento, id: :assignbenefit_fecha_nacimiento %>
+</div>
+
+
+
+  <% end %>
 
 
 

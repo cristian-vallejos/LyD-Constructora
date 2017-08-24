@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  areabeneficio: MyString
+  nombrebeneficio: MyString
+  costoempresa: MyString
+  costotrabajador: MyString
+  ruttrabajador: MyString
+  nombretrabajador: MyString
+  rutbeneficiario: MyString
+  relacion: MyString
+  nombreobra: MyString
+  asistebeneficio: 1
+  Idasignacionbeneficio: 1
+
+two:
+  areabeneficio: MyString
+  nombrebeneficio: MyString
+  costoempresa: MyString
+  costotrabajador: MyString
+  ruttrabajador: MyString
+  nombretrabajador: MyString
+  rutbeneficiario: MyString
+  relacion: MyString
+  nombreobra: MyString
+  asistebeneficio: 1
+  Idasignacionbeneficio: 1

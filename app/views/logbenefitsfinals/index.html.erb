@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Logbenefitsfinals</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Areabeneficio</th>
+      <th>Nombrebeneficio</th>
+      <th>Costoempresa</th>
+      <th>Costotrabajador</th>
+      <th>Ruttrabajador</th>
+      <th>Nombretrabajador</th>
+      <th>Rutbeneficiario</th>
+      <th>Relacion</th>
+      <th>Nombreobra</th>
+      <th>Asistebeneficio</th>
+      <th>Idasignacionbeneficio</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @logbenefitsfinals.each do |logbenefitsfinal| %>
+      <tr>
+        <td><%= logbenefitsfinal.areabeneficio %></td>
+        <td><%= logbenefitsfinal.nombrebeneficio %></td>
+        <td><%= logbenefitsfinal.costoempresa %></td>
+        <td><%= logbenefitsfinal.costotrabajador %></td>
+        <td><%= logbenefitsfinal.ruttrabajador %></td>
+        <td><%= logbenefitsfinal.nombretrabajador %></td>
+        <td><%= logbenefitsfinal.rutbeneficiario %></td>
+        <td><%= logbenefitsfinal.relacion %></td>
+        <td><%= logbenefitsfinal.nombreobra %></td>
+        <td><%= logbenefitsfinal.asistebeneficio %></td>
+        <td><%= logbenefitsfinal.Idasignacionbeneficio %></td>
+        <td><%= link_to 'Show', logbenefitsfinal %></td>
+        <td><%= link_to 'Edit', edit_logbenefitsfinal_path(logbenefitsfinal) %></td>
+        <td><%= link_to 'Destroy', logbenefitsfinal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Logbenefitsfinal', new_logbenefitsfinal_path %>

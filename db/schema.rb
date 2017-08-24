@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170821202956) do
+ActiveRecord::Schema.define(version: 20170823200949) do
 
   create_table "areabenefits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "nombre"
@@ -231,6 +231,23 @@ ActiveRecord::Schema.define(version: 20170821202956) do
     t.integer "codigo_epc"
     t.integer "telefono"
     t.string "beneficio"
+  end
+
+  create_table "logbenefitsfinals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "areabeneficio"
+    t.string "nombrebeneficio"
+    t.string "costoempresa"
+    t.string "costotrabajador"
+    t.string "ruttrabajador"
+    t.string "nombretrabajador"
+    t.string "rutbeneficiario"
+    t.string "relacion"
+    t.string "nombreobra"
+    t.integer "asistebeneficio"
+    t.integer "Idasignacionbeneficio"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "nombrebeneficiario"
   end
 
   create_table "logloans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

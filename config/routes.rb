@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  resources :logbenefitsfinalsdo do
+     collection do
+       post 'saveLogFinal', to: "logbenefitsfinals#saveLogFinal"
+     end
+   end
   resources :familiartrabajadors
   resources :asignarmultiplebeneficios do
     collection do
@@ -55,8 +60,10 @@ Rails.application.routes.draw do
   end
 
 
-  get '/benefitPanel' => 'pages#benefitPanel' 
-  post '/benefitPanel' => 'pages#indexBenefitPerName'
+  get '/benefitPanel', to: 'pages#benefitPanel' 
+  #post '/benefitPanel' => 'pages#indexBenefitPerName'
+  post '/logBeneficiosCheckAsistencia', to: 'pages#logBeneficiosCheckAsistencia' 
+  post '/indexBenefitPerName', to: 'pages#indexBenefitPerName'
 
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

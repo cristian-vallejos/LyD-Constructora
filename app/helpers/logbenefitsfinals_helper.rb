@@ -1,0 +1,2 @@
+module LogbenefitsfinalsHelper
+end

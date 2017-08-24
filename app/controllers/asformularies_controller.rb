@@ -52,8 +52,7 @@ class AsformulariesController < ApplicationController
   def new
 
       @asformulary = Asformulary.new
-    #@epcformulary = Epcformulary.new(asformulary_id: params[:asformulary_id])
-    puts "*******************"
+    
     if params[:asformulary] && params[:asformulary][:rut_atendido]
       @employee = Employee.where(:rut => params[:asformulary][:rut_atendido]).order('created_at DESC')
       @logloan = Logloan.where(:rut_solicitante => params[:asformulary][:rut_atendido]).order('created_at DESC')
@@ -68,7 +67,7 @@ class AsformulariesController < ApplicationController
       puts @rut
     end
     
-    puts "*******************"
+    
 
   end
 

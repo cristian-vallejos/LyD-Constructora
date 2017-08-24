@@ -1,0 +1,2 @@
+class Logbenefitsfinal < ApplicationRecord
+end

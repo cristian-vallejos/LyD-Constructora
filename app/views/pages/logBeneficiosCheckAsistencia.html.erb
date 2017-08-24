@@ -1,0 +1,51 @@
+<h1>Log de Beneficios</h1>
+
+<%=form_for @logbenefitsfinal, url: {controller: "logbenefitsfinals", action: "saveLogFinal"} do |f| %>
+
+<div class="field">
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Nombre</th>
+      <th>Area</th>
+      <th>Rut Trabajador</th>
+      <th>Rut Beneficiario</th>
+      <th>Relacion</th>
+      <th>Fecha</th>
+      <th>Id Obra</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @assignbenefit.each do |assignbenefit| %>
+    <% lbf = Logbenefitsfinal.find_by Idasignacionbeneficio: assignbenefit.id %>
+    <% if not lbf%>
+      <tr>
+        <div style="display: none;">
+        <%= benefit = Benefit.find(assignbenefit.benefit_id) %>
+        <%= areabenefit = Areabenefit.find(benefit.areabenefit_id) %>
+        </div>
+        <td><%= assignbenefit.benefit_id %></td>
+        <td><%= benefit.nombre %></td>
+        <td><%= areabenefit.nombre %></td>
+        <td><%= assignbenefit.rut_trabajador %></td>
+        <td><%= assignbenefit.rut_beneficiario %></td>
+        <td><%= assignbenefit.relacion %></td>
+        <td><%= assignbenefit.created_at %></td>
+        <td><%= assignbenefit.obra_id %></td>
+        <td><%= check_box_tag "assignbenefit_id#{assignbenefit.id}", assignbenefit.id %></td>
+      </tr>
+    <% end %>
+
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+<div class="actions">
+  <%= f.submit %>
+</div>
+<% end %>
