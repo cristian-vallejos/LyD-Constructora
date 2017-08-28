@@ -22,6 +22,11 @@
           <% @aspcategories.each do |aspcategory| %>
             <tr>
               <td><%= aspcategory.nombre %></td>
+              <% if current_lyduser.admin_role? %>
+              <td><%= link_to 'Mostrar', aspcategory %></td>
+              <td><%= link_to 'Actualizar', edit_aspcategory_path(aspcategory) %></td>
+              <td><%= link_to 'Eliminar', aspcategory, method: :delete, data: { confirm: 'Está seguro?' } %>
+              <% end %>
             </tr>
           <% end %>
         </tbody>

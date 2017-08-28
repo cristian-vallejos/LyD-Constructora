@@ -21,6 +21,11 @@
     <% @areabenefits.each do |areabenefit| %>
       <tr>
         <td><%= areabenefit.nombre %></td>
+        <% if current_lyduser.admin_role? %>
+        <td><%= link_to 'Mostrar', areabenefit %></td>
+        <td><%= link_to 'Actualizar', edit_areabenefit_path(areabenefit) %></td>
+        <td><%= link_to 'Eliminar', areabenefit, method: :delete, data: { confirm: 'Está seguro?' } %>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
