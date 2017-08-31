@@ -9,12 +9,10 @@ body {
 	color: #000;
 	width: 100%;
 	height: 100%;
+	font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", sans-serif;
 	
 }
 
-*{
-	font-family: "Calibry (Body)";
-}
 /* ~~ Selectores de elemento/etiqueta ~~ */
 ul, ol, dl { /* Debido a las diferencias existentes entre los navegadores, es recomendable no añadir relleno ni márgenes en las listas. Para lograr coherencia, puede especificar las cantidades deseadas aquí o en los elementos de lista (LI, DT, DD) que contienen. Recuerde que lo que haga aquí se aplicará en cascada en la lista .nav, a no ser que escriba un selector más específico. */
 	padding: 0;
