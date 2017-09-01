@@ -22,7 +22,7 @@
 
   <div class="field">
     <%= form.label :benefit_id, 'Seleccione un Beneficio' %> <br>
-    <%= form.collection_select :benefit_id, Benefit.all, :id, :nombre, include_blank: true %>
+    <%= form.collection_select :benefit_id, Benefit.where(is_active: true), :id, :nombre, include_blank: true %>
   </div>
 
   <div class="field">

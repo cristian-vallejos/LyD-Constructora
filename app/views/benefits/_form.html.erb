@@ -38,7 +38,7 @@
             <%= form.label :areabenefit_id, "Area Beneficio" %>
             <br>
             <%# form.collection_select(:areabenefit_id, Areabenefit.all, :id, :nombre) %>
-            <%= form.collection_select :areabenefit_id, Areabenefit.all, :id, :nombre, include_blank: true %>
+            <%= form.collection_select :areabenefit_id, Areabenefit.where(is_active: true), :id, :nombre, include_blank: true %>
 
 
             <br>

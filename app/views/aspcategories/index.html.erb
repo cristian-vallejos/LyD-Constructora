@@ -15,6 +15,7 @@
         <thead>
           <tr>
             <th>Nombre</th>
+            <th>Estado</th>
           </tr>
         </thead>
 
@@ -22,10 +23,16 @@
           <% @aspcategories.each do |aspcategory| %>
             <tr>
               <td><%= aspcategory.nombre %></td>
+              <%if aspcategory.is_active  %>
+                <td> Activo </td>
+                <%else %>
+                <td> No activo</td>
+                <%end %>
               <% if current_lyduser.admin_role? %>
               <td><%= link_to 'Mostrar', aspcategory %></td>
               <td><%= link_to 'Actualizar', edit_aspcategory_path(aspcategory) %></td>
               <td><%= link_to 'Eliminar', aspcategory, method: :delete, data: { confirm: 'Está seguro?' } %>
+              <td><%= link_to 'Activar/desactivar', is_active_aspcategory_path(aspcategory) %>
               <% end %>
             </tr>
           <% end %>

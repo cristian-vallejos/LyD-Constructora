@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170823200949) do
+ActiveRecord::Schema.define(version: 20170901191421) do
 
   create_table "areabenefits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_active", default: true
   end
 
   create_table "asformularies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -61,6 +62,7 @@ ActiveRecord::Schema.define(version: 20170823200949) do
     t.string "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_active", default: true
   end
 
   create_table "assignbenefits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -86,6 +88,7 @@ ActiveRecord::Schema.define(version: 20170823200949) do
     t.boolean "familia", default: false
     t.boolean "asistencia", default: false
     t.bigint "areabenefit_id"
+    t.boolean "is_active", default: true
     t.index ["areabenefit_id"], name: "index_benefits_on_areabenefit_id"
   end
 
@@ -288,6 +291,7 @@ ActiveRecord::Schema.define(version: 20170823200949) do
     t.boolean "jefe_remuneraciones_role", default: false
     t.string "obra"
     t.string "nombre_usuario"
+    t.boolean "is_active", default: true
     t.index ["email"], name: "index_lydusers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_lydusers_on_reset_password_token", unique: true
   end
@@ -298,6 +302,7 @@ ActiveRecord::Schema.define(version: 20170823200949) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "codigo"
+    t.boolean "is_active", default: true
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

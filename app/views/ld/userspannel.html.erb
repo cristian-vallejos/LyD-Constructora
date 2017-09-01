@@ -12,7 +12,7 @@
 <br>
 
 <div class="row">
- <div class="col-md-4">
+ <div class="col-md-3">
 	
 <h5>Registrar Nuevo usuario</h5>
 
@@ -119,6 +119,25 @@
 
 
 	 <%end %>
+
+   <h5>Activar/Desactivar Usuario</h5>
+  <%= form_for(:ld, url: ld_userspannel_path, method: "get") do |f| %>
+
+  <div class="field">
+    <%= f.label :lyduser, 'Seleccione un usuario' %> <br>
+    <%= f.collection_select :id, Lyduser.all.order('nombre_usuario ASC'), :id, :nombre_estado, {include_blank: true} , {style: "width:180px"} %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Cambiar Contraseña", name: "desactivarUsuario", :class => 'btn btn-green btn-lg btn-block' %>
+  </div>
+
+
+
+
+  <%end %>
+
+
 
 
 

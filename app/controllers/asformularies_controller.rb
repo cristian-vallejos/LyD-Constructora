@@ -23,6 +23,15 @@ class AsformulariesController < ApplicationController
 
   end
 
+  def get_benefits
+
+    #@company = Benefits.find.params[:company_id]
+    #@contacts = @company.contacts
+
+    Rails.logger.warn "#{:areabenefit_id} jajaxxx"
+    @contacts = Benefit.where("areabenefit_id = ? and is_active = ? ",params[:areabenefit_id], true)
+  end
+
   def search
     #if(params[:asformulary] && params[:asformulary][:nombre_atendido])
       

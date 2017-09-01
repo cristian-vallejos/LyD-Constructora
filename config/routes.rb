@@ -19,7 +19,11 @@ Rails.application.routes.draw do
   resources :logloans
   resources :employees
   resources :assignbenefits
-  resources :areabenefits
+  resources :areabenefits do
+    member do
+      get :is_active
+    end
+  end
   resources :loanformularies do
     member do
       get :accept
@@ -39,7 +43,12 @@ Rails.application.routes.draw do
   #get 'asformularies/newseg', to: 'asformularies#newseg', as: 'newseg'
 
 
-  resources :benefits
+  resources :benefits do 
+    member do
+      get :is_active
+    end
+  end
+  
   resources :obras
   resources :logas
   resources :epcformularies
@@ -50,9 +59,16 @@ Rails.application.routes.draw do
     end
     collection do
       get 'search', to: "asformularies#search"
+      get 'get_benefits', to: "asformularies#get_benefits"
     end
   end
-  resources :aspcategories
+
+  resources :aspcategories do
+    member do
+      get :is_active
+    end
+  end
+
   resources :users
 
   resources :pages do

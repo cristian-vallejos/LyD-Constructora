@@ -17,6 +17,7 @@
         <thead>
           <tr>
             <th>Nombre</th>
+            <th>Estado</th>
             <th>Area Beneneficio</th>
             <th>Costo empresa</th>
             <th>Costo trabajador</th>
@@ -28,12 +29,19 @@
           <% @benefits.each do |benefit| %>
             <tr>
               <td><%= benefit.nombre %></td>
+              <%if benefit.is_active  %>
+                <td> Activo </td>
+                <%else %>
+                <td> No activo</td>
+                <%end %>
               <td><%= benefit.areabenefit.nombre %></td>
               <td><%= benefit.costoempresa %></td>
               <td><%= benefit.costotrabajador %></td>
+              
               <td><%= link_to 'Mostrar', benefit %></td>
               <td><%= link_to 'Actualizar', edit_benefit_path(benefit) %></td>
               <td><%= link_to 'Eliminar', benefit, method: :delete, data: { confirm: 'Está seguro?' } %></td>
+              <td><%= link_to 'Activar/desactivar', is_active_benefit_path(benefit) %>
             </tr>
           <% end %>
         </tbody>

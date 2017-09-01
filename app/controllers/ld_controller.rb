@@ -67,6 +67,27 @@ class LdController < ApplicationController
 			us.update_attributes(obra: ob)
 
 
+
+
+		elsif params[:desactivarUsuario]
+
+			if params[:ld][:id] && current_lyduser.admin_role?
+
+				us = Lyduser.find(params[:ld][:id])
+
+				if us.is_active?
+					us.update_attributes(is_active: false)
+				else
+					us.update_attributes(is_active: true)
+				end
+
+
+			end
+
+
+			
+
+
 			
 
 		end

@@ -14,6 +14,7 @@
   <thead>
     <tr>
       <th>Nombre</th>
+      <th>Estado</th>
     </tr>
   </thead>
 
@@ -21,10 +22,17 @@
     <% @areabenefits.each do |areabenefit| %>
       <tr>
         <td><%= areabenefit.nombre %></td>
+        <%if areabenefit.is_active  %>
+        <td> Activo </td>
+        <%else %>
+        <td> No activo</td>
+        <%end %>
+
         <% if current_lyduser.admin_role? %>
         <td><%= link_to 'Mostrar', areabenefit %></td>
         <td><%= link_to 'Actualizar', edit_areabenefit_path(areabenefit) %></td>
         <td><%= link_to 'Eliminar', areabenefit, method: :delete, data: { confirm: 'Está seguro?' } %>
+        <td><%= link_to 'Activar/desactivar', is_active_areabenefit_path(areabenefit) %>
         <% end %>
       </tr>
     <% end %>

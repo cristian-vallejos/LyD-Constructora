@@ -12,7 +12,7 @@
 <%=form_for Benefit.new, url: {controller: "pages", action: "indexBenefitPerName"} do %>
 
    	<div class="field">
- 	<%= collection_select(:benefit, :benefit_id, Benefit.all, :id, :nombre, {:prompt => "Seleccione un beneficio"}, {:class => "Select a Contact", style: "width:220px"}) %>
+ 	<%= collection_select(:benefit, :benefit_id, Benefit.where(is_active: true), :id, :nombre, {:prompt => "Seleccione un beneficio"}, {:class => "Select a Contact", style: "width:220px"}) %>
  	</div>
 
  	<div class="actions">
@@ -25,7 +25,7 @@
 <%=form_for Benefit.new, url: {controller: "pages", action: "logBeneficiosCheckAsistencia"} do %>
 
 	<div class="field">
- 		<%= collection_select(:benefit, :benefit_id, Benefit.all, :id, :nombre, {:prompt => "Seleccione área de beneficio"}, {:class => "contact_selection", style: "width:220px"}) %>
+ 		<%= collection_select(:benefit, :benefit_id, Benefit.where(is_active: true), :id, :nombre, {:prompt => "Seleccione área de beneficio"}, {:class => "contact_selection", style: "width:220px"}) %>
    	</div>
 
   	<div class="actions">

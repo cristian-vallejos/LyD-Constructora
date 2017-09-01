@@ -13,6 +13,27 @@ class AspcategoriesController < ApplicationController
   def show
   end
 
+  def is_active
+
+    if current_lyduser.admin_role?
+
+      area = Aspcategory.find(params[:id])
+
+      if area.is_active
+        area.is_active = false
+      else
+        area.is_active = true
+      end
+
+      area.save
+
+      redirect_to aspcategories_path
+
+    end
+
+    
+  end
+
   # GET /aspcategories/new
   def new
     @aspcategory = Aspcategory.new

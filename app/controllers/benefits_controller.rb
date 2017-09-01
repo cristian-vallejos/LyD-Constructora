@@ -13,6 +13,27 @@ class BenefitsController < ApplicationController
   def show
   end
 
+  def is_active
+
+    if current_lyduser.admin_role?
+
+      beneficio = Benefit.find(params[:id])
+
+      if beneficio.is_active
+        beneficio.is_active = false
+      else
+        beneficio.is_active = true
+      end
+
+      beneficio.save
+
+      redirect_to benefits_path
+
+    end
+
+    
+  end
+
   # GET /benefits/new
   def new
     @benefit = Benefit.new

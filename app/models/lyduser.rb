@@ -8,5 +8,18 @@ class Lyduser < ApplicationRecord
 	has_many :loanformularies
 
 
+	def nombre_estado
+
+		if self.is_active
+			estado = "ACTIVO"
+		else
+			estado = "NO ACTIVO"
+		end
+
+		"#{nombre_usuario} - #{estado}"
+
+	end
+
+
 
 end

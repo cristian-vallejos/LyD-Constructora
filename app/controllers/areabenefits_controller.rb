@@ -13,6 +13,27 @@ class AreabenefitsController < ApplicationController
   def show
   end
 
+  def is_active
+
+    if current_lyduser.admin_role?
+
+      area = Areabenefit.find(params[:id])
+
+      if area.is_active
+        area.is_active = false
+      else
+        area.is_active = true
+      end
+
+      area.save
+
+      redirect_to areabenefits_path
+
+    end
+
+    
+  end
+
   # GET /areabenefits/new
   def new
     @areabenefit = Areabenefit.new
