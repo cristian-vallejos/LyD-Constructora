@@ -125,11 +125,11 @@
 
   <div class="field">
     <%= f.label :lyduser, 'Seleccione un usuario' %> <br>
-    <%= f.collection_select :id, Lyduser.all.order('nombre_usuario ASC'), :id, :nombre_estado, {include_blank: true} , {style: "width:180px"} %>
+    <%= f.collection_select :id, Lyduser.where(admin_role: false).order('nombre_usuario ASC'), :id, :nombre_estado, {include_blank: true} , {style: "width:180px"} %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Cambiar Contraseña", name: "desactivarUsuario", :class => 'btn btn-green btn-lg btn-block' %>
+    <%= f.submit "Activar/Desactivar Usuario", name: "desactivarUsuario", :class => 'btn btn-green btn-lg btn-block' %>
   </div>
 
 
