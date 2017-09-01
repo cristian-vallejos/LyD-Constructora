@@ -28,7 +28,15 @@
              
                <% if params[:rut_trabajador]%>
                <% familia = Familiartrabajador.where(:rut_trabajador => params[:rut_trabajador]).order('created_at DESC') %>
+               <% nombreEmple = Employee.where(rut: params[:rut_trabajador]) %>
 
+                <%if !nombreEmple.nil? %>
+                <%  if !nombreEmple.empty? %>
+                <%    nombre_empleado = nombreEmple[0].nombre%>
+                <%  end %>
+                <%end %>
+
+                <%= nombre_empleado %>
                <% familia.each do |loga| %>
                         <tr>
                           

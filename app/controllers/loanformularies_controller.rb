@@ -5,7 +5,7 @@ class LoanformulariesController < ApplicationController
   # GET /loanformularies
   # GET /loanformularies.json
   def index
-    @loanformularies = Loanformulary.all
+    @loanformularies = Loanformulary.all.order('created_at DESC')
     @loanformulary = Loanformulary.new(:rut_solicitante => params[:rut_solicitante])
 
 

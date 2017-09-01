@@ -53,8 +53,8 @@
               <div class="item">
               <h4>Buscar Atención por nombre</h4>
                 <%# f.label "Buscar Atención" %>
-                <%= text_field_tag :search, params[:search], :class => 'textForm' %>
-                <%= submit_tag "Buscar", :name => nil, :class => 'btn btn-green' %>
+                <%= text_field_tag :search, params[:search], :class => 'textForm', placeholder: "Ingrese rut o nombre de trabajador " %>
+                <%= submit_tag "Buscar", :name => nil, :class => 'btn btn-green', style: "width:220px" %>
               </div>
 
               

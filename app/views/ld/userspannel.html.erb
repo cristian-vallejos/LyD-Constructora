@@ -1,7 +1,11 @@
 <% if current_lyduser.admin_role? %>
 
+
 <link href='<%= asset_url("css/bootstrap.min.css") %>' rel="stylesheet" type="text/css">
+<link href='<%= asset_url("css/font-awesome.min.css") %>' rel="stylesheet">
+<link href='<%= asset_url("css/style-55.css") %>' rel="stylesheet">
 <link href='<%= asset_url("css/style-273.css") %>' rel="stylesheet">
+<link href='<%= asset_url("css2/stylesLD.css") %>' rel="stylesheet" type="text/css">
 
 <h1>Gestion de usuarios</h1>
 <br>
@@ -27,7 +31,7 @@
 
   <div class="field">
   <%= f.label :obra, 'Obra' %><br>
-  <%= f.collection_select :id, Obra.all.order('id ASC'), :id, :nombre_codigo, include_blank: true %>
+  <%= f.collection_select :id, Obra.all.order('id ASC'), :id, :nombre_codigo, {include_blank: true} , {style: "width:180px"} %>
   </div>
 
   <h6>- - Rol - -</h6>
@@ -75,7 +79,7 @@
  <i>*Las contraseñas deben coincidir</i> 
 
   <div class="actions">
-    <%= f.submit "Registrar", name: "registrar" %>
+    <%= f.submit "Registrar", name: "registrar", :class => 'btn btn-green btn-lg btn-block' %>
   </div>
 
 
@@ -91,7 +95,7 @@
 
 		<div class="field">
 		  <%= f.label :lyduser, 'Seleccione un usuario' %> <br>
-		  <%= f.collection_select :id, Lyduser.all.order('nombre_usuario ASC'), :id, :nombre_usuario, include_blank: true %>
+		  <%= f.collection_select :id, Lyduser.all.order('nombre_usuario ASC'), :id, :nombre_usuario, {include_blank: true} , {style: "width:180px"} %>
 	  </div>
 	  <div class="field">
 	    <%= f.label :password, 'Nueva Contraseña' %>
@@ -110,7 +114,7 @@
 	   <i>*Las contraseñas deben tener mínimo 6 caracteres</i> 
  
 	  <div class="actions">
-    	<%= f.submit "Cambiar Contraseña", name: "cambiarPass" %>
+    	<%= f.submit "Cambiar Contraseña", name: "cambiarPass", :class => 'btn btn-green btn-lg btn-block' %>
   	  </div>
 
 
@@ -126,12 +130,12 @@
 
 		<div class="field">
 		  <%= f.label :lyduser, 'Seleccione un usuario' %> <br>
-		  <%= f.collection_select :u_id, Lyduser.all.order('nombre_usuario ASC'), :id, :nombre_usuario, include_blank: true %>
+		  <%= f.collection_select :u_id, Lyduser.all.order('nombre_usuario ASC'), :id, :nombre_usuario, {include_blank: true} , {style: "width:180px"} %>
 	    </div>
 
 	    <div class="field">
 		  <%= f.label :obra, 'Obra' %><br>
-		  <%= f.collection_select :o_id, Obra.all.order('id ASC'), :id, :nombre_codigo, include_blank: true %>
+		  <%= f.collection_select :o_id, Obra.all.order('id ASC'), :id, :nombre_codigo, {include_blank: true}, {style: "width:180px"} %>
 		</div>
 
 	  
@@ -140,7 +144,7 @@
 
 	   
 	  <div class="actions">
-    	<%= f.submit "Asignar Obra", name: "cambiarObra" %>
+    	<%= f.submit "Asignar Obra", name: "cambiarObra", :class => 'btn btn-green btn-lg btn-block' %>
   	  </div>
 
 

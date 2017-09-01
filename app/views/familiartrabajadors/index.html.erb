@@ -12,7 +12,7 @@
               <div class="item">
               <h4>Buscar Trabajador por nombre</h4>
                 <%# f.label "Buscar Atención" %>
-                <%= text_field_tag :search, params[:search], :class => 'textForm' %>
+                <%= text_field_tag :search, params[:search], :style => "width:300px", placeholder: "Ingrese rut ej. 13832057-K o formato explicado en la nota" %>
                 <%= submit_tag "Buscar", :name => nil, :class => 'btn btn-green' %><br>
                 <i>*El formato de busqueda es APELLIDO PATERNO  APELLIDO MATERNO, PRIMER NOMBRE SEGUNDO NOMBRE</i><br>
                 <i>*los apellidos están separados por dos espacios</i>

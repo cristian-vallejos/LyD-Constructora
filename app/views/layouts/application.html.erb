@@ -29,7 +29,10 @@
 
     <div align="right">
     <% if lyduser_signed_in? %>
-    <%= link_to "Editar Perfil", edit_lyduser_registration_path %> |
+    <%= link_to "Inicio", root_path %> |
+    <% end %>
+    <% if lyduser_signed_in? %>
+    <%= link_to "Configuraciones", edit_lyduser_registration_path %> |
     <% if !lyduser_signed_in? %>
     <%= link_to "Registrarse", new_lyduser_registration_path %> |
     <% end %> 

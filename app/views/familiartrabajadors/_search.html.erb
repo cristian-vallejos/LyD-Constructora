@@ -13,11 +13,18 @@
   <tbody>
   <%if params[:search] && params[:search]!= "" %>
       <% @results.each do |employee|%>
+      <%obraName = Obra.where(codigo: employee.cencos)%>
+      <%if !obraName.nil? %>
+      <%  if !obraName.empty? %>
+      <%    employeeObra = obraName[0].nombre%>
+      <%  end %>
+      <%end %>
+
         <tr>
             <td><%= employee.id %></td>
             <td><%= employee.rut %></td>
             <td><%= employee.nombre %></td>
-            <td><%= employee.cencos %></td>
+            <td><%= employeeObra %></td>
             <td><%= employee.estado %></td>
             <td><%= link_to 'Agregar Familia', new_familiartrabajador_path(:rut_trabajador => employee.rut ) %></td>
         </tr>

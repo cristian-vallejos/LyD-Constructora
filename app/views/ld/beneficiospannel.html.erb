@@ -2,25 +2,59 @@
 
 <body>
 
+<link href='<%= asset_url("css/bootstrap.min.css") %>' rel="stylesheet" type="text/css">
+<link href='<%= asset_url("css/font-awesome.min.css") %>' rel="stylesheet">
+<link href='<%= asset_url("css/style-37.css") %>' rel="stylesheet">
+<link href='<%= asset_url("css2/stylesLD.css") %>' rel="stylesheet" type="text/css">
 
 
 
 <div class="container">
 
-   <div class="content">
-    <div class="loginDiv">
-    <button onclick="location.href='<%= new_assignbenefit_path %>'" type="button" class="button button1">ASIGNAR BENEFICIOS</button>
-  	<br> 
-  	<button onclick="location.href='<%= asignarmultiplebeneficios_path %>'" type="button" class="button button1">ASIGNAR MÚLTIPLES BENEFICIOS</button>
+  <div class="content">
+    <div align="center">
+      <div class="ui-37-ld">
+          <div class="row">
+              <div class="col-md-4 col-sm-4 col-xs-6 col-mob">  <a href="<%= new_assignbenefit_path %>" class="bg-green-ld"> <img src='<%= asset_url("trans.png") %>' alt="" />
+                <label class="label-ld">Asignar Beneficios</label>
+                </a> </div>
+            </div>
 
-   </div>
-   
-</div>
+            <div class="row">
+              <div class="col-md-4 col-sm-4 col-xs-6 col-mob">  <a href="<%=asignarmultiplebeneficios_path %>" class="bg-green-ld"> <img src='<%= asset_url("trans.png") %>' alt="" />
+                <label class="label-ld">Asignar Múltiples Beneficios</label>
+                </a> </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4 col-sm-4 col-xs-6 col-mob">  <a href="<%= benefitPanel_path %>" class="bg-green-ld"> <img src='<%= asset_url("trans.png") %>' alt="" />
+                <label class="label-ld">Operativos</label>
+                </a> </div>
+            </div>
+
+            
 
 
+      </div>
 
-
+      <br>
+      <br>
+      
+      <br>
+     
+      <br>
+    </div>
+    
+    <!-- end .content --></div>
+  
   <!-- end .container --></div>
+
+
+
+
+
+
+
    <div class="footer">
     <p>Pie de página</p>
     <!-- end .footer --></div>

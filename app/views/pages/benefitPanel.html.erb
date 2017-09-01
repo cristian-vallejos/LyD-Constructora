@@ -1,16 +1,22 @@
 
 <body>
 
-<h2> Listado de asistentes </h2>
+<link href='<%= asset_url("css/bootstrap.min.css") %>' rel="stylesheet" type="text/css">
+<link href='<%= asset_url("css/font-awesome.min.css") %>' rel="stylesheet">
+<link href='<%= asset_url("css/style-55.css") %>' rel="stylesheet">
+<link href='<%= asset_url("css2/stylesLD.css") %>' rel="stylesheet" type="text/css">
+
+
+<h2>Listado de asistentes </h2>
 
 <%=form_for Benefit.new, url: {controller: "pages", action: "indexBenefitPerName"} do %>
 
    	<div class="field">
- 	<%= collection_select(:benefit, :benefit_id, Benefit.all, :id, :nombre, {:prompt => "Select a Contact"}, {:class => "contact_selection"}) %>
+ 	<%= collection_select(:benefit, :benefit_id, Benefit.all, :id, :nombre, {:prompt => "Seleccione un beneficio"}, {:class => "Select a Contact", style: "width:220px"}) %>
  	</div>
 
  	<div class="actions">
- 	<%= submit_tag 'Listar' %>
+ 	<%= submit_tag 'Listar', :class => 'btn btn-green', style: "width:220px" %>
  	</div>
 <% end %>
 
@@ -19,11 +25,11 @@
 <%=form_for Benefit.new, url: {controller: "pages", action: "logBeneficiosCheckAsistencia"} do %>
 
 	<div class="field">
- 		<%= collection_select(:benefit, :benefit_id, Benefit.all, :id, :nombre, {:prompt => "Select a Contact"}, {:class => "contact_selection"}) %>
+ 		<%= collection_select(:benefit, :benefit_id, Benefit.all, :id, :nombre, {:prompt => "Seleccione área de beneficio"}, {:class => "contact_selection", style: "width:220px"}) %>
    	</div>
 
   	<div class="actions">
-     	<%= submit_tag 'Registrar' %>
+     	<%= submit_tag 'Registrar', :class => 'btn btn-green', style: "width:220px"  %>
     </div>
     
 <% end %>
