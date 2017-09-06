@@ -15,7 +15,7 @@
 
       <div class="field">
       <%= f.label :obra_id %>
-      <%= f.collection_select(:obra_id, Obra.all.order('nombre ASC'), :codigo, :nombre, {:prompt => "Escoger centro de costo"},{:class => "ccosto_selection"}) %>
+      <%= f.collection_select(:obra_id, Obra.all.order('nombre ASC'), :codigo, :nombre, {:prompt => "Seleccione una obra"},{:class => "ccosto_selection"}) %>
       </div>
 
       <div class="table-responsive"> 
@@ -25,11 +25,11 @@
             
               <tr>
                 <th><%= check_box_tag "check_all", class: 'check_all'  %></th>
-                <th>Trabajador</th>
-                <th>Centro costo</th>
-                <th>Area beneficio</th>
-                <th>Beneficio</th>
-                <th colspan="3"></th>
+                <th>Nombre Trabajador</th>
+                <th>Rut Trabajador</th>
+                <th>Centro de costo</th>
+                <th>Estado</th>
+               
               </tr>
             
             
@@ -61,7 +61,7 @@
       <br>
       <div class="field">
         <%= f.label :benefit_id, "Beneficio" %><br>
-        <%= f.collection_select(:benefit_id, Benefit.where(is_active: true), :id, :nombre, {:prompt => "Seleccione un beneficio"}, {:class => "contact_selection"}) %>
+        <%= f.collection_select(:benefit_id, Benefit.where(is_active: true, asistencia: true), :id, :nombre, {:prompt => "Seleccione un beneficio"}, {:class => "contact_selection"}) %>
       </div>
 
 

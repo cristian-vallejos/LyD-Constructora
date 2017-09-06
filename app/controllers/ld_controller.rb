@@ -18,6 +18,7 @@ class LdController < ApplicationController
 
 		@obra = Obra.new
 		@asformulary = Asformulary.new
+		@benefitslog = Logbenefitsfinal.where(ruttrabajador: params[:asformulary][:rut_atendido]).order('created_at DESC')
 
 		#puts params[:obra][:id]
 	end
@@ -34,7 +35,31 @@ class LdController < ApplicationController
 				ob = ""
 			end
 
-		Lyduser.create(obra: ob,email: params[:ld][:email], password: params[:ld][:password], password_confirmation: params[:ld][:password_confirmation], nombre_usuario: params[:ld][:nombre_usuario], admin_role: 0, asocial_role: params[:ld][:asocial_role], boperativos_role: params[:ld][:boperativos_role], administrativo_obra_role: params[:ld][:administrativo_obra_role], subgerente_personas_role: params[:ld][:subgerente_personas_role], jefe_remuneraciones_role: params[:ld][:jefe_remuneraciones_role])
+
+
+			asocial_role = false
+			ao_role = false
+			administrativo_obra_role = false
+			subgerente_personas_role = false
+			jefe_remuneraciones_role = false
+
+
+			if params[:ld][:role] == "asocial_role"
+				asocial_role = true
+			elsif params[:ld][:role] == "ao_role"
+				ao_role = true
+			elsif params[:ld][:role] == "administrativo_obra_role"
+				administrativo_obra_role = true
+			elsif params[:ld][:role] == "subgerente_personas_role"
+				subgerente_personas_role = true
+			elsif params[:ld][:role] == "jefe_remuneraciones_role"
+				jefe_remuneraciones_role = true		
+			end
+
+
+
+		Lyduser.create(obra: ob,email: params[:ld][:email], password: params[:ld][:password], password_confirmation: params[:ld][:password_confirmation], nombre_usuario: params[:ld][:nombre_usuario], admin_role: 0, asocial_role: asocial_role, ao_role: ao_role, administrativo_obra_role: administrativo_obra_role, subgerente_personas_role: subgerente_personas_role, jefe_remuneraciones_role: jefe_remuneraciones_role)
+		redirect_to ld_userspannel_path
 
 		elsif params[:cambiarPass]
 

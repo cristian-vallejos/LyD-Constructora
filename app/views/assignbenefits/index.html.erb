@@ -7,7 +7,9 @@
     <tr>
       <th>Benefit</th>
       <th>Rut trabajador</th>
+      <th>Nombre Trabajador</th>
       <th>Rut beneficiario</th>
+      <th>Nombre Beneficiario</th>
       <th>Relacion</th>
       <th>Fecha nacimiento</th>
       <th>Obra</th>
@@ -18,9 +20,49 @@
   <tbody>
     <% @assignbenefits.each do |assignbenefit| %>
       <tr>
+
+      <% if assignbenefit.rut_trabajador == assignbenefit.rut_beneficiario %>
+      <% is_employee = true %>
+
+      <% else %>
+      <% is_employee = false%>
+      <% end %>
+
+      <% if !is_employee%>
+      <% nombre_beneficiario = Familiartrabajador.where(rut: assignbenefit.rut_beneficiario) %>
+      <% else %>
+      <% nombre_trabajador = Employee.where(rut: assignbenefit.rut_trabajador) %>
+      <% end %>
+
+
+
         <td><%= assignbenefit.benefit.nombre %></td>
         <td><%= assignbenefit.rut_trabajador %></td>
+
+
+
+        <% if !nombre_trabajador.nil? && is_employee %>
+        <%   if !nombre_trabajador.empty? && is_employee%>
+        <td><%= nombre_trabajador[0].nombre %></td>
+        <%   end %>
+        <% else %>
+        <td><%= assignbenefit.rut_trabajador %></td>
+        <% end  %>
+
         <td><%= assignbenefit.rut_beneficiario %></td>
+
+        <%if !nombre_beneficiario.nil? && !is_employee %>
+        <%  if !nombre_beneficiario.empty? && !is_employee %>
+        <td><%= nombre_beneficiario[0].nombre %></td>
+        <%   end%>
+        <%else %>
+        <% if !nombre_trabajador.nil? && is_employee %>
+        <%   if !nombre_trabajador.empty? && is_employee%>
+        <td><%= nombre_trabajador[0].nombre %></td>
+        <%   end %>
+        <% end  %>
+        <%end%>
+
         <td><%= assignbenefit.relacion %></td>
         <td><%= assignbenefit.fecha_nacimiento %></td>
         <td><%= assignbenefit.obra.nombre %></td>

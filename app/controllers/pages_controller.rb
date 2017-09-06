@@ -5,7 +5,23 @@ class PagesController < ApplicationController
 
 	def logBeneficiosCheckAsistencia
 		@logbenefitsfinal = Logbenefitsfinal.new
- 		@assignbenefit = Assignbenefit.where(benefit_id: params[:benefit][:benefit_id])
+ 		#@assignbenefit = Assignbenefit.where(benefit_id: params[:benefit][:benefit_id])
+
+		@assignbenefit = Assignbenefit.where(benefit_id: params[:benefit][:benefit_id], obra_id: params[:centrocosto][:centrocosto_id])
+ 
+ 		if params[:benefit][:benefit_id] == ""
+ 			@assignbenefit = Assignbenefit.where(obra_id: params[:centrocosto][:centrocosto_id])
+ 		end
+ 
+ 
+ 		if params[:centrocosto][:centrocosto_id] == ""
+ 			@assignbenefit = Assignbenefit.where(benefit_id: params[:benefit][:benefit_id])
+ 
+ 		end
+
+
+
+
  	end
 
 
@@ -13,10 +29,27 @@ class PagesController < ApplicationController
 	def indexBenefitPerName
 
 
-		@assignbenefit = Assignbenefit.where(benefit_id: params[:benefit][:benefit_id])
+		#@assignbenefit = Assignbenefit.where(benefit_id: params[:benefit][:benefit_id])
 
 
-		Rails.application.config.ab = Assignbenefit.where(benefit_id: params[:benefit][:benefit_id])
+		#Rails.application.config.ab = Assignbenefit.where(benefit_id: params[:benefit][:benefit_id])
+
+		@assignbenefit = Assignbenefit.where(benefit_id: params[:benefit][:benefit_id], obra_id: params[:centrocosto][:centrocosto_id])
+ 		Rails.application.config.ab = Assignbenefit.where(benefit_id: params[:benefit][:benefit_id], obra_id: params[:centrocosto][:centrocosto_id])
+ 
+ 		if params[:benefit][:benefit_id] == ""
+ 			@assignbenefit = Assignbenefit.where(obra_id: params[:centrocosto][:centrocosto_id])
+ 			Rails.application.config.ab = Assignbenefit.where(obra_id: params[:centrocosto][:centrocosto_id])
+ 		end
+ 
+ 
+ 		if params[:centrocosto][:centrocosto_id] == ""
+ 			@assignbenefit = Assignbenefit.where(benefit_id: params[:benefit][:benefit_id])
+ 			Rails.application.config.ab = Assignbenefit.where(benefit_id: params[:benefit][:benefit_id])
+  
+ 		end
+
+
 
     	
     	respond_to do |format|

@@ -34,7 +34,7 @@ class LoanformulariesController < ApplicationController
           request.comentario_as = params[:loanformulary][:comentario_as]
           request.fecha_aceptado_por_as = Date.current
 
-        elsif current_lyduser.administrativo_obra_role? && request.aceptado_por_administrativo_obra == nil
+        elsif current_lyduser.ao_role? && request.aceptado_por_administrativo_obra == nil
           request.aceptado_por_administrativo_obra = true
           request.comentario_administrativo_obra = params[:loanformulary][:comentario_administrativo_obra]
           request.fecha_aceptado_por_administrativo_obra = Date.current
@@ -58,7 +58,7 @@ class LoanformulariesController < ApplicationController
           request.comentario_as = params[:loanformulary][:comentario_as]
           request.fecha_aceptado_por_as = Date.current
 
-        elsif current_lyduser.administrativo_obra_role? && request.aceptado_por_administrativo_obra == nil
+        elsif current_lyduser.ao_role? && request.aceptado_por_administrativo_obra == nil
           request.aceptado_por_administrativo_obra = false
           request.comentario_administrativo_obra = params[:loanformulary][:comentario_administrativo_obra]
           request.fecha_aceptado_por_administrativo_obra = Date.current
@@ -105,7 +105,7 @@ class LoanformulariesController < ApplicationController
    # if current_lyduser.asocial_role? && request.aceptado_por_as == nil
     #  request.aceptado_por_as = false
      # request.fecha_aceptado_por_as = Date.current
-    #elsif current_lyduser.administrativo_obra_role?
+    #elsif current_lyduser.ao_role?
      # request.aceptado_por_administrativo_obra = false
       #request.fecha_aceptado_por_administrativo_obra = Date.current
     #elsif current_lyduser.subgerente_personas_role?

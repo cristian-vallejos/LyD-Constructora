@@ -37,26 +37,26 @@
   <h6>- - Rol - -</h6>
   <div class="field">
     <%= f.label :asocial_role, 'Asistente Social' %>
-    <%= f.check_box :asocial_role, id: :asocial_role %>
+    <%= f.radio_button :role, "asocial_role" %>
   </div>
 
   <div class="field">
-    <%= f.label :boperativos_role, 'Encargado de operativos' %>
-    <%= f.check_box :boperativos_role, id: :boperativos_role %>
+    <%= f.label :ao_role, 'Administrador de Obra' %>
+    <%= f.radio_button :role, "ao_role" %>
   </div>
 
   <div class="field">
-    <%= f.label :administrativo_obra_role, 'Administrador de Obra' %>
-    <%= f.check_box :administrativo_obra_role, id: :administrativo_obra_role %>
+    <%= f.label :administrativo_obra_role, 'Administrativo de Obra' %>
+    <%= f.radio_button :role, "administrativo_obra_role" %>
   </div>
 
   <div class="field">
     <%= f.label :subgerente_personas_role, 'Subgerente de Personas' %>
-    <%= f.check_box :subgerente_personas_role, id: :subgerente_personas_role %>
+    <%= f.radio_button :role, "subgerente_personas_role" %>
   </div>
   <div class="field">
     <%= f.label :jefe_remuneraciones_role, 'Jefe de Remuneraciones' %>
-    <%= f.check_box :jefe_remuneraciones_role, id: :jefe_remuneraciones_role %>
+    <%= f.radio_button :role, "jefe_remuneraciones_role" %>
   </div>
 
 
@@ -174,5 +174,20 @@
 	</div>
 
 </div>
+
+<% else %>
+<br>
+<br>
+
+<br>
+
+<h3>Lo sentimos:</h3> 
+<h3>No tienes suficientes permisos para realizar esta acción :(</h3>
+<br>
+
+<br>
+
+<br>
+
 
 <% end %>

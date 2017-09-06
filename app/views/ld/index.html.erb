@@ -31,9 +31,17 @@
         <% if current_lyduser.administrativo_obra_role? %>
         <div class="row">
           <div class="col-md-4 col-sm-4 col-xs-6 col-mob">  <a href="<%= ld_beneficiospannel_path %>" class="bg-green-ld"> <img src='<%= asset_url("trans.png") %>' alt="" />
-            <label class="label-ld">Beneficios</label>
+            <label class="label-ld">Operativos</label>
             </a> </div>
         </div>
+
+        <div class="row">
+              <div class="col-md-4 col-sm-4 col-xs-6 col-mob">  <a href="<%= new_assignbenefit_path %>" class="bg-green-ld"> <img src='<%= asset_url("trans.png") %>' alt="" />
+                <label class="label-ld">Asignar Beneficios</label>
+                </a> </div>
+            </div>
+
+
         <% end %>
         <div class="row">
           <div class="col-md-4 col-sm-4 col-xs-6 col-mob"> <a href="<%= loanformularies_path %>" class="bg-green-ld"> <img src='<%= asset_url("trans.png") %>' alt="" />

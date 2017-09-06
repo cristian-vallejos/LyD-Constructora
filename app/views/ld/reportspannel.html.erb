@@ -246,6 +246,57 @@
      			 	</div>
      			 	<div role="tabpanel" class="tab-pane fade" id="two1">
           				<h2>Beneficios del Trabajador</h2>
+          				<% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
+
+
+          				<table>
+						  <thead>
+						    <tr>
+						      
+						      
+						      
+						      <th>Area Beneficio</th>
+						      <th>Beneficio</th>
+						      <th>Costo trabajador</th>
+						      <th>Costo Empresa</th>
+						      
+						      
+						      <th>Nombre Trabajador</th>
+						      <th>Nombre Beneficiario</th>
+						      <th>Relación</th>
+						      <th>Obra</th>
+						      
+						    </tr>
+						  </thead>
+
+						  <tbody>
+						    <% @benefitslog.each do |bl| %>
+						      <tr>
+						        
+						        
+						        
+						        <td><%= bl.areabeneficio %></td>
+						        <td><%= bl.nombrebeneficio %></td>
+						        <td><%= bl.costotrabajador %></td>
+						        <td><%= bl.costoempresa %></td>    
+						        <td><%= bl.nombretrabajador %></td>
+						        <td><%= bl.nombrebeneficiario %></td>
+						        <td><%= bl.relacion %></td>
+						        <td><%= bl.nombreobra %></td>
+						        
+
+
+						        </td>
+						      </tr>
+						    <% end %>
+						  </tbody>
+						</table>
+
+
+
+
+
+          				<% end %>
           				
           			</div>
           			<div role="tabpanel" class="tab-pane fade" id="three"> </div>

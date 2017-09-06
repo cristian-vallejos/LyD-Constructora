@@ -23,8 +23,15 @@
               <%if params[:search] != "" %>
                 <% @results.each do |x|%>
                   <tr>
+
+                    <% oname = Obra.where(codigo: x.codigo_obra) %>
+
                     <td><%= x.rut_atendido %></td>
+                    <% if !oname[0].nil? %>
+                    <td><%= oname[0].nombre %></td>
+                    <% else %>
                     <td><%= x.codigo_obra %></td>
+                    <% end %>
                     <td><%= x.telefono %></td>
                     <td><%# x.lyduser.email %></td>
                     <td><%= x.nombre_atendido %></td>

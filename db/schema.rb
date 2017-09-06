@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170901191421) do
+ActiveRecord::Schema.define(version: 20170904235940) do
 
   create_table "areabenefits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "nombre"
@@ -292,6 +292,7 @@ ActiveRecord::Schema.define(version: 20170901191421) do
     t.string "obra"
     t.string "nombre_usuario"
     t.boolean "is_active", default: true
+    t.boolean "ao_role", default: false
     t.index ["email"], name: "index_lydusers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_lydusers_on_reset_password_token", unique: true
   end

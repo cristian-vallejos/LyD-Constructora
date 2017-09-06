@@ -1,5 +1,6 @@
 class AsignarmultiplebeneficiosController < ApplicationController
   before_action :set_asignarmultiplebeneficio, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
 
   def get_contacts
@@ -8,7 +9,7 @@ class AsignarmultiplebeneficiosController < ApplicationController
     #@contacts = @company.contacts
 
     Rails.logger.warn "#{:areabenefit_id} jajaxxx"
-    @contacts = Benefit.where("areabenefit_id = ? and is_active = ? ",params[:areabenefit_id], true)
+    @contacts = Benefit.where("areabenefit_id = ? and is_active = ? and asistencia = ?",params[:areabenefit_id], true, true)
   end
 
 

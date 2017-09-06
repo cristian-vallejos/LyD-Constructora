@@ -1,4 +1,4 @@
-
+<% if current_lyduser.administrativo_obra_role?%>
 <body>
 
 <link href='<%= asset_url("css/bootstrap.min.css") %>' rel="stylesheet" type="text/css">
@@ -15,6 +15,11 @@
  	<%= collection_select(:benefit, :benefit_id, Benefit.where(is_active: true), :id, :nombre, {:prompt => "Seleccione un beneficio"}, {:class => "Select a Contact", style: "width:220px"}) %>
  	</div>
 
+	<div class="field">
+     <%= collection_select(:centrocosto, :centrocosto_id, Obra.all, :id, :nombre_codigo, {:prompt => "Escoger Obra"},{:class => "ccosto_selection", style: "width:220px"}) %>
+     </div>
+
+
  	<div class="actions">
  	<%= submit_tag 'Listar', :class => 'btn btn-green', style: "width:220px" %>
  	</div>
@@ -28,6 +33,11 @@
  		<%= collection_select(:benefit, :benefit_id, Benefit.where(is_active: true), :id, :nombre, {:prompt => "Seleccione área de beneficio"}, {:class => "contact_selection", style: "width:220px"}) %>
    	</div>
 
+   	<div class="field">
+     <%= collection_select(:centrocosto, :centrocosto_id, Obra.all, :id, :nombre_codigo, {:prompt => "Escoger Obra"},{:class => "ccosto_selection", style: "width:220px"}) %>
+     </div>
+
+
   	<div class="actions">
      	<%= submit_tag 'Registrar', :class => 'btn btn-green', style: "width:220px"  %>
     </div>
@@ -35,3 +45,20 @@
 <% end %>
 	
 </body>
+
+<% else %>
+<br>
+<br>
+
+<br>
+
+<h3>Lo sentimos:</h3> 
+<h3>No tienes suficientes permisos para realizar esta acción :(</h3>
+<br>
+
+<br>
+
+<br>
+
+
+<% end %>

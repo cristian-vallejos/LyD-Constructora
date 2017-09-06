@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>No tienes suficientes permisos para realizar esta acción :( (403)</title>
+</head>
+
+
+
+<body>
+
+<link href='<%= asset_url("css/bootstrap.min.css") %>' rel="stylesheet" type="text/css">
+ <link href='<%= asset_url("css2/stylesLD.css") %>' rel="stylesheet" type="text/css">
+
+<div class="header"><a href="<%=root_path%>"><img src='<%= asset_url("ldgreen.png") %>' alt="Insertar logotipo aquí" name="Insert_logo" width="150" height="125" id="Insert_logo"/></a>
+
+ <h3 style="color:white;">
+    <div align="left">
+    <% if lyduser_signed_in? %>
+    <%="Hola " + current_lyduser.nombre_usuario %>  
+    <% end %>
+
+    </div>
+
+    <div align="right">
+    <% if lyduser_signed_in? %>
+    <%= link_to "Inicio", root_path %> |
+    <% end %>
+    <% if lyduser_signed_in? %>
+    <%= link_to "Configuraciones", edit_lyduser_registration_path %> |
+    <% if !lyduser_signed_in? %>
+    <%= link_to "Registrarse", new_lyduser_registration_path %> |
+    <% end %> 
+    <% if !lyduser_signed_in? %>
+    <%= link_to "Ingresar", new_lyduser_session_path %> |
+    <% end %>  
+    <%= link_to "Salir", destroy_lyduser_session_path, method: :delete %>
+    <% end %>
+    </div>
+    </h3>
+
+
+  <!-- This file lives in public/404.html -->
+  <div class='container'>
+    <div>
+    <br>
+    <br>
+    <br>
+    	<h3>Lo sentimos:</h3>	
+      <h3>No tienes suficientes permisos para realizar esta acción :(</h3>
+    <br>
+    <br>
+    <br>
+      
+    </div>
+    <h2><%= link_to "<< volver", request.referrer %></h2>
+  </div>
+</body>
+
+<div class="footer">
+  <p>© 2017, Sistema Diseñado y Creado por Proyecta Software </p>
+  <!-- end .footer --></div>
+
+
+</html>

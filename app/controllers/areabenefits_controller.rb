@@ -5,7 +5,7 @@ class AreabenefitsController < ApplicationController
   # GET /areabenefits
   # GET /areabenefits.json
   def index
-    @areabenefits = Areabenefit.all
+    @areabenefits = Areabenefit.all.order('created_at ASC')
   end
 
   # GET /areabenefits/1

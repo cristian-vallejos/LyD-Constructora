@@ -132,7 +132,7 @@
     <% end %>
 
     
-    <% if current_lyduser.administrativo_obra_role? || current_lyduser.subgerente_personas_role? || current_lyduser.jefe_remuneraciones_role? %>
+    <% if current_lyduser.ao_role? || current_lyduser.subgerente_personas_role? || current_lyduser.jefe_remuneraciones_role? %>
       <li class="active"><a href="#one" data-toggle="tab"><i class="fa fa-desktop"></i> Pendientes </a></li>
       <li><a href="#two" data-toggle="tab"><i class="fa fa-cogs"></i> Aceptados </a></li>
       <li><a href="#three" data-toggle="tab"><i class="fa fa-user"></i> Rechazados </a></li>
@@ -148,7 +148,7 @@
     <!-- Tab panes -->
     <div class="tab-content">
 
-      <% if current_lyduser.asocial_role? || current_lyduser.administrativo_obra_role? || current_lyduser.subgerente_personas_role? || current_lyduser.jefe_remuneraciones_role? %>
+      <% if current_lyduser.asocial_role? || current_lyduser.ao_role? || current_lyduser.subgerente_personas_role? || current_lyduser.jefe_remuneraciones_role? %>
 
       <%  if !current_lyduser.asocial_role? %>
       <div role="tabpanel" class="tab-pane fade in active" id="one">
@@ -177,7 +177,7 @@
           <tbody>
                 <% if current_lyduser.asocial_role? %>
                 <% pendientes = Loanformulary.where("aceptado_por_as IS ? AND lyduser_id = ?", nil, current_lyduser.id) %>
-                <% elsif current_lyduser.administrativo_obra_role? %>
+                <% elsif current_lyduser.ao_role? %>
                 <% pendientes = Loanformulary.where("aceptado_por_as = ? AND aceptado_por_administrativo_obra IS ? AND obra = ?", true, nil, current_lyduser.obra)%>
                 <% elsif current_lyduser.subgerente_personas_role? %>
                 <% pendientes = Loanformulary.where("aceptado_por_administrativo_obra = ? AND aceptado_por_subgerente_personas IS ?", true, nil)%>
@@ -235,7 +235,7 @@
           <tbody>
                 <% if current_lyduser.asocial_role? %>
                 <% revisadosT = Loanformulary.where("aceptado_por_as = ? AND lyduser_id = ?", true, current_lyduser.id) %>
-                <% elsif current_lyduser.administrativo_obra_role? %>
+                <% elsif current_lyduser.ao_role? %>
                 <% revisadosT = Loanformulary.where(:aceptado_por_administrativo_obra => true) %>
                 <% elsif current_lyduser.subgerente_personas_role? %>
                 <% revisadosT = Loanformulary.where(:aceptado_por_subgerente_personas => true) %>
@@ -252,7 +252,7 @@
                     <td><%= loanformulary.comentarios %></td>
                     <% if current_lyduser.asocial_role? %>
                     <td><%= loanformulary.fecha_aceptado_por_as %></td>
-                    <% elsif current_lyduser.administrativo_obra_role? %>
+                    <% elsif current_lyduser.ao_role? %>
                     <td><%= loanformulary.fecha_aceptado_por_administrativo_obra %></td>
                     <% elsif current_lyduser.subgerente_personas_role? %>
                     <td><%= loanformulary.fecha_aceptado_por_subgerente_personas %></td>
@@ -303,7 +303,7 @@
           <tbody>
               <% if current_lyduser.asocial_role? %>
               <% revisadosF = Loanformulary.where("aceptado_por_as = ? AND lyduser_id = ?", false, current_lyduser.id) %>
-              <% elsif current_lyduser.administrativo_obra_role? %>
+              <% elsif current_lyduser.ao_role? %>
               <% revisadosF = Loanformulary.where(:aceptado_por_administrativo_obra => false) %>
               <% elsif current_lyduser.subgerente_personas_role? %>
               <% revisadosF = Loanformulary.where(:aceptado_por_subgerente_personas => false) %>
@@ -321,7 +321,7 @@
                   <td><%= loanformulary.comentarios %></td>
                   <% if current_lyduser.asocial_role? %>
                   <td><%= loanformulary.fecha_aceptado_por_as %></td>
-                  <% elsif current_lyduser.administrativo_obra_role? %>
+                  <% elsif current_lyduser.ao_role? %>
                   <td><%= loanformulary.fecha_aceptado_por_administrativo_obra %></td>
                   <% elsif current_lyduser.subgerente_personas_role? %>
                   <td><%= loanformulary.fecha_aceptado_por_subgerente_personas %></td>
