@@ -20,6 +20,10 @@
 			<div align="center">
   			<table >
 
+        <%if params[:nombre_solicitante] %>
+               <%= params[:nombre_solicitante] %>
+               <%end  %>
+
            <tr>
             <th width="(100/x)%">Beneficio</th>
             <th width="(100/x)%">Rut Trabajador</th>
@@ -33,6 +37,8 @@
              
                <% if params[:assignbenefit] && params[:assignbenefit][:rut_trabajador] %>
                <% assign = Assignbenefit.where(:rut_trabajador => params[:assignbenefit][:rut_trabajador]).order('created_at DESC').take(20) %>
+
+
 
                <% assign.each do |loga| %>
                         <tr>

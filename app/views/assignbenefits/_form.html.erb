@@ -21,9 +21,14 @@
   <br>
 
   <div class="field">
-    <%= form.label :benefit_id, 'Seleccione un Beneficio' %> <br>
-    <%= form.collection_select :benefit_id, Benefit.where(is_active: true), :id, :nombre, include_blank: true %>
-  </div>
+        <%= form.label :areabenefit_id, "Area de beneficio" %><br>
+        <%= form.collection_select(:areabenefit_id, Areabenefit.where(is_active: true), :id, :nombre, {:prompt => "Seleccione área de beneficio"},{:class => "areabenefit_selection", style: "width:220px"}) %>
+      </div>
+      <br>
+      <div class="field">
+        <%= form.label :benefit_id, "Beneficio" %><br>
+        <%= form.collection_select(:benefit_id, Benefit.where(is_active: true), :id, :nombre, {:prompt => "Seleccione un beneficio"}, {:class => "contact_selection", style: "width:220px"}) %>
+      </div>
 
   <div class="field">
 
@@ -49,7 +54,7 @@
  <% if params[:rut_trabajador] %>
   <div class="field">
 
-    <%= form.label :rut_beneficiario %><br>
+    <%= form.label :rut_beneficiario, 'Beneficiario' %><br>
     <%# form.text_field :rut_beneficiario, id: :assignbenefit_rut_beneficiario, :class => 'textForm' %><br>
     <%= form.collection_select :rut_beneficiario, @beneficiarios.all+[Familiartrabajador.new(rut: params[:rut_trabajador], nombre: "El propio trabajador")], :rut, :nombre, include_blank: true %>
 
@@ -70,7 +75,7 @@
 
 <div class="field">
 
-    <%= form.label :rut_beneficiario %><br>
+    <%= form.label :rut_beneficiario, 'Beneficiario' %><br>
     <%= form.text_field :rut_beneficiario, id: :assignbenefit_rut_beneficiario, :class => 'textForm' %><br>
 </div>
 
