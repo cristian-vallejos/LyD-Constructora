@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170904235940) do
+ActiveRecord::Schema.define(version: 20170907015844) do
 
   create_table "areabenefits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "nombre"
@@ -198,6 +198,10 @@ ActiveRecord::Schema.define(version: 20170904235940) do
     t.text "comentario_jefe_remuneraciones"
     t.bigint "lyduser_id"
     t.string "estado", default: "en proceso"
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
     t.index ["lyduser_id"], name: "index_loanformularies_on_lyduser_id"
   end
 

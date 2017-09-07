@@ -23,6 +23,16 @@
         <%if params[:nombre_solicitante] %>
                <%= params[:nombre_solicitante] %>
                <%end  %>
+               <br>
+
+               <%if  params[:obra_id] %>
+
+                  <% oname = Obra.where(codigo: params[:obra_id]) %>
+                    <% if !oname[0].nil? %>
+                    <%= oname[0].nombre %>
+                    <% end %>
+
+                <% end %>
 
            <tr>
             <th width="(100/x)%">Beneficio</th>

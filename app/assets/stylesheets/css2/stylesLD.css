@@ -9,7 +9,7 @@ body {
 	color: #000;
 	width: 100%;
 	height: 100%;
-	font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+	font: 14px/21px "Frutiger-Cn", "Frutiger-Cn", "Frutiger-Cn", sans-serif;
 	
 }
 
@@ -48,7 +48,7 @@ a:hover, a:active, a:focus { /* este grupo de selectores proporcionará a un usu
 
 /* ~~ no se asigna una anchura al encabezado. Se extenderá por toda la anchura del diseño. Contiene un marcador de posición de imagen que debe sustituirse por su propio logotipo vinculado ~~ */
 .header {
-	background-color: #28A064;
+	background-color: #009946;
 }
 
 /* ~~ Esta es la información de diseño. ~~ 
@@ -262,7 +262,7 @@ div.tab button.active {
 }
 
 .bg-green-ld {
-  background-color: #28A064 !important;
+  background-color: #009946 !important;
 }
 
 .label-ld {
@@ -349,7 +349,7 @@ color: #000000;
 .contentForm {
 
 	padding: 10px 270px;
-	width: 100%;	
+	width: 120%;	
 	height: 100%;
 	min-height: 500px;
 	
@@ -368,7 +368,7 @@ color: #000000;
 .ui-55 .sidebar ul li a{
 	display:block;
 	width:200px;
-	height:100px;
+	height:70px;
 	text-align:center;
 	border-top:1px solid #eaeaea;
 }
@@ -391,7 +391,7 @@ color: #000000;
 
 .btn.btn-green {
 	color: #ffffff;
-	background: #28A064;
+	background: #009946;
 	border: 1px solid #28A064;
 }
 

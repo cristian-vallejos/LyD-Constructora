@@ -47,6 +47,10 @@
         <%= form.label :obra, 'Codigo Obra' %> <br>
         <%= form.text_field :obra, id: :loanformulary_obra, value: params[:obra], hidden: true %> 
         <%= params[:obra] %><br>
+        <% oname = Obra.where(codigo: params[:obra]) %>
+                    <% if !oname[0].nil? %>
+                    <%= oname[0].nombre %><br>
+                    <% end %>
         <% end %>
 
 
@@ -104,6 +108,11 @@
         <div class="field">
           <%= form.label :descuentos_en_curso %><br>
           <%= form.number_field :descuentos_en_curso, id: :loanformulary_descuentos_en_curso %><br>
+        </div>
+
+        <div class="field">
+          <%= form.label :image, 'Imagen de respaldo' %>
+          <%= form.file_field :image %>
         </div>
 
         <div class="field">

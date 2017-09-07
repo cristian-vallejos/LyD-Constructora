@@ -176,7 +176,7 @@ class LoanformulariesController < ApplicationController
           
 
           if !@ao[0].nil?
-            LoanmailMailer.correo(@ao[0].email).deliver
+            #LoanmailMailer.correo(@ao[0].email).deliver
           else
             LoanmailMailer.correo("rodespmac@gmail.com").deliver
           end
@@ -223,6 +223,6 @@ class LoanformulariesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def loanformulary_params
-      params.require(:loanformulary).permit(:nombre_solicitante, :rut_solicitante, :obra, :cargo, :monto_solicitado, :monto_aprobado, :numero_cuotas, :monto_cuota, :renta_liquida, :antiguedad, :fecha_ultimo_contrato, :fondo_finiquito, :continuidad_en_obra, :descuentos_en_curso, :descripcion_documentos_respaldo, :motivo_solicitud, :comentarios)
+      params.require(:loanformulary).permit(:nombre_solicitante, :rut_solicitante, :obra, :cargo, :monto_solicitado, :monto_aprobado, :numero_cuotas, :monto_cuota, :renta_liquida, :antiguedad, :fecha_ultimo_contrato, :fondo_finiquito, :continuidad_en_obra, :descuentos_en_curso, :descripcion_documentos_respaldo, :motivo_solicitud, :comentarios, :image)
     end
 end

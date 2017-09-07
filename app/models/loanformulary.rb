@@ -5,6 +5,12 @@ class Loanformulary < ApplicationRecord
 
 	after_save :verificar_estado
 
+	after_create :crear_log_loan
+
+
+has_attached_file :image, styles: { large: "600x600>", medium: "300x300>", thumb: "150x150#" }
+validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+
 
 def input_atributos
 
@@ -87,6 +93,28 @@ def verificar_estado
 		estado = "en proceso"
 	end
 end
+
+
+
+def crear_log_loan
+log = Logloan.new(
+
+
+
+	rut_solicitante: self.rut_solicitante,
+    nombre_solicitante: self.nombre_solicitante,
+    obra: self.obra,
+    cargo: self.cargo,
+    monto_solicitado: self.monto_solicitado,
+    numero_cuotas: self.numero_cuotas,
+    motivo_solicitud: self.motivo_solicitud,
+    comentarios: self.comentarios,
+    estado: self.estado)
+
+log.save!
+
+end
+
 
 
 	

@@ -12,13 +12,10 @@ class AsformulariesController < ApplicationController
     #@asformularies = Asformulary.all
     #@asformulary = Asformulary.new(:rut_atendido => params[:rut_atendido])
     @results = Asformulary.search(params[:search]).order('created_at DESC')
-    puts "-----"
     #puts @results[0].rut_atendido
     #puts @results.count
     puts params[:search]
     #puts params[:asformulary][:rut_atendido]  
-
-    puts "-----"
 
 
   end

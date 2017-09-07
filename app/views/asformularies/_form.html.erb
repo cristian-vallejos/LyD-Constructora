@@ -120,7 +120,7 @@
     
     <%= form.label :Tipo_Consulta %>
     <br>
-    <%= form.collection_select :aspcategory_id, Aspcategory.where(is_active: true), :id, :nombre, {include_blank: true}, {style: "width:220px"} %>
+    <%= form.collection_select :aspcategory_id, Aspcategory.where(is_active: true).order('nombre ASC'), :id, :nombre, {include_blank: true}, {style: "width:220px"} %>
     <br>
 
   </div>
@@ -162,12 +162,12 @@
 
     <div class="field">
         <%= form.label :areabenefit_id, "Area de beneficio" %><br>
-        <%= form.collection_select(:areabenefit_id, Areabenefit.where(is_active: true), :id, :nombre, {:prompt => "Seleccione área de beneficio"},{:class => "areabenefit_selection", style: "width:220px"}) %>
+        <%= form.collection_select(:areabenefit_id, Areabenefit.where(is_active: true).order('nombre ASC'), :id, :nombre, {:prompt => "Seleccione área de beneficio"},{:class => "areabenefit_selection", style: "width:220px"}) %>
       </div>
       <br>
       <div class="field">
         <%= form.label :benefit_id, "Beneficio" %><br>
-        <%= form.collection_select(:benefit_id, Benefit.where(is_active: true), :id, :nombre, {:prompt => "Seleccione un beneficio"}, {:class => "contact_selection", style: "width:220px"}) %>
+        <%= form.collection_select(:benefit_id, Benefit.where(is_active: true).order('nombre ASC'), :id, :nombre, {:prompt => "Seleccione un beneficio"}, {:class => "contact_selection", style: "width:220px"}) %>
       </div>
 
 

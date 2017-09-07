@@ -127,19 +127,19 @@
       
 
         <% if current_lyduser.asocial_role? %>
-      <li><a href="#two" data-toggle="tab"><i class="fa fa-cogs"></i> Generados </a></li>
-      <li class="active"><a href="#four" data-toggle="tab"><i class="fa fa-cloud"></i> Seguimiento </a></li>
+      <li><a href="#two" data-toggle="tab"> Aceptados </a></li>
+      <li class="active"><a href="#four" data-toggle="tab"> Seguimiento </a></li>
     <% end %>
 
     
     <% if current_lyduser.ao_role? || current_lyduser.subgerente_personas_role? || current_lyduser.jefe_remuneraciones_role? %>
-      <li class="active"><a href="#one" data-toggle="tab"><i class="fa fa-desktop"></i> Pendientes </a></li>
-      <li><a href="#two" data-toggle="tab"><i class="fa fa-cogs"></i> Aceptados </a></li>
-      <li><a href="#three" data-toggle="tab"><i class="fa fa-user"></i> Rechazados </a></li>
+      <li class="active"><a href="#one" data-toggle="tab"> Pendientes </a></li>
+      <li><a href="#two" data-toggle="tab"> Aceptados </a></li>
+      <li><a href="#three" data-toggle="tab"> Rechazados </a></li>
     <% end %>
 
     <% if current_lyduser.admin_role? %>
-      <li class="active"><a href="#four" data-toggle="tab"><i class="fa fa-cloud"></i> Seguimiento </a></li>
+      <li class="active"><a href="#four" data-toggle="tab"> Seguimiento </a></li>
     <% end %> 
         <li></li>
       </ul>
@@ -176,13 +176,13 @@
           </tr>
           <tbody>
                 <% if current_lyduser.asocial_role? %>
-                <% pendientes = Loanformulary.where("aceptado_por_as IS ? AND lyduser_id = ?", nil, current_lyduser.id) %>
+                <% pendientes = Loanformulary.where("aceptado_por_as IS ? AND lyduser_id = ?", nil, current_lyduser.id).order('created_at DESC') %>
                 <% elsif current_lyduser.ao_role? %>
-                <% pendientes = Loanformulary.where("aceptado_por_as = ? AND aceptado_por_administrativo_obra IS ? AND obra = ?", true, nil, current_lyduser.obra)%>
+                <% pendientes = Loanformulary.where("aceptado_por_as = ? AND aceptado_por_administrativo_obra IS ? AND obra = ?", true, nil, current_lyduser.obra).order('created_at DESC')%>
                 <% elsif current_lyduser.subgerente_personas_role? %>
-                <% pendientes = Loanformulary.where("aceptado_por_administrativo_obra = ? AND aceptado_por_subgerente_personas IS ?", true, nil)%>
+                <% pendientes = Loanformulary.where("aceptado_por_administrativo_obra = ? AND aceptado_por_subgerente_personas IS ?", true, nil).order('created_at DESC')%>
                 <% elsif current_lyduser.jefe_remuneraciones_role? %>
-                <% pendientes = Loanformulary.where("aceptado_por_subgerente_personas = ? AND aceptado_por_jefe_remuneraciones IS ?", true, nil )%>
+                <% pendientes = Loanformulary.where("aceptado_por_subgerente_personas = ? AND aceptado_por_jefe_remuneraciones IS ?", true, nil ).order('created_at DESC')%>
                 <% end %>
                 <% pendientes.each do |loanformulary| %>
                   <tr>
@@ -234,13 +234,13 @@
           </tr>
           <tbody>
                 <% if current_lyduser.asocial_role? %>
-                <% revisadosT = Loanformulary.where("aceptado_por_as = ? AND lyduser_id = ?", true, current_lyduser.id) %>
+                <% revisadosT = Loanformulary.where("aceptado_por_as = ? AND lyduser_id = ?", true, current_lyduser.id).order('created_at DESC') %>
                 <% elsif current_lyduser.ao_role? %>
-                <% revisadosT = Loanformulary.where(:aceptado_por_administrativo_obra => true) %>
+                <% revisadosT = Loanformulary.where(:aceptado_por_administrativo_obra => true).order('created_at DESC') %>
                 <% elsif current_lyduser.subgerente_personas_role? %>
-                <% revisadosT = Loanformulary.where(:aceptado_por_subgerente_personas => true) %>
+                <% revisadosT = Loanformulary.where(:aceptado_por_subgerente_personas => true).order('created_at DESC') %>
                 <% elsif current_lyduser.jefe_remuneraciones_role? %>
-                <% revisadosT = Loanformulary.where(:aceptado_por_jefe_remuneraciones => true) %>
+                <% revisadosT = Loanformulary.where(:aceptado_por_jefe_remuneraciones => true).order('created_at DESC') %>
                 <% end %>
                 <% revisadosT.each do |loanformulary| %>
                   <tr>
@@ -302,13 +302,13 @@
           </tr>
           <tbody>
               <% if current_lyduser.asocial_role? %>
-              <% revisadosF = Loanformulary.where("aceptado_por_as = ? AND lyduser_id = ?", false, current_lyduser.id) %>
+              <% revisadosF = Loanformulary.where("aceptado_por_as = ? AND lyduser_id = ?", false, current_lyduser.id).order('created_at DESC') %>
               <% elsif current_lyduser.ao_role? %>
-              <% revisadosF = Loanformulary.where(:aceptado_por_administrativo_obra => false) %>
+              <% revisadosF = Loanformulary.where(:aceptado_por_administrativo_obra => false).order('created_at DESC') %>
               <% elsif current_lyduser.subgerente_personas_role? %>
-              <% revisadosF = Loanformulary.where(:aceptado_por_subgerente_personas => false) %>
+              <% revisadosF = Loanformulary.where(:aceptado_por_subgerente_personas => false).order('created_at DESC') %>
               <% elsif current_lyduser.jefe_remuneraciones_role? %>
-              <% revisadosF = Loanformulary.where(:aceptado_por_jefe_remuneraciones => false) %>
+              <% revisadosF = Loanformulary.where(:aceptado_por_jefe_remuneraciones => false).order('created_at DESC') %>
               <% end %>
               
               <% revisadosF.each do |loanformulary| %>

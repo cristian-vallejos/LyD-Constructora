@@ -33,11 +33,11 @@
         <div class="sidebar" style="position: fixed;"> 
           <!-- Nav tabs -->
           <ul class="list-unstyled">
-            <li class="active"><a href="#one" role="tab" data-toggle="tab"><i class="fa fa-desktop"></i> Asistencia Social</a></li>
-            <li><a href="#two" role="tab" data-toggle="tab"><i class="fa fa-cogs"></i> Beneficios </a></li>
-            <li><a href="#three" role="tab" data-toggle="tab"><i class="fa fa-user"></i> Prestamos </a></li>
-            <li><a href="#four" role="tab" data-toggle="tab"><i class="fa fa-cloud"></i> Capacitaciones </a></li>
-            <li><a href="#five" role="tab" data-toggle="tab"><i class="fa fa-gift"></i> Remuneraciones </a></li>
+            <li class="active"><a href="#one" role="tab" data-toggle="tab"> Asistencia Social</a></li>
+            <li><a href="#two" role="tab" data-toggle="tab"> Beneficios </a></li>
+            <li><a href="#three" role="tab" data-toggle="tab"> Prestamos </a></li>
+            <li><a href="#four" role="tab" data-toggle="tab"> Capacitaciones </a></li>
+            <li><a href="#five" role="tab" data-toggle="tab"> Remuneraciones </a></li>
           </ul>
         </div>
       <div class="mainbar"> 
@@ -51,9 +51,9 @@
                         <% #employee.each do |emple| %>
                         <tr>
                           <td><%= employee[0].nombre %></td>
-                          <td><%= employee[0].rut %></td>
-                          <td><%= employee[0].cencos %></td>
-                          <td><%= employee[0].estado %></td>
+                          <td><%= employee[0].rut %></td><br>
+                          <% obraname = Obra.where(codigo: employee[0].cencos)  %>
+                          <td><%= obraname[0].nombre %></td>
                           <br>
 
                         </tr>
@@ -102,7 +102,14 @@
                           <td><%= loga.aspcategory_name %></td>
                           
                           
-                          <td><%= loga.estado %></td>
+                
+                          <% if loga.estado == true %>
+                          <td><%="Cerrado"%></td>
+                          <% else %>
+                          <td><%= "Abierto"%></td>
+                          <% end %>
+
+
                           <td><%= loga.codigo_obra %></td>
                           <td><%= "N/A" %></td>
                           <td><%= loga.telefono %></td>

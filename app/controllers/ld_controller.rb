@@ -18,7 +18,10 @@ class LdController < ApplicationController
 
 		@obra = Obra.new
 		@asformulary = Asformulary.new
-		@benefitslog = Logbenefitsfinal.where(ruttrabajador: params[:asformulary][:rut_atendido]).order('created_at DESC')
+
+		if params[:asformulary] && params[:asformulary][:rut_atendido]
+			@benefitslog = Logbenefitsfinal.where(ruttrabajador: params[:asformulary][:rut_atendido]).order('created_at DESC')
+		end
 
 		#puts params[:obra][:id]
 	end

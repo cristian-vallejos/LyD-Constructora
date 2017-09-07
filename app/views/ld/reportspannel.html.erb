@@ -117,10 +117,16 @@
 					            <td><%= familiart = Loga.where("codigo_obra = ?",ob).where("aspcategory_name = ?", "Familiar").count %></td>
 					          </tr>
 					          <tr>
-					            <td>Préstamo</td>
+					            <td>Préstamo En proceso</td>
+					            <td><%= prestamo = Logloan.where(:created_at => fecha1...fecha2).where("obra = ?", ob).count %></td>
+					            <td><%= (prestamo*100)/muestrap%>%</td>
+					            <td><%= prestamot = Loanformulary.where("obra = ? && estado = ?", ob, "en proceso").count %></td>
+					          </tr>
+					          <tr>
+					            <td>Préstamo Aceptados</td>
 					            <td><%= prestamo = Loanformulary.where(:fecha_aceptado_por_jefe_remuneraciones => fecha1...fecha2).where("obra = ?", ob).count %></td>
 					            <td><%= (prestamo*100)/muestrap%>%</td>
-					            <td><%= prestamot = Loanformulary.where("obra = ?", ob).count %></td>
+					            <td><%= prestamot = Loanformulary.where("obra = ? && estado = ?", ob, "aecptado").count %></td>
 					          </tr>
 					          <tr>
 					            <td>Legal</td>

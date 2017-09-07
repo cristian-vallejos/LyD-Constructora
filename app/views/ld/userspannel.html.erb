@@ -149,7 +149,7 @@
 
 		<div class="field">
 		  <%= f.label :lyduser, 'Seleccione un usuario' %> <br>
-		  <%= f.collection_select :u_id, Lyduser.all.order('nombre_usuario ASC'), :id, :nombre_usuario, {include_blank: true} , {style: "width:180px"} %>
+		  <%= f.collection_select :u_id, Lyduser.where(is_active: true).where("ao_role = ? || administrativo_obra_role = ?", true, true).order('nombre_usuario ASC'), :id, :nombre_usuario, {include_blank: true} , {style: "width:180px"} %>
 	    </div>
 
 	    <div class="field">

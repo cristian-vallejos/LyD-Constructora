@@ -10,9 +10,9 @@
                   <th>Apellido</th>
                   <th>Categoria</th>
                   <th>Solucion</th>
-                  <th>Subcontrato?</th>
+                  <th>Estado</th>
                  
-                  <th>¿Caso Cerrado?</th>
+                  <th>Subcontratista?</th>
           
 
                   <th>Descripcion</th>
@@ -39,9 +39,9 @@
                     <td><%= x.aspcategory.nombre %></td>
                     <td><%= x.solucion %></td>
                     <% if x.estado == true %>
-                    <td><%="SI"%></td>
+                    <td><%="Cerrado"%></td>
                     <% else %>
-                    <td><%= "NO"%></td>
+                    <td><%= "Abierto"%></td>
                     <%end%>
                     <% if x.subcontrato == true %>
                     <td><%="SI"%></td>
