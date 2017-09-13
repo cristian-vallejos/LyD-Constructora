@@ -9,7 +9,7 @@ class LogloansController < ApplicationController
 
     if(params[:name] == "actualizar")
 
-      my_hash = JSON.load(File.read(Rails.root + "app/data/legacylogloan.txt"))
+      my_hash = JSON.load(File.read(Rails.root + "app/data/logloandef.txt"))
 
 
       my_hash.each do |row|
@@ -19,13 +19,18 @@ class LogloansController < ApplicationController
         loan.rut_solicitante = row['rut']
         loan.empresa = row['empresa']
         loan.obra = row['obra']
-        loan.monto_solicitado = row['cantidad']
+        loan.monto_solicitado = row['montosolicitado']
+        loan.numero_cuotas = row['numcuotas']
+        loan.created_at = row['fechaentrega']
         loan.por_pagar = row['porpagar']
+        loan.monto_pagado = row['montopagado']
         loan.motivo_solicitud = row['motivoprestamo']
         loan.comentarios = row['descripcion']
         loan.estado = row['estado']
         loan.save
       end
+
+      redirect_to logloans_path
 
 
     end

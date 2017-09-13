@@ -37,7 +37,13 @@
 
 	              <% if params[:obra] && params[:event1] && params[:event2] %>
 			      <%# as = Asformulary.where(:rut_atendido => params[:asformulary][:rut_atendido]).order('created_at DESC') %>
+
+			      
+
 			      <% ob = Obra.find(params[:obra][:id]).codigo %> 
+
+			      
+
 			      <br>
 			      <% if params[:event1]["date(2i)"] != "10" && params[:event1]["date(2i)"] != "11" && params[:event1]["date(2i)"] != "12" %>
 			      <% fecha1 = params[:event1]["date(1i)"] + "-" + "0" + params[:event1]["date(2i)"] + "-" + "01"%>
@@ -65,8 +71,8 @@
   				<br>
 
   				<ul class="navi">
-			      <li class="active"><a href="#one" data-toggle="tab"><i class="fa fa-desktop"></i><span>Atención Trabajadores</span></a></li>
-			      <li><a href="#two" data-toggle="tab"><i class="fa fa-user"></i><span>Beneficios</span></a></li>
+			      <li class="active"><a href="#one" data-toggle="tab"><span>Atención Trabajadores</span></a></li>
+			      <li><a href="#two" data-toggle="tab"><span>Beneficios</span></a></li>
 			      <li></li>
 			    </ul>
 			    <div class="clearfix"></div>
@@ -118,15 +124,15 @@
 					          </tr>
 					          <tr>
 					            <td>Préstamo En proceso</td>
-					            <td><%= prestamo = Logloan.where(:created_at => fecha1...fecha2).where("obra = ?", ob).count %></td>
-					            <td><%= (prestamo*100)/muestrap%>%</td>
-					            <td><%= prestamot = Loanformulary.where("obra = ? && estado = ?", ob, "en proceso").count %></td>
+					            <td><%= prestamop = Loanformulary.where(:created_at => fecha1...fecha2).where("obra = ? && estado = ?", ob, "en proceso").count %></td>
+					            <td><%= (prestamop*100)/muestrap%>%</td>
+					            <td><%= prestamopt = Loanformulary.where("obra = ? && estado = ?", ob, "en proceso").count %></td>
 					          </tr>
 					          <tr>
 					            <td>Préstamo Aceptados</td>
-					            <td><%= prestamo = Loanformulary.where(:fecha_aceptado_por_jefe_remuneraciones => fecha1...fecha2).where("obra = ?", ob).count %></td>
-					            <td><%= (prestamo*100)/muestrap%>%</td>
-					            <td><%= prestamot = Loanformulary.where("obra = ? && estado = ?", ob, "aecptado").count %></td>
+					            <td><%= prestamoa = Loanformulary.where(:fecha_aceptado_por_jefe_remuneraciones => fecha1...fecha2).where("obra = ? && estado = ? ", ob, "aceptado").count %></td>
+					            <td><%= (prestamoa*100)/muestrap%>%</td>
+					            <td><%= prestamoat = Loanformulary.where("obra = ? && estado = ?", ob, "aceptado").count %></td>
 					          </tr>
 					          <tr>
 					            <td>Legal</td>
@@ -142,9 +148,9 @@
 					          </tr>
 					          <tr>
 					            <td>Total</td>
-					            <td><%= salud + educacion + familiar + prestamo + legal + vivienda%></td>
+					            <td><%= salud + educacion + familiar + prestamop +prestamoa + legal + vivienda%></td>
 					            <td></td>
-					            <td><%= saludt + educaciont + familiart + prestamot + legalt + viviendat%></td>
+					            <td><%= saludt + educaciont + familiart + prestamopt + prestamoat + legalt + viviendat%></td>
 					          </tr>
 
 
@@ -157,6 +163,70 @@
         			</div>
         			<div role="tabpanel" class="tab-pane fade" id="two">
         				<h2>Beneficios por Periodo</h2>
+
+
+        				<% if params[:obra] && params[:event1] && params[:event2] %>
+        				<h3><%= Obra.find(params[:obra][:id]).nombre %> - Periodo <%= fecha1 + " a " + fecha2  %> </h3>
+
+        				<% ob = Obra.find(params[:obra][:id]).codigo %>
+
+        				<table>
+							  <thead>
+							    <tr>
+							      <th>Nombre Beneficio</th>
+							      <th>Inscritos</th>
+							  	
+
+					      
+					              <th>Costo Empresa</th>
+					              
+							     
+							    </tr>
+							  </thead>
+							  <tbody>
+
+
+							  	
+							  	<% asignacion = Assignbenefit.where(obra_id: params[:obra][:id]).where(:created_at => fecha1...fecha2).group("benefit_id") %>
+							  	<% benefitscount = Benefit.all  %>
+							  	<%i = 0 %>
+							  	<%ins = Array.new %>
+							  	<%totale = Array.new %>
+
+							  	<% asignacion.each do |a| %>
+							  	<%# ins[i] = a.benefit_id %>
+							  	<% ins[i] = Assignbenefit.where(obra_id: params[:obra][:id]).where(:created_at => fecha1...fecha2).where(benefit_id: a.benefit_id).count %>
+							  	<% totale[i] = Benefit.find(a.benefit_id).costoempresa %>
+							  	<% i = i+1 %>
+
+							  	<% end %>
+
+							  	<%i = 0 %>
+							  	
+							  	<% asignacion.each do |a| %>
+							  	<tr>
+							  	<td><%= a.benefit.nombre %></td>
+							  	<td><%= ins[i] %></td>
+							  	<td>$<%= ins[i]*totale[i] %></td>
+							  	</tr>
+							  	<% i = i+1 %>
+
+							  	<%end %>
+							  	
+							  	
+
+							  	
+
+
+							  </tbody>
+
+						</table>
+
+
+
+
+
+        				<% end %>
         				
         			</div>
         				<div role="tabpanel" class="tab-pane fade" id="three"> </div>
@@ -189,8 +259,8 @@
     			<br> 
 
     			<ul class="navi">
-			        <li class="active"><a href="#one1" data-toggle="tab"><i class="fa fa-desktop"></i><span>Atención Trabajadores</span></a></li>
-			        <li><a href="#two1" data-toggle="tab"><i class="fa fa-user"></i><span>Beneficios por Trabajador</span></a></li>
+			        <li class="active"><a href="#one1" data-toggle="tab"><span>Atención Trabajadores</span></a></li>
+			        <li><a href="#two1" data-toggle="tab"><span>Beneficios por Trabajador</span></a></li>
 			        <li></li>
       			</ul>
      			 <div class="clearfix"></div>

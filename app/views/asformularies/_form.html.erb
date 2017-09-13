@@ -63,7 +63,7 @@
     <% if !@employee.nil?%>
     <% if @employee.empty? %>
     <%# form.text_field :codigo_obra, id: :asformulary_codigo_obra, :class => 'textForm' %>
-    <%= form.collection_select :codigo_obra, Obra.all.order('id ASC'), :codigo, :nombre_codigo, {include_blank: true}, {style: "width:220px"} %><br>
+    <%= form.collection_select :codigo_obra, Obra.all.order('id DESC'), :codigo, :nombre_codigo, {include_blank: true}, {style: "width:220px"} %><br>
     <% else %>
     <%= form.text_field :codigo_obra, id: :asformulary_codigo_obra, value: @employee[0].cencos, hidden: true %> 
     <%= @employee[0].cencos %><br>
@@ -72,7 +72,7 @@
     
 <% else %>
     <%= form.label :codigo_obra, 'Codigo Obra' %><br>
-    <%= form.collection_select :codigo_obra, Obra.all.order('id ASC'), :codigo, :nombre_codigo, {include_blank: true}, {style: "width:220px"} %><br>
+    <%= form.collection_select :codigo_obra, Obra.all.order('id DESC'), :codigo, :nombre_codigo, {include_blank: true}, {style: "width:220px"} %><br>
 <%end%>
 
   </div>

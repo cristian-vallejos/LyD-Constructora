@@ -64,7 +64,7 @@ class BenefitsController < ApplicationController
   def update
     respond_to do |format|
       if @benefit.update(benefit_params)
-        format.html { redirect_to @benefit, notice: 'Benefit was successfully updated.' }
+        format.html { redirect_to benefits_path, notice: 'Benefit was successfully updated.' }
         format.json { render :show, status: :ok, location: @benefit }
       else
         format.html { render :edit }

@@ -10,9 +10,7 @@
 <table>
   <thead>
     <tr>
-      <th>A S</th>
-      <th>EPC</th>
-      <th>ASname</th>
+      
       <th>Obra</th>
       <th>Rut atendido AS</th>
       <th>Nombre atendido</th>
@@ -21,22 +19,11 @@
       <th>Telefono</th>
       <th>Aspcategory name</th>
       <th>Solucion</th>
-      <th>Beneficio Asociado</th>
       <th>Estado</th>
       <th>Subcontrato</th>
       <th>Supervisor</th>
       <th>Descripcion</th>
-      <th>Rut Atendido EPC</th>
-      <th>Rut pariente</th>
-      <th>Nombre pariente</th>
-      <th>Apellido paterno pariente</th>
-      <th>Apellido materno pariente</th>
-      <th>Parentezco</th>
-      <th>Empresa</th>
-      <th>codigo EPC</th>
-      <th>Comentarios caso</th>
-      <th>Caso amerita epc</th>
-      <th>Derivar a</th>
+      
       <th>Fecha AS</th>
       <th>Fecha EPC</th>
       <th colspan="3"></th>
@@ -46,9 +33,6 @@
   <tbody>
     <% @logas.each do |loga| %>
       <tr>
-        <td><%= loga.asocial_id %></td>
-        <td><%= loga.epcformulary_id %></td>
-        <td><%= loga.user_name %></td>
         <td><%= loga.codigo_obra %></td>
         <td><%= loga.rut_atendido %></td>
         <td><%= loga.nombre_atendido %></td>
@@ -57,24 +41,12 @@
         <td><%= loga.telefono %></td>
         <td><%= loga.aspcategory_name %></td>
         <td><%= loga.solucion %></td>
-        <td><%= loga.beneficio %></td>
         <td><%= loga.estado %></td>
         <td><%= loga.subcontrato %></td>
         <td><%= loga.supervisor %></td>
         <td><%= loga.descripcion %></td>
-        <td><%= loga.rut_atendido_epc %></td>
-        <td><%= loga.rut_pariente %></td>
-        <td><%= loga.nombre_pariente %></td>
-        <td><%= loga.apellido_paterno_pariente %></td>
-        <td><%= loga.apellido_materno_pariente %></td>
-        <td><%= loga.parentezco %></td>
-        <td><%= loga.empresa %></td>
-        <td><%= loga.codigo_epc %></td>
-        <td><%= loga.comentarios_caso %></td>
-        <td><%= loga.caso_amerita_epc %></td>
-        <td><%= loga.derivar_a %></td>
-        <td><%= loga.fecha_as %></td>
-        <td><%= loga.fecha_epc %></td>
+        
+        
         <td><%= link_to 'Show', loga %></td>
         <td><%= link_to 'Edit', edit_loga_path(loga) %></td>
         <td><%= link_to 'Destroy', loga, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170907015844) do
+ActiveRecord::Schema.define(version: 20170912191431) do
 
   create_table "areabenefits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "nombre"
@@ -130,39 +130,6 @@ ActiveRecord::Schema.define(version: 20170907015844) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "ldusers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_ldusers_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_ldusers_on_reset_password_token", unique: true
-  end
-
-  create_table "ldusers2", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_ldusers2_on_email", unique: true
-  end
-
   create_table "loanformularies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "nombre_solicitante"
     t.string "rut_solicitante"
@@ -225,19 +192,9 @@ ActiveRecord::Schema.define(version: 20170907015844) do
     t.string "apellido_materno_pariente"
     t.string "parentezco"
     t.string "empresa"
-    t.string "comentarios_caso"
-    t.boolean "caso_amerita_epc"
-    t.string "derivar_a"
-    t.datetime "fecha_as"
-    t.datetime "fecha_epc"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "codigo"
-    t.integer "epcformulary_id"
-    t.integer "rut_atendido_epc"
-    t.integer "codigo_epc"
-    t.integer "telefono"
-    t.string "beneficio"
+    t.string "telefono"
   end
 
   create_table "logbenefitsfinals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

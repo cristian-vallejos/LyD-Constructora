@@ -46,7 +46,7 @@
                     <label for="textfield">Resumen Trabajador:
                     <br>
                     <% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
-                      <% employee = Employee.where(:rut => params[:asformulary][:rut_atendido]).order('created_at DESC') %>
+                      <% employee = Employee.where(rut: params[:asformulary][:rut_atendido]).where(estado: "A").order('created_at DESC') %>
                       <% if employee.empty? == false %>
                         <% #employee.each do |emple| %>
                         <tr>
@@ -59,7 +59,7 @@
                         </tr>
                         <%#end%>
                       <% else %>
-                        <h4>No se ha encontrado un trabajador asociado a ese RUT</h4>
+                        <h4>No se ha encontrado un trabajador asociado a ese RUT o el trabajador se encuentra inactivo</h4>
                       <%end%>
     
                         

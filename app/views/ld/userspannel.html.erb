@@ -31,7 +31,7 @@
 
   <div class="field">
   <%= f.label :obra, 'Obra' %><br>
-  <%= f.collection_select :id, Obra.all.order('id ASC'), :id, :nombre_codigo, {include_blank: true} , {style: "width:180px"} %>
+  <%= f.collection_select :id, Obra.all.order('id DESC'), :id, :nombre_codigo, {include_blank: true} , {style: "width:180px"} %>
   </div>
 
   <h6>- - Rol - -</h6>
@@ -154,7 +154,7 @@
 
 	    <div class="field">
 		  <%= f.label :obra, 'Obra' %><br>
-		  <%= f.collection_select :o_id, Obra.all.order('id ASC'), :id, :nombre_codigo, {include_blank: true}, {style: "width:180px"} %>
+		  <%= f.collection_select :o_id, Obra.all.order('id DESC'), :id, :nombre_codigo, {include_blank: true}, {style: "width:180px"} %>
 		</div>
 
 	  

@@ -9,7 +9,7 @@ class EmployeesController < ApplicationController
 
     if(params[:name] == "actualizar")
 
-      my_hash = JSON.load(File.read(Rails.root + "app/data/REMPLES.txt"))
+      my_hash = JSON.load(File.read(Rails.root + "app/data/REMPLESDEF.txt"))
 
 
       my_hash.each do |row|
