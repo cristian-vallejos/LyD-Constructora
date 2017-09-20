@@ -85,13 +85,18 @@
 	        			<h3><%= Obra.find(params[:obra][:id]).nombre %> - Periodo <%= fecha1 + " a " + fecha2  %> </h3>
 	        			<% ob = Obra.find(params[:obra][:id]).codigo %>
 	        			<% muestra = Loga.where("codigo_obra = ?",ob).count %>
-	        			<% muestrap = Logloan.where("obra = ?", ob).count %>
+	        			<% muestrap = Loanformulary.where("obra = ?", ob).count %>
+	        			<% muestrapa = Logloan.where("obra = ?", ob).count %>
+
 
 	        			<%if muestra == 0 %>
 	        			<% muestra = 1 %>
 	        			<%end %>
 	        			<%if muestrap == 0 %>
 	        			<% muestrap = 1 %>
+	        			<%end %>
+	        			<%if muestrapa == 0 %>
+	        			<% muestrapa = 1 %>
 	        			<%end %>
 
 	        				<table>
@@ -104,25 +109,48 @@
 							      <th colspan="3"></th>
 							    </tr>
 							  </thead>
-							  <tr>
-					            <td>Salud</td>
-					            <td><%= salud = Loga.where(:created_at => fecha1...fecha2).where("codigo_obra = ?",ob).where("aspcategory_name = ?", "Salud").count %></td>
-					            <td><%= (salud*100)/muestra%>%</td>
-					            <td><%= saludt = Loga.where("codigo_obra = ?",ob).where("aspcategory_name = ?", "Salud").count %></td>
-					          </tr>
-					          <tr>
-					            <td>Educación</td>
-					            <td><%= educacion = Loga.where(:created_at => fecha1...fecha2).where("codigo_obra = ?",ob).where("aspcategory_name = ?", "Educacion").count %></td>
-					            <td><%= (educacion*100)/muestra%>%</td>
-					            <td><%= educaciont = Loga.where("codigo_obra = ?",ob).where("aspcategory_name = ?", "Educacion").count %></td>
-					          </tr>
-					          <tr>
-					            <td>Familiar</td>
-					            <td><%= familiar = Loga.where(:created_at => fecha1...fecha2).where("codigo_obra = ?",ob).where("aspcategory_name = ?", "Familiar").count %></td>
-					            <td><%= (familiar*100)/muestra%>%</td>
-					            <td><%= familiart = Loga.where("codigo_obra = ?",ob).where("aspcategory_name = ?", "Familiar").count %></td>
-					          </tr>
-					          <tr>
+							  <tbody>
+							  	
+
+							  
+
+								<% atencion = Loga.where(codigo_obra: ob).where(:created_at => fecha1...fecha2).group("aspcategory_name") %>
+								<% categ = Aspcategory.all %>
+							  	<% benefitscount = Benefit.all  %>
+							  	<%i = 0 %>
+							  	<% asc = Array.new %>
+							  	<% totalas = Array.new %>
+							  	<% sumacat = 0 %>
+							  	<% sumatot = 0 %>
+
+							  	<% categ.each do |a| %>
+							  	<%# ins[i] = a.benefit_id %>
+							  	<% asc[i] = Loga.where(codigo_obra: ob).where(:created_at => fecha1...fecha2).where(aspcategory_name: a.nombre).count %>
+							  	
+
+							  	<%# totalas[i] = Benefit.find(a.benefit_id).costoempresa %>
+							  	<% i = i+1 %>
+
+							  	<% end %>
+
+							  	<%i = 0 %>
+							  	
+							  	<% categ.each do |a| %>
+							  	<tr>
+							  	<td><%= a.nombre %></td>
+							  	<td><%= asc[i] %></td>
+							  	<td><%= (asc[i]*100)/muestra %>%</td>
+							  	<td><%= totalas[i] = Loga.where(codigo_obra: ob).where(aspcategory_name: a.nombre).count %></td>
+							  	<% sumacat = sumacat + asc[i] %>
+							  	<% sumatot = sumatot + totalas[i] %>
+
+							  	</tr>
+							  	<% i = i+1 %>
+
+							  	<%end %>
+							  	
+
+							  	<tr>
 					            <td>Préstamo En proceso</td>
 					            <td><%= prestamop = Loanformulary.where(:created_at => fecha1...fecha2).where("obra = ? && estado = ?", ob, "en proceso").count %></td>
 					            <td><%= (prestamop*100)/muestrap%>%</td>
@@ -131,27 +159,22 @@
 					          <tr>
 					            <td>Préstamo Aceptados</td>
 					            <td><%= prestamoa = Loanformulary.where(:fecha_aceptado_por_jefe_remuneraciones => fecha1...fecha2).where("obra = ? && estado = ? ", ob, "aceptado").count %></td>
-					            <td><%= (prestamoa*100)/muestrap%>%</td>
+					            <td><%= (prestamoa*100)/muestrapa%>%</td>
 					            <td><%= prestamoat = Loanformulary.where("obra = ? && estado = ?", ob, "aceptado").count %></td>
 					          </tr>
-					          <tr>
-					            <td>Legal</td>
-					            <td><%=legal = Loga.where(:created_at => fecha1...fecha2).where("codigo_obra = ?",ob).where("aspcategory_name = ?", "Legal").count %></td>
-					            <td><%= (legal*100)/muestra%>%</td>
-					            <td><%=legalt = Loga.where("codigo_obra = ?",ob).where("aspcategory_name = ?", "Legal").count %></td>
-					          </tr>
-					          <tr>
-					            <td>Vivienda</td>
-					            <td><%=vivienda = Loga.where(:created_at => fecha1...fecha2).where("codigo_obra = ?",ob).where("aspcategory_name = ?", "Vivienda").count %></td>
-					            <td><%= (vivienda*100)/muestra%>%</td>
-					            <td><%=viviendat = Loga.where("codigo_obra = ?",ob).where("aspcategory_name = ?", "Vivienda").count %></td>
-					          </tr>
+
 					          <tr>
 					            <td>Total</td>
-					            <td><%= salud + educacion + familiar + prestamop +prestamoa + legal + vivienda%></td>
+					            <td><%= sumacat + prestamop + prestamoa %></td>
 					            <td></td>
-					            <td><%= saludt + educaciont + familiart + prestamopt + prestamoat + legalt + viviendat%></td>
+					            <td><%= sumatot + prestamopt + prestamoat %></td>
 					          </tr>
+
+
+
+
+							  	</tbody>	
+
 
 
 							</table>
@@ -358,7 +381,8 @@
 						        <td><%= bl.nombretrabajador %></td>
 						        <td><%= bl.nombrebeneficiario %></td>
 						        <td><%= bl.relacion %></td>
-						        <td><%= bl.nombreobra %></td>
+						        <% obra_nombre = Obra.find(bl.nombreobra).nombre %>
+						        <td><%= obra_nombre %></td>
 						        
 
 

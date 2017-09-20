@@ -7,7 +7,7 @@ class FamiliartrabajadorsController < ApplicationController
     @familiartrabajadors = Familiartrabajador.all
 
     if params[:search]
-      @results = Employee.where("nombre LIKE ? or rut LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
+      @results = Employee.where("nombre LIKE ? or rut LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%").where(estado: "A")
       
     end
 

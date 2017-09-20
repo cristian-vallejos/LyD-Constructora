@@ -176,7 +176,7 @@ class LoanformulariesController < ApplicationController
           
 
           if !@ao[0].nil?
-            #LoanmailMailer.correo(@ao[0].email).deliver
+            LoanmailMailer.correo(@ao[0].email).deliver
           else
             LoanmailMailer.correo("rodespmac@gmail.com").deliver
           end

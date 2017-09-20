@@ -1,36 +1,37 @@
 <p id="notice"><%= notice %></p>
+<link href='<%= asset_url("css/bootstrap.min.css") %>' rel="stylesheet" type="text/css">
+<link href='<%= asset_url("css/style-273.css") %>' rel="stylesheet">
+<link href='<%= asset_url("css/font-awesome.min.css") %>' rel="stylesheet">
+<link href='<%= asset_url("css/style-55.css") %>' rel="stylesheet">
+<link href='<%= asset_url("css/style-37.css") %>' rel="stylesheet" type="text/css">
+<link href='<%= asset_url("css2/stylesLD.css") %>' rel="stylesheet" type="text/css">
 
-<h1>Employees</h1>
+
+<h1>Trabajadores</h1>
 
 <%= link_to('Actualizar Trabajadores', {:action=>'index', :name => "actualizar"}, data: {:confirm=>'¿Está seguro? Esta operación podria tomar algunos minutos.'}) %>
 
-<table>
-  <thead>
-    <tr>
-      <th>id</th>
-      <th>Rut</th>
-      <th>Nombre</th>
-      <th>Cencos</th>
-      <th>Estado</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <%# @employees.each do |employee| %>
-      <tr>
-      <td><%# employee.id %></td>
-        <td><%# employee.rut %></td>
-        <td><%# employee.nombre %></td>
-        <td><%# employee.cencos %></td>
-        <td><%# employee.estado %></td>
-        <td><%# link_to 'Show', employee %></td>
-        <td><%# link_to 'Edit', edit_employee_path(employee) %></td>
-        <td><%# link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <%# end %>
-  </tbody>
-</table>
+<div class="ui-302">
+
+<div class="status-two">
+          <div class="row">
+            <div class="col-md-3">
+              <!-- Item Starts -->
+              <div class="item">
+                <!-- Heading -->
+                <h4>Fichas Cargadas</h4>
+                <!-- Big Number -->
+                <h5 class="green"><%=Employee.count%></h5>
+                <!-- Sub-Title -->
+              </div>
+              <!-- Item Ends -->
+            </div>
+
+            </div>
+          </div>
+        </div>
+
 
 <br>
 

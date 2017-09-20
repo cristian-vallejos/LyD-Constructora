@@ -121,12 +121,10 @@ class Asformulary < ApplicationRecord
       	apellido_materno_atendido: self.apellido_materno,
       	aspcategory_name: self.aspcategory.nombre,
       	solucion: self.solucion,
-        beneficio: self.benefit.nombre,
       	estado: self.estado,
       	subcontrato: self.subcontrato,
       	supervisor: self.nombre_supervisor,
       	descripcion: self.descripcion,
-      	fecha_as: self.created_at,
       	telefono: self.telefono)
   	log.save!
     #obra = Obra.new(nombre: self.asformulary.user.name, direccion: "direccion2")
@@ -144,12 +142,10 @@ class Asformulary < ApplicationRecord
       	apellido_materno_atendido: self.apellido_materno,
       	aspcategory_name: self.aspcategory.nombre,
       	solucion: self.solucion,
-        beneficio: self.benefit.nombre,
       	estado: self.estado,
       	subcontrato: self.subcontrato,
       	supervisor: self.nombre_supervisor,
       	descripcion: self.descripcion,
-      	fecha_as: self.created_at,
       	telefono: self.telefono)
       log.save!
     end

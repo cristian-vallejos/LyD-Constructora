@@ -9,7 +9,53 @@ class EmployeesController < ApplicationController
 
     if(params[:name] == "actualizar")
 
-      my_hash = JSON.load(File.read(Rails.root + "app/data/REMPLESDEF.txt"))
+
+      @client = TinyTds::Client.new username: 'proyecta', password: 'proyecta..',
+          host: '192.168.1.228', port: 1433
+      puts 'Connecting to SQL Server'
+
+      if @client.active? == true then puts 'Done' end
+
+      def execute(sql)
+          result = @client.execute(sql)
+          result.each
+          if result.affected_rows > 0 then puts "#{result.affected_rows} row(s) affected" end
+      end
+
+
+      execute("USE LyD;")
+
+      file = File.open("/home/rem/Escritorio/REMPLESDEF2.txt", 'w')
+
+
+      results = @client.execute("SELECT * FROM REMPLES;")
+
+      file.write('[')
+
+
+      results.each do |row|
+
+        jresult = row.to_json 
+
+        file.write(jresult + ',')
+      end
+
+      file.close
+
+      File.truncate("/home/rem/Escritorio/REMPLESDEF2.txt", File.size("/home/rem/Escritorio/REMPLESDEF2.txt") - 1)
+
+      file = File.open("/home/rem/Escritorio/REMPLESDEF2.txt", 'a')
+      file.write(']')
+      file.close
+
+      puts "All done."
+
+      @client.close
+
+      Employee.delete_all
+      puts "Employees deleted"
+
+      my_hash = JSON.load(File.read("/home/rem/Escritorio/REMPLESDEF2.txt"))
 
 
       my_hash.each do |row|
@@ -36,7 +82,7 @@ class EmployeesController < ApplicationController
         emple.save
       end
 
-
+      redirect_to employees_path
     end
   end
 
