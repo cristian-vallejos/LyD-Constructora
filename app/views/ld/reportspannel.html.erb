@@ -12,6 +12,9 @@
 		<div style="box-shadow:0px 0px 15px rgba(0,0,0,0.1);">
 
 			<h3>Reportes por Obra</h3>
+
+<%= link_to "Descargar PDF", ld_download_pdf_path(:pdf) %>
+
 			<div class="ui-34"> 
 					<%= form_for (@obra), url: ld_reportspannel_path, method: "get" do |f| %>
 						<h6>Seleccione una obra</h6>

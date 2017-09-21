@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   get 'ld/beneficiospannel', to: 'ld#beneficiospannel'
   get 'ld/reportspannel', to: 'ld#reportspannel'
   get 'ld/userspannel', to: 'ld#userspannel'
+  get 'ld/download_pdf', to: 'ld#download_pdf'
   root to: 'ld#index'
   #get 'asformularies/newseg', to: 'asformularies#newseg', as: 'newseg'
 
