@@ -5,7 +5,8 @@ class LogloansController < ApplicationController
   # GET /logloans
   # GET /logloans.json
   def index
-    @logloans = Logloan.all
+    @logloans = Logloan.all.order('created_at DESC')
+
 
     if(params[:name] == "actualizar")
 

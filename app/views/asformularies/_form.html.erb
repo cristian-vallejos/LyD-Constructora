@@ -22,6 +22,34 @@
 
   
 
+  <div class="field">
+
+
+<% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
+    
+<%= form.label :nombre_atendido, 'Nombre Completo Trabajador' %><br>
+
+    <% if !@employee.nil?%>
+    <% if @employee.empty? %>
+    <%= form.text_field :nombre_atendido, id: :asformulary_nombre_atendido, placeholder: "QUEVEDO OLIVARES LUIS MIGUEL", :class => 'textForm' %><br>
+    <% else %>
+    <%= form.text_field :nombre_atendido, id: :asformulary_nombre_atendido, value: @employee[0].nombre, hidden: true %>
+    <%= @employee[0].nombre %><br>
+
+    <% end %>
+    <% end %>
+
+ <% else %>
+
+    <%= form.label :nombre_atendido, 'Nombre trabajador' %>
+    <%= form.text_field :nombre_atendido, id: :asformulary_rut_atendido, placeholder: "QUEVEDO OLIVARES LUIS MIGUEL", :class => 'textForm' %>
+
+
+    
+<%end%>
+
+  </div>
+
  
   <div class="field">
 
@@ -66,7 +94,9 @@
     <%= form.collection_select :codigo_obra, Obra.all.order('id DESC'), :codigo, :nombre_codigo, {include_blank: true}, {style: "width:220px"} %><br>
     <% else %>
     <%= form.text_field :codigo_obra, id: :asformulary_codigo_obra, value: @employee[0].cencos, hidden: true %> 
-    <%= @employee[0].cencos %><br>
+    <% obraname = Obra.where(codigo: @employee[0].cencos)  %>
+    <%= obraname[0].nombre %><br>
+
     <% end %>
     <% end %>
     
@@ -86,33 +116,7 @@
     <br>
   </div>
     
-  <div class="field">
-
-
-<% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
-    
-<%= form.label :nombre_atendido, 'Nombre Completo Trabajador' %><br>
-
-    <% if !@employee.nil?%>
-    <% if @employee.empty? %>
-    <%= form.text_field :nombre_atendido, id: :asformulary_nombre_atendido, placeholder: "QUEVEDO OLIVARES LUIS MIGUEL", :class => 'textForm' %><br>
-    <% else %>
-    <%= form.text_field :nombre_atendido, id: :asformulary_nombre_atendido, value: @employee[0].nombre, hidden: true %>
-    <%= @employee[0].nombre %><br>
-
-    <% end %>
-    <% end %>
-
- <% else %>
-
-    <%= form.label :nombre_atendido, 'Nombre trabajador' %>
-    <%= form.text_field :nombre_atendido, id: :asformulary_rut_atendido, placeholder: "QUEVEDO OLIVARES LUIS MIGUEL", :class => 'textForm' %>
-
-
-    
-<%end%>
-
-  </div>
+  
 
   
 

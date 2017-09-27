@@ -2,13 +2,12 @@
 
               <thead>
                 <tr>
+                  <th>Nombre trabajador</th>
                   <th>Rut atendido</th>
-                  <th>Codigo obra</th>
+                  <th>Nombre de obra</th>
                   <th>Telefono</th>
                   <th>Asistente Social</th>
-                  <th>Nombre trabajador</th>
-                  <th>Apellido</th>
-                  <th>Categoria</th>
+                  <th>Tipo Consulta</th>
                   <th>Solucion</th>
                   <th>Estado</th>
                  
@@ -26,6 +25,7 @@
 
                     <% oname = Obra.where(codigo: x.codigo_obra) %>
 
+                    <td><%= x.nombre_atendido %></td>
                     <td><%= x.rut_atendido %></td>
                     <% if !oname[0].nil? %>
                     <td><%= oname[0].nombre %></td>
@@ -34,8 +34,6 @@
                     <% end %>
                     <td><%= x.telefono %></td>
                     <td><%# x.lyduser.email %></td>
-                    <td><%= x.nombre_atendido %></td>
-                    <td><%= x.apellido_paterno %></td>
                     <td><%= x.aspcategory.nombre %></td>
                     <td><%= x.solucion %></td>
                     <% if x.estado == true %>
@@ -57,7 +55,7 @@
                     <td><%= link_to 'Agregar Familia', new_familiartrabajador_path(:rut_trabajador => x.rut_atendido ) %></td>
                   
                     <%if can? :destroy, Asformulary %>
-                    <td><%# link_to 'Destroy', asformulary, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <td><%= link_to 'Destroy', x, method: :delete, data: { confirm: 'Are you sure?' } %>
                     <%end%>
 
                     </td>

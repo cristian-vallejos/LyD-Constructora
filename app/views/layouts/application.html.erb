@@ -29,17 +29,17 @@
 
     <div align="right">
     <% if lyduser_signed_in? %>
-    <%= link_to "Inicio", root_path %> |
+    <%= link_to "Inicio", root_path, style: 'color:#FFFFFF;' %> |
     <% end %>
     <% if lyduser_signed_in? %>
-    <%= link_to "Configuraciones", edit_lyduser_registration_path %> |
+    <%= link_to "Cambio Contraseña", edit_lyduser_registration_path,  style: 'color:#FFFFFF;' %> |
     <% if !lyduser_signed_in? %>
-    <%= link_to "Registrarse", new_lyduser_registration_path %> |
+    <%= link_to "Registrarse", new_lyduser_registration_path,  style: 'color:#FFFFFF;' %> |
     <% end %> 
     <% if !lyduser_signed_in? %>
-    <%= link_to "Ingresar", new_lyduser_session_path %> |
+    <%= link_to "Ingresar", new_lyduser_session_path,  style: 'color:#FFFFFF;' %> |
     <% end %>  
-    <%= link_to "Salir", destroy_lyduser_session_path, method: :delete %>
+    <%= link_to "Salir", destroy_lyduser_session_path, method: :delete,  style: 'color:#FFFFFF;' %>
     <% end %>
     </div>
     </h3>

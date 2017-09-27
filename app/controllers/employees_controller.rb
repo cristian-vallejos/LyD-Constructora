@@ -25,7 +25,7 @@ class EmployeesController < ApplicationController
 
       execute("USE LyD;")
 
-      file = File.open("/home/rem/Escritorio/REMPLESDEF2.txt", 'w')
+      file = File.open("/var/www/myapp/REMPLESDEF2.txt", 'w')
 
 
       results = @client.execute("SELECT * FROM REMPLES;")
@@ -42,9 +42,9 @@ class EmployeesController < ApplicationController
 
       file.close
 
-      File.truncate("/home/rem/Escritorio/REMPLESDEF2.txt", File.size("/home/rem/Escritorio/REMPLESDEF2.txt") - 1)
+      File.truncate("/var/www/myapp/REMPLESDEF2.txt", File.size("/var/www/myapp/REMPLESDEF2.txt") - 1)
 
-      file = File.open("/home/rem/Escritorio/REMPLESDEF2.txt", 'a')
+      file = File.open("/var/www/myapp/REMPLESDEF2.txt", 'a')
       file.write(']')
       file.close
 
@@ -55,7 +55,7 @@ class EmployeesController < ApplicationController
       Employee.delete_all
       puts "Employees deleted"
 
-      my_hash = JSON.load(File.read("/home/rem/Escritorio/REMPLESDEF2.txt"))
+      my_hash = JSON.load(File.read("/var/www/myapp/REMPLESDEF2.txt"))
 
 
       my_hash.each do |row|
@@ -82,7 +82,7 @@ class EmployeesController < ApplicationController
         emple.save
       end
 
-      redirect_to employees_path
+      redirect_to root_path
     end
   end
 

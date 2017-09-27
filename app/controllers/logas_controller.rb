@@ -6,7 +6,7 @@ class LogasController < ApplicationController
   # GET /logas
   # GET /logas.json
   def index
-    @logas = Loga.all
+    @logas = Loga.all.order('created_at DESC')
 
 
     if(params[:name] == "actualizar")

@@ -45,23 +45,35 @@
            </tr>
            <tbody>
              
-               <% if params[:assignbenefit] && params[:assignbenefit][:rut_trabajador] %>
-               <% assign = Assignbenefit.where(:rut_trabajador => params[:assignbenefit][:rut_trabajador]).order('created_at DESC').take(20) %>
+               <% if params[:rut_trabajador] %>
+               <% assign = Assignbenefit.where(:rut_trabajador => params[:rut_trabajador]).order('created_at DESC').take(20) %>
 
 
 
-               <% assign.each do |loga| %>
+               <% assign.each do |ab| %>
                         <tr>
                           
-                          <td><%= loga.benefit.nombre %></td>
-                          <td><%= loga.rut_trabajador %></td>
-                          <td><%= loga.rut_beneficiario %></td>
-                          <td><%= loga.relacion %></td>
-                          <td><%= loga.fecha_nacimiento.strftime("%d %b %y") %></td>
+                          <td><%= ab.benefit.nombre %></td>
+          
+                          <td><%= ab.rut_trabajador %></td>
 
-                          <td><%= loga.created_at.strftime("%d %b %y") %></td>
+                          <%if ab.rut_trabajador != ab.rut_beneficiario %>
+                          <% nombref = Familiartrabajador.where(rut: ab.rut_beneficiario).where(rut_trabajador: ab.rut_trabajador) %>
+                          <%  if !nombref.empty? %>
+                          <td><%= nombref[0].nombre %></td>
+                          <%  else %>
+                          <td>lel</td>
+                          <%  end %>
+                          <%else %>
+                          <td>iguales</td>
+                          <%end %>
+
+                          <td><%= ab.relacion %></td>
+                          <td><%= ab.fecha_nacimiento.strftime("%d %b %y") %></td>
+
+                          <td><%= ab.created_at.strftime("%d %b %y") %></td>
                           
-                          <td><%= loga.obra_id %></td>
+                          <td><%= ab.obra_id %></td>
                           
 
                         </tr>

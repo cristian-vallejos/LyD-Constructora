@@ -59,7 +59,9 @@
                         </tr>
                         <%#end%>
                       <% else %>
-                        <h4>No se ha encontrado un trabajador asociado a ese RUT o el trabajador se encuentra inactivo</h4>
+                        <h5>No podemos desplegar un resumen de este trabajador por alguno de los siguientes motivos:</h5>
+                        <h6>- El trabajador no posee ficha en Payrroll (subcontrato)</h6>
+                        <h6>- El trabajador no se encuentra activo</h6>
                       <%end%>
     
                         
@@ -83,7 +85,7 @@
                       <th width="(100/x)%">Fecha</th>
                       <th width="(100/x)%">Tipo Consulta</th>
                       
-                      <th width="(100/x)%">¿Caso Cerrado?</th>
+                      <th width="(100/x)%">Status Caso</th>
                       <th width="(100/x)%">Obra</th>
                       <th width="(100/x)%">Nº Atencion</th>
                       <th width="(100/x)%">Telefono</th>

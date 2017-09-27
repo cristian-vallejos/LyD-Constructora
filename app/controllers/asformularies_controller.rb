@@ -60,7 +60,7 @@ class AsformulariesController < ApplicationController
       @asformulary = Asformulary.new
     
     if params[:asformulary] && params[:asformulary][:rut_atendido]
-      @employee = Employee.where(:rut => params[:asformulary][:rut_atendido]).order('created_at DESC')
+      @employee = Employee.where(:rut => params[:asformulary][:rut_atendido]).where(estado: "A").order('created_at DESC')
       @logloan = Logloan.where(:rut_solicitante => params[:asformulary][:rut_atendido]).order('created_at DESC')
       
     end

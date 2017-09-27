@@ -46,7 +46,7 @@
         <% else %>
         <%= form.label :obra, 'Codigo Obra' %> <br>
         <%= form.text_field :obra, id: :loanformulary_obra, value: params[:obra], hidden: true %> 
-        <%= params[:obra] %><br>
+        <%# params[:obra] %>
         <% oname = Obra.where(codigo: params[:obra]) %>
                     <% if !oname[0].nil? %>
                     <%= oname[0].nombre %><br>
@@ -86,7 +86,7 @@
         </div>
 
         <div class="field">
-          <%= form.label :antiguedad %><br>
+          <%= form.label :antiguedad, "Antiguedad (Años)" %><br>
           <%= form.number_field :antiguedad, id: :loanformulary_antiguedad %><br>
         </div>
 
