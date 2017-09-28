@@ -6,6 +6,27 @@ class AssignbenefitsController < ApplicationController
   # GET /assignbenefits.json
   def index
     @assignbenefits = Assignbenefit.all
+
+    if(params[:name] == "actualizar")
+
+      Loga.delete_all
+
+      my_hash1 = JSON.load(File.read(Rails.root + "app/data/logbenefits.txt"))
+
+
+      my_hash1.each do |row|
+
+
+
+
+      end
+
+      
+      redirect_to root_path
+
+    end
+
+
   end
 
   # GET /assignbenefits/1

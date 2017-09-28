@@ -11,7 +11,9 @@ class LogasController < ApplicationController
 
     if(params[:name] == "actualizar")
 
-      my_hash1 = JSON.load(File.read(Rails.root + "app/data/logasdef.txt"))
+      Loga.delete_all
+
+      my_hash1 = JSON.load(File.read(Rails.root + "app/data/logasdef2.txt"))
 
 
       my_hash1.each do |row|
@@ -31,7 +33,7 @@ class LogasController < ApplicationController
       end
 
       
-      redirect_to logas_path
+      redirect_to root_path
 
     end
 
