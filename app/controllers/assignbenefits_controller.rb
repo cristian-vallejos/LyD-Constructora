@@ -7,7 +7,7 @@ class AssignbenefitsController < ApplicationController
   def index
     @assignbenefits = Assignbenefit.all
 
-    if(params[:name] == "actualizar")
+    if(params[:name] == "actualizarlog")
 
       Loga.delete_all
 
@@ -15,6 +15,20 @@ class AssignbenefitsController < ApplicationController
 
 
       my_hash1.each do |row|
+
+        lbf = Logbenefitsfinal.new(
+           areabeneficio: row['areabeneficio'], 
+           nombrebeneficio: row['nombrebeneficio'], 
+           costoempresa: row['costoempresa'], 
+           costotrabajador: row['costotrabajador'], 
+           ruttrabajador: row['ruttrabajador'], 
+           nombretrabajador: row['nombretrabajador'], 
+           rutbeneficiario:  row['rutbeneficiario'], 
+           nombrebeneficiario: row['nombrebeneficiario'], 
+           relacion: row['relacion'], 
+           nombreobra: row['nombreobra'],
+           created_at: row['fecha'])
+         lbf.save!
 
 
 

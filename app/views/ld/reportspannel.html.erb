@@ -19,7 +19,7 @@
 					<%= form_for (@obra), url: ld_reportspannel_path, method: "get" do |f| %>
 						<h6>Seleccione una obra</h6>
 						<br>
-		                <%= f.collection_select :id, Obra.all.order('nombre ASC'), :id, :nombre, include_blank: true %>
+		                <%= f.collection_select :id, Obra.all.order('id DESC'), :id, :nombre_codigo, {include_blank: true} %>
 		                <br>
 		                <h6>Desde: </h6>
   						<%= date_select('event1', 'date', { :discard_day => true}) %>

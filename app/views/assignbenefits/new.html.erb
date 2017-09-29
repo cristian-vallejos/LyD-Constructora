@@ -4,7 +4,7 @@
 <link href='<%= asset_url("css2/stylesLD.css") %>' rel="stylesheet" type="text/css">
 
 
-<h1>Asignar beneficios</h1>
+<h1>Asignar Beneficios</h1>
 
 <div class="container">
 
@@ -36,8 +36,8 @@
 
            <tr>
             <th width="(100/x)%">Beneficio</th>
-            <th width="(100/x)%">Rut Trabajador</th>
-            <th width="(100/x)%">Rut Beneficiario</th>
+        
+            <th width="(100/x)%">Nombre Beneficiario</th>
             <th width="(100/x)%">Relación</th>
             <th width="(100/x)%">F.Nacimiento</th>
             <th width="(100/x)%">Fecha</th>
@@ -55,7 +55,7 @@
                           
                           <td><%= ab.benefit.nombre %></td>
           
-                          <td><%= ab.rut_trabajador %></td>
+                      
 
                           <%if ab.rut_trabajador != ab.rut_beneficiario %>
                           <% nombref = Familiartrabajador.where(rut: ab.rut_beneficiario).where(rut_trabajador: ab.rut_trabajador) %>
@@ -72,8 +72,12 @@
                           <td><%= ab.fecha_nacimiento.strftime("%d %b %y") %></td>
 
                           <td><%= ab.created_at.strftime("%d %b %y") %></td>
-                          
-                          <td><%= ab.obra_id %></td>
+                          <% obra = Obra.where(id: ab.obra_id) %>
+                          <%if !obra.empty? %>
+                          <td><%= obra[0].nombre %></td>
+                          <%else %>
+                          <td></td>
+                          <%end %>
                           
 
                         </tr>

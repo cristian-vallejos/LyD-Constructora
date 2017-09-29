@@ -23,7 +23,13 @@
        
 
           <strong>Obra:</strong><br>
-         <i> <%= @loanformulary.obra %></i><br>
+         <i> <% obra = Obra.where(codigo: @loanformulary.obra) %>
+              <%if !obra.empty? %>
+                <td><%= obra[0].nombre %></td>
+              <%else %>
+                <td></td>
+              <%end %>
+          </i><br>
        
 
        

@@ -41,10 +41,10 @@
         <% end %>
 
         <% if !params[:obra]%>
-        <%= form.label :obra, 'Codigo Obra' %> <br>
+        <%= form.label :obra, 'Obra' %> <br>
         <%= form.text_field :obra, id: :loanformulary_obra, :class => 'textForm' %> <br>
         <% else %>
-        <%= form.label :obra, 'Codigo Obra' %> <br>
+        <%= form.label :obra, 'Obra' %> <br>
         <%= form.text_field :obra, id: :loanformulary_obra, value: params[:obra], hidden: true %> 
         <%# params[:obra] %>
         <% oname = Obra.where(codigo: params[:obra]) %>

@@ -16,7 +16,7 @@
 
 
   <br>
-    <b>Si el beneficio es para un familiar, cree un familiar en el siguiente <%= link_to 'enlace', familiartrabajadors_path, target: :_blank %>, y recargue esta página.</b>
+    <b>Si el beneficio es para un familiar, cree un familiar en el siguiente <%= link_to 'enlace', new_familiartrabajador_path(rut_trabajador: params[:rut_trabajador]), target: :_blank %>, y recargue esta página.</b>
   <br>
   <br>
 
@@ -101,12 +101,12 @@
 
     <% @obra = Obra.where(codigo: params[:obra_id]) %>
 
-    <%= form.label :obra_id, 'Codigo Obra' %><br>
+    <%= form.label :obra_id, 'Obra' %><br>
     <%= form.text_field :obra_id, id: :assignbenefit_obra_id, value: @obra[0].id, hidden: true %>
-    <%= params[:obra_id] %>
+    <%= @obra[0].nombre %>
 
 <% else %>
-    <%= form.label :obra_id, 'Codigo Obra' %><br>
+    <%= form.label :obra_id, 'Obra' %><br>
     <%= form.text_field :obra_id, id: :assignbenefit_obra_id, :class => 'textForm' %><br>
 
 <%end%>
