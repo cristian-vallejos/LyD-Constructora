@@ -4,7 +4,7 @@ class LdController < ApplicationController
 	def index
 
 		@asformulary = Asformulary.new(:rut_atendido => params[:rut_atendido])
-		
+
 	end
 
 
@@ -15,7 +15,6 @@ class LdController < ApplicationController
 	end
 
 	def reportspannel
-
 		@obra = Obra.new
 		@asformulary = Asformulary.new
 
@@ -27,7 +26,7 @@ class LdController < ApplicationController
 
 
 		respond_to do |format|
-        
+
         format.pdf {
           render pdf: "Reportes",
           template: "layouts/reportsPannelLog"
@@ -41,7 +40,7 @@ class LdController < ApplicationController
 
 	def download_pdf
 		#@assignbenefit = Rails.application.config.ab
-    	
+
         pdf = WickedPdf.new.pdf_from_string(
 		render_to_string('layouts/reportsPannelLog.pdf.erb', layout: false)
 		)
@@ -55,10 +54,10 @@ class LdController < ApplicationController
 
 
 	def userspannel
-		
+
 		if params[:registrar]
 
-			
+
 
 			if params[:ld][:id] != ""
 				ob = Obra.find(params[:ld][:id]).codigo
@@ -84,7 +83,7 @@ class LdController < ApplicationController
 			elsif params[:ld][:role] == "subgerente_personas_role"
 				subgerente_personas_role = true
 			elsif params[:ld][:role] == "jefe_remuneraciones_role"
-				jefe_remuneraciones_role = true		
+				jefe_remuneraciones_role = true
 			end
 
 
@@ -107,7 +106,7 @@ class LdController < ApplicationController
 
 
 		elsif params[:cambiarObra]
-			
+
 			if params[:ld][:o_id] != ""
 				ob = Obra.find(params[:ld][:o_id]).codigo
 			else
@@ -141,15 +140,15 @@ class LdController < ApplicationController
 			end
 
 
-			
 
 
-			
+
+
 
 		end
-	
-	 	 
-		
+
+
+
 	end
 
 end

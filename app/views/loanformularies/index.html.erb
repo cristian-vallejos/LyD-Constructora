@@ -3,7 +3,7 @@
 <link href='<%= asset_url("css/style-34.css") %>' rel="stylesheet">
 <link href='<%= asset_url("css2/stylesLD.css") %>' rel="stylesheet" type="text/css">
 
-<p id="notice"><%= notice %></p>
+<!--<p id="notice"><%= notice %></p>-->
 
 
 <% if current_lyduser.asocial_role? %>
@@ -35,7 +35,7 @@
 </div>
 
 
-        
+
 
 <% if params[:loanformulary] && params[:loanformulary][:rut_solicitante] %>
 <% loan = Loanformulary.where(:rut_solicitante => params[:loanformulary][:rut_solicitante]).order('created_at DESC') %>
@@ -53,7 +53,7 @@
               <col width="6%">
               <col width="6%">
               <col width="6%">
-                
+
             <tr>
             <th>Nombre Solicitante</th>
             <th>Rut Solicitante</th>
@@ -71,16 +71,16 @@
             <th></th>
             <th></th>
             </tr>
-              
+
 
               <tbody>
-                
+
                 <% loan.each do |loanformulary| %>
                   <tr>
                     <td><%= loanformulary.nombre_solicitante %></td>
                     <td><%= loanformulary.rut_solicitante %></td>
-                    <td><%= loanformulary.obra %></td>
-                    <td><%= loanformulary.monto_solicitado %></td>
+                    <td><%= Obra.find_by(codigo: loanformulary.obra).nombre %></td>
+                    <td><%= number_to_currency(loanformulary.monto_solicitado, unit: "$ ", delimiter: ".", precision: 0) %></td>
                     <td><%= loanformulary.motivo_solicitud %></td>
                     <td><%= loanformulary.estado %></td>
                     <% if current_lyduser.admin_role? %>
@@ -123,15 +123,15 @@
   <h3>Solicitudes de Préstamos</h3>
   <br>
    <div class="ui-34">
-    <ul class="navi"> 
-      
+    <ul class="navi">
+
 
         <% if current_lyduser.asocial_role? %>
       <li><a href="#two" data-toggle="tab"> Aceptados </a></li>
       <li class="active"><a href="#four" data-toggle="tab"> Seguimiento </a></li>
     <% end %>
 
-    
+
     <% if current_lyduser.ao_role? || current_lyduser.subgerente_personas_role? || current_lyduser.jefe_remuneraciones_role? %>
       <li class="active"><a href="#one" data-toggle="tab"> Pendientes </a></li>
       <li><a href="#two" data-toggle="tab"> Aceptados </a></li>
@@ -140,11 +140,11 @@
 
     <% if current_lyduser.admin_role? %>
       <li class="active"><a href="#four" data-toggle="tab"> Seguimiento </a></li>
-    <% end %> 
+    <% end %>
         <li></li>
       </ul>
     <div class="clearfix"></div>
-    
+
     <!-- Tab panes -->
     <div class="tab-content">
 
@@ -188,8 +188,8 @@
                   <tr>
                     <td><%= loanformulary.nombre_solicitante %></td>
                     <td><%= loanformulary.rut_solicitante %></td>
-                    <td><%= loanformulary.obra %></td>
-                    <td><%= loanformulary.monto_solicitado %></td>
+                    <td><%= Obra.find_by(codigo: loanformulary.obra).nombre %></td>
+                    <td><%= number_to_currency(loanformulary.monto_solicitado, unit: "$ ", delimiter: ".", precision: 0) %></td>
                     <td><%= loanformulary.motivo_solicitud %></td>
                     <td><%= loanformulary.comentarios %></td>
                     <%if can? :show, Loanformulary %>
@@ -246,8 +246,8 @@
                   <tr>
                     <td><%= loanformulary.nombre_solicitante %></td>
                     <td><%= loanformulary.rut_solicitante %></td>
-                    <td><%= loanformulary.obra %></td>
-                    <td><%= loanformulary.monto_solicitado %></td>
+                    <td><%= Obra.find_by(codigo: loanformulary.obra).nombre %></td>
+                    <td><%= number_to_currency(loanformulary.monto_solicitado, unit: "$ ", delimiter: ".", precision: 0) %></td>
                     <td><%= loanformulary.motivo_solicitud %></td>
                     <td><%= loanformulary.comentarios %></td>
                     <% if current_lyduser.asocial_role? %>
@@ -310,13 +310,13 @@
               <% elsif current_lyduser.jefe_remuneraciones_role? %>
               <% revisadosF = Loanformulary.where(:aceptado_por_jefe_remuneraciones => false).order('created_at DESC') %>
               <% end %>
-              
+
               <% revisadosF.each do |loanformulary| %>
                 <tr>
                   <td><%= loanformulary.nombre_solicitante %></td>
                   <td><%= loanformulary.rut_solicitante %></td>
-                  <td><%= loanformulary.obra %></td>
-                  <td><%= loanformulary.monto_solicitado %></td>
+                  <td><%= Obra.find_by(codigo: loanformulary.obra).nombre %></td>
+                  <td><%= number_to_currency(loanformulary.monto_solicitado, unit: "$ ", delimiter: ".", precision: 0) %></td>
                   <td><%= loanformulary.motivo_solicitud %></td>
                   <td><%= loanformulary.comentarios %></td>
                   <% if current_lyduser.asocial_role? %>
@@ -351,7 +351,7 @@
          <% if current_lyduser.admin_role? || current_lyduser.asocial_role? %>
 
 
-         
+
 
 
               <!-- Table -->
@@ -368,7 +368,7 @@
               <col width="6%">
               <col width="6%">
               <col width="6%">
-                
+
             <tr>
             <th>Nombre Solicitante</th>
             <th>Rut Solicitante</th>
@@ -386,16 +386,16 @@
             <th></th>
             <th></th>
             </tr>
-              
+
 
               <tbody>
-                
+
                 <% @loanformularies.each do |loanformulary| %>
                   <tr>
                     <td><%= loanformulary.nombre_solicitante %></td>
                     <td><%= loanformulary.rut_solicitante %></td>
-                    <td><%= loanformulary.obra %></td>
-                    <td><%= loanformulary.monto_solicitado %></td>
+                    <td><%= Obra.find_by(codigo: loanformulary.obra).nombre %></td>
+                    <td><%= number_to_currency(loanformulary.monto_solicitado, unit: "$ ", delimiter: ".", precision: 0) %></td>
                     <td><%= loanformulary.motivo_solicitud %></td>
                     <td><%= loanformulary.estado %></td>
                     <% if current_lyduser.admin_role? %>
@@ -419,8 +419,8 @@
                 <% end %>
               </tbody>
               </table>
-            
-              
+
+
             <%end%>
         </div>
         <div role="tabpanel" class="tab-pane fade" id="five"> </div>
@@ -430,15 +430,15 @@
 
 
 
-  <script src='<%= asset_url("jquery.js") %>'></script> 
-    <!-- Bootstrap JS --> 
-    <script src='<%= asset_url("bootstrap.min.js") %>'></script> 
-    <!-- Placeholder JS --> 
-    <script src='<%= asset_url("placeholder.js") %>'></script> 
-    <!-- Respond JS for IE8 --> 
-    <script src='<%= asset_url("respond.min.js") %>'></script> 
-    <!-- HTML5 Support for IE --> 
-    <script src='<%= asset_url("html5shiv.js") %>'></script> 
+  <script src='<%= asset_url("jquery.js") %>'></script>
+    <!-- Bootstrap JS -->
+    <script src='<%= asset_url("bootstrap.min.js") %>'></script>
+    <!-- Placeholder JS -->
+    <script src='<%= asset_url("placeholder.js") %>'></script>
+    <!-- Respond JS for IE8 -->
+    <script src='<%= asset_url("respond.min.js") %>'></script>
+    <!-- HTML5 Support for IE -->
+    <script src='<%= asset_url("html5shiv.js") %>'></script>
 
 
 </div>
@@ -449,5 +449,3 @@
 
 
 <br>
-
-

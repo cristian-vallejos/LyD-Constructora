@@ -13,24 +13,24 @@
         <h4>Nuevo Formulario de Atención Social</h4>
         <%= render 'form', asformulary: @asformulary %>
         <%# button_to "Nuevo préstamo", new_loanformulary_path,method: "get", form: {target: '_blank'}, class: "button button1" %>
-        
+
           <%# link_to(image_tag(asset_url("trans.png"), class: 'bg-green-ld'), new_loanformulary_path,  :method => :get) %>
 
-          
 
-          
+
+
 
       </div>
-    
+
     <!-- end .sidebar1 --></div>
 
 
   <div class="contentForm">
-       
+
     <br>
-   
+
     <div class="ui-55">
-        <div class="sidebar" style="position: fixed;"> 
+        <div class="sidebar" style="position: fixed;">
           <!-- Nav tabs -->
           <ul class="list-unstyled">
             <li class="active"><a href="#one" role="tab" data-toggle="tab"> Asistencia Social</a></li>
@@ -40,7 +40,7 @@
             <li><a href="#five" role="tab" data-toggle="tab"> Remuneraciones </a></li>
           </ul>
         </div>
-      <div class="mainbar"> 
+      <div class="mainbar">
         <!-- Tab panes -->
 
                     <label for="textfield">Resumen Trabajador:
@@ -63,13 +63,13 @@
                         <h6>- El trabajador no posee ficha en Payrroll (subcontrato)</h6>
                         <h6>- El trabajador no se encuentra activo</h6>
                       <%end%>
-    
-                        
+
+
                     <%end%>
 
 
 
-                  </label> 
+                  </label>
                   <br>
 
 
@@ -84,7 +84,7 @@
                     <tr>
                       <th width="(100/x)%">Fecha</th>
                       <th width="(100/x)%">Tipo Consulta</th>
-                      
+
                       <th width="(100/x)%">Status Caso</th>
                       <th width="(100/x)%">Obra</th>
                       <th width="(100/x)%">Nº Atencion</th>
@@ -95,16 +95,16 @@
                     <tbody>
                       <% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
                       <% logas = Loga.where(:rut_atendido => params[:asformulary][:rut_atendido]).order('created_at DESC').take(20) %>
-                      
+
                       <% logas.each do |loga| %>
                         <tr>
-                          
-                          
+
+
                           <td><%= loga.created_at.strftime("%d %b %y") %></td>
                           <td><%= loga.aspcategory_name %></td>
-                          
-                          
-                
+
+
+
                           <% if loga.estado == true %>
                           <td><%="Cerrado"%></td>
                           <% else %>
@@ -118,7 +118,7 @@
                           <td><%= loga.descripcion %></td>
 
                         </tr>
-                     
+
                       <% end %>
                       <% end %>
                     </tbody>
@@ -135,16 +135,16 @@
             <th width="(100/x)%">Relación</th>
             <th width="(100/x)%">F.Nacimiento</th>
             <th width="(100/x)%">Fecha</th>
-            <th width="(100/x)%">CentroCosto</th>
+            <th width="(100/x)%">Obra</th>
            </tr>
            <tbody>
-             
+
                <% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
                <% assign = Assignbenefit.where(:rut_trabajador => params[:asformulary][:rut_atendido]).order('created_at DESC').take(20) %>
 
                <% assign.each do |loga| %>
                         <tr>
-                          
+
                           <td><%= loga.benefit.nombre %></td>
                           <td><%= loga.rut_trabajador %></td>
                           <td><%= loga.rut_beneficiario %></td>
@@ -152,12 +152,12 @@
                           <td><%= loga.fecha_nacimiento %></td>
 
                           <td><%= loga.created_at.strftime("%d %b %y") %></td>
-                          
-                          <td><%= loga.obra_id %></td>
-                          
+
+                          <td><%= Obra.find_by_id(loga.obra_id).nombre %></td>
+
 
                         </tr>
-                     
+
                       <% end %>
 
 
@@ -166,14 +166,14 @@
 
            </tbody>
         </table>
-                
+
           </div>
               <div role="tabpanel" class="tab-pane fade" id="three">
-               
+
                   <table >
                   <thead>
                     <tr>
-                      
+
                       <th width="(100/x)%">Empresa</th>
                       <th width="(100/x)%">Monto Solicitado</th>
                       <th width="(100/x)%">Por pagar</th>
@@ -189,30 +189,30 @@
 
                       <% logloan.each do |logl| %>
                         <tr>
-                          
-                          
-                          
+
+
+
                           <td><%= logl.empresa %></td>
-                          <td><%= logl.monto_solicitado %></td>
+                          <td><%= number_to_currency(logl.monto_solicitado, unit: "$ ", delimiter: ".", precision: 0) %></td>
                           <td><%= logl.por_pagar %></td>
                           <td><%= logl.motivo_solicitud %></td>
                           <td><%= logl.estado %></td>
-                          
+
 
                         </tr>
                       <% end %>
 
                       <% loan.each do |logl| %>
                       <tr>
-                          
-                          
-                          
+
+
+
                           <td></td>
                           <td><%= logl.monto_solicitado %></td>
                           <td></td>
                           <td><%= logl.motivo_solicitud %></td>
                           <td><%= logl.estado %></td>
-                          
+
 
                         </tr>
                       <% end %>
@@ -225,31 +225,27 @@
 
               </div>
               <div role="tabpanel" class="tab-pane fade" id="four">
-                
+
               </div>
               <div role="tabpanel" class="tab-pane fade" id="five">
-                
+
               </div>
         </div>
       </div>
     </div>
-    
-    <!-- Javascript files --> 
-    <!-- jQuery --> 
-    <script src='<%= asset_url("jquery.js") %>'></script> 
-    <!-- Bootstrap JS --> 
-    <script src='<%= asset_url("bootstrap.min.js") %>'></script> 
-    <!-- Placeholder JS --> 
-    <script src='<%= asset_url("placeholder.js") %>'></script> 
-    <!-- Respond JS for IE8 --> 
-    <script src='<%= asset_url("respond.min.js") %>'></script> 
-    <!-- HTML5 Support for IE --> 
-    <script src='<%= asset_url("html5shiv.js") %>'></script> 
-    
+
+    <!-- Javascript files -->
+    <!-- jQuery -->
+    <script src='<%= asset_url("jquery.js") %>'></script>
+    <!-- Bootstrap JS -->
+    <script src='<%= asset_url("bootstrap.min.js") %>'></script>
+    <!-- Placeholder JS -->
+    <script src='<%= asset_url("placeholder.js") %>'></script>
+    <!-- Respond JS for IE8 -->
+    <script src='<%= asset_url("respond.min.js") %>'></script>
+    <!-- HTML5 Support for IE -->
+    <script src='<%= asset_url("html5shiv.js") %>'></script>
+
     <!-- end .content --></div>
 
 <!-- end .container --></div>
-	
-
-
-

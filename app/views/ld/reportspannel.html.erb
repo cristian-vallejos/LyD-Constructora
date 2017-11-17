@@ -11,14 +11,19 @@
 	<div class="content">
 		<div style="box-shadow:0px 0px 15px rgba(0,0,0,0.1);">
 
-			<h3>Reportes por Obra</h3>
-
-<%= link_to "Descargar PDF", ld_download_pdf_path(:pdf) %>
-
-			<div class="ui-34"> 
+		<div class="container">
+			<div class="row">
+					<div class="col-md-6 col-lg-6">
+							<a href="javascript:;" onclick="showReportePorObra();"><h3>Reporte por Obra</h3></a>
+					</div>
+					<div class="col-md-6 col-lg-6">
+							<a href="javascript:;"  onclick="showReporteGeneral();"><h3>Reporte General</h3></a>
+					</div>
+			</div>
+			<div class="ui-34" style="margin-top: 2%;" id="reporte_por_obra">
+			<%= link_to "Descargar PDF", ld_download_pdf_path(:pdf) %>
 					<%= form_for (@obra), url: ld_reportspannel_path, method: "get" do |f| %>
 						<h6>Seleccione una obra</h6>
-						<br>
 		                <%= f.collection_select :id, Obra.all.order('id DESC'), :id, :nombre_codigo, {include_blank: true} %>
 		                <br>
 		                <h6>Desde: </h6>
@@ -26,52 +31,29 @@
   						<br>
   						<h6>Hasta: </h6>
   						<%= date_select('event2', 'date', { :discard_day => true}) %>
-  						<br>
+  						<br><br>
 
 		                <%# f.label "Buscar Atención" %>
 		                <%# f.text_field :rut_atendido %>
 		                <%= f.submit "Buscar" %>
-		              
-	              <% end %>
-	              <%= form_for (@obra), url: ld_reportspannel_path, method: "get" do |f| %>
-	              <%= f.submit "Limpiar busqueda" %>
-	              <%end%>
-
-
-	              <% if params[:obra] && params[:event1] && params[:event2] %>
+	        <% end %>
+	        <%= form_for (@obra), url: ld_reportspannel_path, method: "get" do |f| %>
+	        	<%= f.submit "Limpiar busqueda" %>
+	        <%end%>
+	        <% if params[:obra] && params[:event1] && params[:event2] %>
 			      <%# as = Asformulary.where(:rut_atendido => params[:asformulary][:rut_atendido]).order('created_at DESC') %>
-
-			      
-
-			      <% ob = Obra.find(params[:obra][:id]).codigo %> 
-
-			      
-
-			      <br>
+			      <% ob = Obra.find(params[:obra][:id]).codigo %><br>
 			      <% if params[:event1]["date(2i)"] != "10" && params[:event1]["date(2i)"] != "11" && params[:event1]["date(2i)"] != "12" %>
-			      <% fecha1 = params[:event1]["date(1i)"] + "-" + "0" + params[:event1]["date(2i)"] + "-" + "01"%>
+			      		<% fecha1 = params[:event1]["date(1i)"] + "-" + "0" + params[:event1]["date(2i)"] + "-" + "01"%>
 			      <% else %>
-
-			      <% fecha1 = params[:event1]["date(1i)"]+ "-" + params[:event1]["date(2i)"]+ "-" + "01" %> 
-
-			      <% end %> 
-			      <br>
-
+			      		<% fecha1 = params[:event1]["date(1i)"]+ "-" + params[:event1]["date(2i)"]+ "-" + "01" %>
+			      <% end %><br>
 			      <% if params[:event2]["date(2i)"] != "10" && params[:event2]["date(2i)"] != "11" && params[:event2]["date(2i)"] != "12" %>
-
-			      
-			      <% fecha2 =params[:event2]["date(1i)"]+ "-" + "0" + params[:event2]["date(2i)"]+ "-" + "31"%> 
+			      		<% fecha2 =params[:event2]["date(1i)"]+ "-" + "0" + params[:event2]["date(2i)"]+ "-" + "31"%>
 			      <% else %>
-			     
-			      <% fecha2 =params[:event2]["date(1i)"]+ "-" + params[:event2]["date(2i)"]+ "-" + "31" %> 
-			      <% end %>
-			      <br>
-
-			     
-
-			      <%end%>
-				<br>
-  				<br>
+								<% fecha2 =params[:event2]["date(1i)"]+ "-" + params[:event2]["date(2i)"]+ "-" + "31" %>
+			      <% end %><br>
+			    <%end%><br><br>
 
   				<ul class="navi">
 			      <li class="active"><a href="#one" data-toggle="tab"><span>Atención Trabajadores</span></a></li>
@@ -113,9 +95,6 @@
 							    </tr>
 							  </thead>
 							  <tbody>
-							  	
-
-							  
 
 								<% atencion = Loga.where(codigo_obra: ob).where(:created_at => fecha1...fecha2).group("aspcategory_name") %>
 								<% categ = Aspcategory.all %>
@@ -129,15 +108,12 @@
 							  	<% categ.each do |a| %>
 							  	<%# ins[i] = a.benefit_id %>
 							  	<% asc[i] = Loga.where(codigo_obra: ob).where(:created_at => fecha1...fecha2).where(aspcategory_name: a.nombre).count %>
-							  	
 
 							  	<%# totalas[i] = Benefit.find(a.benefit_id).costoempresa %>
 							  	<% i = i+1 %>
-
 							  	<% end %>
 
 							  	<%i = 0 %>
-							  	
 							  	<% categ.each do |a| %>
 							  	<tr>
 							  	<td><%= a.nombre %></td>
@@ -149,9 +125,7 @@
 
 							  	</tr>
 							  	<% i = i+1 %>
-
 							  	<%end %>
-							  	
 
 							  	<tr>
 					            <td>Préstamo En proceso</td>
@@ -172,24 +146,12 @@
 					            <td></td>
 					            <td><%= sumatot + prestamopt + prestamoat %></td>
 					          </tr>
-
-
-
-
-							  	</tbody>	
-
-
-
+							  	</tbody>
 							</table>
-
-
-
-
 	        			<%end%>
         			</div>
         			<div role="tabpanel" class="tab-pane fade" id="two">
         				<h2>Beneficios por Periodo</h2>
-
 
         				<% if params[:obra] && params[:event1] && params[:event2] %>
         				<h3><%= Obra.find(params[:obra][:id]).nombre %> - Periodo <%= fecha1 + " a " + fecha2  %> </h3>
@@ -201,18 +163,11 @@
 							    <tr>
 							      <th>Nombre Beneficio</th>
 							      <th>Inscritos</th>
-							  	
-
-					      
 					              <th>Costo Empresa</th>
-					              
-							     
 							    </tr>
 							  </thead>
 							  <tbody>
 
-
-							  	
 							  	<% asignacion = Assignbenefit.where(obra_id: params[:obra][:id]).where(:created_at => fecha1...fecha2).group("benefit_id") %>
 							  	<% benefitscount = Benefit.all  %>
 							  	<%i = 0 %>
@@ -224,11 +179,9 @@
 							  	<% ins[i] = Assignbenefit.where(obra_id: params[:obra][:id]).where(:created_at => fecha1...fecha2).where(benefit_id: a.benefit_id).count %>
 							  	<% totale[i] = Benefit.find(a.benefit_id).costoempresa %>
 							  	<% i = i+1 %>
-
 							  	<% end %>
 
 							  	<%i = 0 %>
-							  	
 							  	<% asignacion.each do |a| %>
 							  	<tr>
 							  	<td><%= a.benefit.nombre %></td>
@@ -236,24 +189,10 @@
 							  	<td>$<%= ins[i]*totale[i] %></td>
 							  	</tr>
 							  	<% i = i+1 %>
-
 							  	<%end %>
-							  	
-							  	
-
-							  	
-
-
 							  </tbody>
-
 						</table>
-
-
-
-
-
         				<% end %>
-        				
         			</div>
         				<div role="tabpanel" class="tab-pane fade" id="three"> </div>
 				    	<div role="tabpanel" class="tab-pane fade" id="four"> </div>
@@ -261,7 +200,45 @@
 			    </div>
 			</div>
 
+			<!-- END Reporte por Obra -->
 
+			<!-- START Reporte General -->
+
+			<div class="ui-34" style="margin-top: 2%;" id="reporte_general">
+				<%= link_to "Descargar PDF", ld_download_pdf_path(:pdf) %>
+				<%= form_for (@obra), url: ld_reportspannel_path, method: "get" do |f| %>
+									<h6>Desde: </h6>
+						<%= date_select('event1', 'date', { :discard_day => true}) %>
+						<br>
+						<h6>Hasta: </h6>
+						<%= date_select('event2', 'date', { :discard_day => true}) %>
+						<br><br>
+
+									<%# f.label "Buscar Atención" %>
+									<%# f.text_field :rut_atendido %>
+									<%= f.submit "Buscar" %>
+				<% end %>
+				<%= form_for (@obra), url: ld_reportspannel_path, method: "get" do |f| %>
+					<%= f.submit "Limpiar busqueda" %>
+				<%end%>
+				<% if params[:event1] && params[:event2] %>
+					<%# as = Asformulary.where(:rut_atendido => params[:asformulary][:rut_atendido]).order('created_at DESC') %>
+					<% if params[:event1]["date(2i)"] != "10" && params[:event1]["date(2i)"] != "11" && params[:event1]["date(2i)"] != "12" %>
+							<% fecha1 = params[:event1]["date(1i)"] + "-" + "0" + params[:event1]["date(2i)"] + "-" + "01"%>
+					<% else %>
+							<% fecha1 = params[:event1]["date(1i)"]+ "-" + params[:event1]["date(2i)"]+ "-" + "01" %>
+					<% end %><br>
+					<% if params[:event2]["date(2i)"] != "10" && params[:event2]["date(2i)"] != "11" && params[:event2]["date(2i)"] != "12" %>
+							<% fecha2 =params[:event2]["date(1i)"]+ "-" + "0" + params[:event2]["date(2i)"]+ "-" + "31"%>
+					<% else %>
+							<% fecha2 =params[:event2]["date(1i)"]+ "-" + params[:event2]["date(2i)"]+ "-" + "31" %>
+					<% end %><br>
+				<%end%><br><br>
+
+				<!-- FALTA PODER VER LA VISTA DEL REPORTE GENERAL -->
+			</div>
+
+			<!-- END Reporte General -->
 
 		</div>
 
@@ -269,7 +246,7 @@
 			<h3>Reportes por Trabajador</h3>
 			<div class="ui-34">
 				<%= form_for (@asformulary), url: ld_reportspannel_path, method: "get" do |f| %>
-              
+
 	              	<h4>Buscar RUT Trabajador</h4>
 	                <%# f.label "Buscar Atención" %>
 	                <%= f.text_field :rut_atendido %>
@@ -282,7 +259,7 @@
 
 
 				<br>
-    			<br> 
+    			<br>
 
     			<ul class="navi">
 			        <li class="active"><a href="#one1" data-toggle="tab"><span>Atención Trabajadores</span></a></li>
@@ -299,15 +276,15 @@
 						<table>
 						  <thead>
 						    <tr>
-						      
-						      
-						      
+
+
+
 						      <th>Fecha</th>
 						      <th>Nombre trabajador</th>
 						      <th>Categoria</th>
 						      <th>Solucion</th>
-						      
-						      
+
+
 						      <th>¿Subcontrato?</th>
 						      <th>Supervisor</th>
 						      <th>Descripcion</th>
@@ -319,14 +296,14 @@
 						  <tbody>
 						    <% as.each do |asformulary| %>
 						      <tr>
-						        
-						        
-						        
+
+
+
 						        <td><%= asformulary.created_at %></td>
 						        <td><%= asformulary.nombre_atendido %></td>
 						        <td><%= asformulary.aspcategory_name %></td>
 						        <td><%= asformulary.solucion %></td>
-						       
+
 						        <% if asformulary.subcontrato == true %>
 						        <td><%="SI"%></td>
 						        <% else %>
@@ -354,39 +331,39 @@
           				<table>
 						  <thead>
 						    <tr>
-						      
-						      
-						      
+
+
+
 						      <th>Area Beneficio</th>
 						      <th>Beneficio</th>
 						      <th>Costo trabajador</th>
 						      <th>Costo Empresa</th>
-						      
-						      
+
+
 						      <th>Nombre Trabajador</th>
 						      <th>Nombre Beneficiario</th>
 						      <th>Relación</th>
 						      <th>Obra</th>
-						      
+
 						    </tr>
 						  </thead>
 
 						  <tbody>
 						    <% @benefitslog.each do |bl| %>
 						      <tr>
-						        
-						        
-						        
+
+
+
 						        <td><%= bl.areabeneficio %></td>
 						        <td><%= bl.nombrebeneficio %></td>
 						        <td><%= bl.costotrabajador %></td>
-						        <td><%= bl.costoempresa %></td>    
+						        <td><%= bl.costoempresa %></td>
 						        <td><%= bl.nombretrabajador %></td>
 						        <td><%= bl.nombrebeneficiario %></td>
 						        <td><%= bl.relacion %></td>
 						        <% obra_nombre = Obra.find(bl.nombreobra).nombre %>
 						        <td><%= obra_nombre %></td>
-						        
+
 
 
 						        </td>
@@ -400,30 +377,30 @@
 
 
           				<% end %>
-          				
+
           			</div>
           			<div role="tabpanel" class="tab-pane fade" id="three"> </div>
 			        <div role="tabpanel" class="tab-pane fade" id="four"> </div>
 			        <div role="tabpanel" class="tab-pane fade" id="five"> </div>
      			 </div>
-			</div> 
+			</div>
 		</div>
 
-		<script src='<%= asset_url("jquery.js") %>'></script> 
-	    <!-- Bootstrap JS --> 
-	    <script src='<%= asset_url("bootstrap.min.js") %>'></script> 
-	    <!-- Placeholder JS --> 
-	    <script src='<%= asset_url("placeholder.js") %>'></script> 
-	    <!-- Respond JS for IE8 --> 
-	    <script src='<%= asset_url("respond.min.js") %>'></script> 
-	    <!-- HTML5 Support for IE --> 
-	    <script src='<%= asset_url("html5shiv.js") %>'></script> 
+		<script src='<%= asset_url("jquery.js") %>'></script>
+	    <!-- Bootstrap JS -->
+	    <script src='<%= asset_url("bootstrap.min.js") %>'></script>
+	    <!-- Placeholder JS -->
+	    <script src='<%= asset_url("placeholder.js") %>'></script>
+	    <!-- Respond JS for IE8 -->
+	    <script src='<%= asset_url("respond.min.js") %>'></script>
+	    <!-- HTML5 Support for IE -->
+	    <script src='<%= asset_url("html5shiv.js") %>'></script>
 
 
 	</div>
 </div>
 
-
+<%= javascript_include_tag('reportes.js') %>
 
 </body>
 

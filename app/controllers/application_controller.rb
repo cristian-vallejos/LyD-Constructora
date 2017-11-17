@@ -7,9 +7,8 @@ class ApplicationController < ActionController::Base
 
 
   def validate_user
-
   	if lyduser_signed_in?
-  		if current_lyduser.is_active == false 
+  		if current_lyduser.is_active == false
   			sign_out current_lyduser
   			redirect_to new_lyduser_session_path
   		end

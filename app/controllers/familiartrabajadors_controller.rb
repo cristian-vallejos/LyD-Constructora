@@ -8,7 +8,7 @@ class FamiliartrabajadorsController < ApplicationController
 
     if params[:search]
       @results = Employee.where("nombre LIKE ? or rut LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%").where(estado: "A")
-      
+
     end
 
 
@@ -22,6 +22,8 @@ class FamiliartrabajadorsController < ApplicationController
   # GET /familiartrabajadors/new
   def new
     @familiartrabajador = Familiartrabajador.new
+    @trabajador = Employee.find_by(rut: params[:rut_trabajador])
+    @relacion = ["Hermano(a)", "Hijo(a)", "Cónyuge", "Esposo(a)", "Padre", "Madre"]
   end
 
   # GET /familiartrabajadors/1/edit

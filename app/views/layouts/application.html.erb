@@ -18,13 +18,12 @@
 
     <%# render 'layouts/navbar' %>
     <div class="header"><a href="<%=root_path%>"><img src='<%= asset_url("ldgreen.png") %>' alt="Insertar logotipo aquí" name="Insert_logo" width="150" height="125" id="Insert_logo"/></a>
-    
+
     <h3 style="color:white;">
     <div align="left">
     <% if lyduser_signed_in? %>
-    <%="Hola " + current_lyduser.nombre_usuario %>  
+      <%="Hola, " + current_lyduser.nombre_usuario.to_s %>
     <% end %>
-
     </div>
 
     <div align="right">
@@ -35,16 +34,16 @@
     <%= link_to "Cambio Contraseña", edit_lyduser_registration_path,  style: 'color:#FFFFFF;' %> |
     <% if !lyduser_signed_in? %>
     <%= link_to "Registrarse", new_lyduser_registration_path,  style: 'color:#FFFFFF;' %> |
-    <% end %> 
+    <% end %>
     <% if !lyduser_signed_in? %>
     <%= link_to "Ingresar", new_lyduser_session_path,  style: 'color:#FFFFFF;' %> |
-    <% end %>  
+    <% end %>
     <%= link_to "Salir", destroy_lyduser_session_path, method: :delete,  style: 'color:#FFFFFF;' %>
     <% end %>
     </div>
     </h3>
-      
-  
+
+
     <!-- end .header --></div>
 <div class="container">
     <%= yield %>
@@ -54,5 +53,5 @@
 <div class="footer">
   <p>© 2017, Sistema Diseñado y Creado por Proyecta Software </p>
   <!-- end .footer --></div>
-  
+
 </html>

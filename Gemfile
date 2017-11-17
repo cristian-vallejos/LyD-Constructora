@@ -38,7 +38,7 @@ gem 'cancancan'
 gem 'jquery-turbolinks'
 
 gem "paperclip", "~> 5.0.0"
-  
+
 gem 'pdfkit'
 
 gem 'wicked_pdf'

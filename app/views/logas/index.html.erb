@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<!--<p id="notice"><%= notice %></p>-->
 <% if current_lyduser.admin_role?%>
 
 <h1>LOG Atencion Social</h1>
@@ -10,7 +10,7 @@
 <table>
   <thead>
     <tr>
-      
+
       <th>Obra</th>
       <th>Rut atendido</th>
       <th>Nombre atendido</th>
@@ -21,7 +21,7 @@
       <th>Subcontratatista?</th>
       <th>Supervisor</th>
       <th>Descripcion</th>
-      
+
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -39,8 +39,8 @@
         <td><%= loga.subcontrato %></td>
         <td><%= loga.supervisor %></td>
         <td><%= loga.descripcion %></td>
-        
-        
+
+
         <td><%= link_to 'Show', loga %></td>
         <td><%= link_to 'Edit', edit_loga_path(loga) %></td>
         <td><%= link_to 'Destroy', loga, method: :delete, data: { confirm: 'Are you sure?' } %></td>

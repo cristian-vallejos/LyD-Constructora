@@ -9,24 +9,24 @@
 <div class="loginDiv">
   <div class="ui-content">
     <div class="container-fluid">
-      <div class="row">     
+      <div class="row">
               <!-- Ui Form -->
-        <div class="ui-form"> 
+        <div class="ui-form">
           <h4>Log In</h4>
 
       <div class="ui-input">
       <label class="ui-icon"><i class="fa fa-user"></i></label>
       <%= f.label :email %><br />
       <%= f.email_field :email, autofocus: true, :class => "form-control" %>
-        
-       
+
+
       </div>
 
       <div class="ui-input">
       <label class="ui-icon"><i class="fa fa-lock"></i></label>
         <%= f.label :password %><br />
         <%= f.password_field :password, autocomplete: "off", :class => "form-control"  %>
-        
+
       </div>
 
       <% if devise_mapping.rememberable? -%>
@@ -43,10 +43,10 @@
           <%= f.submit "Log in", :class => 'btn btn-green btn-lg btn-block' %>
 
         </div>
-    
+
 
         <%= render "devise/shared/links" %>
-        
+
       </div>
 
 
@@ -56,5 +56,3 @@
   </div>
 </div>
 <% end %>
-
-

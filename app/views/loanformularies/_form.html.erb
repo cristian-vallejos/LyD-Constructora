@@ -2,7 +2,6 @@
   <% if loanformulary.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(loanformulary.errors.count, "error") %> prohibited this loanformulary from being saved:</h2>
-
       <ul>
       <% loanformulary.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -11,50 +10,40 @@
     </div>
   <% end %>
 
-
-
   <div class="container">
     <div class="sidebar1">
       <div align="left">
-
-      
-
         <% if !params[:nombre_solicitante]%>
         <%= form.label :nombre_solicitante, 'Nombre Completo Trabajador' %> <br>
         <%= form.text_field :nombre_solicitante, id: :loanformulary_nombre_solicitante, placeholder: "Luis Miguel Quevedo Olivares", :class => 'textForm' %> <br>
         <% else %>
         <%= form.label :nombre_solicitante, 'Nombre Completo Trabajador' %> <br>
-        <%= form.text_field :nombre_solicitante, id: :loanformulary_nombre_solicitante, value: params[:nombre_solicitante], hidden: true %> 
+        <%= form.text_field :nombre_solicitante, id: :loanformulary_nombre_solicitante, value: params[:nombre_solicitante], hidden: true %>
         <%= params[:nombre_solicitante] %><br>
         <% end %>
-
-       
-    
-
+        <br>
         <% if !params[:rut_solicitante]%>
         <%= form.label :rut_solicitante, 'Rut Trabajador' %> <br>
         <%= form.text_field :rut_solicitante, id: :loanformulary_rut_solicitante, placeholder: "13832057-K", :class => 'textForm' %> <br>
         <% else %>
         <%= form.label :rut_solicitante, 'Rut Trabajador' %> <br>
-        <%= form.text_field :rut_solicitante, id: :loanformulary_rut_solicitante, value: params[:rut_solicitante], hidden: true %> 
+        <%= form.text_field :rut_solicitante, id: :loanformulary_rut_solicitante, value: params[:rut_solicitante], hidden: true %>
         <%= params[:rut_solicitante] %><br>
         <% end %>
-
+        <br>
         <% if !params[:obra]%>
         <%= form.label :obra, 'Obra' %> <br>
         <%= form.text_field :obra, id: :loanformulary_obra, :class => 'textForm' %> <br>
         <% else %>
         <%= form.label :obra, 'Obra' %> <br>
-        <%= form.text_field :obra, id: :loanformulary_obra, value: params[:obra], hidden: true %> 
+        <%= form.text_field :obra, id: :loanformulary_obra, value: params[:obra], hidden: true %>
         <%# params[:obra] %>
         <% oname = Obra.where(codigo: params[:obra]) %>
                     <% if !oname[0].nil? %>
                     <%= oname[0].nombre %><br>
                     <% end %>
         <% end %>
-
-
-
+        <br>
         <div class="field">
           <%= form.label :cargo %><br>
           <%= form.text_field :cargo, id: :loanformulary_cargo %><br>
@@ -62,32 +51,32 @@
 
         <div class="field">
           <%= form.label :monto_solicitado %><br>
-          <%= form.number_field :monto_solicitado, id: :loanformulary_monto_solicitado %><br>
+          <%= form.text_field :monto_solicitado, id: :loanformulary_monto_solicitado %><br>
         </div>
 
         <div class="field">
           <%= form.label :monto_aprobado %><br>
-          <%= form.number_field :monto_aprobado, id: :loanformulary_monto_aprobado %><br>
+          <%= form.text_field :monto_aprobado, id: :loanformulary_monto_aprobado %><br>
         </div>
 
         <div class="field">
           <%= form.label :numero_cuotas %><br>
-          <%= form.number_field :numero_cuotas, id: :loanformulary_numero_cuotas %><br>
+          <%= form.text_field :numero_cuotas, id: :loanformulary_numero_cuotas %><br>
         </div>
 
         <div class="field">
           <%= form.label :monto_cuota %><br>
-          <%= form.number_field :monto_cuota, id: :loanformulary_monto_cuota %><br>
+          <%= form.text_field :monto_cuota, id: :loanformulary_monto_cuota %><br>
         </div>
 
         <div class="field">
           <%= form.label :renta_liquida %><br>
-          <%= form.number_field :renta_liquida, id: :loanformulary_renta_liquida %><br>
+          <%= form.text_field :renta_liquida, id: :loanformulary_renta_liquida %><br>
         </div>
 
         <div class="field">
           <%= form.label :antiguedad, "Antiguedad (Años)" %><br>
-          <%= form.number_field :antiguedad, id: :loanformulary_antiguedad %><br>
+          <%= form.text_field :antiguedad, id: :loanformulary_antiguedad %><br>
         </div>
 
         <div class="field">
@@ -97,23 +86,30 @@
 
         <div class="field">
           <%= form.label :fondo_finiquito %><br>
-          <%= form.number_field :fondo_finiquito, id: :loanformulary_fondo_finiquito %>
+          <%= form.text_field :fondo_finiquito, id: :loanformulary_fondo_finiquito %>
         </div>
 
         <div class="field">
           <%= form.label :continuidad_en_obra %><br>
-          <%= form.number_field :continuidad_en_obra, id: :loanformulary_continuidad_en_obra %><br>
+          <%= form.text_field :continuidad_en_obra, id: :loanformulary_continuidad_en_obra %><br>
         </div>
 
         <div class="field">
           <%= form.label :descuentos_en_curso %><br>
-          <%= form.number_field :descuentos_en_curso, id: :loanformulary_descuentos_en_curso %><br>
+          <%= form.text_field :descuentos_en_curso, id: :loanformulary_descuentos_en_curso %><br>
         </div>
 
         <div class="field">
           <%= form.label :image, 'Imagen de respaldo' %>
-          <%= form.file_field :image %>
+          <%= form.file_field :image, :class => "ancho" %>
         </div>
+
+        <style>
+          /* hay que sacar de aqui esto */
+          .ancho {
+            width: 95%;
+          }
+        </style>
 
         <div class="field">
           <%= form.label :descripcion_documentos_respaldo %><br>
@@ -131,14 +127,11 @@
         </div>
 
         <div class="actions">
-          <%= form.submit "Ingresar solicitud préstamo", :class => "btn btn-green btn-lg btn-block" %>
+          <%= form.submit "Ingresar solicitud préstamo", :class => "btn btn-green btn-lg btn-block",
+          :onclick => 'revertirMoneda()' %>
         </div>
-
-
       </div>
     </div>
   </div>
-
-
-  
+  <%= javascript_include_tag('formato_moneda.js') %>
 <% end %>

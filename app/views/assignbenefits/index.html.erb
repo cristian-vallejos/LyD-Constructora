@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<!--<p id="notice"><%= notice %></p>-->
 
 <h1>Historial de beneficios asignados</h1>
 
@@ -8,13 +8,13 @@
 <table>
   <thead>
     <tr>
-      <th>Benefit</th>
-      <th>Rut trabajador</th>
+      <th>Beneficio</th>
+      <th>Rut Trabajador</th>
       <th>Nombre Trabajador</th>
-      <th>Rut beneficiario</th>
+      <th>Rut Beneficiario</th>
       <th>Nombre Beneficiario</th>
       <th>Relacion</th>
-      <th>Fecha nacimiento</th>
+      <th>Fecha de Nacimiento</th>
       <th>Obra</th>
       <th colspan="3"></th>
     </tr>
@@ -23,27 +23,27 @@
   <tbody>
     <% @assignbenefits.each do |assignbenefit| %>
       <tr>
-
+<!--
       <% if assignbenefit.rut_trabajador == assignbenefit.rut_beneficiario %>
-      <% is_employee = true %>
-
+        <% is_employee = true %>
       <% else %>
-      <% is_employee = false%>
+        <% is_employee = false%>
       <% end %>
 
       <% if !is_employee%>
-      <% nombre_beneficiario = Familiartrabajador.where(rut: assignbenefit.rut_beneficiario) %>
+        <% nombre_beneficiario = Familiartrabajador.where(rut: assignbenefit.rut_beneficiario) %>
       <% else %>
-      <% nombre_trabajador = Employee.where(rut: assignbenefit.rut_trabajador) %>
+        <% nombre_trabajador = Employee.where(rut: assignbenefit.rut_trabajador) %>
+      <% puts "\n\n\n\n"+nombre_trabajador+"\n\n\n\n" %>
       <% end %>
-
-
+-->
+      <% nombre_beneficiario = Familiartrabajador.where(rut: assignbenefit.rut_beneficiario) %>
+      <% nombre_trabajador = Employee.where(rut: assignbenefit.rut_trabajador) %>
 
         <td><%= assignbenefit.benefit.nombre %></td>
         <td><%= assignbenefit.rut_trabajador %></td>
 
-
-
+<!--
         <% if !nombre_trabajador.nil? && is_employee %>
         <%   if !nombre_trabajador.empty? && is_employee%>
         <td><%= nombre_trabajador[0].nombre %></td>
@@ -51,6 +51,8 @@
         <% else %>
         <td><%= assignbenefit.rut_trabajador %></td>
         <% end  %>
+-->
+        <td><%= nombre_trabajador[0].nombre %></td>
 
         <td><%= assignbenefit.rut_beneficiario %></td>
 

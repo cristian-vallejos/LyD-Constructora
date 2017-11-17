@@ -16,16 +16,16 @@
 
            <tr>
             <h2>Familiares Guardados</h2>
-            <th width="(100/x)%">Rut</th>
+            <th width="(100/x)%">RUT</th>
             <th width="(100/x)%">Nombre</th>
 
             <th width="(100/x)%">Relación</th>
-            <th width="(100/x)%">F.Nacimiento</th>
-            
-            
+            <th width="(100/x)%">Fecha de Nacimiento</th>
+
+
            </tr>
            <tbody>
-             
+
                <% if params[:rut_trabajador]%>
                <% familia = Familiartrabajador.where(:rut_trabajador => params[:rut_trabajador]).order('created_at DESC') %>
                <% nombreEmple = Employee.where(rut: params[:rut_trabajador]) %>
@@ -39,17 +39,17 @@
                 <%= nombre_empleado %>
                <% familia.each do |loga| %>
                         <tr>
-                          
+
                           <td><%= loga.rut %></td>
                           <td><%= loga.nombre %></td>
                           <td><%= loga.relacion %></td>
                           <td><%= loga.fechanacimiento.strftime("%d %b %y") %></td>
                           <td><%= link_to 'Destroy', loga, method: :delete, data: { confirm: 'Está seguro?' } %></td>
 
-                          
+
 
                         </tr>
-                     
+
                       <% end %>
 
 

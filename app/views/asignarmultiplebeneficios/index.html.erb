@@ -3,13 +3,13 @@
 <link href='<%= asset_url("css/style-273.css") %>' rel="stylesheet">
 <link href='<%= asset_url("css2/stylesLD.css") %>' rel="stylesheet" type="text/css">
 
-<p id="notice"><%= notice %></p>
+<!--<p id="notice"><%= notice %></p>-->
 
 <%=form_for @asignarmultiplebeneficio, url: {controller: "asignarmultiplebeneficios", action: "create"} do |f| %>
 
 <div class="container">
-  <div class="content"> 
-    
+  <div class="content">
+
     <!-- UI - X Starts -->
     <div class="ui-273">
 
@@ -18,21 +18,21 @@
       <%= f.collection_select(:obra_id, Obra.all.order('nombre ASC'), :codigo, :nombre, {:prompt => "Seleccione una obra"},{:class => "ccosto_selection"}) %>
       </div>
 
-      <div class="table-responsive"> 
+      <div class="table-responsive">
           <!-- Table -->
           <table class="table table-bordered">
           <table id="tblTrabajadores">
-            
+
               <tr>
                 <th><%= check_box_tag "check_all", class: 'check_all'  %></th>
                 <th>Nombre Trabajador</th>
                 <th>Rut Trabajador</th>
                 <th>Centro de costo</th>
                 <th>Estado</th>
-               
+
               </tr>
-            
-            
+
+
             <% @trabajadores.each do |trabajador| %>
 
               <% if trabajador.estado == "A" %>
@@ -49,7 +49,7 @@
               </tr>
               <% end %>
             <% end %>
-          
+
           </table>
           </table>
       </div>
@@ -67,7 +67,7 @@
 
     <br>
 
-      
+
       <div class="actions">
         <%= f.submit "Ingresar", :class => 'btn btn-green btn-lg btn-block' %>
       </div>
@@ -76,17 +76,17 @@
     </div>
 
 
-<!-- Javascript files --> 
-    <!-- jQuery --> 
-    <script src='<%= asset_url("jquery.js") %>'></script> 
-    <!-- Bootstrap JS --> 
-    <script src='<%= asset_url("bootstrap.min.js") %>'></script> 
-    <!-- Placeholder JS --> 
-    <script src='<%= asset_url("placeholder.js") %>'></script> 
-    <!-- Respond JS for IE8 --> 
-    <script src='<%= asset_url("respond.min.js") %>'></script> 
-    <!-- HTML5 Support for IE --> 
-    <script src='<%= asset_url("html5shiv.js") %>'></script> 
+<!-- Javascript files -->
+    <!-- jQuery -->
+    <script src='<%= asset_url("jquery.js") %>'></script>
+    <!-- Bootstrap JS -->
+    <script src='<%= asset_url("bootstrap.min.js") %>'></script>
+    <!-- Placeholder JS -->
+    <script src='<%= asset_url("placeholder.js") %>'></script>
+    <!-- Respond JS for IE8 -->
+    <script src='<%= asset_url("respond.min.js") %>'></script>
+    <!-- HTML5 Support for IE -->
+    <script src='<%= asset_url("html5shiv.js") %>'></script>
 
 
     <script>
@@ -94,28 +94,28 @@
    $('#check_all').click(function() {
    if (this.checked) {
        $(':checkbox').each(function() {
-           this.checked = true;                        
+           this.checked = true;
        });
    } else {
       $(':checkbox').each(function() {
-           this.checked = false;                        
+           this.checked = false;
        });
-   } 
+   }
 });
 
 });
-    </script> 
+    </script>
 
 
 
   </div>
 </div>
 
-  
 
 
 
-  
+
+
 <% end %>
 
 

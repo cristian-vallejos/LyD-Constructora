@@ -22,8 +22,7 @@
 
         <%if params[:nombre_solicitante] %>
                <%= params[:nombre_solicitante] %>
-               <%end  %>
-               <br>
+               <%end  %> -
 
                <%if  params[:obra_id] %>
 
@@ -36,15 +35,14 @@
 
            <tr>
             <th width="(100/x)%">Beneficio</th>
-        
             <th width="(100/x)%">Nombre Beneficiario</th>
             <th width="(100/x)%">Relación</th>
-            <th width="(100/x)%">F.Nacimiento</th>
+            <th width="(100/x)%">Fecha de Nacimiento</th>
             <th width="(100/x)%">Fecha</th>
-            <th width="(100/x)%">CentroCosto</th>
+            <th width="(100/x)%">Obra</th>
            </tr>
            <tbody>
-             
+
                <% if params[:rut_trabajador] %>
                <% assign = Assignbenefit.where(:rut_trabajador => params[:rut_trabajador]).order('created_at DESC').take(20) %>
 
@@ -52,10 +50,10 @@
 
                <% assign.each do |ab| %>
                         <tr>
-                          
+
                           <td><%= ab.benefit.nombre %></td>
-          
-                      
+
+
 
                           <%if ab.rut_trabajador != ab.rut_beneficiario %>
                           <% nombref = Familiartrabajador.where(rut: ab.rut_beneficiario).where(rut_trabajador: ab.rut_trabajador) %>
@@ -78,10 +76,10 @@
                           <%else %>
                           <td></td>
                           <%end %>
-                          
+
 
                         </tr>
-                     
+
                       <% end %>
 
 
