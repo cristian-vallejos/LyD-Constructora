@@ -32,8 +32,7 @@
         <% end %>
         <br>
         <% if !params[:obra]%>
-        <%= form.label :obra, 'Obra' %> <br>
-        <%= form.text_field :obra, id: :loanformulary_obra, :class => 'textForm' %> <br>
+        <%= form.label :obra, 'Obra' %> <br><%= form.collection_select :loanformulary_obra, Obra.all.order('id DESC'), :codigo, :nombre_codigo, {include_blank: true} %><br>
         <% else %>
         <%= form.label :obra, 'Obra' %> <br>
         <%= form.text_field :obra, id: :loanformulary_obra, value: params[:obra], hidden: true %>
@@ -66,7 +65,7 @@
 
         <div class="field">
           <%= form.label :monto_cuota %><br>
-          <%= form.text_field :monto_cuota, id: :loanformulary_monto_cuota %><br>
+          <%= form.text_field :monto_cuota, id: :loanformulary_monto_cuota, :readonly => true %><br>
         </div>
 
         <div class="field">

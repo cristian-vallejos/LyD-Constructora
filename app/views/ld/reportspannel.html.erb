@@ -20,26 +20,29 @@
 							<a href="javascript:;"  onclick="showReporteGeneral();"><h3>Reporte General</h3></a>
 					</div>
 			</div>
+			
 			<div class="ui-34" style="margin-top: 2%;" id="reporte_por_obra">
-			<%= link_to "Descargar PDF", ld_download_pdf_path(:pdf) %>
+					<%= link_to "Descargar PDF", ld_download_pdf_path(:pdf) %>
 					<%= form_for (@obra), url: ld_reportspannel_path, method: "get" do |f| %>
-						<h6>Seleccione una obra</h6>
-		                <%= f.collection_select :id, Obra.all.order('id DESC'), :id, :nombre_codigo, {include_blank: true} %>
-		                <br>
-		                <h6>Desde: </h6>
+							<h6>Seleccione una obra</h6>
+		        	<%= f.collection_select :id, Obra.all.order('id DESC'), :id, :nombre_codigo, {include_blank: true} %>
+		        	<br>
+		        	<h6>Desde: </h6>
   						<%= date_select('event1', 'date', { :discard_day => true}) %>
   						<br>
   						<h6>Hasta: </h6>
   						<%= date_select('event2', 'date', { :discard_day => true}) %>
   						<br><br>
 
-		                <%# f.label "Buscar Atención" %>
-		                <%# f.text_field :rut_atendido %>
-		                <%= f.submit "Buscar" %>
+		        	<%# f.label "Buscar Atención" %>
+		        	<%# f.text_field :rut_atendido %>
+		        	<%= f.submit "Buscar" %>
 	        <% end %>
+
 	        <%= form_for (@obra), url: ld_reportspannel_path, method: "get" do |f| %>
-	        	<%= f.submit "Limpiar busqueda" %>
+	        		<%= f.submit "Limpiar busqueda" %>
 	        <%end%>
+
 	        <% if params[:obra] && params[:event1] && params[:event2] %>
 			      <%# as = Asformulary.where(:rut_atendido => params[:asformulary][:rut_atendido]).order('created_at DESC') %>
 			      <% ob = Obra.find(params[:obra][:id]).codigo %><br>
