@@ -5,7 +5,7 @@
 
 
 <div class="container">
-  <div class="content"> 
+  <div class="content">
     <div class="ui-273">
       <div align="center" style="box-shadow:0px 0px 15px rgba(0,0,0,0.1);">
 
@@ -15,12 +15,12 @@
 
           <strong>Nombre solicitante:</strong><br>
           <i><%= @loanformulary.nombre_solicitante %> </i><br>
-        
 
-     
+
+
           <strong>Rut solicitante:</strong><br>
           <i><%= @loanformulary.rut_solicitante %></i><br>
-       
+
 
           <strong>Obra:</strong><br>
          <i> <% obra = Obra.where(codigo: @loanformulary.obra) %>
@@ -30,73 +30,72 @@
                 <td></td>
               <%end %>
           </i><br>
-       
 
-       
+
+
           <strong>Cargo:</strong><br>
           <i><%= @loanformulary.cargo %></i><br>
-        
 
-        
+
+
           <strong>Monto solicitado:</strong><br>
-          <i><%= @loanformulary.monto_solicitado %></i><br>
-        
+          <i><%= number_to_currency(@loanformulary.monto_solicitado, unit: "$ ", delimiter: ".", precision: 0) %></i><br>
 
-        
+
           <strong>Monto aprobado:</strong><br>
-          <i><%= @loanformulary.monto_aprobado %></i><br>
-        
+          <i><%= number_to_currency(@loanformulary.monto_aprobado, unit: "$ ", delimiter: ".", precision: 0) %></i><br>
 
-        
+
+
           <strong>Numero cuotas:</strong><br>
           <i><%= @loanformulary.numero_cuotas %></i><br>
-        
 
-        
+
+
           <strong>Monto cuota:</strong><br>
-          <i><%= @loanformulary.monto_cuota %></i><br>
-        
+          <i><%= number_to_currency(@loanformulary.monto_cuota, unit: "$ ", delimiter: ".", precision: 0) %></i><br>
+
 
         <% if current_lyduser.admin_role? || current_lyduser.asocial_role?%>
-        
+
         <strong>Fecha Emitido por Atención Social:</strong><br>
           <i><%= @loanformulary.fecha_aceptado_por_as %> </i><br>
 
-        
+
         <strong>Comentario Atención Social:</strong><br>
           <i><%= @loanformulary.comentario_as %></i><br>
-        
 
-        
+
+
         <strong>Fecha revisión Administrativo Obra:</strong><br>
           <i><%= @loanformulary.fecha_aceptado_por_administrativo_obra %></i><br>
-        
 
-        
+
+
         <strong>Comentario Administrativo Obra:</strong><br>
           <i><%= @loanformulary.comentario_administrativo_obra%></i><br>
-        
 
-        
+
+
         <strong>Fecha revisión Subgerente de personas:</strong><br>
           <i><%= @loanformulary.fecha_aceptado_por_subgerente_personas %></i><br>
 
 
-        
+
         <strong>Comentario Subgerente personas:</strong><br>
           <i><%= @loanformulary.comentario_subgerente_personas%></i><br>
-        
 
-        
+
+
         <strong>Fecha revisión Jefe de remuneraciones:</strong><br>
          <i> <%= @loanformulary.fecha_aceptado_por_jefe_remuneraciones %></i><br>
 
-        
 
-        
+
+
         <strong>Comentario Jefe remuneraciones:</strong><br>
          <i> <%= @loanformulary.comentario_jefe_remuneraciones%></i><br>
-        
+
 
 
         <% end %>
@@ -104,49 +103,48 @@
 
 
 
-        
-          <strong>Renta liquida:</strong><br>
-         <i> <%= @loanformulary.renta_liquida %></i><br>
-       
 
-       
+          <strong>Renta liquida:</strong><br>
+         <i> <%= number_to_currency(@loanformulary.renta_liquida, unit: "$ ", delimiter: ".", precision: 0) %></i><br>
+
+
+
           <strong>Antiguedad:</strong><br>
          <i> <%= @loanformulary.antiguedad %></i><br>
-        
 
-       
+
+
           <strong>Fecha ultimo contrato:</strong><br>
          <i> <%= @loanformulary.fecha_ultimo_contrato %></i><br>
-        
 
-        
+
+
           <strong>Fondo finiquito:</strong><br>
-          <i><%= @loanformulary.fondo_finiquito %></i><br>
-        
+          <i><%= number_to_currency(@loanformulary.fondo_finiquito, unit: "$ ", delimiter: ".", precision: 0) %></i><br>
+
 
           <strong>Continuidad en obra:</strong><br>
          <i> <%= @loanformulary.continuidad_en_obra %></i><br>
-        
 
-        
+
+
           <strong>Descuentos en curso:</strong><br>
-         <i> <%= @loanformulary.descuentos_en_curso %></i><br>
-
+         <i> <%= number_to_currency(@loanformulary.descuentos_en_curso, unit: "$ ", delimiter: ".", precision: 0) %></i><br>
 
 
           <strong>Documento de respaldo:</strong><br>
          <%= image_tag @loanformulary.image.url(:large) %><br>
-        
 
-        
+
+
           <strong>Descripcion documentos respaldo:</strong><br>
          <i> <%= @loanformulary.descripcion_documentos_respaldo %></i><br>
-        
 
-        
+
+
           <strong>Motivo solicitud:</strong><br>
           <i><%= @loanformulary.motivo_solicitud %></i><br>
-        
+
 
 
         <% if current_lyduser.admin_role == false && current_lyduser.asocial_role == false%>
@@ -180,7 +178,3 @@
     </div>
   </div>
 </div>
-
-
-
-    

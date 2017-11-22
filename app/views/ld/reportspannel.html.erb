@@ -171,7 +171,7 @@
 											  	<%ins = Array.new %>
 											  	<%totale = Array.new %>
 
-													<% if asignacion.nil? %>
+													<% #if asignacion.nil? %>
 													  	<% asignacion.each do |a| %>
 															  	<%# ins[i] = a.benefit_id %>
 															  	<% ins[i] = Assignbenefit.where(obra_id: params[:obra][:id]).where(:created_at => fecha1...fecha2).where(benefit_id: a.benefit_id).count %>
@@ -188,7 +188,7 @@
 															  	</tr>
 												  				<% i = i+1 %>
 												  		<%end %>
-													<% end %>
+													<% #end %>
 										  </tbody>
 									</table>
         			<% end %>
@@ -353,7 +353,7 @@
 													  	<%ins = Array.new %>
 													  	<%totale = Array.new %>
 
-															<% if asignacion.nil? %>
+															<% #if asignacion.nil? %>
 															  	<% asignacion.each do |a| %>
 																	  	<%# ins[i] = a.benefit_id %>
 																	  	<% ins[i] = Assignbenefit.where(obra_id: obraaa.id).where(:created_at => fecha1...fecha2).where(benefit_id: a.benefit_id).count %>
@@ -370,7 +370,7 @@
 																	  	</tr>
 														  				<% i = i+1 %>
 														  		<%end %>
-															<% end %>
+															<% #end %>
 												  </tbody>
 											</table>
 									<% end %>

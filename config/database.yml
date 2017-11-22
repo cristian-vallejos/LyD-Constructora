@@ -14,7 +14,7 @@ default: &default
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
-  password: root
+  password: legoprietas
   host: localhost
   strict: false
 
@@ -49,7 +49,7 @@ development:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: test1_production
-  username: test1
-  password: <%= ENV['TEST1_DATABASE_PASSWORD'] %>
+  adapter:  mysql2
+  database: railsproduction
+  username: root
+  password: root #<%= ENV['TEST1_DATABASE_PASSWORD'] %>
