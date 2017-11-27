@@ -7,18 +7,16 @@ class LoanformulariesController < ApplicationController
   def index
     @loanformularies = Loanformulary.all.order('created_at DESC')
     @loanformulary = Loanformulary.new(:rut_solicitante => params[:rut_solicitante])
-
-
   end
 
   def filtrar
 
         puts params[:lasopciones]
 
-        #@company = current_lyduser.companies.find(params[:company]) 
-        #@data = Hash.new 
-        #@data["btw_number"] = @company.btw_number 
-        #@data["iban_number"] = @company.iban_number 
+        #@company = current_lyduser.companies.find(params[:company])
+        #@data = Hash.new
+        #@data["btw_number"] = @company.btw_number
+        #@data["iban_number"] = @company.iban_number
         #render json: @data and return false
 
   end
@@ -45,7 +43,7 @@ class LoanformulariesController < ApplicationController
           request.fecha_aceptado_por_subgerente_personas = Date.current
 
         elsif current_lyduser.jefe_remuneraciones_role? && request.aceptado_por_jefe_remuneraciones == nil
-          request.aceptado_por_jefe_remuneraciones = true 
+          request.aceptado_por_jefe_remuneraciones = true
           request.comentario_jefe_remuneraciones = params[:loanformulary][:comentario_jefe_remuneraciones]
           request.fecha_aceptado_por_jefe_remuneraciones = Date.current
 
@@ -75,7 +73,7 @@ class LoanformulariesController < ApplicationController
         end
       end
 
-        
+
     end
 
 
@@ -88,7 +86,7 @@ class LoanformulariesController < ApplicationController
     else
       request.estado = "en proceso"
     end
-    
+
     request.save
 
     redirect_to loanformularies_path(request)
@@ -116,7 +114,7 @@ class LoanformulariesController < ApplicationController
       #request.fecha_aceptado_por_jefe_remuneraciones = Date.current
     #end
   #end
-    
+
     #request.save
 
     #redirect_to loanformularies_path(request)
@@ -146,7 +144,7 @@ class LoanformulariesController < ApplicationController
 
     @client.close
 
-     
+
   end
 
   # GET /loanformularies/1
@@ -173,7 +171,7 @@ class LoanformulariesController < ApplicationController
       if @loanformulary.save
 
           @ao = Lyduser.where("obra = ?", params[:loanformulary][:obra])
-          
+
 
           if !@ao[0].nil?
             LoanmailMailer.correo(@ao[0].email).deliver

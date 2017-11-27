@@ -34,7 +34,6 @@
         <% nombre_beneficiario = Familiartrabajador.where(rut: assignbenefit.rut_beneficiario) %>
       <% else %>
         <% nombre_trabajador = Employee.where(rut: assignbenefit.rut_trabajador) %>
-      <% puts "\n\n\n\n"+nombre_trabajador+"\n\n\n\n" %>
       <% end %>
 -->
       <% nombre_beneficiario = Familiartrabajador.where(rut: assignbenefit.rut_beneficiario) %>
