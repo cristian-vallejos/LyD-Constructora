@@ -35,7 +35,7 @@ class EmployeesController < ApplicationController
 
       results.each do |row|
 
-        jresult = row.to_json 
+        jresult = row.to_json
 
         file.write(jresult + ',')
       end
@@ -79,6 +79,7 @@ class EmployeesController < ApplicationController
         emple.rut = akey
         emple.cencos = row['Cencos']
         emple.estado = row['Estado']
+        emple.cargo = row['Cargo']
         emple.save
       end
 
@@ -148,6 +149,6 @@ class EmployeesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def employee_params
-      params.require(:employee).permit(:rut, :nombre, :cencos, :estado)
+      params.require(:employee).permit(:rut, :nombre, :cencos, :estado,:cargo)
     end
 end
