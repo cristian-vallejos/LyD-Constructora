@@ -9,18 +9,11 @@
     <div class="ui-273">
       <div align="center" style="box-shadow:0px 0px 15px rgba(0,0,0,0.1);">
 
-
-
-
-
           <strong>Nombre solicitante:</strong><br>
           <i><%= @loanformulary.nombre_solicitante %> </i><br>
 
-
-
           <strong>Rut solicitante:</strong><br>
           <i><%= @loanformulary.rut_solicitante %></i><br>
-
 
           <strong>Obra:</strong><br>
          <i> <% obra = Obra.where(codigo: @loanformulary.obra) %>
@@ -31,30 +24,20 @@
               <%end %>
           </i><br>
 
-
-
           <strong>Cargo:</strong><br>
           <i><%= @loanformulary.cargo %></i><br>
-
-
 
           <strong>Monto solicitado:</strong><br>
           <i><%= number_to_currency(@loanformulary.monto_solicitado, unit: "$ ", delimiter: ".", precision: 0) %></i><br>
 
-
           <strong>Monto aprobado:</strong><br>
           <i><%= number_to_currency(@loanformulary.monto_aprobado, unit: "$ ", delimiter: ".", precision: 0) %></i><br>
-
-
 
           <strong>Numero cuotas:</strong><br>
           <i><%= @loanformulary.numero_cuotas %></i><br>
 
-
-
           <strong>Monto cuota:</strong><br>
           <i><%= number_to_currency(@loanformulary.monto_cuota, unit: "$ ", delimiter: ".", precision: 0) %></i><br>
-
 
         <% if current_lyduser.admin_role? || current_lyduser.asocial_role?%>
 

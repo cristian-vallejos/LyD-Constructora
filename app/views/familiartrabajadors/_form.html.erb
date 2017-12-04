@@ -29,22 +29,22 @@
 
             <div class="field">
               <%= form.label :rut, "RUT Familiar" %><br>
-              <%= form.text_field :rut, id: :familiartrabajador_rut %> <br>
+              <%= form.text_field :rut, id: :familiartrabajador_rut, required: true %> <br>
             </div>
 
             <div class="field">
               <%= form.label :nombre, "Nombre del Familiar" %><br>
-              <%= form.text_field :nombre, id: :familiartrabajador_nombre %><br>
+              <%= form.text_field :nombre, id: :familiartrabajador_nombre, required: true %><br>
             </div>
 
             <div class="field">
               <%= form.label :relacion %><br>
-              <%= form.select :relacion, [["Hermano(a)", "Hermano(a)"], ["Hijo(a)", "Hijo(a)"], ["Cónyuge", "Cónyuge"], ["Esposo(a)", "Esposo(a)"], ["Padre", "Padre"], ["Madre", "Madre"]], id: :familiartrabajador_relacion %><br>
+              <%= form.select :relacion, [["", ""], ["Hermano(a)", "Hermano(a)"], ["Hijo(a)", "Hijo(a)"], ["Cónyuge", "Cónyuge"], ["Conviviente", "Conviviente"], ["Padre", "Padre"], ["Madre", "Madre"]], id: :familiartrabajador_relacion, required: true %><br>
             </div>
 
             <div class="field">
               <%= form.label :fechanacimiento, "Fecha de Nacimiento" %><br>
-              <%= form.date_select :fechanacimiento, id: :familiartrabajador_fechanacimiento, start_year: 1900 %><br>
+              <%= form.date_select :fechanacimiento, id: :familiartrabajador_fechanacimiento, start_year: 1900, required: true %><br>
             </div>
 
             <div class="field">
@@ -54,7 +54,7 @@
                 <%= params[:rut_trabajador] %>
               <% else %>
                 <br>
-                <%= form.text_field :rut_trabajador, id: :familiartrabajador_rut_trabajador %><br>
+                <%= form.text_field :rut_trabajador, id: :familiartrabajador_rut_trabajador, required: true %><br>
               <% end %>
             </div>
 
@@ -65,7 +65,7 @@
                 <%= Employee.find_by(rut: params[:rut_trabajador]).nombre %>
               <% else %>
                 <br>
-                <%= form.text_field :nombre_trabajador, id: :familiartrabajador_nombre_trabajador %><br>
+                <%= form.text_field :nombre_trabajador, id: :familiartrabajador_nombre_trabajador, required: true %><br>
               <% end %>
             </div>
 
