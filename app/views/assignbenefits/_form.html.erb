@@ -1,5 +1,25 @@
-
-
+<% if params[:trab_rut_err] && params[:trab_rut_err] == "true" %>
+  <div id="error_explanation">
+    <h2>Error:</h2>
+    <ul>
+      <li>El rut del trabajador es inválido.</li>
+    </ul>
+  </div>
+<% elsif params[:benef_rut_err] && params[:benef_rut_err] == "true" %>
+  <div id="error_explanation">
+    <h2>Error:</h2>
+    <ul>
+      <li>El rut del beneficiario es inválido.</li>
+    </ul>
+  </div>
+<% elsif params[:benef_rut_err] && params[:benef_rut_err] == "true" && params[:trab_rut_err] && params[:trab_rut_err] == "true" %>
+  <div id="error_explanation">
+    <h2>Error:</h2>
+    <ul>
+      <li>Ambos ruts ingresados son inválidos.</li>
+    </ul>
+  </div>
+<% end %>
 
 <%= form_with(model: assignbenefit, local: true) do |form| %>
   <% if assignbenefit.errors.any? %>
@@ -22,12 +42,12 @@
 
   <div class="field">
         <%= form.label :areabenefit_id, "Área de Beneficio" %><br>
-        <%= form.collection_select(:areabenefit_id, Areabenefit.where(is_active: true).order('nombre ASC'), :id, :nombre, {:prompt => "Seleccione área de beneficio"},{:class => "areabenefit_selection", {style: "width: 87.5%"}) %>
+        <%= form.collection_select(:areabenefit_id, Areabenefit.where(is_active: true).order('nombre ASC'), :id, :nombre, {:prompt => "Seleccione área de beneficio"},{:class => "areabenefit_selection", style: "width: 87.5%"}) %>
       </div>
 
       <div class="field">
         <%= form.label :benefit_id, "Beneficio" %><br>
-        <%= form.collection_select(:benefit_id, Benefit.where(is_active: true).order('nombre ASC'), :id, :nombre, {:prompt => "Seleccione un beneficio"}, {:class => "contact_selection", {style: "width: 87.5%"}) %>
+        <%= form.collection_select(:benefit_id, Benefit.where(is_active: true).order('nombre ASC'), :id, :nombre, {:prompt => "Seleccione un beneficio"}, {:class => "contact_selection", style: "width: 87.5%"}) %>
       </div>
 
   <div class="field">

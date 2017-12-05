@@ -1,3 +1,12 @@
+<% if params[:rut_err] && params[:rut_err] == "true" %>
+  <div id="error_explanation">
+    <h2>Error:</h2>
+    <ul>
+      <li>El rut ingresado es inválido.</li>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_with(model: loanformulary, local: true) do |form| %>
   <% if loanformulary.errors.any? %>
     <div id="error_explanation">

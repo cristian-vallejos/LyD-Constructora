@@ -4,6 +4,29 @@
 <link rel="shortcut icon" href="#">
 <link href='<%= asset_url("css2/stylesLD.css") %>' rel="stylesheet" type="text/css">
 
+<% if params[:trab_rut_err] && params[:trab_rut_err] == "true" %>
+  <div id="error_explanation">
+    <h2>Error:</h2>
+    <ul>
+      <li>El rut del trabajador es inválido.</li>
+    </ul>
+  </div>
+<% elsif params[:fam_rut_err] && params[:fam_rut_err] == "true" %>
+  <div id="error_explanation">
+    <h2>Error:</h2>
+    <ul>
+      <li>El rut del familiar es inválido.</li>
+    </ul>
+  </div>
+<% elsif params[:fam_rut_err] && params[:fam_rut_err] == "true" && params[:trab_rut_err] && params[:trab_rut_err] == "true" %>
+  <div id="error_explanation">
+    <h2>Error:</h2>
+    <ul>
+      <li>Ambos ruts ingresados son inválidos.</li>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_with(model: familiartrabajador, local: true) do |form| %>
   <% if familiartrabajador.errors.any? %>
     <div id="error_explanation">
@@ -17,16 +40,10 @@
     </div>
   <% end %>
 
-
 <div class="container">
-
     <div class="content">
-
-      <div class="ui-273">
-
+      <div>
         <div align="center" style="box-shadow:0px 0px 15px rgba(0,0,0,0.1);">
-
-
             <div class="field">
               <%= form.label :rut, "RUT Familiar" %><br>
               <%= form.text_field :rut, id: :familiartrabajador_rut, required: true %> <br>

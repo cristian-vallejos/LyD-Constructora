@@ -17,30 +17,21 @@ class AssignbenefitsController < ApplicationController
       my_hash1.each do |row|
 
         lbf = Logbenefitsfinal.new(
-           areabeneficio: row['areabeneficio'], 
-           nombrebeneficio: row['nombrebeneficio'], 
-           costoempresa: row['costoempresa'], 
-           costotrabajador: row['costotrabajador'], 
-           ruttrabajador: row['ruttrabajador'], 
-           nombretrabajador: row['nombretrabajador'], 
-           rutbeneficiario:  row['rutbeneficiario'], 
-           nombrebeneficiario: row['nombrebeneficiario'], 
-           relacion: row['relacion'], 
+           areabeneficio: row['areabeneficio'],
+           nombrebeneficio: row['nombrebeneficio'],
+           costoempresa: row['costoempresa'],
+           costotrabajador: row['costotrabajador'],
+           ruttrabajador: row['ruttrabajador'],
+           nombretrabajador: row['nombretrabajador'],
+           rutbeneficiario:  row['rutbeneficiario'],
+           nombrebeneficiario: row['nombrebeneficiario'],
+           relacion: row['relacion'],
            nombreobra: row['nombreobra'],
            created_at: row['fecha'])
          lbf.save!
-
-
-
-
       end
-
-      
       redirect_to root_path
-
     end
-
-
   end
 
   # GET /assignbenefits/1
@@ -53,7 +44,7 @@ class AssignbenefitsController < ApplicationController
     @assignbenefit = Assignbenefit.new
     if params[:rut_trabajador]
       @beneficiarios = Familiartrabajador.where(rut_trabajador: params[:rut_trabajador])
-  
+
       @beneficiarios.each do |x|
         puts x.nombre
         puts x.fechanacimiento
@@ -68,28 +59,30 @@ class AssignbenefitsController < ApplicationController
   # POST /assignbenefits
   # POST /assignbenefits.json
   def create
-
-    @assignbenefit = Assignbenefit.new(assignbenefit_params)
-    @family = Familiartrabajador.where(rut: params[:assignbenefit][:rut_beneficiario])
-
-    if params[:assignbenefit][:rut_trabajador] != params[:assignbenefit][:rut_beneficiario] && !@family.empty?
-      @assignbenefit.fecha_nacimiento = @family[0].fechanacimiento
-      @assignbenefit.relacion = @family[0].relacion
+    if !params[:assignbenefit][:rut_trabajador].rut_valid?
+        redirect_to new_assignbenefit_path+"?trab_rut_err=true"
+    elsif !params[:assignbenefit][:rut_beneficiario].rut_valid?
+        redirect_to new_assignbenefit_path+"?benef_rut_err=true"
     else
-      @assignbenefit.fecha_nacimiento = "2017-07-07"
+        @assignbenefit = Assignbenefit.new(assignbenefit_params)
+        @family = Familiartrabajador.where(rut: params[:assignbenefit][:rut_beneficiario])
 
-    end
+        if params[:assignbenefit][:rut_trabajador] != params[:assignbenefit][:rut_beneficiario] && !@family.empty?
+          @assignbenefit.fecha_nacimiento = @family[0].fechanacimiento
+          @assignbenefit.relacion = @family[0].relacion
+        else
+          @assignbenefit.fecha_nacimiento = "2017-07-07"
+        end
 
-
-
-    respond_to do |format|
-      if @assignbenefit.save
-        format.html { redirect_to assignbenefits_path, notice: 'Assignbenefit was successfully created.' }
-        format.json { render :show, status: :created, location: @assignbenefit }
-      else
-        format.html { render :new }
-        format.json { render json: @assignbenefit.errors, status: :unprocessable_entity }
-      end
+        respond_to do |format|
+          if @assignbenefit.save
+            format.html { redirect_to assignbenefits_path, notice: 'Beneficio asignado satisfactoriamente.' }
+            format.json { render :show, status: :created, location: @assignbenefit }
+          else
+            format.html { render :new }
+            format.json { render json: @assignbenefit.errors, status: :unprocessable_entity }
+          end
+        end
     end
   end
 
@@ -98,7 +91,7 @@ class AssignbenefitsController < ApplicationController
   def update
     respond_to do |format|
       if @assignbenefit.update(assignbenefit_params)
-        format.html { redirect_to assignbenefits_path, notice: 'Assignbenefit was successfully updated.' }
+        format.html { redirect_to assignbenefits_path, notice: 'Asignación de beneficio actualizada satisfactoriamente.' }
         format.json { render :show, status: :ok, location: @assignbenefit }
       else
         format.html { render :edit }

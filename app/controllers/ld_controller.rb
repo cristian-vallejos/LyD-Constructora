@@ -24,17 +24,13 @@ class LdController < ApplicationController
 
 		#puts params[:obra][:id]
 
-
 		respond_to do |format|
+				format.html
 
         format.pdf {
           render pdf: "Reportes",
           template: "layouts/reportsPannelLog"
         }
-        format.html
-
-
-
 	end
 
 
@@ -44,21 +40,13 @@ class LdController < ApplicationController
         pdf = WickedPdf.new.pdf_from_string(
 		render_to_string('layouts/reportsPannelLog.pdf.erb', layout: false)
 		)
-
 		send_data pdf, :filename => "Reportes.pdf", :type => "application/pdf",:disposition => "attachment"
-
     	end
     end
 
 
-
-
 	def userspannel
-
 		if params[:registrar]
-
-
-
 			if params[:ld][:id] != ""
 				ob = Obra.find(params[:ld][:id]).codigo
 			else

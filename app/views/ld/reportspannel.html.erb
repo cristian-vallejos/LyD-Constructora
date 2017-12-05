@@ -184,7 +184,7 @@
 															  	<tr>
 															  			<td><%= a.benefit.nombre %></td>
 															  			<td><%= ins[i] %></td>
-															  			<td>$<%= ins[i]*totale[i] %></td>
+															  			<td>$<%= ins[i]*totale[i].to_i %></td>
 															  	</tr>
 												  				<% i = i+1 %>
 												  		<%end %>
@@ -366,7 +366,7 @@
 																	  	<tr>
 																	  			<td><%= a.benefit.nombre %></td>
 																	  			<td><%= ins[i] %></td>
-																	  			<td>$<%= ins[i]*totale[i] %></td>
+																	  			<td>$<%= ins[i]*totale[i].to_i %></td>
 																	  	</tr>
 														  				<% i = i+1 %>
 														  		<%end %>
