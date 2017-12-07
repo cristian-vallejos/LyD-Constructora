@@ -6,9 +6,8 @@ class EmployeesController < ApplicationController
   # GET /employees.json
   def index
     @employees = Employee.all
-
     if(params[:name] == "actualizar")
-
+=begin
 
       @client = TinyTds::Client.new username: 'proyecta', password: 'proyecta..',
           host: '192.168.1.228', port: 1433
@@ -51,12 +50,12 @@ class EmployeesController < ApplicationController
       puts "All done."
 
       @client.close
-
+=end
       Employee.delete_all
       puts "Employees deleted"
 
-      my_hash = JSON.load(File.read("/var/www/myapp/REMPLESDEF2.txt"))
-
+      #my_hash = JSON.load(File.read("/var/www/myapp/REMPLESDEF2.txt"))
+      my_hash = JSON.load(File.read(Rails.root + "app/data/REMPLES.txt"))
 
       my_hash.each do |row|
 
