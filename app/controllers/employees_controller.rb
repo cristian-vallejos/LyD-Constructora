@@ -22,11 +22,9 @@ class EmployeesController < ApplicationController
           if result.affected_rows > 0 then puts "#{result.affected_rows} row(s) affected" end
       end
 
-
       execute("USE LyD;")
 
       file = File.open("/var/www/myapp/REMPLESDEF2.txt", 'w')
-
 
       results = @client.execute("SELECT * FROM REMPLES;")
 

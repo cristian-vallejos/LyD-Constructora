@@ -266,7 +266,7 @@ ActiveRecord::Schema.define(version: 20171201171507) do
     t.string "direccion"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "codigo"
+    t.integer "codigo"
     t.boolean "is_active", default: true
   end
 

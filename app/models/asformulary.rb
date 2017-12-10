@@ -9,8 +9,6 @@ class Asformulary < ApplicationRecord
 
   validate :input_atributos
 
-
-
   after_create :crear_log_A
   after_update :crear_log_B
 
