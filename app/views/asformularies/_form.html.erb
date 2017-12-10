@@ -16,6 +16,9 @@
 <br>
 <%= form_with(model: asformulary, local: true, id: "form_params" ) do |form| %>
   <% if asformulary.errors.any? %>
+
+  <%= puts params[:asformulary] %>
+  <%= puts asformulary.errors %>
     <div id="error_explanation">
       <h2><%= pluralize(asformulary.errors.count, "errores") %> No permiten guardar este formulario:</h2>
       <ul>
@@ -117,6 +120,10 @@
     <br>
   </div>
 
+  <div class="field"> 
+    <%= form.hidden_field :benefit_id, id: :asformulary_benefit_id, value: 1 %>
+    </div>
+
   <div id="benefitbutton">
     <%= render 'benefitbutton' %>
   </div>
@@ -133,7 +140,7 @@
   </div>
 
   <div class="actions">
-    <%= form.submit "Guardar atención", :class => 'btn btn-green btn-lg btn-block'%>
+    <%= form.submit "Guardar atención", :class => 'btn btn-green btn-lg btn-block' , data: { confirm:'¿Está seguro? al aceptar ya no se podrá realizar cambios.'} %>
   </div>
 
   <script>
