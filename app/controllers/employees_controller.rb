@@ -7,7 +7,6 @@ class EmployeesController < ApplicationController
   def index
     @employees = Employee.all
     if(params[:name] == "actualizar")
-=begin
 
       @client = TinyTds::Client.new username: 'proyecta', password: 'proyecta..',
           host: '192.168.1.228', port: 1433
@@ -50,7 +49,6 @@ class EmployeesController < ApplicationController
       puts "All done."
 
       @client.close
-=end
       Employee.delete_all
       puts "Employees deleted"
 

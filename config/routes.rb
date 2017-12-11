@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :logbenefitsfinalsdo do
+  resources :logbenefitsfinals do
      collection do
        post 'saveLogFinal', to: "logbenefitsfinals#saveLogFinal"
      end
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       get 'get_trabajadorporobra', to: "asignarmultiplebeneficios#get_trabajadorporobra"
     end
   end
-  
+
   resources :logloans
   resources :employees
   resources :assignbenefits
@@ -44,12 +44,12 @@ Rails.application.routes.draw do
   #get 'asformularies/newseg', to: 'asformularies#newseg', as: 'newseg'
 
 
-  resources :benefits do 
+  resources :benefits do
     member do
       get :is_active
     end
   end
-  
+
   resources :obras
   resources :logas
   resources :epcformularies
@@ -77,11 +77,11 @@ Rails.application.routes.draw do
   end
 
 
-  get '/benefitPanel', to: 'pages#benefitPanel' 
+  get '/benefitPanel', to: 'pages#benefitPanel'
   #post '/benefitPanel' => 'pages#indexBenefitPerName'
-  post '/logBeneficiosCheckAsistencia', to: 'pages#logBeneficiosCheckAsistencia' 
+  post '/logBeneficiosCheckAsistencia', to: 'pages#logBeneficiosCheckAsistencia'
   post '/indexBenefitPerName', to: 'pages#indexBenefitPerName'
 
-  
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

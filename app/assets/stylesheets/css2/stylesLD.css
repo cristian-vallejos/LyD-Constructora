@@ -35,13 +35,8 @@ a img { /* este selector elimina el borde azul predeterminado que se muestra en 
 }
 /* ~~ La aplicación de estilo a los vínculos del sitio debe permanecer en este orden (incluido el grupo de selectores que crea el efecto hover -paso por encima-). ~~ */
 a:link {
-	color: #42413C;
-	text-decoration: underline; /* a no ser que aplique estilos a los vínculos para que tengan un aspecto muy exclusivo, es recomendable proporcionar subrayados para facilitar una identificación visual rápida */
-}
-a:visited {
-	color: #6E6C64;
-	text-decoration: underline;
-}
+	}
+a:visited {}
 a:hover, a:active, a:focus { /* este grupo de selectores proporcionará a un usuario que navegue mediante el teclado la misma experiencia de hover (paso por encima) que experimenta un usuario que emplea un ratón. */
 	text-decoration: none;
 }
@@ -118,8 +113,7 @@ a:hover, a:active, a:focus { /* este grupo de selectores proporcionará a un usu
 }
 
 .sidebar1 {
-
-	float: left;
+	padding-left:4px;
 	width: 250px;
 	background-color: #FFFFFF;
 	padding-bottom: 0px;
@@ -269,7 +263,15 @@ div.tab button.active {
 }
 
 .bg-green-ld {
-  background-color: #009946 !important;
+  background-color: rgb(0,153,70) !important;
+}
+div.tab button:hover {
+    background-color: #07cc61;
+}
+
+.bg-green-ld.active {
+  background-color: #07cc61;
+  border-color: #dbdbdb;
 }
 
 .label-ld {
@@ -310,7 +312,7 @@ color: #000000;
     transition: background 1s;
 }
 .ui-37-ld  a:hover {
-	background:rgba(0,0,0,0.4) !important;
+	background: #00c158 !important;
 }
 /* Transparent Image */
 .ui-37-ld a > img{
@@ -406,7 +408,7 @@ color: #000000;
 .btn.btn-green:focus,
 .btn.btn-green.active,
 .btn.btn-green:active {
-	background: #c0c0c0;
+	background: rgba(#0ba239,.67);
 	color: #ffffff;
 }
 

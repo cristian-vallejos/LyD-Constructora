@@ -12,7 +12,7 @@
   <body>
   <%#stylesheet_link_tag :stylesLD %>
   <%#stylesheet_link_tag :bootstrap %>
-  <link href='<%= asset_url("css/bootstrap.min.css") %>' rel="stylesheet" type="text/css">
+  <link href='<%= asset_url("css/bootstrap.css") %>' rel="stylesheet" type="text/css">
   <link href='<%= asset_url("css2/stylesLD.css") %>' rel="stylesheet" type="text/css">
 
 
@@ -28,17 +28,17 @@
 
     <div align="right">
     <% if lyduser_signed_in? %>
-    <%= link_to "Inicio", root_path, style: 'color:#FFFFFF;' %> |
+    <%= link_to "Inicio", root_path, style: 'color:#FFFFFF; text-decoration:none; ',:class => "btn btn-success"%>
     <% end %>
     <% if lyduser_signed_in? %>
-    <%= link_to "Cambio Contraseña", edit_lyduser_registration_path,  style: 'color:#FFFFFF;' %> |
+    <%= link_to "Cambio Contraseña", edit_lyduser_registration_path,  style: 'color:#FFFFFF;text-decoration:none; ',:class => "btn btn-success" %>
     <% if !lyduser_signed_in? %>
-    <%= link_to "Registrarse", new_lyduser_registration_path,  style: 'color:#FFFFFF;' %> |
+    <%= link_to "Registrarse", new_lyduser_registration_path,  style: 'color:#FFFFFF;text-decoration:none; ',:class => "btn btn-success" %>
     <% end %>
     <% if !lyduser_signed_in? %>
-    <%= link_to "Ingresar", new_lyduser_session_path,  style: 'color:#FFFFFF;' %> |
+    <%= link_to "Ingresar", new_lyduser_session_path,  style: 'color:#FFFFFF;text-decoration:none; ',:class => "btn btn-success" %>
     <% end %>
-    <%= link_to "Salir", destroy_lyduser_session_path, method: :delete,  style: 'color:#FFFFFF;' %>
+    <%= link_to "Salir", destroy_lyduser_session_path, method: :delete,  style: 'color:#FFFFFF;text-decoration:none; ',:class => "btn btn-success" %>
     <% end %>
     </div>
     </h3>
