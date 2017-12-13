@@ -5,11 +5,14 @@ class Loanformulary < ApplicationRecord
 
 	after_save :verificar_estado
 
-	after_create :crear_log_loan
+	after_update :verificar_estado
+
+#	after_create :crear_log_loan
 
 
 has_attached_file :image, styles: { large: "600x600>", medium: "300x300>", thumb: "150x150#" }
 validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+
 
 
 def input_atributos
@@ -27,7 +30,8 @@ def input_atributos
 
 
 	end
-
+=begin
+if @enviaroborrador == "Enviar Solicitud"
 	if monto_solicitado.present? == false
 
 		errors.add(" ", "Complete el campo monto solicitado")
@@ -37,31 +41,18 @@ def input_atributos
 	if monto_aprobado.present? == false
 
 		errors.add(" ", "Complete el campo monto aprobado")
-
-
 	end
 
 	if numero_cuotas.present? == false
-
 		errors.add(" ", "Complete el campo numero cuotas")
-
-
 	end
-
 	if motivo_solicitud.present? == false
-
 		errors.add(" ", "Complete el campo motivo solicitud")
-
-
 	end
-
 	if comentarios.present? == false
-
 		errors.add(" ", "Complete el campo comentarios")
-
-
 	end
-
+=end
 
 	if monto_solicitado.present? && monto_aprobado.present?
 		if monto_aprobado > monto_solicitado
@@ -95,7 +86,7 @@ def verificar_estado
 end
 
 
-
+=begin
 def crear_log_loan
 log = Logloan.new(
 
@@ -112,10 +103,10 @@ log = Logloan.new(
     estado: self.estado)
 
 log.save!
-
 end
+=end
 
 
 
-	
+
 end

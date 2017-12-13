@@ -1,11 +1,24 @@
 <% if !@rut.nil? && @rut != "" && !@nombre.nil? && @nombre != "" && !@obra.nil? && @obra != "" %>
+
   <div class="ui-37-ld" style="width: 90% !important">
     <div class= "row">
-      	<div class="col-md-4 col-sm-4 col-xs-6 col-mob"> <a href="<%= new_loanformulary_path(:rut_solicitante => @rut, :nombre_solicitante => @nombre,:obra => @obra) %>" target="_blank" class="bg-green-ld"> <img src='<%= asset_url("trans.png") %>' alt="" />
-          <label class="label-ld">Asignar Préstamos</label>
-          </a> </div>
-    </div>
+      <% @loan_params = Loanformulary.find_by rut_solicitante: @rut %>
+      <% if @loan_params.present?  %>
+        <%if  @loan_params.estado == "en edición" %>
+      <div class="col-md-4 col-sm-4 col-xs-6 col-mob"> <a href="<%= edit_loanformulary_path(@loan_params) %>" target="_blank" class="bg-green-ld"> <img src='<%= asset_url("trans.png") %>' alt="" />
+              <label class="label-ld">Asignación Préstamos Pendiente</label>
+        </a> </div>
+        <% end %>
+        <% end %>
   </div>
+
+  <div class="ui-37-ld" style="width: 90% !important">
+     <div class= "row">
+  <div class="col-md-4 col-sm-4 col-xs-6 col-mob"> <a href="<%= new_loanformulary_path(:rut_solicitante => @rut, :nombre_solicitante => @nombre,:obra => @obra) %>" target="_blank" class="bg-green-ld"> <img src='<%= asset_url("trans.png") %>' alt="" />
+    <label class= "label-ld">Asignar Préstamos</label>
+    </a> </div>
+  </div>
+</div>
 <% else %>
   <div class="ui-37-ld" style="width: 90% !important">
      <div class= "row">

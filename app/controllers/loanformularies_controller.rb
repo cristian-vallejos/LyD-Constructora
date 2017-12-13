@@ -157,6 +157,22 @@ class LoanformulariesController < ApplicationController
   def edit
   end
 
+  def create_log(loanformulary)
+    log = Logloan.new(
+      rut_solicitante: loanformulary.rut_solicitante,
+      nombre_solicitante: loanformulary.nombre_solicitante,
+      obra: loanformulary.obra,
+      cargo: loanformulary.cargo,
+      monto_solicitado: loanformulary.monto_solicitado,
+      numero_cuotas: loanformulary.numero_cuotas,
+      motivo_solicitud: loanformulary.motivo_solicitud,
+      comentarios: loanformulary.comentarios,
+      estado: loanformulary.estado)
+
+    log.save!
+
+  end
+
   # POST /loanformularies
   # POST /loanformularies.json
   def create
@@ -164,36 +180,60 @@ class LoanformulariesController < ApplicationController
         redirect_to new_loanformulary_path+"/?rut_err=true"
     else
       @loanformulary = Loanformulary.new(loanformulary_params)
-      @loanformulary.lyduser = current_lyduser
-
-      respond_to do |format|
-        if @loanformulary.save
-
-            @ao = Lyduser.where("obra = ?", params[:loanformulary][:obra])
-
-
-            if !@ao[0].nil?
-              LoanmailMailer.correo(@ao[0].email).deliver
-            else
-              LoanmailMailer.correo("rodespmac@gmail.com").deliver
-            end
-
-
-          format.html { redirect_to @loanformulary, notice: 'Loanformulary was successfully created.' }
-          format.json { render :show, status: :created, location: @loanformulary }
-        else
-          format.html { render :new }
-          format.json { render json: @loanformulary.errors, status: :unprocessable_entity }
-        end
+      @loanformulary.lyduser = current_lyduser # usuario actual que crea el formulario
+      @enviaroborrador = params[:opcion]
+      puts(@enviaroborrador)
+      if params[:opcion] == "Guardar Solicitud"
+        @loanformulary.estado = "en edición"
+      else
+        @loanformulary.estado = "en proceso"
       end
+        respond_to do |format|
+          if @loanformulary.save
+
+              @ao = Lyduser.where("obra = ?", params[:loanformulary][:obra])
+              if @loanformulary.estado == "en proceso"
+                if !@ao[0].nil?
+                  LoanmailMailer.correo(@ao[0].email).deliver
+                  create_log(@loanformulary)
+                else
+                  LoanmailMailer.correo("p.beltranes@gmail.com").deliver
+                  create_log(@loanformulary)
+            end
+          end
+              format.html { redirect_to @loanformulary, notice: 'Loanformulary was successfully created.' }
+              format.json { render :show, status: :created, location: @loanformulary }
+            else
+              format.html { render :new }
+              format.json { render json: @loanformulary.errors, status: :unprocessable_entity }
+            end
+          end
     end
   end
 
   # PATCH/PUT /loanformularies/1
   # PATCH/PUT /loanformularies/1.json
   def update
+    if @loanformulary.estado != "en proceso" &&  params[:opcion] != "Enviar Solicitud" # Falta mostrar mensaje que ya se envio y no se puede actualizar
+    if params[:opcion] == "Guardar Solicitud"
+      @loanformulary.estado = "en edición" # Verifica si se edita o ya se envio
+    else
+      @loanformulary.estado = "en proceso" # Se envia
+    end
+
     respond_to do |format|
       if @loanformulary.update(loanformulary_params)
+        @ao = Lyduser.where("obra = ?", params[:loanformulary][:obra])
+        if @loanformulary.estado = "en proceso"
+          if !@ao[0].nil?
+            LoanmailMailer.correo(@ao[0].email).deliver
+            create_log(@loanformulary)
+          else
+            LoanmailMailer.correo("p.beltranes@gmail.com").deliver
+            create_log(@loanformulary)
+          end
+        end
+
         format.html { redirect_to @loanformulary, notice: 'Loanformulary was successfully updated.' }
         format.json { render :show, status: :ok, location: @loanformulary }
       else
@@ -201,6 +241,13 @@ class LoanformulariesController < ApplicationController
         format.json { render json: @loanformulary.errors, status: :unprocessable_entity }
       end
     end
+  else
+    respond_to do |format|
+    format.html { redirect_to @loanformulary, notice: 'Loanformulary was successfully updated.' }
+    format.json { render :show, status: :ok, location: @loanformulary }
+  end
+
+  end
   end
 
   # DELETE /loanformularies/1

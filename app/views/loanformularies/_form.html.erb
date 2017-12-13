@@ -135,8 +135,10 @@
         </div>
 
         <div class="actions">
-          <%= form.submit "Ingresar solicitud préstamo", :class => "btn btn-green btn-lg btn-block",
+          <%= form.submit "Guardar Solicitud", name:  'opcion',id: :opcion  ,:class => "btn btn-green btn-lg btn-block",
           :onclick => 'revertirMoneda()' %>
+          <%= form.submit "Enviar Solicitud", name:  'opcion',id: :opcion ,:class => "btn btn-green btn-lg btn-block",
+          :onclick => 'revertirMoneda()', data: {:confirm=>'¿Está seguro? No se podrá modificar mas adelante.'} %>
         </div>
       </div>
     </div>
