@@ -116,26 +116,56 @@
   <div class="field">
     <%= form.label :descripcion, 'Descripción' %>
     <br>
-    <%= form.text_area :descripcion, id: :asformulary_descripcion, placeholder: "Descripción...", :class => 'textForm' %>
+    <%= form.text_area :descripcion, id: :asformulary_descripcion, placeholder: "Descripción...", :class => 'textForm', :style => "line-height: 50px;" %>
     <br>
   </div>
 
-  <div class="field"> 
-    <%= form.hidden_field :benefit_id, id: :asformulary_benefit_id, value: 1 %>
-    </div>
+  <div class="field">
+    <%= form.label :assign, '¿Qué tipo de beneficio desea asignar?' %>
+    <br>
+    <%= form.radio_button :assign, 'benefit', onClick: "botonBeneficio();" %>
+    <%= label :contactmethod_email, 'Beneficio', :style => "margin-right: 2.5%" %>
+    <%= form.radio_button :assign, 'loan', onClick: "botonPrestamo();" %>
+    <%= label :contactmethod_sms, 'Préstamo', :style => "margin-right: 2.5%" %>
+    <%= form.radio_button :assign, 'nothing', onClick: "sinBoton();", :checked => true %>
+    <%= label :contactmethod_sms, 'Ninguno' %>
+  </div>
 
-  <div id="benefitbutton">
+  <script>
+    function botonBeneficio() {
+        document.getElementById('benefitbutton').style.display = 'block';
+        document.getElementById('loanbutton').style.display = 'none';
+        document.getElementById('benefit_as').innerHTML = ''; /* Falta poder asignar el beneficio aqui */
+    }
+
+    function botonPrestamo() {
+        document.getElementById('benefitbutton').style.display = 'none';
+        document.getElementById('loanbutton').style.display = 'block';
+        document.getElementById('benefit_as').innerHTML = '<%= form.hidden_field :benefit_id, id: :asformulary_benefit_id, value: 1 %>';
+    }
+
+    function sinBoton() {
+        document.getElementById('benefitbutton').style.display = 'none';
+        document.getElementById('loanbutton').style.display = 'none';
+        document.getElementById('benefit_as').innerHTML = '<%= form.hidden_field :benefit_id, id: :asformulary_benefit_id, value: 1 %>';
+    }
+  </script>
+  </svg>
+
+  <div class="field" id="benefit_as"></div>
+
+  <div id="benefitbutton" style="display: none;">
     <%= render 'benefitbutton' %>
   </div>
 
-  <div id="loanbutton">
+  <div id="loanbutton" style="display: none;">
     <%= render 'loanbutton' %>
   </div>
 
   <div class="field">
     <%= form.label :solucion, 'Solución' %>
     <br>
-    <%= form.text_field :solucion, id: :asformulary_solucion, placeholder: "Solución...", :class => 'textForm' %>
+    <%= form.text_area :solucion, id: :asformulary_solucion, placeholder: "Solución...", :class => 'textForm', :style => "line-height: 50px;" %>
     <br>
   </div>
 

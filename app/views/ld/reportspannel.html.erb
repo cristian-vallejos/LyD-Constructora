@@ -22,7 +22,6 @@
 			</div>
 
 			<div class="ui-34" style="margin-top: 2%;" id="reporte_por_obra">
-					<%= link_to "Descargar PDF", ld_download_pdf_path(:pdf) %>
 					<%= form_for (@obra), url: ld_reportspannel_path, method: "get" do |f| %>
 							<h6>Seleccione una obra</h6>
 		        	<%= f.collection_select :id, Obra.all.order('codigo DESC'), :id, :nombre_codigo, {include_blank: true} %>
@@ -45,17 +44,18 @@
 
 	        <% if params[:obra] && params[:event1] && params[:event2] %>
 			      <%# as = Asformulary.where(:rut_atendido => params[:asformulary][:rut_atendido]).order('created_at DESC') %>
-			      <% ob = Obra.find(params[:obra][:id]).codigo %><br>
+			      <% ob = Obra.find(params[:obra][:id]).codigo %>
 			      <% if params[:event1]["date(2i)"] != "10" && params[:event1]["date(2i)"] != "11" && params[:event1]["date(2i)"] != "12" %>
 			      		<% fecha1 = params[:event1]["date(1i)"] + "-" + "0" + params[:event1]["date(2i)"] + "-" + "01"%>
 			      <% else %>
 			      		<% fecha1 = params[:event1]["date(1i)"]+ "-" + params[:event1]["date(2i)"]+ "-" + "01" %>
-			      <% end %><br>
+			      <% end %>
 			      <% if params[:event2]["date(2i)"] != "10" && params[:event2]["date(2i)"] != "11" && params[:event2]["date(2i)"] != "12" %>
 			      		<% fecha2 =params[:event2]["date(1i)"]+ "-" + "0" + params[:event2]["date(2i)"]+ "-" + "31"%>
 			      <% else %>
 								<% fecha2 =params[:event2]["date(1i)"]+ "-" + params[:event2]["date(2i)"]+ "-" + "31" %>
 			      <% end %><br>
+						<%= link_to "Descargar PDF", ld_download_pdf_path(:pdf)+"?obra="+params[:obra][:id].to_s+"&event1="+fecha1+"&event2="+fecha2 %>
 			    <%end%><br><br>
 
   				<ul class="navi">
@@ -175,7 +175,7 @@
 													  	<% asignacion.each do |a| %>
 															  	<%# ins[i] = a.benefit_id %>
 															  	<% ins[i] = Assignbenefit.where(obra_id: params[:obra][:id]).where(:created_at => fecha1...fecha2).where(benefit_id: a.benefit_id).count %>
-															  	<% totale[i] = Benefit.find(a.benefit_id).costoempresa %>
+															  	<% totale[i] = Benefit.find(a.benefit_id).costoempresa.to_i %>
 															  	<% i = i+1 %>
 												  		<% end %>
 
@@ -204,7 +204,6 @@
 			<!-- START Reporte General -->
 
 			<div class="ui-34" style="margin-top: 2%;" id="reporte_general">
-					<%= link_to "Descargar PDF", ld_download_pdf_path(:pdf) %>
 					<%= form_tag ld_reportspannel_path, :method => "get" do %>
 		        	<h6>Desde: </h6>
   						<%= date_select('date1', 'date', { :discard_day => true}) %>
@@ -228,12 +227,13 @@
 			      		<% fecha1 = params[:date1]["date(1i)"] + "-" + "0" + params[:date1]["date(2i)"] + "-" + "01"%>
 			      <% else %>
 			      		<% fecha1 = params[:date1]["date(1i)"]+ "-" + params[:date1]["date(2i)"]+ "-" + "01" %>
-			      <% end %><br>
+			      <% end %>
 			      <% if params[:date2]["date(2i)"] != "10" && params[:date2]["date(2i)"] != "11" && params[:date2]["date(2i)"] != "12" %>
 			      		<% fecha2 = params[:date2]["date(1i)"]+ "-" + "0" + params[:date2]["date(2i)"]+ "-" + "31"%>
 			      <% else %>
 								<% fecha2 = params[:date2]["date(1i)"]+ "-" + params[:date2]["date(2i)"]+ "-" + "31" %>
 			      <% end %><br>
+						<%= link_to "Descargar PDF", ld_download_pdf_path(:pdf)+"?date1="+fecha1+"&date2="+fecha2 %>
 			    <% end %><br><br>
 
   				<ul class="navi">
@@ -248,132 +248,173 @@
 
 	        			<% if params[:date1] && params[:date2] %>
 										<% @obras = Obra.all %>
+
+										<% #muestra = 0 %>
+										<% #muestrap = 0 %>
+										<% #muestrapa = 0 %>
+
+										<% categ = Aspcategory.all %>
+										<% benefitscount = Benefit.all  %>
+										<% asc = Array.new %>
+										<% totalas = Array.new %>
+
+										<%i = 0 %>
+										<% categ.each do |a| %>
+												<% asc[i] = 0 %>
+												<% totalas[i] = 0 %>
+												<% i = i+1 %>
+										<% end %>
+
+										<% sumacat = 0 %>
+										<% sumatot = 0 %>
+
+										<% prestamop = 0 %>
+										<% prestamopt = 0 %>
+
+										<% prestamoa = 0 %>
+										<% prestamoat = 0 %>
+
 									  <% @obras.each do |obraaa| %>
-					        			<h3><%= obraaa.nombre %> - Periodo <%= fecha1 + " a " + fecha2  %> </h3>
 					        			<% ob = obraaa.codigo %>
-					        			<% muestra = Loga.where("codigo_obra = ?",ob).count %>
-					        			<% muestrap = Loanformulary.where("obra = ?", ob).count %>
-					        			<% muestrapa = Logloan.where("obra = ?", ob).count %>
+					        			<% #muestra += Loga.where("codigo_obra = ?",ob).count %>
+					        			<% #muestrap += Loanformulary.where("obra = ?", ob).count %>
+					        			<% #muestrapa += Logloan.where("obra = ?", ob).count %>
 
-					        			<%if muestra == 0 %>
-					        					<% muestra = 1 %>
-					        			<%end %>
-					        			<%if muestrap == 0 %>
-					        					<% muestrap = 1 %>
-					        			<%end %>
-					        			<%if muestrapa == 0 %>
-					        					<% muestrapa = 1 %>
-					        			<%end %>
-					        			<table>
-													  <thead>
-													    <tr>
-													      <th>Área de atención</th>
-											              <th>Trabajadores Atendidos</th>
-											              <th>% Muestra</th>
-											              <th>Total Obra</th>
-													      <th colspan="3"></th>
-													    </tr>
-													  </thead>
-													  <tbody>
+												<% i = 0 %>
+												<% categ.each do |a| %>
+														<%# ins[i] = a.benefit_id %>
+														<% asc[i] += Loga.where(codigo_obra: ob).where(:created_at => fecha1...fecha2).where(aspcategory_name: a.nombre).count %>
+														<% totalas[i] += Loga.where(codigo_obra: ob).where(aspcategory_name: a.nombre).count %>
+														<%# totalas[i] = Benefit.find(a.benefit_id).costoempresa %>
+														<% i = i+1 %>
+												<% end %>
 
-														<% atencion = Loga.where(codigo_obra: ob).where(:created_at => fecha1...fecha2).group("aspcategory_name") %>
-														<% categ = Aspcategory.all %>
-														  	<% benefitscount = Benefit.all  %>
-														  	<%i = 0 %>
-														  	<% asc = Array.new %>
-														  	<% totalas = Array.new %>
-														  	<% sumacat = 0 %>
-														  	<% sumatot = 0 %>
-
-														  	<% categ.each do |a| %>
-																  	<%# ins[i] = a.benefit_id %>
-																  	<% asc[i] = Loga.where(codigo_obra: ob).where(:created_at => fecha1...fecha2).where(aspcategory_name: a.nombre).count %>
-
-																  	<%# totalas[i] = Benefit.find(a.benefit_id).costoempresa %>
-																  	<% i = i+1 %>
-														  	<% end %>
-
-														  	<%i = 0 %>
-														  	<% categ.each do |a| %>
-																  	<tr>
-																  	<td><%= a.nombre %></td>
-																  	<td><%= asc[i] %></td>
-																  	<td><%= (asc[i]*100)/muestra %>%</td>
-																  	<td><%= totalas[i] = Loga.where(codigo_obra: ob).where(aspcategory_name: a.nombre).count %></td>
-																  	<% sumacat = sumacat + asc[i] %>
-																  	<% sumatot = sumatot + totalas[i] %>
-
-																  	</tr>
-														  			<% i = i+1 %>
-														  	<%end %>
-											  				<tr>
-												            <td>Préstamo En proceso</td>
-												            <td><%= prestamop = Loanformulary.where(:created_at => fecha1...fecha2).where("obra = ? && estado = ?", ob, "en proceso").count %></td>
-												            <td><%= (prestamop*100)/muestrap%>%</td>
-												            <td><%= prestamopt = Loanformulary.where("obra = ? && estado = ?", ob, "en proceso").count %></td>
-												        </tr>
-											          <tr>
-											            	<td>Préstamo Aceptados</td>
-											            	<td><%= prestamoa = Loanformulary.where(:fecha_aceptado_por_jefe_remuneraciones => fecha1...fecha2).where("obra = ? && estado = ? ", ob, "aceptado").count %></td>
-											            	<td><%= (prestamoa*100)/muestrapa%>%</td>
-											            	<td><%= prestamoat = Loanformulary.where("obra = ? && estado = ?", ob, "aceptado").count %></td>
-											          </tr>
-											          <tr>
-											            	<td>Total</td>
-											            	<td><%= sumacat + prestamop + prestamoa %></td>
-											            	<td></td>
-											            	<td><%= sumatot + prestamopt + prestamoat %></td>
-											          </tr>
-											  		</tbody>
-												</table>
+												<% prestamop += Loanformulary.where(:created_at => fecha1...fecha2).where("obra = ? && estado = ?", ob, "en proceso").count %>
+												<% prestamopt += Loanformulary.where("obra = ? && estado = ?", ob, "en proceso").count %>
+											  <% prestamoa += Loanformulary.where(:fecha_aceptado_por_jefe_remuneraciones => fecha1...fecha2).where("obra = ? && estado = ? ", ob, "aceptado").count %>
+												<% prestamoat += Loanformulary.where("obra = ? && estado = ?", ob, "aceptado").count %>
 									<% end %>
+
+									<h3>Constructora LyD - Periodo <%= fecha1 + " a " + fecha2  %> </h3>
+
+									<table>
+											<thead>
+												<tr>
+													<th>Área de atención</th>
+													<th>Trabajadores Atendidos</th>
+													<th>% Muestra</th>
+													<th>Total Constructora</th>
+												</tr>
+											</thead>
+											<tbody>
+												<% i = 0 %>
+												<% categ.each do |a| %>
+														<% sumacat = sumacat + asc[i] %>
+														<% sumatot = sumatot + totalas[i] %>
+														<% i = i+1 %>
+												<% end %>
+
+												<% i = 0 %>
+												<% categ.each do |a| %>
+														<tr>
+															<td><%= a.nombre %></td>
+															<td><%= asc[i] %></td>
+															<% if sumatot == 0 %>
+																	<td><%= (asc[i]*100) %>%</td>
+															<% else %>
+																	<td><%= (asc[i]*100)/sumatot %>%</td>
+															<% end %>
+															<td><%= totalas[i] %></td>
+														</tr>
+														<% i = i+1 %>
+												<% end %>
+												<tr>
+														<td>Préstamo En proceso</td>
+														<td><%= prestamop %></td>
+														<% if prestamopt == 0 %>
+																<td><%= (prestamop*100) %>%</td>
+														<% else %>
+																<td><%= (prestamop*100)/prestamopt %>%</td>
+														<% end %>
+														<td><%= prestamopt %></td>
+												</tr>
+												<tr>
+														<td>Préstamo Aceptados</td>
+														<td><%= prestamoa %></td>
+														<% if prestamoat == 0 %>
+																<td><%= (prestamoa*100) %>%</td>
+														<% else %>
+																<td><%= (prestamoa*100)/prestamoat %>%</td>
+														<% end %>
+														<td><%= prestamoat %></td>
+												</tr>
+												<tr>
+														<td>Total</td>
+														<td><%= sumacat + prestamop + prestamoa %></td>
+														<td></td>
+														<td><%= sumatot + prestamopt + prestamoat %></td>
+												</tr>
+											</tbody>
+									</table>
+
 	        		<%end%>
         	</div>
+
         	<div role="tabpanel" class="tab-pane fade" id="dos">
       				<h2>Beneficios por Periodo</h2>
 
         			<% if params[:date1] && params[:date2] %>
 									<% @obras = Obra.all %>
-									<% @obras.each do |obraaa| %>
-				        			<h3><%= obraaa.nombre %> - Periodo <%= fecha1 + " a " + fecha2  %> </h3>
-				      				<% ob = obraaa.codigo %>
 
-				      				<table>
-												  <thead>
-													    <tr>
-													      	<th>Nombre Beneficio</th>
-													      	<th>Inscritos</th>
-											            <th>Costo Empresa</th>
-													    </tr>
-												  </thead>
-												  <tbody>
-													  	<% asignacion = Assignbenefit.where(obra_id: obraaa.id).where(:created_at => fecha1...fecha2).group("benefit_id") %>
-													  	<% benefitscount = Benefit.all  %>
-													  	<%i = 0 %>
-													  	<%ins = Array.new %>
-													  	<%totale = Array.new %>
+									<% benefitscount = Benefit.all  %>
+									<% ins = Array.new %>
+									<% totale = Array.new %>
 
-															<% #if asignacion.nil? %>
-															  	<% asignacion.each do |a| %>
-																	  	<%# ins[i] = a.benefit_id %>
-																	  	<% ins[i] = Assignbenefit.where(obra_id: obraaa.id).where(:created_at => fecha1...fecha2).where(benefit_id: a.benefit_id).count %>
-																	  	<% totale[i] = Benefit.find(a.benefit_id).costoempresa %>
-																	  	<% i = i+1 %>
-														  		<% end %>
+									<% asignacion = Assignbenefit.where(:created_at => fecha1...fecha2).group("benefit_id") %>
 
-															  	<%i = 0 %>
-															  	<% asignacion.each do |a| %>
-																	  	<tr>
-																	  			<td><%= a.benefit.nombre %></td>
-																	  			<td><%= ins[i] %></td>
-																	  			<td>$<%= ins[i]*totale[i].to_i %></td>
-																	  	</tr>
-														  				<% i = i+1 %>
-														  		<%end %>
-															<% #end %>
-												  </tbody>
-											</table>
+									<% i = 0 %>
+									<% asignacion.each do |a| %>
+											<% ins[i] = 0 %>
+											<% totale[i] = 0 %>
+											<% i = i+1 %>
 									<% end %>
+
+									<% asignacion = Assignbenefit.where(:created_at => fecha1...fecha2).group("benefit_id") %>
+
+									<%i = 0 %>
+									<% #if asignacion.nil? %>
+									<% asignacion.each do |a| %>
+											<%# ins[i] = a.benefit_id %>
+											<% ins[i] += Assignbenefit.where(:created_at => fecha1...fecha2).where(benefit_id: a.benefit_id).count %>
+											<% totale[i] += Benefit.find(a.benefit_id).costoempresa.to_i %>
+											<% i = i+1 %>
+									<% end %>
+									<% #end %>
+
+									<h3>Constructora LyD - Periodo <%= fecha1 + " a " + fecha2  %> </h3>
+
+									<table>
+										<thead>
+											<tr>
+												<th>Nombre Beneficio</th>
+												<th>Inscritos</th>
+												<th>Costo Empresa</th>
+											</tr>
+										</thead>
+										<tbody>
+											<% asignacion = Assignbenefit.where(:created_at => fecha1...fecha2).group("benefit_id") %>
+											<% i = 0 %>
+											<% asignacion.each do |a| %>
+													<tr>
+															<td><%= a.benefit.nombre %></td>
+															<td><%= ins[i] %></td>
+															<td>$<%= ins[i]*totale[i].to_i %></td>
+													</tr>
+													<% i = i+1 %>
+											<% end %>
+										</tbody>
+									</table>
+
         			<% end %>
         	</div>
         	<div role="tabpanel" class="tab-pane fade" id="tres"> </div>
