@@ -23,7 +23,7 @@ class FamiliartrabajadorsController < ApplicationController
   def new
     @familiartrabajador = Familiartrabajador.new
     @trabajador = Employee.find_by(rut: params[:rut_trabajador])
-    @relacion = ["Hermano(a)", "Hijo(a)", "Cónyuge", "Esposo(a)", "Padre", "Madre"]
+    @relacion = ["Hermano(a)", "Hijo(a)", "Cónyuge", "Conviviente", "Padre", "Madre"]
   end
 
   # GET /familiartrabajadors/1/edit
@@ -33,15 +33,21 @@ class FamiliartrabajadorsController < ApplicationController
   # POST /familiartrabajadors
   # POST /familiartrabajadors.json
   def create
-    @familiartrabajador = Familiartrabajador.new(familiartrabajador_params)
+    if !params[:familiartrabajador][:rut_trabajador].rut_valid?
+        redirect_to new_familiartrabajador_path+"/?trab_rut_err=true"
+    elsif !params[:familiartrabajador][:rut].rut_valid?
+        redirect_to new_familiartrabajador_path+"/?fam_rut_err=true"
+    else
+      @familiartrabajador = Familiartrabajador.new(familiartrabajador_params)
 
-    respond_to do |format|
-      if @familiartrabajador.save
-        format.html { redirect_to familiartrabajadors_path, notice: 'Familiartrabajador was successfully created.' }
-        format.json { render :show, status: :created, location: @familiartrabajador }
-      else
-        format.html { render :new }
-        format.json { render json: @familiartrabajador.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @familiartrabajador.save
+          format.html { redirect_to familiartrabajadors_path, notice: 'Familiar creado satisfactoriamente.' }
+          format.json { render :show, status: :created, location: @familiartrabajador }
+        else
+          format.html { render :new }
+          format.json { render json: @familiartrabajador.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -51,7 +57,7 @@ class FamiliartrabajadorsController < ApplicationController
   def update
     respond_to do |format|
       if @familiartrabajador.update(familiartrabajador_params)
-        format.html { redirect_to @familiartrabajador, notice: 'Familiartrabajador was successfully updated.' }
+        format.html { redirect_to @familiartrabajador, notice: 'Familiar actualizado satisfactoriamente.' }
         format.json { render :show, status: :ok, location: @familiartrabajador }
       else
         format.html { render :edit }

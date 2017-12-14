@@ -6,9 +6,8 @@ class EmployeesController < ApplicationController
   # GET /employees.json
   def index
     @employees = Employee.all
-
     if(params[:name] == "actualizar")
-
+=begin
 
       @client = TinyTds::Client.new username: 'proyecta', password: 'proyecta..',
           host: '192.168.1.228', port: 1433
@@ -22,11 +21,9 @@ class EmployeesController < ApplicationController
           if result.affected_rows > 0 then puts "#{result.affected_rows} row(s) affected" end
       end
 
-
       execute("USE LyD;")
 
       file = File.open("/var/www/myapp/REMPLESDEF2.txt", 'w')
-
 
       results = @client.execute("SELECT * FROM REMPLES;")
 
@@ -35,7 +32,7 @@ class EmployeesController < ApplicationController
 
       results.each do |row|
 
-        jresult = row.to_json 
+        jresult = row.to_json
 
         file.write(jresult + ',')
       end
@@ -51,12 +48,12 @@ class EmployeesController < ApplicationController
       puts "All done."
 
       @client.close
-
+=end
       Employee.delete_all
       puts "Employees deleted"
 
-      my_hash = JSON.load(File.read("/var/www/myapp/REMPLESDEF2.txt"))
-
+      #my_hash = JSON.load(File.read("/var/www/myapp/REMPLESDEF2.txt"))
+      my_hash = JSON.load(File.read(Rails.root + "app/data/REMPLES.txt"))
 
       my_hash.each do |row|
 
@@ -79,6 +76,7 @@ class EmployeesController < ApplicationController
         emple.rut = akey
         emple.cencos = row['Cencos']
         emple.estado = row['Estado']
+        emple.cargo = row['Cargo']
         emple.save
       end
 
@@ -148,6 +146,6 @@ class EmployeesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def employee_params
-      params.require(:employee).permit(:rut, :nombre, :cencos, :estado)
+      params.require(:employee).permit(:rut, :nombre, :cencos, :estado,:cargo)
     end
 end

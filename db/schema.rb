@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170912191431) do
+ActiveRecord::Schema.define(version: 20171206230534) do
 
-  create_table "areabenefits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "areabenefits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "is_active", default: true
   end
 
-  create_table "asformularies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "asformularies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "rut_atendido"
     t.string "codigo_obra"
     t.bigint "user_id"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20170912191431) do
     t.index ["user_id"], name: "index_asformularies_on_user_id"
   end
 
-  create_table "asignarmultiplebeneficios", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "asignarmultiplebeneficios", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "employee_id"
     t.bigint "obra_id"
     t.bigint "areabenefit_id"
@@ -58,14 +58,14 @@ ActiveRecord::Schema.define(version: 20170912191431) do
     t.index ["obra_id"], name: "index_asignarmultiplebeneficios_on_obra_id"
   end
 
-  create_table "aspcategories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "aspcategories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "is_active", default: true
   end
 
-  create_table "assignbenefits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "assignbenefits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "benefit_id"
     t.string "rut_trabajador"
     t.string "rut_beneficiario"
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 20170912191431) do
     t.index ["obra_id"], name: "index_assignbenefits_on_obra_id"
   end
 
-  create_table "benefits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "benefits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "nombre"
     t.string "area"
     t.integer "costotrabajador"
@@ -92,16 +92,17 @@ ActiveRecord::Schema.define(version: 20170912191431) do
     t.index ["areabenefit_id"], name: "index_benefits_on_areabenefit_id"
   end
 
-  create_table "employees", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "employees", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "rut"
     t.string "nombre"
     t.string "cencos"
     t.string "estado"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "cargo"
   end
 
-  create_table "epcformularies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "epcformularies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "asformulary_id"
     t.integer "rut_atendido"
     t.string "codigo"
@@ -120,7 +121,7 @@ ActiveRecord::Schema.define(version: 20170912191431) do
     t.index ["asformulary_id"], name: "index_epcformularies_on_asformulary_id"
   end
 
-  create_table "familiartrabajadors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "familiartrabajadors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "rut"
     t.string "nombre"
     t.string "relacion"
@@ -130,7 +131,7 @@ ActiveRecord::Schema.define(version: 20170912191431) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "loanformularies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "loanformularies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "nombre_solicitante"
     t.string "rut_solicitante"
     t.string "obra"
@@ -172,7 +173,7 @@ ActiveRecord::Schema.define(version: 20170912191431) do
     t.index ["lyduser_id"], name: "index_loanformularies_on_lyduser_id"
   end
 
-  create_table "logas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "logas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "asocial_id"
     t.string "user_name"
     t.string "codigo_obra"
@@ -197,7 +198,7 @@ ActiveRecord::Schema.define(version: 20170912191431) do
     t.string "telefono"
   end
 
-  create_table "logbenefitsfinals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "logbenefitsfinals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "areabeneficio"
     t.string "nombrebeneficio"
     t.string "costoempresa"
@@ -212,9 +213,11 @@ ActiveRecord::Schema.define(version: 20170912191431) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "nombrebeneficiario"
+    t.boolean "subcontrato", default: false
+    t.string "nombre_subcontrato"
   end
 
-  create_table "logloans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "logloans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "rut_solicitante"
     t.string "nombre_solicitante"
     t.string "empresa"
@@ -231,7 +234,7 @@ ActiveRecord::Schema.define(version: 20170912191431) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "lydusers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "lydusers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -258,16 +261,16 @@ ActiveRecord::Schema.define(version: 20170912191431) do
     t.index ["reset_password_token"], name: "index_lydusers_on_reset_password_token", unique: true
   end
 
-  create_table "obras", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "obras", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "nombre"
     t.string "direccion"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "codigo"
+    t.integer "codigo"
     t.boolean "is_active", default: true
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

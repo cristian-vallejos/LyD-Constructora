@@ -17,7 +17,6 @@ class ObrasController < ApplicationController
         obran.nombre = row['descrip']
         obran.save
       end
-
     end
 
 

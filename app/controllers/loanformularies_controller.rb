@@ -138,13 +138,9 @@ class LoanformulariesController < ApplicationController
     results.each do |row|
       puts row
     end
-
-
     puts "All done."
 
     @client.close
-
-
   end
 
   # GET /loanformularies/1
@@ -164,27 +160,31 @@ class LoanformulariesController < ApplicationController
   # POST /loanformularies
   # POST /loanformularies.json
   def create
-    @loanformulary = Loanformulary.new(loanformulary_params)
-    @loanformulary.lyduser = current_lyduser
+    if !params[:loanformulary][:rut_solicitante].rut_valid?
+        redirect_to new_loanformulary_path+"/?rut_err=true"
+    else
+      @loanformulary = Loanformulary.new(loanformulary_params)
+      @loanformulary.lyduser = current_lyduser
 
-    respond_to do |format|
-      if @loanformulary.save
+      respond_to do |format|
+        if @loanformulary.save
 
-          @ao = Lyduser.where("obra = ?", params[:loanformulary][:obra])
-
-
-          if !@ao[0].nil?
-            LoanmailMailer.correo(@ao[0].email).deliver
-          else
-            LoanmailMailer.correo("rodespmac@gmail.com").deliver
-          end
+            @ao = Lyduser.where("obra = ?", params[:loanformulary][:obra])
 
 
-        format.html { redirect_to @loanformulary, notice: 'Loanformulary was successfully created.' }
-        format.json { render :show, status: :created, location: @loanformulary }
-      else
-        format.html { render :new }
-        format.json { render json: @loanformulary.errors, status: :unprocessable_entity }
+            if !@ao[0].nil?
+              LoanmailMailer.correo(@ao[0].email).deliver
+            else
+              LoanmailMailer.correo("rodespmac@gmail.com").deliver
+            end
+
+
+          format.html { redirect_to @loanformulary, notice: 'Loanformulary was successfully created.' }
+          format.json { render :show, status: :created, location: @loanformulary }
+        else
+          format.html { render :new }
+          format.json { render json: @loanformulary.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

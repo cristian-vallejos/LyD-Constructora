@@ -3,9 +3,6 @@ class AsformulariesController < ApplicationController
   load_and_authorize_resource
   #authorize_resource :class => false
 
-
-
-
   # GET /asformularies
   # GET /asformularies.json
   def index
@@ -15,7 +12,7 @@ class AsformulariesController < ApplicationController
     #puts @results[0].rut_atendido
     #puts @results.count
     puts params[:search]
-    #puts params[:asformulary][:rut_atendido]  
+    #puts params[:asformulary][:rut_atendido]
 
 
   end
@@ -31,7 +28,7 @@ class AsformulariesController < ApplicationController
 
   def search
     #if(params[:asformulary] && params[:asformulary][:nombre_atendido])
-      
+
     #end
 
   end
@@ -50,31 +47,31 @@ class AsformulariesController < ApplicationController
 
       redirect_to asformulary_path
 
-    end  
+    end
 
   end
 
   # GET /asformularies/new
   def new
-
-      @asformulary = Asformulary.new
-    
     if params[:asformulary] && params[:asformulary][:rut_atendido]
-      @employee = Employee.where(:rut => params[:asformulary][:rut_atendido]).where(estado: "A").order('created_at DESC')
-      @logloan = Logloan.where(:rut_solicitante => params[:asformulary][:rut_atendido]).order('created_at DESC')
-      
+      if !params[:asformulary][:rut_atendido].rut_valid?
+        redirect_to new_asformulary_path+"/?rut_err=true"
+      else
+        @asformulary = Asformulary.new
+
+        @employee = Employee.where(:rut => params[:asformulary][:rut_atendido]).where(estado: "A").order('created_at DESC')
+        @logloan = Logloan.where(:rut_solicitante => params[:asformulary][:rut_atendido]).order('created_at DESC')
+
+        @rut = @employee[0].rut
+        @nombre = @employee[0].nombre
+        @obra = @employee[0].cencos
+      end
     end
-    if params[:asformulary]
+    if params[:asformulary] && params[:asformulary][:rut_atendido] && params[:asformulary][:nombre_atendido] && params[:asformulary][:codigo_obra] && params[:asformulary][:areabenefit_id] && params[:asformulary][:benefit_id]
       @rut = params[:asformulary][:rut_atendido]
       @nombre = params[:asformulary][:nombre_atendido]
       @obra = params[:asformulary][:codigo_obra]
-      puts @obra
-      puts @nombre
-      puts @rut
     end
-    
-    
-
   end
 
   def checkrut
@@ -83,7 +80,7 @@ class AsformulariesController < ApplicationController
 
   def newseg
     #@asformulary = Asformulary.new
-    #find-create-set-save 
+    #find-create-set-save
     @newsegAS = Asformulary.find(params[:id])
     theasformulary = Asformulary.find(params[:id])
 
@@ -134,15 +131,13 @@ class AsformulariesController < ApplicationController
   # POST /asformularies.json
   def create
     if (params[:check])
-   
-
       redirect_to new_asformulary_path#(rut_atendido: params[:asformulary][:rut_atendido])
     else
       @asformulary = Asformulary.new(asformulary_params)
       @asformulary.lyduser = current_lyduser
       @asformulary.user_id = 1
 
-    
+
       respond_to do |format|
         if @asformulary.save
 

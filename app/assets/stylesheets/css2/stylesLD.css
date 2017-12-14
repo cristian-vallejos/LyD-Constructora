@@ -4,6 +4,10 @@
 		box-shadow: 2px -2px 2px black;
 }
 
+.ancho {
+ 	width: 90% !important;
+ }
+
 body {
 
 	background-color: #42413C;

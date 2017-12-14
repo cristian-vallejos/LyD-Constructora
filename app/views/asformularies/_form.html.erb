@@ -1,113 +1,86 @@
+<% if params[:rut_err] && params[:rut_err] == "true" %>
+  <div id="error_explanation">
+    <h2>Error:</h2>
+    <ul>
+      <li>El rut que desea verificar es inválido.</li>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_for (@asformulary), url: new_asformulary_path, method: "get" do |f| %>
   <%= f.label "Verificar trabajador  - Ingrese RUT" %>
   <%= f.text_field :rut_atendido , placeholder: "13832057-K"%>
   <%= f.submit "check", name: "check", :class => 'btn btn-green' %>
 <% end %>
 
-
-<br>
 <br>
 <%= form_with(model: asformulary, local: true, id: "form_params" ) do |form| %>
   <% if asformulary.errors.any? %>
+
+  <%= puts params[:asformulary] %>
+  <%= puts asformulary.errors %>
     <div id="error_explanation">
       <h2><%= pluralize(asformulary.errors.count, "errores") %> No permiten guardar este formulario:</h2>
-
       <ul>
-      <% asformulary.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
+        <% asformulary.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     </div>
   <% end %>
 
-  
-
   <div class="field">
-
-
-<% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
-    
-<%= form.label :nombre_atendido, 'Nombre Completo Trabajador' %><br>
-
-    <% if !@employee.nil?%>
-    <% if @employee.empty? %>
-    <%= form.text_field :nombre_atendido, id: :asformulary_nombre_atendido, placeholder: "QUEVEDO OLIVARES LUIS MIGUEL", :class => 'textForm' %><br>
-    <% else %>
-    <%= form.text_field :nombre_atendido, id: :asformulary_nombre_atendido, value: @employee[0].nombre, hidden: true %>
-    <%= @employee[0].nombre %><br>
-
-    <% end %>
-    <% end %>
-
- <% else %>
-
-    <%= form.label :nombre_atendido, 'Nombre trabajador' %>
-    <%= form.text_field :nombre_atendido, id: :asformulary_rut_atendido, placeholder: "QUEVEDO OLIVARES LUIS MIGUEL", :class => 'textForm' %>
-
-
-    
-<%end%>
-
-  </div>
-
- 
-  <div class="field">
-
- <% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
-    
-    <%= form.label :rut_atendido, 'Rut Trabajador' %> <br>
-
-
-    <% if !@employee.nil?%>
-      <% if @employee.empty? %>
-      <%= form.text_field :rut_atendido, id: :asformulary_rut_atendido, placeholder: "13832057-K", :class => 'textForm' %> <br>
-      <% else %>
-      <%= form.text_field :rut_atendido, id: :asformulary_rut_atendido, value: @employee[0].rut, hidden: true %> 
-      <%= @employee[0].rut %><br>
+    <% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
+      <%= form.label :nombre_atendido, 'Nombre Completo Trabajador' %><br>
+      <% if !@employee.nil?%>
+        <% if @employee.empty? %>
+          <%= form.text_field :nombre_atendido, id: :asformulary_nombre_atendido, placeholder: "QUEVEDO OLIVARES LUIS MIGUEL", :class => 'textForm' %><br>
+        <% else %>
+          <%= form.text_field :nombre_atendido, id: :asformulary_nombre_atendido, value: @employee[0].nombre, hidden: true %>
+          <%= @employee[0].nombre %><br>
+        <% end %>
       <% end %>
-
-    <% end %>
-
- <% else %>
-
-
-    <%= form.label :rut_atendido, 'Rut Trabajador' %> <br>
-    <%= form.text_field :rut_atendido, id: :asformulary_rut_atendido, placeholder: "13832057-K", :class => 'textForm' %><br>
-
-
-    
-<%end%>
-
+    <% else %>
+      <%= form.label :nombre_atendido, 'Nombre trabajador' %>
+      <%= form.text_field :nombre_atendido, id: :asformulary_rut_atendido, placeholder: "QUEVEDO OLIVARES LUIS MIGUEL", :class => 'textForm' %>
+    <%end%>
   </div>
- 
-
 
   <div class="field">
-
-
-<% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
-
-    <%= form.label :codigo_obra, 'Obra' %><br>
-    <% if !@employee.nil?%>
-    <% if @employee.empty? %>
-    <%# form.text_field :codigo_obra, id: :asformulary_codigo_obra, :class => 'textForm' %>
-    <%= form.collection_select :codigo_obra, Obra.all.order('id DESC'), :codigo, :nombre_codigo, {include_blank: true}, {style: "width:220px"} %><br>
+    <% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
+      <%= form.label :rut_atendido, 'Rut Trabajador' %> <br>
+      <% if !@employee.nil?%>
+        <% if @employee.empty? %>
+          <%= form.text_field :rut_atendido, id: :asformulary_rut_atendido, placeholder: "13832057-K", :class => 'textForm' %> <br>
+        <% else %>
+          <%= form.text_field :rut_atendido, id: :asformulary_rut_atendido, value: @employee[0].rut, hidden: true %>
+          <%= @employee[0].rut %><br>
+        <% end %>
+      <% end %>
     <% else %>
-    <%= form.text_field :codigo_obra, id: :asformulary_codigo_obra, value: @employee[0].cencos, hidden: true %> 
-    <% obraname = Obra.where(codigo: @employee[0].cencos)  %>
-    <%= obraname[0].nombre %><br>
-
-    <% end %>
-    <% end %>
-    
-<% else %>
-    <%= form.label :codigo_obra, 'Codigo Obra' %><br>
-    <%= form.collection_select :codigo_obra, Obra.all.order('id DESC'), :codigo, :nombre_codigo, {include_blank: true}, {style: "width:220px"} %><br>
-<%end%>
-
+      <%= form.label :rut_atendido, 'Rut Trabajador' %> <br>
+      <%= form.text_field :rut_atendido, id: :asformulary_rut_atendido, placeholder: "13832057-K", :class => 'textForm' %><br>
+    <%end%>
   </div>
-      
 
+  <div class="field">
+    <% if params[:asformulary] && params[:asformulary][:rut_atendido] %>
+      <%= form.label :codigo_obra, 'Obra' %><br>
+      <% if !@employee.nil?%>
+        <% if @employee.empty? %>
+          <%# form.text_field :codigo_obra, id: :asformulary_codigo_obra, :class => 'textForm' %>
+          <%= form.collection_select :codigo_obra, Obra.all.order('codigo DESC'), :codigo, :nombre_codigo, {include_blank: true}, {style: "width: 87.5%"} %><br>
+        <% else %>
+          <%= form.text_field :codigo_obra, id: :asformulary_codigo_obra, value: @employee[0].cencos, hidden: true %>
+          <% obraname = Obra.where(codigo: @employee[0].cencos)  %>
+          <%= obraname[0].nombre %><br>
+        <% end %>
+      <% end %>
+    <% else %>
+      <%= form.label :codigo_obra, 'Codigo Obra' %><br>
+      <%= form.collection_select :codigo_obra, Obra.all.order('codigo DESC'), :codigo, :nombre_codigo, {include_blank: true}, {style: "width: 87.5%"} %><br>
+    <%end%>
+  </div>
 
   <div class="field">
     <%= form.label :telefono %>
@@ -115,20 +88,13 @@
     <%= form.number_field :telefono, id: :asformulary_telefono, :class => 'textForm' %>
     <br>
   </div>
-    
-  
-
-  
 
   <div class="field">
-    
     <%= form.label :Tipo_Consulta %>
     <br>
-    <%= form.collection_select :aspcategory_id, Aspcategory.where(is_active: true).order('nombre ASC'), :id, :nombre, {include_blank: true}, {style: "width:220px"} %>
+    <%= form.collection_select :aspcategory_id, Aspcategory.where(is_active: true).order('nombre ASC'), :id, :nombre, {include_blank: true}, {style: "width: 87.5%"} %>
     <br>
-
   </div>
-
 
   <div class="field">
     <%= form.label :estado, 'Caso cerrado?' %>
@@ -136,7 +102,7 @@
   </div>
 
   <div class="field">
-    <%= form.label :subcontrato, 'subcontrato?' %>
+    <%= form.label :subcontrato, 'Subcontrato?' %>
     <%= form.check_box :subcontrato, id: :asformulary_subcontrato %>
   </div>
 
@@ -150,71 +116,67 @@
   <div class="field">
     <%= form.label :descripcion, 'Descripción' %>
     <br>
-    <%= form.text_area :descripcion, id: :asformulary_descripcion, placeholder: "Descripción...", :class => 'textForm' %>
+    <%= form.text_area :descripcion, id: :asformulary_descripcion, placeholder: "Descripción...", :class => 'textForm', :style => "line-height: 50px;" %>
     <br>
   </div>
 
-  
-
-   <div class="field">
-    
-    <%# form.label :Beneficio_Asociado %>
+  <div class="field">
+    <%= form.label :assign, '¿Qué tipo de beneficio desea asignar?' %>
     <br>
-    <%# form.collection_select :benefit_id, Benefit.where(is_active: true), :id, :nombre, {include_blank: true}, {style: "width:220px"} %>
-    <br>
+    <%= form.radio_button :assign, 'benefit', onClick: "botonBeneficio();" %>
+    <%= label :contactmethod_email, 'Beneficio', :style => "margin-right: 2.5%" %>
+    <%= form.radio_button :assign, 'loan', onClick: "botonPrestamo();" %>
+    <%= label :contactmethod_sms, 'Préstamo', :style => "margin-right: 2.5%" %>
+    <%= form.radio_button :assign, 'nothing', onClick: "sinBoton();", :checked => true %>
+    <%= label :contactmethod_sms, 'Ninguno' %>
+  </div>
 
+  <script>
+    function botonBeneficio() {
+        document.getElementById('benefitbutton').style.display = 'block';
+        document.getElementById('loanbutton').style.display = 'none';
+        document.getElementById('benefit_as').innerHTML = ''; /* Falta poder asignar el beneficio aqui */
+    }
 
-    <div class="field">
-        <%= form.label :areabenefit_id, "Area de beneficio" %><br>
-        <%= form.collection_select(:areabenefit_id, Areabenefit.where(is_active: true).order('nombre ASC'), :id, :nombre, {:prompt => "Seleccione área de beneficio"},{:class => "areabenefit_selection", style: "width:220px"}) %>
-      </div>
-      <br>
-      <div class="field">
-        <%= form.label :benefit_id, "Beneficio" %><br>
-        <%= form.collection_select(:benefit_id, Benefit.where(is_active: true).order('nombre ASC'), :id, :nombre, {:prompt => "Seleccione un beneficio"}, {:class => "contact_selection", style: "width:220px"}) %>
-      </div>
+    function botonPrestamo() {
+        document.getElementById('benefitbutton').style.display = 'none';
+        document.getElementById('loanbutton').style.display = 'block';
+        document.getElementById('benefit_as').innerHTML = '<%= form.hidden_field :benefit_id, id: :asformulary_benefit_id, value: 1 %>';
+    }
 
+    function sinBoton() {
+        document.getElementById('benefitbutton').style.display = 'none';
+        document.getElementById('loanbutton').style.display = 'none';
+        document.getElementById('benefit_as').innerHTML = '<%= form.hidden_field :benefit_id, id: :asformulary_benefit_id, value: 1 %>';
+    }
+  </script>
+  </svg>
 
+  <div class="field" id="benefit_as"></div>
 
+  <div id="benefitbutton" style="display: none;">
+    <%= render 'benefitbutton' %>
+  </div>
 
+  <div id="loanbutton" style="display: none;">
+    <%= render 'loanbutton' %>
   </div>
 
   <div class="field">
     <%= form.label :solucion, 'Solución' %>
     <br>
-    <%= form.text_field :solucion, id: :asformulary_solucion, placeholder: "Solución...", :class => 'textForm' %>
+    <%= form.text_area :solucion, id: :asformulary_solucion, placeholder: "Solución...", :class => 'textForm', :style => "line-height: 50px;" %>
     <br>
   </div>
 
-
- <i>*Complete toda la información antes de ir a "Asignar Préstamos" o "Asignar Beneficio"</i>
-
-
-<div id="benefitbutton">
-<%= render 'benefitbutton' %>
-</div>
-
-
-<div id="loanbutton">
-<%= render 'loanbutton' %>
-</div>
-
-
   <div class="actions">
-    <%= form.submit "Guardar atención", :class => 'btn btn-green btn-lg btn-block'%>
+    <%= form.submit "Guardar atención", :class => 'btn btn-green btn-lg btn-block' , data: { confirm:'¿Está seguro? al aceptar ya no se podrá realizar cambios.'} %>
   </div>
 
-
-<script>
-$(document).on("keyup", "#form_params", function(){
-       $.get($("#form_params").attr("new_asformulary_path"), $("#form_params").serialize(), null, "script");
-       return false;
-   });
-
-
-</script>
-
-
+  <script>
+  $(document).on("keyup", "#form_params", function(){
+         $.get($("#form_params").attr("new_asformulary_path"), $("#form_params").serialize(), null, "script");
+         return false;
+     });
+  </script>
 <% end %>
-
-

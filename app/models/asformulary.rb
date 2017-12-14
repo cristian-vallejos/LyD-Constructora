@@ -3,14 +3,11 @@ class Asformulary < ApplicationRecord
   belongs_to :lyduser
   belongs_to :aspcategory
   belongs_to :benefit
-  has_many :epcformularies, :dependent => :destroy 
+  has_many :epcformularies, :dependent => :destroy
 
   #before_create :set_atencion_id
 
-  
   validate :input_atributos
-
-
 
   after_create :crear_log_A
   after_update :crear_log_B
@@ -23,9 +20,6 @@ class Asformulary < ApplicationRecord
     end
   end
 
-
-
-
   def input_atributos
     if rut_atendido.present?
       dv = [*0..9,'K'][rut_atendido[0...-2].to_s.reverse.chars.inject([0,0]){|(i,a),n|[i+1,a-n.to_i*(i%6+2)]}[1]%11]
@@ -34,38 +28,32 @@ class Asformulary < ApplicationRecord
       #end
         if rut_atendido[0...-2].size != rut_atendido[0...-2].count("0-9")
           #puts "el rut se debe ingresar sin puntos y con guión"
-          errors.add(:rut_atendido, "el RUT se debe ingresar sin puntos y con guión")
+          errors.add(:rut_atendido, "debe ser ingresado sin puntos y con guión")
 
 
         else
          #verificado antes del guion
 
             if rut_atendido.count("k,K") > 1
-            
-            errors.add(:rut_atendido, "Formato de rut mal ingresado. Verificar1.")
-            
+
+            errors.add(:rut_atendido, ": Formato de rut mal ingresado. Verificar.") #1
+
             else
 
               if dv == 'K'
                 if rut_atendido[-1] != 'K' && rut_atendido[-1] != 'k'
-                  errors.add(:rut_atendido, "Formato de rut mal ingresado. Verificar2.")
+                  errors.add(:rut_atendido, ": Formato de rut mal ingresado. Verificar.") #2
                 end
               else
                 if rut_atendido[-1] != 'K' && rut_atendido[-1] != 'k'
                   if Integer(rut_atendido[-1]) != dv
-                    errors.add(:rut_atendido, "Formato de rut mal ingresado. Verificar3.")
+                    errors.add(:rut_atendido, ": Formato de rut mal ingresado. Verificar.") #3
                   end
                 else
-                  errors.add(:rut_atendido, "Formato de rut mal ingresado. Verificar4.")
+                  errors.add(:rut_atendido, ": Formato de rut mal ingresado. Verificar.") #4
                 end
               end
-
-
-
             end
-
-
-
           end
     end
 
@@ -111,7 +99,7 @@ class Asformulary < ApplicationRecord
 
   def crear_log_A
   	log = Loga.new(
-  		asocial_id: self.id,  
+  		asocial_id: self.id,
   		#user_name: self.user.name,
       user_name: self.lyduser.email,
       	codigo_obra: self.codigo_obra,
@@ -133,7 +121,7 @@ class Asformulary < ApplicationRecord
   def crear_log_B
     if(self.estado == true)
       log = Loga.new(
-        asocial_id: self.id,  
+        asocial_id: self.id,
   		user_name: self.lyduser.email,
       	codigo_obra: self.codigo_obra,
       	rut_atendido: self.rut_atendido,

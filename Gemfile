@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
+gem 'rut_validation'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.0'
 # Use mysql as the database for Active Record
@@ -21,7 +21,7 @@ gem 'therubyracer', platforms: :ruby
 
 gem 'json'
 
-gem 'tiny_tds'
+#gem 'tiny_tds'
 
 gem 'execjs'
 

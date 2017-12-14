@@ -1,4 +1,4 @@
-<link href='<%= asset_url("css/bootstrap.min.css") %>' rel="stylesheet" type="text/css">
+ilink href='<%= asset_url("css/bootstrap.min.css") %>' rel="stylesheet" type="text/css">
 <link href='<%= asset_url("css/font-awesome.min.css") %>' rel="stylesheet">
 <link href='<%= asset_url("css/style-273.css") %>' rel="stylesheet">
 <link href='<%= asset_url("css2/stylesLD.css") %>' rel="stylesheet" type="text/css">
@@ -15,7 +15,7 @@
 
       <div class="field">
       <%= f.label :obra_id %>
-      <%= f.collection_select(:obra_id, Obra.all.order('nombre ASC'), :codigo, :nombre, {:prompt => "Seleccione una obra"},{:class => "ccosto_selection"}) %>
+      <%= f.collection_select(:obra_id, Obra.all.order('codigo DESC'), :codigo, :nombre, {:prompt => "Seleccione una obra"},{:class => "ccosto_selection"}) %>
       </div>
 
       <div class="table-responsive">

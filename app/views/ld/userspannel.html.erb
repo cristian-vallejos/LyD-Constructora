@@ -13,11 +13,11 @@
 
 <div class="row">
  <div class="col-md-3">
-	
+
 <h5>Registrar Nuevo usuario</h5>
 
 <%= form_for(:ld, url: ld_userspannel_path, method: "get") do |f| %>
-  
+
 
   <div class="field">
     <%= f.label :nombre_usuario %><br />
@@ -31,7 +31,7 @@
 
   <div class="field">
   <%= f.label :obra, 'Obra' %><br>
-  <%= f.collection_select :id, Obra.all.order('id DESC'), :id, :nombre_codigo, {include_blank: true} , {style: "width:180px"} %>
+  <%= f.collection_select :id, Obra.all.order('codigo DESC'), :id, :nombre_codigo, {include_blank: true}, {style: "width: 87.5%"} %>
   </div>
 
   <h6>- - Rol - -</h6>
@@ -76,7 +76,7 @@
 
  <i>*Todos los campos son obligatorios</i><br>
  <i>*Las contraseñas deben tener mínimo 6 caracteres</i> <br>
- <i>*Las contraseñas deben coincidir</i> 
+ <i>*Las contraseñas deben coincidir</i>
 
   <div class="actions">
     <%= f.submit "Registrar", name: "registrar", :class => 'btn btn-green btn-lg btn-block' %>
@@ -95,7 +95,7 @@
 
 		<div class="field">
 		  <%= f.label :lyduser, 'Seleccione un usuario' %> <br>
-		  <%= f.collection_select :id, Lyduser.all.order('nombre_usuario ASC'), :id, :nombre_usuario, {include_blank: true} , {style: "width:180px"} %>
+		  <%= f.collection_select :id, Lyduser.all.order('nombre_usuario ASC'), :id, :nombre_usuario, {include_blank: true}, {style: "width: 87.5%"} %>
 	  </div>
 	  <div class="field">
 	    <%= f.label :password, 'Nueva Contraseña' %>
@@ -111,8 +111,8 @@
 	  </div>
 
 	   <i>*Las contraseñas deben coincidir</i><br>
-	   <i>*Las contraseñas deben tener mínimo 6 caracteres</i> 
- 
+	   <i>*Las contraseñas deben tener mínimo 6 caracteres</i>
+
 	  <div class="actions">
     	<%= f.submit "Cambiar Contraseña", name: "cambiarPass", :class => 'btn btn-green btn-lg btn-block' %>
   	  </div>
@@ -125,7 +125,7 @@
 
   <div class="field">
     <%= f.label :lyduser, 'Seleccione un usuario' %> <br>
-    <%= f.collection_select :id, Lyduser.where(admin_role: false).order('nombre_usuario ASC'), :id, :nombre_estado, {include_blank: true} , {style: "width:180px"} %>
+    <%= f.collection_select :id, Lyduser.where(admin_role: false).order('nombre_usuario ASC'), :id, :nombre_estado, {include_blank: true}, {style: "width: 87.5%"} %>
   </div>
 
   <div class="actions">
@@ -149,19 +149,19 @@
 
 		<div class="field">
 		  <%= f.label :lyduser, 'Seleccione un usuario' %> <br>
-		  <%= f.collection_select :u_id, Lyduser.where(is_active: true).where("ao_role = ? || administrativo_obra_role = ?", true, true).order('nombre_usuario ASC'), :id, :nombre_usuario, {include_blank: true} , {style: "width:180px"} %>
+		  <%= f.collection_select :u_id, Lyduser.where(is_active: true).where("ao_role = ? || administrativo_obra_role = ?", true, true).order('nombre_usuario ASC'), :id, :nombre_usuario, {include_blank: true}, {style: "width: 87.5%"} %>
 	    </div>
 
 	    <div class="field">
 		  <%= f.label :obra, 'Obra' %><br>
-		  <%= f.collection_select :o_id, Obra.all.order('id DESC'), :id, :nombre_codigo, {include_blank: true}, {style: "width:180px"} %>
+		  <%= f.collection_select :o_id, Obra.all.order('codigo DESC'), :id, :nombre_codigo, {include_blank: true}, {style: "width: 87.5%"} %>
 		</div>
 
-	  
-	  
 
 
-	   
+
+
+
 	  <div class="actions">
     	<%= f.submit "Asignar Obra", name: "cambiarObra", :class => 'btn btn-green btn-lg btn-block' %>
   	  </div>
@@ -181,7 +181,7 @@
 
 <br>
 
-<h3>Lo sentimos:</h3> 
+<h3>Lo sentimos:</h3>
 <h3>No tienes suficientes permisos para realizar esta acción :(</h3>
 <br>
 

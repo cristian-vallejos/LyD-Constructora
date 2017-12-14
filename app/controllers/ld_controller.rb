@@ -24,41 +24,35 @@ class LdController < ApplicationController
 
 		#puts params[:obra][:id]
 
-
 		respond_to do |format|
+				format.html
 
         format.pdf {
           render pdf: "Reportes",
           template: "layouts/reportsPannelLog"
         }
-        format.html
-
-
-
+		end
 	end
 
 
 	def download_pdf
 		#@assignbenefit = Rails.application.config.ab
-
+		if params[:obra] && params[:event1] && params[:event2]
         pdf = WickedPdf.new.pdf_from_string(
-		render_to_string('layouts/reportsPannelLog.pdf.erb', layout: false)
-		)
-
-		send_data pdf, :filename => "Reportes.pdf", :type => "application/pdf",:disposition => "attachment"
-
-    	end
-    end
-
-
+					render_to_string('layouts/reportsPannelLog_Obra.pdf.erb', layout: false)
+				)
+			send_data pdf, :filename => "Reporte_"+Obra.find(params[:obra]).nombre.to_s+"_"+params[:event1]+"_"+params[:event2]+".pdf", :type => "application/pdf",:disposition => "attachment"
+		elsif params[:date1] && params[:date2]
+			pdf = WickedPdf.new.pdf_from_string(
+				render_to_string('layouts/reportsPannelLog_General.pdf.erb', layout: false)
+			)
+		send_data pdf, :filename => "Reporte_General_"+params[:date1]+"_"+params[:date2]+".pdf", :type => "application/pdf",:disposition => "attachment"
+		end
+	end
 
 
 	def userspannel
-
 		if params[:registrar]
-
-
-
 			if params[:ld][:id] != ""
 				ob = Obra.find(params[:ld][:id]).codigo
 			else
