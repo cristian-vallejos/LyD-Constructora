@@ -405,11 +405,13 @@
 											<% asignacion = Assignbenefit.where(:created_at => fecha1...fecha2).group("benefit_id") %>
 											<% i = 0 %>
 											<% asignacion.each do |a| %>
-													<tr>
-															<td><%= a.benefit.nombre %></td>
-															<td><%= ins[i] %></td>
-															<td>$<%= ins[i]*totale[i].to_i %></td>
-													</tr>
+													<% if a.benefit.id != 1 %>
+														<tr>
+																<td><%= a.benefit.nombre %></td>
+																<td><%= ins[i] %></td>
+																<td>$<%= ins[i]*totale[i].to_i %></td>
+														</tr>
+													<% end %>
 													<% i = i+1 %>
 											<% end %>
 										</tbody>
