@@ -68,6 +68,21 @@
     <%end%>
   </div>
 
+  <div class="field">
+   <% if params[:rut_trabajador] %>
+
+     <% @obra = Obra.where(codigo: Employee.where(rut: params[:rut_trabajador], estado: "A")[0].cencos) %>
+
+     <%= form.label :obra_id, 'Obra' %><br>
+     <%= form.text_field :obra_id, id: :assignbenefit_obra_id, value: @obra[0].id, hidden: true %>
+     <%= @obra[0].nombre %>
+ <% else %>
+     <%= form.label :obra_id, 'Obra' %><br>
+     <%= form.collection_select :obra_id, Obra.all.order('codigo DESC'), :id, :nombre_codigo, {include_blank: true}, {style: "width: 87.5%"} %>
+
+ <%end%>
+ </div>
+
  <% if params[:rut_trabajador] %>
   <div class="field">
 
@@ -109,29 +124,6 @@
 
 
   <% end %>
-
-
-
-
- <div class="field">
-  <% if params[:obra_id] %>
-
-    <% @obra = Obra.where(codigo: params[:obra_id]) %>
-
-    <%= form.label :obra_id, 'Obra' %><br>
-    <%= form.text_field :obra_id, id: :assignbenefit_obra_id, value: @obra[0].id, hidden: true %>
-    <%= @obra[0].nombre %>
-
-<% else %>
-    <%= form.label :obra_id, 'Obra' %><br>
-    <%= form.collection_select :obra_id, Obra.all.order('codigo DESC'), :id, :nombre_codigo, {include_blank: true}, {style: "width: 87.5%"} %>
-
-<%end%>
-</div>
-
-
-
-
 
   <div class="actions">
     <%= form.submit "Asignar", :class => 'btn btn-green btn-lg btn-block' %>
